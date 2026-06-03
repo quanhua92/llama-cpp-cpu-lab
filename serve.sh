@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MODEL_DIR="/home/quan/llama-cpp/models"
-REPO_DIR="/home/quan/llama-cpp/repo"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+MODEL_DIR="$SCRIPT_DIR/models"
+REPO_DIR="$SCRIPT_DIR/repo"
 SERVER="$REPO_DIR/build/bin/llama-server"
 
 declare -A MODELS
@@ -18,6 +19,9 @@ MODELS["gemma4-e4b"]="unsloth/gemma-4-E4B-it-GGUF|gemma-4-E4B-it-Q4_K_M.gguf|Gem
 MODELS["qwen3.5-0.8b"]="unsloth/Qwen3.5-0.8B-GGUF|Qwen3.5-0.8B-Q4_K_M.gguf|Qwen3.5 0.8B (Q4_K_M)"
 MODELS["qwen3.5-2b"]="unsloth/Qwen3.5-2B-GGUF|Qwen3.5-2B-Q4_K_M.gguf|Qwen3.5 2B (Q4_K_M)"
 MODELS["qwen3.5-4b"]="unsloth/Qwen3.5-4B-GGUF|Qwen3.5-4B-Q4_K_M.gguf|Qwen3.5 4B (Q4_K_M)"
+MODELS["gemma2-2b"]="bartowski/gemma-2-2b-it-GGUF|gemma-2-2b-it-Q4_K_M.gguf|Gemma 2 2B IT (Q4_K_M) — Dense, no MoE"
+MODELS["deepseek-r1-1.5b"]="unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF|DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf|DeepSeek-R1-Distill-Qwen-1.5B (Q4_K_M) — RL-reasoning distilled"
+MODELS["phi4-mini"]="unsloth/Phi-4-mini-instruct-GGUF|Phi-4-mini-instruct-Q4_K_M.gguf|Phi-4 Mini 3.8B (Q4_K_M) — Microsoft instruction-tuned"
 
 usage() {
     echo "Usage: $0 [model] [port] [--no-reasoning] [--chat-template <name>] [--chat-template-file <path>] [extra flags...]"
@@ -72,8 +76,8 @@ for arg in "${EXTRA_ARGS[@]}"; do
 done
 EXTRA_ARGS=("${FILTERED_ARGS[@]}")
 
-PIDFILE="/home/quan/llama-cpp/server.${PORT}.pid"
-LOG="/home/quan/llama-cpp/server.${PORT}.log"
+PIDFILE="$SCRIPT_DIR/server.${PORT}.pid"
+LOG="$SCRIPT_DIR/server.${PORT}.log"
 
 IFS='|' read -r HF_REPO GGUF_FILE DISPLAY <<< "${MODELS[$MODEL_KEY]}"
 MODEL_URL="https://huggingface.co/$HF_REPO/resolve/main/$GGUF_FILE"

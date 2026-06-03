@@ -1,0 +1,33 @@
+Auto-detected model: gemma-2-2b-it-Q4_K_M.gguf
+
+  -> Iteration 1/3
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution translates human-readable domain names (e.g., google.com) into IP addresses (e.g., 172.217.160.142) that computers use to communicate. 
+
+It works by:
+
+1. **User requests:** You type a domain name into your browser.
+2. **DNS lookup:** Your computer sends a request to a DNS server.
+3. **Server response:** The DNS server finds the IP address associated with the domain name.
+4. **Connection:** Your computer connects to the server using the IP address. 
+     Done! (TTFT: 267.90ms, Chunks: 129)
+
+  -> Iteration 2/3
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common software design problems. They provide a blueprint for structuring code, promoting modularity, and improving maintainability. 
+     Done! (TTFT: 218.09ms, Chunks: 33)
+
+  -> Iteration 3/3
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that "remembers" its surrounding environment (the variables in its lexical scope) even after the outer function has finished executing. 
+     Done! (TTFT: 239.46ms, Chunks: 35)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 241.81 ms
+[info] Average Time per Output Token (TPOT): 60.46 ms
+[info] Estimated Generation Throughput: 16.54 tokens/sec
+[time] Average Total Wall Duration: 4.22 seconds
+=================================================

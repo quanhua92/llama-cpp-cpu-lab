@@ -1,0 +1,29 @@
+Auto-detected model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+
+  -> Iteration 1/3
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] 
+
+The CAP theorem, or Capitalization Adjusted Present Value theorem, is a model in corporate finance that determines the value of a company by considering its capital structure. It posits that the value of a company is the sum of its value in perfect capital markets plus an adjustment for the tax benefits or costs associated with debt and equity financing. The theorem assumes perfect capital markets, meaning no taxes, no transaction costs, and no asymmetric information. It helps in understanding how a company's value changes with different capital structures, aiding investors or managers in making decisions about debt or equity financing.     Done! (TTFT: 137.93ms, Chunks: 716)
+
+  -> Iteration 2/3
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] 
+
+A closure is a function that captures variables from its surrounding scope, allowing it to access and use those variables even after the function that created it has finished.     Done! (TTFT: 160.32ms, Chunks: 708)
+
+  -> Iteration 3/3
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] 
+
+Neural networks learn through an iterative process that combines forward and backward propagation, utilizing activation functions to introduce non-linearity, and adjusting weights based on the error between predicted and actual outputs. This adjustment is guided by the learning rate, which determines the step size for weight updates. The learning process involves multiple epochs, where the entire dataset is passed through the network, allowing the network to gradually improve its performance by minimizing the loss function. Activation functions ensure smooth and effective learning by mapping outputs to suitable ranges.     Done! (TTFT: 160.18ms, Chunks: 945)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 152.81 ms
+[info] Average Time per Output Token (TPOT): 34.51 ms
+[info] Estimated Generation Throughput: 28.98 tokens/sec
+[time] Average Total Wall Duration: 27.37 seconds
+=================================================

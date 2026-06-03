@@ -5,6 +5,21 @@ CPU-only LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-
 **Machine:** Intel i7-10700 (8C/16T, 2.9–4.8 GHz) · 64 GB RAM · x86_64 · CPU only (no GPU)
 **llama.cpp:** [`4da6370`](https://github.com/ggml-org/llama.cpp/commit/4da6370d43f55a3f5ad576c5a1528b6ba9c53258)
 
+## Contents
+
+- [Benchmark Report](#benchmark-report)
+- [Quick Start](#quick-start)
+- [Curated Models](#curated-models)
+- [Multiple Servers](#multiple-servers)
+- [Benchmarking](#benchmarking)
+- [API](#api)
+- [Running as a Linux Service](#running-as-a-linux-service)
+- [Adding a New Model](#adding-a-new-model)
+- [Downloading Models](#downloading-models)
+- [Notes](#notes)
+
+## [Benchmark Report](report.md)
+
 ## Quick Start
 
 ```bash
@@ -72,6 +87,9 @@ All Q4_K_M quant, optimized for CPU (`-ngl 0`, `-t 8`, `-c 8192`):
 | `qwen3.5-0.8b` | Qwen3.5 0.8B | 533 MB |
 | `qwen3.5-2b` | Qwen3.5 2B | 1.3 GB |
 | `qwen3.5-4b` | Qwen3.5 4B | 2.7 GB |
+| `gemma2-2b` | Gemma 2 2B IT (Dense) | 1.6 GB |
+| `deepseek-r1-1.5b` | DeepSeek-R1-Distill-Qwen-1.5B | 1.1 GB |
+| `phi4-mini` | Phi-4 Mini 3.8B (Microsoft) | 2.4 GB |
 
 ## Multiple Servers
 
@@ -97,7 +115,7 @@ bash run_benchmarks.sh qwen2.5-0.5b llama3.2-1b
 bash run_benchmarks.sh --no-reasoning qwen2.5-0.5b
 ```
 
-Results saved to `/tmp/llama_bench_results/<key>_think.txt` or `*_nothink.txt`.
+Results saved to `results/<key>_think.txt` or `*_nothink.txt`.
 
 ## API
 
@@ -186,10 +204,26 @@ systemctl --user restart llama-server.service
 
 See `add-model-flow.md` for the full workflow: download GGUF → add to `serve.sh` → profile → update `report.md`.
 
+## Downloading Models
+
+Models are auto-downloaded by `serve.sh` via `wget`, but HuggingFace's CDN can throttle to ~20 KB/s. For faster downloads, use the `hf` CLI (installed with this project):
+
+```bash
+# Download a specific GGUF file to the models/ directory
+uv run hf download <repo> <filename> --local-dir models/
+
+# Examples
+uv run hf download unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf --local-dir models/
+uv run hf download unsloth/Phi-4-mini-instruct-GGUF Phi-4-mini-instruct-Q4_K_M.gguf --local-dir models/
+uv run hf download bartowski/gemma-2-2b-it-GGUF gemma-2-2b-it-Q4_K_M.gguf --local-dir models/
+```
+
+If `hf` is not installed: `uv add huggingface_hub`.
+
 ## Notes
 
 - Server defaults to thinking mode (chain-of-thought). Pass `--no-reasoning` to serve.sh for fast direct answers.
 - `ask.py` and `reflect.py` always show `[think]` reasoning tokens.
 - `profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
 - SmolLM3 3B has a ~3s cold-start penalty on first request
-- See `report.md` for full benchmarks across all 12 models
+- See [report.md](report.md) for full benchmarks across all 16 models

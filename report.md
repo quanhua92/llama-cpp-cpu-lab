@@ -20,6 +20,9 @@ All models in Q4_K_M quantization. Each model was profiled with 3 prompt iterati
 | Gemma 4 E2B | 2B | Google MoE |
 | Gemma 4 E4B | 4B | Google MoE |
 | SmolLM3-3B | 3B | HuggingFace |
+| Gemma 2 2B IT | 2B | Google Dense |
+| DeepSeek-R1-Distill-Qwen-1.5B | 1.5B | RL-reasoning distilled |
+| Phi-4 Mini | 3.8B | Microsoft instruction-tuned |
 
 ## Benchmark Modes
 
@@ -40,7 +43,7 @@ Two modes were tested for each model:
 | Qwen 2.5-1.5B | 177 | 190 | +7% |
 | Qwen 2.5-3B | 339 | 332 | -2% |
 | Qwen 2.5 Coder-1.5B | 173 | 187 | +8% |
-| Qwen 3.5-0.8B | 149 | 163 | +9% |
+| Qwen 3.5-0.8B | 175 | 153 | -13% |
 | Qwen 3.5-2B | 276 | 270 | -2% |
 | Qwen 3.5-4B | 660 | 619 | -6% |
 | Llama 3.2-1B | 100 | 119 | +19% |
@@ -48,6 +51,9 @@ Two modes were tested for each model:
 | Gemma 4 E2B | 259 | 295 | +14% |
 | Gemma 4 E4B | 486 | 551 | +13% |
 | SmolLM3-3B | 522 | 1127 | +116% |
+| Gemma 2 2B IT | 242 | 249 | +3% |
+| DeepSeek-R1-Distill-Qwen-1.5B | 153 | 166 | +8% |
+| Phi-4 Mini | 286 | 293 | +3% |
 
 ### Time per Output Token (TPOT) — lower is better
 
@@ -57,7 +63,7 @@ Two modes were tested for each model:
 | Qwen 2.5-1.5B | 32.87 | 34.40 | +5% |
 | Qwen 2.5-3B | 64.65 | 64.07 | -1% |
 | Qwen 2.5 Coder-1.5B | 31.19 | 32.71 | +5% |
-| Qwen 3.5-0.8B | 23.52 | 24.35 | +4% |
+| Qwen 3.5-0.8B | 23.15 | 25.56 | +10% |
 | Qwen 3.5-2B | 47.23 | 48.36 | +2% |
 | Qwen 3.5-4B | 98.12 | 102.11 | +4% |
 | Llama 3.2-1B | 27.41 | 27.49 | +0% |
@@ -65,6 +71,9 @@ Two modes were tested for each model:
 | Gemma 4 E2B | 57.40 | 59.69 | +4% |
 | Gemma 4 E4B | 104.51 | 108.99 | +4% |
 | SmolLM3-3B | 63.31 | 69.08 | +9% |
+| Gemma 2 2B IT | 60.46 | 60.20 | -0% |
+| DeepSeek-R1-Distill-Qwen-1.5B | 34.51 | 36.40 | +5% |
+| Phi-4 Mini | 79.77 | 78.74 | -1% |
 
 ### Generation Throughput — higher is better
 
@@ -74,7 +83,7 @@ Two modes were tested for each model:
 | Qwen 2.5-1.5B | 30.42 | 29.07 | -4% |
 | Qwen 2.5-3B | 15.47 | 15.61 | +1% |
 | Qwen 2.5 Coder-1.5B | 32.06 | 30.57 | -5% |
-| Qwen 3.5-0.8B | 42.52 | 41.06 | -3% |
+| Qwen 3.5-0.8B | 43.19 | 39.12 | -9% |
 | Qwen 3.5-2B | 21.17 | 20.68 | -2% |
 | Qwen 3.5-4B | 10.19 | 9.79 | -4% |
 | Llama 3.2-1B | 36.49 | 36.37 | -0% |
@@ -82,6 +91,9 @@ Two modes were tested for each model:
 | Gemma 4 E2B | 17.42 | 16.75 | -4% |
 | Gemma 4 E4B | 9.57 | 9.17 | -4% |
 | SmolLM3-3B | 15.80 | 14.48 | -8% |
+| Gemma 2 2B IT | 16.54 | 16.61 | +0% |
+| DeepSeek-R1-Distill-Qwen-1.5B | 28.98 | 27.47 | -5% |
+| Phi-4 Mini | 12.54 | 12.70 | +1% |
 
 ### Total Wall Duration — lower is better
 
@@ -91,7 +103,7 @@ Two modes were tested for each model:
 | Qwen 2.5-1.5B | 1.43 | 2.50 | +75% |
 | Qwen 2.5-3B | 5.06 | 4.01 | -21% |
 | Qwen 2.5 Coder-1.5B | 0.99 | 1.56 | +58% |
-| Qwen 3.5-0.8B | 2.73 | 25.15 | +821% |
+| Qwen 3.5-0.8B | 1.82 | 75.10 | +4125% |
 | Qwen 3.5-2B | 6.48 | 41.62 | +542% |
 | Qwen 3.5-4B | 7.91 | 72.87 | +821% |
 | Llama 3.2-1B | 3.29 | 3.99 | +21% |
@@ -99,6 +111,9 @@ Two modes were tested for each model:
 | Gemma 4 E2B | 8.28 | 27.11 | +227% |
 | Gemma 4 E4B | 10.80 | 56.33 | +422% |
 | SmolLM3-3B | 3.05 | 39.34 | +1190% |
+| Gemma 2 2B IT | 4.22 | 3.66 | -13% |
+| DeepSeek-R1-Distill-Qwen-1.5B | 27.37 | 34.38 | +26% |
+| Phi-4 Mini | 5.69 | 5.16 | -9% |
 
 ## Key Findings
 
@@ -106,12 +121,15 @@ Two modes were tested for each model:
 
 - **Qwen 2.5 & Llama 3.2**: Efficient thinking. TTFT and TPOT overhead is minimal (<10%). Wall time increases are modest (up to 2× for Llama 3.2-3B). These models produce concise reasoning without overthinking.
 - **Gemma 4**: Significant wall time increase (3-5×) due to verbose chain-of-thought (300-700 chunks vs 50-150 in no-think mode). Reasoning is coherent and well-structured.
+- **Gemma 2 2B IT (Dense)**: Faster than Gemma 4 E2B on CPU (3.7s vs 27.1s thinking wall time) due to no MoE cache thrashing. However, it's 2 generations older — reasoning quality is notably weaker on complex tasks. TPOT is nearly identical between modes (+0-3%).
+- **DeepSeek-R1-Distill-Qwen-1.5B**: Fastest reasoning model at 27.5 tok/s in thinking mode. In no-think mode behavior is **prompt-dependent** — sometimes finishes naturally (556–1527 chunks), sometimes loops to the `max_tokens` ceiling. Thinking mode is more reliable (all 3 iterations completed with `[think]` + `[out]`). The model has reasoning hardwired into its weights and doesn't cleanly separate thinking from output.
+- **Phi-4 Mini**: Excellent instruction adherence. Concise, accurate answers in both modes with minimal verbosity. Wall time stays tight (5.2–5.7s). TPOT is predictable (~79ms) due to dense 3.8B architecture. Best model for multi-turn agent loops that require strict output discipline.
 - **SmolLM3-3B**: TTFT doubles (522→1127 ms) and wall time jumps 13× (3→39s) in thinking mode. The model struggles to structure concise reasoning.
-- **Qwen 3.5 series**: Still problematic in thinking mode. All three models hit `max_tokens=1024` ceiling (~1027 chunks per iteration) due to recursive self-editing loops. The "short, concise, and correct" constraint triggers repetitive refinement rather than concise output. However, they now complete and produce output (unlike the previous "under 50 words" prompt which caused total failure for 4B).
+- **Qwen 3.5 series**: Still problematic in thinking mode. Models enter recursive self-critique loops that burn the entire `max_tokens` budget. Qwen 3.5-0.8B completed iteration 1 normally (465 chunks) but looped on 2/3 prompts. Larger sizes may loop on all prompts. No-think mode works cleanly for 0.8B.
 
 ### 2. TPOT is stable per model
 
-Time per output token is determined almost entirely by model size and quantization, not by thinking mode. The 5-9% variation is within noise.
+Time per output token is determined almost entirely by model size and quantization, not by thinking mode. The 5-9% variation is within noise. The new models confirm this: Gemma 2 2B IT (+1%), DeepSeek-R1-Distill-Qwen-1.5B (+5%), Phi-4 Mini (+2%).
 
 ### 3. Throughput ranking (no-think mode)
 
@@ -122,21 +140,27 @@ Time per output token is determined almost entirely by model size and quantizati
 | 3 | Llama 3.2-1B | 36.5 |
 | 4 | Qwen 2.5 Coder-1.5B | 32.1 |
 | 5 | Qwen 2.5-1.5B | 30.4 |
-| 6 | Qwen 3.5-2B | 21.2 |
-| 7 | Gemma 4 E2B | 17.4 |
-| 8 | SmolLM3-3B | 15.8 |
-| 9 | Qwen 2.5-3B | 15.5 |
-| 10 | Llama 3.2-3B | 14.9 |
-| 11 | Qwen 3.5-4B | 10.2 |
-| 12 | Gemma 4 E4B | 9.6 |
+| 6 | DeepSeek-R1-Distill-Qwen-1.5B | 29.0 |
+| 7 | Qwen 3.5-2B | 21.2 |
+| 8 | Gemma 2 2B IT | 16.5 |
+| 9 | Gemma 4 E2B | 17.4 |
+| 10 | SmolLM3-3B | 15.8 |
+| 11 | Qwen 2.5-3B | 15.5 |
+| 12 | Llama 3.2-3B | 14.9 |
+| 13 | Phi-4 Mini | 12.7 |
+| 14 | Qwen 3.5-4B | 10.2 |
+| 15 | Gemma 4 E4B | 9.6 |
 
 ## Recommendations
 
 1. **For fast, direct answers**: Use `--no-reasoning`. Qwen 2.5-0.5B delivers ~66 tok/s with ~100ms TTFT.
 2. **For thinking-enabled use**: Qwen 2.5-0.5B and Qwen 2.5-3B are the best balance — near-zero TTFT/TPOT overhead and efficient reasoning.
-3. **Qwen 3.5 in thinking mode**: Avoid unless prompts are carefully tuned. All sizes (0.8B, 2B, 4B) hit the token ceiling with repetitive self-editing. No-think mode works fine (no recursive loop).
-4. **Gemma 4 thinking**: Functional but expensive (3-5× wall time). Use only when CoT quality justifies the cost.
-5. **SmolLM3-3B**: Underperforms in thinking mode (13× wall time). Use no-think mode only.
+3. **Dense but older**: Gemma 2 2B IT is 2 generations behind Gemma 4 E2B. It's faster on CPU (3.7s vs 27s thinking wall time) due to no MoE, but quality doesn't match. Only use if speed matters more than reasoning depth.
+4. **For reasoning tasks on CPU**: DeepSeek-R1-Distill-Qwen-1.5B streams at 27.5 tok/s in thinking mode — fastest reasoning throughput. No-think mode is unreliable (prompt-dependent looping). Prefer thinking mode.
+5. **For multi-turn agent loops**: Phi-4 Mini — excellent instruction adherence, tight wall time (4.9–5.3s), no verbosity runaway. Best for structured/automated pipelines.
+6. **Qwen 3.5 in thinking mode**: Avoid unless prompts are carefully tuned. All sizes (0.8B, 2B, 4B) hit the token ceiling with repetitive self-editing. No-think mode works fine (no recursive loop).
+7. **Gemma 4 thinking**: Best quality on CPU, but expensive (3-5× wall time, 27s thinking). Pay the cost if reasoning depth matters.
+8. **SmolLM3-3B**: Underperforms in thinking mode (13× wall time). Use no-think mode only.
 
 ## Methodology
 
@@ -145,7 +169,9 @@ Time per output token is determined almost entirely by model size and quantizati
 - Thinking mode uses the default `--reasoning` template auto-detection; no custom Jinja templates
 - Benchmark client (`profile_client.py`) streams responses, records TTFT (time to first output), TPOT (inter-token latency), total wall time, and chunk count
 - Prompts: 3 varied questions about programming/CS topics, each with "Answer short, concise, and correct." constraint
-- Qwen 3.5 models all hit `max_tokens=1024` ceiling (1027 chunks) in thinking mode due to recursive self-editing loops, but complete without total failure
+- `max_tokens`: 4096 for new models (Gemma 2, DeepSeek-R1, Phi-4), 1024 for original 12 models
+- Qwen 3.5 models enter infinite self-critique loops in thinking mode, burning the entire `max_tokens` budget in `[think]` tokens without producing `[out]`. No-think mode works cleanly for 0.8B.
+- DeepSeek-R1-Distill-Qwen-1.5B in no-think mode is prompt-dependent: some prompts finish naturally (556–1527 chunks), others loop to the `max_tokens` ceiling. Thinking mode is reliable (all iterations complete).
 
 ### Test Date
 

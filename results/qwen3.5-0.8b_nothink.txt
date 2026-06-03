@@ -1,29 +1,20 @@
 Auto-detected model: Qwen3.5-0.8B-Q4_K_M.gguf
-  -> Iteration 1/3: What is the difference between TCP and UDP? Answer short, concise, and correct.
-        [out] **TCP** is a connection-oriented protocol that requires a complete handshake (SYN, ACK, FIN, etc.) to establish a connection and ensures data is delivered in a structured order. **UDP** is a connectionless protocol that does not require a handshake and delivers data in the order it was sent, with a lower latency. Done! (TTFT: 156.44ms, Chunks: 69)
+  -> Iteration 1/3: What are design patterns? Answer short, concise, and correct.
+        [out] Design patterns are reusable architectural patterns that help developers solve common problems in software design. They provide a set of guidelines for how to structure and organize code, ensuring consistency and scalability across different projects. Done! (TTFT: 137.76ms, Chunks: 41)
 
-     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
-  -> Iteration 2/3: Describe microservices. Answer short, concise, and correct.
-        [out] **Microservices** are a software architecture pattern where a large application is divided into smaller, independent services, each responsible for a specific feature or domain. These services communicate via well-defined APIs (e.g., REST, gRPC) and are typically deployed as separate microservices on the cloud.
+     IN:  What are design patterns? Answer short, concise, and correct.
+  -> Iteration 2/3: How does garbage collection work in Python? Answer short, concise, and correct.
+        [out] Garbage collection (GC) in Python is a memory management technique that automatically frees memory for objects that no longer need it. It uses a "reference count" system: when an object is no longer referenced, its reference count drops to zero, and the garbage collector frees the memory. Python's garbage collector is highly optimized and uses a "garbage collection path" to avoid unnecessary memory allocations, ensuring efficient performance. Done! (TTFT: 193.29ms, Chunks: 86)
 
-Key characteristics include:
-*   **Decoupling**: Services are loosely coupled, allowing them to be developed, tested, and deployed independently.
-*   **Scalability**: Each service can be scaled independently based on its load.
-*   **Flexibility**: Teams can focus on specific features without worrying about the entire system.
-*   **Maintainability**: Changes to one service do not require changes to others.
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+  -> Iteration 3/3: How does DNS resolution work? Answer short, concise, and correct.
+        [out] DNS (Domain Name System) translates human-readable domain names (e.g., `google.com`) into machine-readable IP addresses (e.g., `192.0.2.1`). When a computer asks for a website, it sends a request to the DNS server, which then forwards it to the appropriate host server. The host server returns the correct IP address, which the computer uses to connect to the website. Done! (TTFT: 194.63ms, Chunks: 88)
 
-**Pros**: High flexibility, easier to debug, and easier to scale.
-**Cons**: Requires careful orchestration (e.g., using Docker, Kubernetes, and CI/CD pipelines) to ensure reliability and consistency across the system. Done! (TTFT: 150.21ms, Chunks: 197)
-
-     IN:  Describe microservices. Answer short, concise, and correct.
-  -> Iteration 3/3: Describe database transactions. Answer short, concise, and correct.
-        [out] A database transaction is a unit of work that involves the creation, modification, and deletion of data within a database. It is executed as a single atomic operation, meaning it must either succeed completely or fail completely. If a transaction fails, the database rolls back all changes made during that transaction to ensure data integrity. Done! (TTFT: 138.95ms, Chunks: 65)
-
-     IN:  Describe database transactions. Answer short, concise, and correct.
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 148.53 ms
-[info] Average Time per Output Token (TPOT): 23.52 ms
-[info] Estimated Generation Throughput: 42.52 tokens/sec
-[time] Average Total Wall Duration: 2.73 seconds
+[info] Average Time to First Token (TTFT): 175.23 ms
+[info] Average Time per Output Token (TPOT): 23.15 ms
+[info] Estimated Generation Throughput: 43.19 tokens/sec
+[time] Average Total Wall Duration: 1.82 seconds
 =================================================

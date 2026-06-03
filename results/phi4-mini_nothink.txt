@@ -1,0 +1,23 @@
+Auto-detected model: Phi-4-mini-instruct-Q4_K_M.gguf
+
+  -> Iteration 1/3
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a sequence of operations performed as a single logical unit of work that must either be completed entirely or not at all, ensuring data integrity and consistency. It adheres to ACID properties: Atomicity, Consistency, Isolation, and Durability. Transactions are used to manage changes to the database and can be rolled back if an error occurs.     Done! (TTFT: 279.06ms, Chunks: 75)
+
+  -> Iteration 2/3
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture refers to the high-level structure of a software system, including its components, their relationships, and the principles used to ensure the system's functionality, performance, and maintainability. It defines the software's overall organization and guides its development and evolution.     Done! (TTFT: 283.20ms, Chunks: 54)
+
+  -> Iteration 3/3
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that a distributed system can only simultaneously provide two out of the following three guarantees: Consistency, Availability, and Partition tolerance. Consistency ensures that all nodes see the same data at the same time; availability ensures that every request receives a response, regardless of whether data is stored or not; partition tolerance means the system continues to operate despite network failures.     Done! (TTFT: 294.72ms, Chunks: 77)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 285.66 ms
+[info] Average Time per Output Token (TPOT): 79.77 ms
+[info] Estimated Generation Throughput: 12.54 tokens/sec
+[time] Average Total Wall Duration: 5.69 seconds
+=================================================

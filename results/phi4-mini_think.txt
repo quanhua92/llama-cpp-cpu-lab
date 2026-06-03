@@ -1,0 +1,23 @@
+Auto-detected model: Phi-4-mini-instruct-Q4_K_M.gguf
+
+  -> Iteration 1/3
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] In Python, garbage collection is handled by the built-in `gc` module. It uses reference counting and a generational garbage collector to track objects and reclaim memory from those that are no longer in use. When an object's reference count drops to zero, it's immediately reclaimed. Cycles of references are detected and collected using a generational approach, with frequent collections for younger generations and less frequent for older ones.     Done! (TTFT: 328.90ms, Chunks: 84)
+
+  -> Iteration 2/3
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that a distributed system can only simultaneously provide two out of the following three guarantees: Consistency, Availability, and Partition tolerance. Consistency ensures that all nodes see the same data at the same time; availability ensures that every request receives a response, regardless of whether data is stored or not; partition tolerance means the system continues to operate despite network failures.     Done! (TTFT: 249.45ms, Chunks: 77)
+
+  -> Iteration 3/3
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are standard solutions to common problems in software design that can be applied to improve code quality and efficiency.     Done! (TTFT: 301.61ms, Chunks: 25)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 293.32 ms
+[info] Average Time per Output Token (TPOT): 78.74 ms
+[info] Estimated Generation Throughput: 12.70 tokens/sec
+[time] Average Total Wall Duration: 5.16 seconds
+=================================================

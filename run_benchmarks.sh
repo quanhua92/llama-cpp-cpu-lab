@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /home/quan/llama-cpp
-RESULTS_DIR="/tmp/llama_bench_results"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+RESULTS_DIR="$SCRIPT_DIR/results"
 mkdir -p "$RESULTS_DIR"
 
 # Parse flags
@@ -36,6 +37,9 @@ declare -a ALL_KEYS=(
     "qwen3.5-0.8b"
     "qwen3.5-2b"
     "qwen3.5-4b"
+    "gemma2-2b"
+    "deepseek-r1-1.5b"
+    "phi4-mini"
 )
 
 if [ $# -gt 0 ]; then
@@ -56,7 +60,7 @@ else
 fi
 
 PORT=12345
-LOG="/home/quan/llama-cpp/server.${PORT}.log"
+LOG="$SCRIPT_DIR/server.${PORT}.log"
 
 for key in "${MODEL_KEYS[@]}"; do
     echo ""

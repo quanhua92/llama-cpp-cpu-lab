@@ -36,7 +36,7 @@ async def profile_single_request(client: httpx.AsyncClient, prompt: str, model_n
         "model": model_name,
         "messages": [{"role": "user", "content": prompt}],
         "stream": True,
-        "max_tokens": 1024,
+        "max_tokens": 4096,
         "temperature": 0.0,
     }
 
@@ -129,16 +129,16 @@ async def main():
         results = []
         for i, prompt in enumerate(prompts):
             unique_prompt = prompt
-            print(f"  -> Iteration {i + 1}/{num_prompts}: {unique_prompt}", end="", flush=True)
+            print(f"\n  -> Iteration {i + 1}/{num_prompts}")
+            print(f"     IN:  {unique_prompt}")
             res = await profile_single_request(client, unique_prompt, model_name)
             if res:
                 results.append(res)
                 print(
-                    f" Done! (TTFT: {res['ttft_ms']:.2f}ms, Chunks: {res['chunks_generated']})"
+                    f"     Done! (TTFT: {res['ttft_ms']:.2f}ms, Chunks: {res['chunks_generated']})"
                 )
-                print(f"\n     IN:  {unique_prompt}")
             else:
-                print(" Failed.")
+                print("     Failed.")
             await asyncio.sleep(0.5)
 
         if not results:
