@@ -1,0 +1,20 @@
+Auto-detected model: qwen2.5-0.5b-instruct-q4_k_m.gguf
+  -> Iteration 1/3: How does garbage collection work in Python? Answer short, concise, and correct.
+        [out] Garbage collection in Python is managed by the Python runtime system, which automatically frees up memory when objects are no longer needed. This process is called garbage collection. When an object is no longer needed, Python automatically frees up memory for it, which is a form of garbage collection. This ensures that the memory used by objects is not wasted, and the program runs efficiently. Done! (TTFT: 131.46ms, Chunks: 77)
+
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+  -> Iteration 2/3: What is a closure in programming? Answer short, concise, and correct.
+        [out] A closure in programming is a function that retains its local variables and scope even after the function has been called. It allows a function to access variables from its own scope, even if those variables are not defined in the function's local scope. This is useful for creating functions that can access variables from their own scope, such as a function that can access a global variable from its own scope. Done! (TTFT: 78.11ms, Chunks: 81)
+
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Iteration 3/3: Explain how neural networks learn. Answer short, concise, and correct.
+        [out] Neural networks learn by adjusting the weights of their connections based on the input data. This process involves two main steps: training and inference. During training, the network is given a set of input data and a corresponding output, which it uses to adjust the weights of its connections. This adjustment is based on the error between the network's output and the actual output, which is calculated as the difference between the output and the desired output. The weights are then updated to minimize this error. During inference, the network receives new input data and uses the weights to predict the output. This process continues until the network's output matches the desired output. Done! (TTFT: 118.46ms, Chunks: 131)
+
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 109.34 ms
+[info] Average Time per Output Token (TPOT): 14.99 ms
+[info] Estimated Generation Throughput: 66.73 tokens/sec
+[time] Average Total Wall Duration: 1.55 seconds
+=================================================

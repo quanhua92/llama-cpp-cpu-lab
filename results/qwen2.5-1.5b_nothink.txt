@@ -1,0 +1,20 @@
+Auto-detected model: qwen2.5-1.5b-instruct-q4_k_m.gguf
+  -> Iteration 1/3: What is a closure in programming? Answer short, concise, and correct.
+        [out] A closure is a function that has access to the scope in which it was defined, even if that scope has finished executing. Done! (TTFT: 262.69ms, Chunks: 28)
+
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Iteration 2/3: Explain how neural networks learn. Answer short, concise, and correct.
+        [out] Neural networks learn by adjusting the weights of connections between neurons based on the error between the network's predictions and the actual data. This process is called backpropagation. The network iteratively updates the weights to minimize the error, using techniques like gradient descent. This allows the network to improve its predictions over time as it processes more data. Done! (TTFT: 134.64ms, Chunks: 71)
+
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+  -> Iteration 3/3: What are design patterns? Answer short, concise, and correct.
+        [out] Design patterns are reusable solutions to common problems in software design. Done! (TTFT: 132.91ms, Chunks: 15)
+
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 176.74 ms
+[info] Average Time per Output Token (TPOT): 32.87 ms
+[info] Estimated Generation Throughput: 30.42 tokens/sec
+[time] Average Total Wall Duration: 1.43 seconds
+=================================================

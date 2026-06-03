@@ -1,0 +1,32 @@
+Auto-detected model: gemma-4-E4B-it-Q4_K_M.gguf
+  -> Iteration 1/3: How does garbage collection work in Python? Answer short, concise, and correct.
+        [out] Python primarily uses **automatic memory management** through a combination of **reference counting** and a **generational garbage collector**.
+
+1. **Reference Counting:** Each object keeps a count of how many references point to it. When the count drops to zero, the object's memory is immediately deallocated.
+
+2. **Generational Garbage Collector:** This handles **reference cycles** (where objects reference each other, preventing the reference count from ever reaching zero). It periodically scans for and cleans up these unreachable cyclic groups. Done! (TTFT: 545.09ms, Chunks: 106)
+
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+  -> Iteration 2/3: What is a closure in programming? Answer short, concise, and correct.
+        [out] A **closure** is a function bundled together with references to its surrounding state (its lexical environment).
+
+In simpler terms, it allows an inner function to access and manipulate variables from its outer (enclosing) function, even after the outer function has finished executing. Done! (TTFT: 476.44ms, Chunks: 56)
+
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Iteration 3/3: Explain the CAP theorem. Answer short, concise, and correct.
+        [out] The CAP theorem states that a distributed data store can only simultaneously guarantee **two** of the following three properties:
+
+1. **Consistency (C):** Every read receives the most recent write or an error.
+2. **Availability (A):** Every request receives a (non-error) response, without guaranteeing it's the most recent data.
+3. **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of part of the system (network partitions).
+
+**In short: In the presence of a network partition (P), a system must choose between being Consistent (C) or Available (A).** Done! (TTFT: 435.40ms, Chunks: 136)
+
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 485.64 ms
+[info] Average Time per Output Token (TPOT): 104.51 ms
+[info] Estimated Generation Throughput: 9.57 tokens/sec
+[time] Average Total Wall Duration: 10.80 seconds
+=================================================

@@ -1,0 +1,47 @@
+Auto-detected model: llama-3.2-1b-instruct-q4_k_m.gguf
+  -> Iteration 1/3: What are design patterns? Answer short, concise, and correct.
+        [out] Design patterns are reusable solutions to common problems in software design, developed through experience and experimentation. Done! (TTFT: 123.16ms, Chunks: 21)
+
+     IN:  What are design patterns? Answer short, concise, and correct.
+  -> Iteration 2/3: What is a closure in programming? Answer short, concise, and correct.
+        [out] In programming, a closure is a function that has access to its own scope and the scope of its outer functions, even when the outer functions are no longer in scope. Done! (TTFT: 120.38ms, Chunks: 37)
+
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Iteration 3/3: Tell me about software architecture. Answer short, concise, and correct.
+        [out] Here's a concise overview of software architecture:
+
+**What is Software Architecture?**
+
+Software architecture is the design and planning of a software system's structure, components, and relationships. It involves defining the system's overall organization, including the relationships between components, data models, and interfaces.
+
+**Key Components:**
+
+1. **System Boundaries**: Define the system's boundaries, including the user interface, data storage, and external dependencies.
+2. **Components**: Identify the individual components, such as services, modules, or microservices, that make up the system.
+3. **Data Models**: Define the data structures and relationships between data entities.
+4. **Interfaces**: Establish the interfaces between components, including APIs, data formats, and communication protocols.
+5. **Design Patterns**: Apply design patterns, such as separation of concerns, to ensure modularity and scalability.
+
+**Goals:**
+
+1. **Modularity**: Break down the system into smaller, independent components for easier maintenance and updates.
+2. **Scalability**: Design the system to scale horizontally (add more resources) and vertically (increase processing power).
+3. **Flexibility**: Ensure the system can adapt to changing requirements and new technologies.
+4. **Maintainability**: Make it easy to understand, modify, and extend the system.
+
+**Best Practices:**
+
+1. **Separate Concerns**: Keep each component focused on a specific task.
+2. **Use Abstractions**: Reduce complexity by using abstractions, such as interfaces and data models.
+3. **Test and Refactor**: Regularly test and refactor the system to ensure quality and maintainability.
+
+By following these principles and best practices, software architects can design and build robust, scalable, and maintainable software systems. Done! (TTFT: 114.27ms, Chunks: 352)
+
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 119.27 ms
+[info] Average Time per Output Token (TPOT): 27.49 ms
+[info] Estimated Generation Throughput: 36.37 tokens/sec
+[time] Average Total Wall Duration: 3.99 seconds
+=================================================

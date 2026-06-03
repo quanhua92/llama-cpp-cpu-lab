@@ -1,0 +1,26 @@
+Auto-detected model: qwen2.5-1.5b-instruct-q4_k_m.gguf
+  -> Iteration 1/3: How does DNS resolution work? Answer short, concise, and correct.
+        [out] DNS resolution works by translating domain names into IP addresses. When a user types a domain name into a web browser, the browser sends a request to the domain name server (DNS server) to resolve the domain name into an IP address. The DNS server then returns the IP address of the website the user is trying to access. Done! (TTFT: 288.73ms, Chunks: 68)
+
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+  -> Iteration 2/3: How does garbage collection work in Python? Answer short, concise, and correct.
+        [out] Garbage collection in Python is managed by the Python memory manager. When an object is no longer referenced by any part of the program, Python automatically frees the memory occupied by that object. This process is called garbage collection. Done! (TTFT: 132.81ms, Chunks: 47)
+
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+  -> Iteration 3/3: Explain the CAP theorem. Answer short, concise, and correct.
+        [out] The CAP theorem, proposed by Eric Brewer, states that a distributed system can only achieve three out of the following four properties: 
+
+- Consistency: All reads and writes return the same value.
+- Availability: The system is available and responsive to requests.
+- Partition tolerance: The system continues to function even if the network partitions.
+
+The theorem shows that these three properties are mutually exclusive, meaning a system cannot simultaneously achieve all three. Done! (TTFT: 148.85ms, Chunks: 89)
+
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 190.13 ms
+[info] Average Time per Output Token (TPOT): 34.40 ms
+[info] Estimated Generation Throughput: 29.07 tokens/sec
+[time] Average Total Wall Duration: 2.50 seconds
+=================================================

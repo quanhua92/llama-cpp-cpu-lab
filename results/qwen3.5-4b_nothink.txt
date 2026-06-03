@@ -1,0 +1,25 @@
+Auto-detected model: Qwen3.5-4B-Q4_K_M.gguf
+  -> Iteration 1/3: What are design patterns? Answer short, concise, and correct.
+        [out] Design patterns are **general, reusable solutions** to common problems encountered in software design. They provide a standardized way to structure code, improving maintainability, flexibility, and readability by addressing recurring issues across different projects. Done! (TTFT: 584.40ms, Chunks: 45)
+
+     IN:  What are design patterns? Answer short, concise, and correct.
+  -> Iteration 2/3: What is a closure in programming? Answer short, concise, and correct.
+        [out] A **closure** is a function that remembers and has access to variables from its outer (enclosing) scope, even after that outer scope has finished executing. It effectively "captures" the environment in which it was created, allowing it to use those variables later. Done! (TTFT: 683.74ms, Chunks: 56)
+
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Iteration 3/3: How does garbage collection work in Python? Answer short, concise, and correct.
+        [out] Python uses **automatic memory management** primarily through two mechanisms:
+
+1.  **Reference Counting**: The most common method. Python tracks the number of references to each object. When an object's reference count drops to zero, it is immediately deallocated and its memory is freed.
+2.  **Garbage Collection (GC)**: A background cyclic garbage collector that runs periodically to detect and remove objects involved in **reference cycles** (where objects reference each other, preventing reference counting from reaching zero).
+
+You can manually trigger the cyclic GC using `import gc; gc.collect()`. Done! (TTFT: 711.36ms, Chunks: 122)
+
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 659.84 ms
+[info] Average Time per Output Token (TPOT): 98.12 ms
+[info] Estimated Generation Throughput: 10.19 tokens/sec
+[time] Average Total Wall Duration: 7.91 seconds
+=================================================

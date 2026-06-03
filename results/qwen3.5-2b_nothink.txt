@@ -1,0 +1,36 @@
+Auto-detected model: Qwen3.5-2B-Q4_K_M.gguf
+  -> Iteration 1/3: Describe database transactions. Answer short, concise, and correct.
+        [out] **Database transactions** are atomic units of work that consist of a sequence of one or more SQL statements. They ensure data integrity by guaranteeing that either **all** operations within the transaction succeed or **none** of them succeed, preventing partial updates.
+
+Key characteristics include:
+*   **Atomicity**: All or nothing; the database treats the entire transaction as a single unit.
+*   **Consistency**: Ensures the database remains in a valid state after the transaction.
+*   **Isolation**: Prevents concurrent transactions from interfering with each other.
+*   **Durability**: Once committed, changes are permanently saved even if the system crashes.
+
+Common mechanisms include **ACID** (Atomicity, Consistency, Isolation, Durability) and **two-phase commit (2PC)** protocols. Done! (TTFT: 240.22ms, Chunks: 169)
+
+     IN:  Describe database transactions. Answer short, concise, and correct.
+  -> Iteration 2/3: What is a closure in programming? Answer short, concise, and correct.
+        [out] A **closure** is a function that captures and retains access to variables from its enclosing (outer) scope, even after the outer function has finished executing. It allows the function to use those variables within its own scope. Done! (TTFT: 291.75ms, Chunks: 47)
+
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Iteration 3/3: What is the difference between TCP and UDP? Answer short, concise, and correct.
+        [out] **TCP (Transmission Control Protocol)** is a connection-oriented, reliable, and ordered transport layer protocol. It guarantees delivery by establishing a handshake, ensuring data integrity through acknowledgments, and retransmitting lost packets.
+
+**UDP (User Datagram Protocol)** is a connectionless, unreliable, and unordered transport layer protocol. It does not establish a connection, does not guarantee delivery, and does not ensure order or retransmission of lost packets.
+
+**Key Differences:**
+*   **Reliability:** TCP is reliable; UDP is not.
+*   **Connection:** TCP requires a connection; UDP does not.
+*   **Ordering:** TCP ensures data is received in order; UDP does not.
+*   **Use Case:** TCP is used for web browsing, email, and file transfers; UDP is used for streaming, VoIP, and DNS. Done! (TTFT: 296.46ms, Chunks: 178)
+
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 276.14 ms
+[info] Average Time per Output Token (TPOT): 47.23 ms
+[info] Estimated Generation Throughput: 21.17 tokens/sec
+[time] Average Total Wall Duration: 6.48 seconds
+=================================================
