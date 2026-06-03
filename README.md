@@ -1,13 +1,13 @@
-# CPU Small Model Bench
+# Local LLM Lab
 
-CPU-only LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama.cpp).
+LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama.cpp). Supports both CPU and GPU backends.
 
-**Machine:** Intel i7-10700 (8C/16T, 2.9–4.8 GHz) · 64 GB RAM · x86_64 · CPU only (no GPU)
+**Machine:** Intel i7-10700 (8C/16T, 2.9–4.8 GHz) · 64 GB RAM · x86_64
 **llama.cpp:** [`4da6370`](https://github.com/ggml-org/llama.cpp/commit/4da6370d43f55a3f5ad576c5a1528b6ba9c53258)
 
 ## Contents
 
-- [Benchmark Report](#benchmark-report)
+- [Benchmark Reports](#benchmark-reports)
 - [Quick Start](#quick-start)
 - [Curated Models](#curated-models)
 - [Multiple Servers](#multiple-servers)
@@ -18,19 +18,26 @@ CPU-only LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-
 - [Downloading Models](#downloading-models)
 - [Notes](#notes)
 
-## [Benchmark Report](report.md)
+## Benchmark Reports
+
+- [CPU Report](reports/cpu.md)
+- [GPU Report](reports/gpu.md)
 
 ## Quick Start
 
 ```bash
-# Start server (Gemma 4 E2B on port 8080)
-./serve.sh
+# CPU server (default gemma4-e2b on port 8080)
+./serve_cpu.sh
+
+# GPU server (default gemma4-e2b on port 8080)
+./serve_gpu.sh
 
 # Or pick a model + port
-./serve.sh qwen2.5-0.5b 8081
+./serve_cpu.sh qwen2.5-0.5b 8081
+./serve_gpu.sh qwen2.5-0.5b 8081
 
 # Disable thinking for speed
-./serve.sh gemma4-e2b --no-reasoning
+./serve_cpu.sh gemma4-e2b --no-reasoning
 
 # Kill a server
 ./stop.sh
@@ -38,40 +45,49 @@ CPU-only LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-
 ./stop.sh 8081
 
 # Ask the LLM a question (streaming, shows [think] + [out])
-uv run python ask.py "explain TCP vs UDP"
-uv run python ask.py --max-tokens 256 "what is a closure"
+uv run python scripts/ask.py "explain TCP vs UDP"
+uv run python scripts/ask.py --max-tokens 256 "what is a closure"
 
 # Reflection agent: generate → critique → revise
-uv run python reflect.py "write a fibonacci function"
-uv run python reflect.py --port 8081 "explain async programming"
+uv run python scripts/reflect.py "write a fibonacci function"
+uv run python scripts/reflect.py --port 8081 "explain async programming"
 
 # Profile latency (benchmark suite)
-uv run python profile_client.py
-uv run python profile_client.py --reasoning
+uv run python scripts/profile_client.py
+uv run python scripts/profile_client.py --reasoning
 
-# Run full benchmark suite
-bash run_benchmarks.sh
+# Run full benchmark suite (CPU)
+bash run_cpu_benchmarks.sh
+
+# Run full benchmark suite (GPU)
+bash run_gpu_benchmarks.sh
 ```
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `serve.sh` | Start llama-server on any port with any curated model |
+| `serve_cpu.sh` | Start llama-server (CPU, `-ngl 0`) on any port with any curated model |
+| `serve_gpu.sh` | Start llama-server (GPU, `-ngl 99`) on any port with any curated model |
 | `stop.sh` | Kill server by port (default 8080) |
-| `ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
-| `reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
-| `profile_client.py` | Streaming benchmark: TTFT, TPOT, tok/s |
+| `scripts/ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
+| `scripts/reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
+| `scripts/profile_client.py` | Streaming benchmark: TTFT, TPOT, tok/s |
 | `examples/ask_example.md` | Example `ask.py` output (Vietnamese: letter to the future) |
 | `examples/reflect_example.md` | Example `reflect.py` output (Vietnamese: robot chef introduces Phở) |
-| `run_benchmarks.sh` | Run profile across all models sequentially |
+| `run_cpu_benchmarks.sh` | Run profile across all models (CPU) → `results/cpu/` |
+| `run_gpu_benchmarks.sh` | Run profile across all models (GPU) → `results/gpu/` |
 | `add-model-flow.md` | Guide for adding new GGUF models |
-| `report.md` | Full benchmark results and analysis |
+| `reports/cpu.md` | CPU benchmark results and analysis |
+| `reports/gpu.md` | GPU benchmark results and analysis |
+| `systemd/llama-cpu.service` | User systemd service (CPU, port 8888) |
+| `systemd/llama-gpu.service` | User systemd service (GPU, port 8889) |
 | `repo/` | llama.cpp source + `build/bin/llama-server` |
+| `run/` | Server PID and log files (gitignored) |
 
 ## Curated Models
 
-All Q4_K_M quant, optimized for CPU (`-ngl 0`, `-t 8`, `-c 8192`):
+All Q4_K_M quant, shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`):
 
 | Key | Model | Size |
 |-----|-------|------|
@@ -96,26 +112,31 @@ All Q4_K_M quant, optimized for CPU (`-ngl 0`, `-t 8`, `-c 8192`):
 Run different models on different ports simultaneously:
 
 ```bash
-./serve.sh gemma4-e2b 8888   # primary (matches systemd service)
-./serve.sh qwen2.5-0.5b 8081  # fast sidecar
-./stop.sh 8081                 # kill just the sidecar
+./serve_cpu.sh gemma4-e2b 8888   # primary CPU (matches systemd service)
+./serve_gpu.sh gemma4-e2b 8889   # primary GPU (matches systemd service)
+./serve_cpu.sh qwen2.5-0.5b 8081 # fast sidecar
+./stop.sh 8081                    # kill just the sidecar
 ```
 
 ## Benchmarking
 
 ```bash
-# All models (thinking ON, default) → *_think.txt
-bash run_benchmarks.sh
+# CPU — all models (thinking ON, default) → results/cpu/*_think.txt
+bash run_cpu_benchmarks.sh
 
-# All models (thinking OFF, fast) → *_nothink.txt
-bash run_benchmarks.sh --no-reasoning
+# CPU — all models (thinking OFF, fast) → results/cpu/*_nothink.txt
+bash run_cpu_benchmarks.sh --no-reasoning
+
+# GPU — all models (thinking ON, default) → results/gpu/*_think.txt
+bash run_gpu_benchmarks.sh
+
+# GPU — all models (thinking OFF, fast) → results/gpu/*_nothink.txt
+bash run_gpu_benchmarks.sh --no-reasoning
 
 # Specific models only
-bash run_benchmarks.sh qwen2.5-0.5b llama3.2-1b
-bash run_benchmarks.sh --no-reasoning qwen2.5-0.5b
+bash run_cpu_benchmarks.sh qwen2.5-0.5b llama3.2-1b
+bash run_gpu_benchmarks.sh --no-reasoning qwen2.5-0.5b
 ```
-
-Results saved to `results/<key>_think.txt` or `*_nothink.txt`.
 
 ## API
 
@@ -129,57 +150,38 @@ curl http://localhost:8888/v1/chat/completions \
 
 ## Running as a Linux Service
 
-The server runs as a **user systemd service** (no root needed) on **port 8888**.
+The server runs as **user systemd services** (no root needed). CPU on port 8888, GPU on port 8889.
 
-### Service file
-
-Located at `~/.config/systemd/user/llama-server.service`:
-
-```ini
-[Unit]
-Description=llama.cpp LLM Server (gemma4-e2b)
-After=network.target
-
-[Service]
-Type=forking
-WorkingDirectory=%h/llama-cpp
-PIDFile=%h/llama-cpp/server.8888.pid
-ExecStart=%h/llama-cpp/serve.sh gemma4-e2b 8888
-ExecStop=%h/llama-cpp/stop.sh 8888
-Restart=on-failure
-RestartSec=5
-StandardOutput=append:%h/llama-cpp/server.8888.log
-StandardError=append:%h/llama-cpp/server.8888.log
-
-[Install]
-WantedBy=default.target
-```
-
-### Commands
+### Setup
 
 ```bash
-# Enable auto-start on boot
-systemctl --user enable llama-server.service
+# Symlink service files into systemd
+ln -s ~/llama-cpp/systemd/llama-cpu.service ~/.config/systemd/user/
+ln -s ~/llama-cpp/systemd/llama-gpu.service ~/.config/systemd/user/
+systemctl --user daemon-reload
+```
 
-# Start now
-systemctl --user start llama-server.service
+### CPU service
 
-# Check status
-systemctl --user status llama-server.service
+```bash
+systemctl --user enable --now llama-cpu.service
+systemctl --user status llama-cpu.service
+journalctl --user -u llama-cpu.service -f
+systemctl --user stop llama-cpu.service
+```
 
-# View logs
-journalctl --user -u llama-server.service -f
+### GPU service
 
-# Stop
-systemctl --user stop llama-server.service
-
-# Disable auto-start
-systemctl --user disable llama-server.service
+```bash
+systemctl --user enable --now llama-gpu.service
+systemctl --user status llama-gpu.service
+journalctl --user -u llama-gpu.service -f
+systemctl --user stop llama-gpu.service
 ```
 
 ### Auto-start on boot (linger)
 
-For the service to start at boot before you log in:
+For services to start at boot before you log in:
 
 ```bash
 sudo loginctl enable-linger $(whoami)
@@ -192,21 +194,23 @@ Verify: `loginctl show-user $(whoami) | grep Linger` should show `Linger=yes`.
 Edit the service file:
 
 ```bash
-# Change gemma4-e2b to another model key
-sed -i 's/gemma4-e2b/llama3.2-1b/' ~/.config/systemd/user/llama-server.service
+# Change gemma4-e2b to another model key (CPU)
+sed -i 's/gemma4-e2b/llama3.2-1b/' ~/.config/systemd/user/llama-cpu.service
 
 # Reload and restart
 systemctl --user daemon-reload
-systemctl --user restart llama-server.service
+systemctl --user restart llama-cpu.service
 ```
 
 ## Adding a New Model
 
-See `add-model-flow.md` for the full workflow: download GGUF → add to `serve.sh` → profile → update `report.md`.
+See `add-model-flow.md` for the full workflow: download GGUF → add to `serve_cpu.sh` → profile → update `reports/cpu.md`.
+
+Note: When adding a model, update the `MODELS` dictionary in **both** `serve_cpu.sh` and `serve_gpu.sh`.
 
 ## Downloading Models
 
-Models are auto-downloaded by `serve.sh` via `wget`, but HuggingFace's CDN can throttle to ~20 KB/s. For faster downloads, use the `hf` CLI (installed with this project):
+Models are auto-downloaded by `serve_cpu.sh`/`serve_gpu.sh` via `wget`, but HuggingFace's CDN can throttle to ~20 KB/s. For faster downloads, use the `hf` CLI (installed with this project):
 
 ```bash
 # Download a specific GGUF file to the models/ directory
@@ -222,8 +226,9 @@ If `hf` is not installed: `uv add huggingface_hub`.
 
 ## Notes
 
-- Server defaults to thinking mode (chain-of-thought). Pass `--no-reasoning` to serve.sh for fast direct answers.
-- `ask.py` and `reflect.py` always show `[think]` reasoning tokens.
-- `profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
+- Server defaults to thinking mode (chain-of-thought). Pass `--no-reasoning` for fast direct answers.
+- `scripts/ask.py` and `scripts/reflect.py` always show `[think]` reasoning tokens.
+- `scripts/profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
 - SmolLM3 3B has a ~3s cold-start penalty on first request
-- See [report.md](report.md) for full benchmarks across all 16 models
+- See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks across all 16 models
+- See [reports/gpu.md](reports/gpu.md) for full GPU benchmarks across all 16 models

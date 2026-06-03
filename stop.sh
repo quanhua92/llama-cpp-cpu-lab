@@ -3,7 +3,7 @@ set -euo pipefail
 
 PORT="${1:-8080}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PIDFILE="$SCRIPT_DIR/server.${PORT}.pid"
+PIDFILE="$SCRIPT_DIR/run/server.${PORT}.pid"
 
 if [ ! -f "$PIDFILE" ]; then
     echo "No PID file found for port $PORT at $PIDFILE"

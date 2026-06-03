@@ -1,0 +1,18 @@
+[Unit]
+Description=llama.cpp GPU LLM Server (gemma4-e2b)
+After=network.target
+
+[Service]
+Type=forking
+Environment=LD_LIBRARY_PATH=%h/local-llm-lab/repo/build/bin
+WorkingDirectory=%h/local-llm-lab
+PIDFile=%h/local-llm-lab/run/server.8889.pid
+ExecStart=%h/local-llm-lab/serve_gpu.sh gemma4-e2b 8889
+ExecStop=%h/local-llm-lab/stop.sh 8889
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:%h/local-llm-lab/run/server.8889.log
+StandardError=append:%h/local-llm-lab/run/server.8889.log
+
+[Install]
+WantedBy=default.target

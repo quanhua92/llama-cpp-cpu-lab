@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
-RESULTS_DIR="$SCRIPT_DIR/results"
+RESULTS_DIR="$SCRIPT_DIR/results/gpu"
 mkdir -p "$RESULTS_DIR"
 
 # Parse flags
@@ -60,7 +60,7 @@ else
 fi
 
 PORT=12345
-LOG="$SCRIPT_DIR/server.${PORT}.log"
+LOG="$SCRIPT_DIR/run/server.${PORT}.log"
 
 for key in "${MODEL_KEYS[@]}"; do
     echo ""
@@ -75,7 +75,7 @@ for key in "${MODEL_KEYS[@]}"; do
 
     # Start server
     echo "  -> Starting server..."
-    ./serve.sh "$key" "$PORT" "${SERVE_EXTRA[@]}"
+    ./serve_gpu.sh "$key" "$PORT" "${SERVE_EXTRA[@]}"
     sleep 2
 
     # Wait for server HTTP endpoint
@@ -92,7 +92,7 @@ for key in "${MODEL_KEYS[@]}"; do
     # Run profile
     echo "  -> Running profile..."
     output_file="$RESULTS_DIR/${key}${SUFFIX}.txt"
-    uv run --active python profile_client.py --port "$PORT" "${CLIENT_EXTRA[@]}" 2>&1 | tee "$output_file"
+    uv run --active python scripts/profile_client.py --port "$PORT" "${CLIENT_EXTRA[@]}" 2>&1 | tee "$output_file"
 
     # Cleanup this server
     ./stop.sh "$PORT" 2>/dev/null || true

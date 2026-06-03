@@ -76,8 +76,8 @@ for arg in "${EXTRA_ARGS[@]}"; do
 done
 EXTRA_ARGS=("${FILTERED_ARGS[@]}")
 
-PIDFILE="$SCRIPT_DIR/server.${PORT}.pid"
-LOG="$SCRIPT_DIR/server.${PORT}.log"
+PIDFILE="$SCRIPT_DIR/run/server.${PORT}.pid"
+LOG="$SCRIPT_DIR/run/server.${PORT}.log"
 
 IFS='|' read -r HF_REPO GGUF_FILE DISPLAY <<< "${MODELS[$MODEL_KEY]}"
 MODEL_URL="https://huggingface.co/$HF_REPO/resolve/main/$GGUF_FILE"
@@ -109,7 +109,7 @@ nohup "$SERVER" \
     -c 8192 \
     --flash-attn auto \
     -t 8 \
-    -ngl 0 \
+    -ngl 99 \
     "${EXTRA_ARGS[@]}" \
     > "$LOG" 2>&1 &
 
