@@ -17,17 +17,21 @@ CPU-only LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-
 # Disable thinking for speed
 ./serve.sh gemma4-e2b --no-reasoning
 
-# Profile client defaults to port 8080. Service runs on 8888.
-
 # Kill a server
 ./stop.sh
 ./stop.sh 8888
 ./stop.sh 8081
 
-# Profile latency ([out] only; server thinks but [think] hidden)
-uv run python profile_client.py
+# Ask the LLM a question (streaming, shows [think] + [out])
+uv run python ask.py "explain TCP vs UDP"
+uv run python ask.py --max-tokens 256 "what is a closure"
 
-# Show [think] reasoning tokens in output
+# Reflection agent: generate → critique → revise
+uv run python reflect.py "write a fibonacci function"
+uv run python reflect.py --port 8081 "explain async programming"
+
+# Profile latency (benchmark suite)
+uv run python profile_client.py
 uv run python profile_client.py --reasoning
 
 # Run full benchmark suite
@@ -40,7 +44,11 @@ bash run_benchmarks.sh
 |------|---------|
 | `serve.sh` | Start llama-server on any port with any curated model |
 | `stop.sh` | Kill server by port (default 8080) |
+| `ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
+| `reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
 | `profile_client.py` | Streaming benchmark: TTFT, TPOT, tok/s |
+| `examples/ask_example.md` | Example `ask.py` output (Vietnamese: letter to the future) |
+| `examples/reflect_example.md` | Example `reflect.py` output (Vietnamese: robot chef introduces Phở) |
 | `run_benchmarks.sh` | Run profile across all models sequentially |
 | `add-model-flow.md` | Guide for adding new GGUF models |
 | `report.md` | Full benchmark results and analysis |
@@ -181,6 +189,7 @@ See `add-model-flow.md` for the full workflow: download GGUF → add to `serve.s
 ## Notes
 
 - Server defaults to thinking mode (chain-of-thought). Pass `--no-reasoning` to serve.sh for fast direct answers.
+- `ask.py` and `reflect.py` always show `[think]` reasoning tokens.
 - `profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
 - SmolLM3 3B has a ~3s cold-start penalty on first request
 - See `report.md` for full benchmarks across all 12 models
