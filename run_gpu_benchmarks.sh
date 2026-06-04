@@ -59,10 +59,27 @@ else
     MODEL_KEYS=("${ALL_KEYS[@]}")
 fi
 
-PORT=12345
-LOG="$SCRIPT_DIR/run/server.${PORT}.log"
+pick_port() {
+    local attempt=0
+    while [ $attempt -lt 5 ]; do
+        local port=$(( 12345 + RANDOM % 1000 ))
+        if [ ! -f "$SCRIPT_DIR/run/server.${port}.pid" ]; then
+            echo "  Picked port: $port" >&2
+            echo "$port"
+            return
+        fi
+        echo "  Port $port in use, retrying... ($((attempt+1))/5)" >&2
+        attempt=$((attempt + 1))
+        sleep 5
+    done
+    echo "ERROR: Could not find a free port after 5 attempts" >&2
+    exit 1
+}
 
 for key in "${MODEL_KEYS[@]}"; do
+    PORT=$(pick_port)
+    LOG="$SCRIPT_DIR/run/server.${PORT}.log"
+
     echo ""
     echo "============================================"
     echo "  Benchmarking: $key (port $PORT)"

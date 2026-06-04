@@ -100,6 +100,10 @@ if [ -f "$PIDFILE" ]; then
     rm -f "$PIDFILE"
 fi
 
+if [ -f "$LOG" ] && [ -s "$LOG" ]; then
+    mv "$LOG" "${LOG}.$(date +%Y%m%d_%H%M%S)"
+fi
+
 echo "Starting $DISPLAY on http://0.0.0.0:$PORT (PID -> $PIDFILE)"
 echo "Extra args: ${EXTRA_ARGS[*]:-(none)}"
 nohup "$SERVER" \
