@@ -74,7 +74,8 @@ bash run_gpu_benchmarks.sh
 | `stop.sh` | Kill server by port (default 8080) |
 | `scripts/ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
 | `scripts/reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
-| `scripts/profile_client.py` | Streaming benchmark: TTFT, TPOT, tok/s |
+| `scripts/profile_client.py` | Streaming benchmark: 10 fixed questions, TTFT, TPOT, tok/s |
+| `scripts/analyze_results.py` | Parse benchmark results: overview, per-question, comparison, stability |
 | `examples/ask_example.md` | Example `ask.py` output (Vietnamese: letter to the future) |
 | `examples/reflect_example.md` | Example `reflect.py` output (Vietnamese: robot chef introduces Phở) |
 | `run_cpu_benchmarks.sh` | Run profile across all models (CPU) → `results/cpu/` |
@@ -148,6 +149,16 @@ bash run_gpu_benchmarks.sh --no-reasoning
 # Specific models only
 bash run_cpu_benchmarks.sh qwen2.5-0.5b llama3.2-1b
 bash run_gpu_benchmarks.sh --no-reasoning qwen2.5-0.5b
+
+# Analyze results
+uv run python scripts/analyze_results.py                          # all sections
+uv run python scripts/analyze_results.py --section overview       # model rankings
+uv run python scripts/analyze_results.py --section per-question  # per-Q breakdown
+uv run python scripts/analyze_results.py --section comparison     # think vs nothink
+uv run python scripts/analyze_results.py --section stability      # question variance
+uv run python scripts/analyze_results.py --sort avg_tpot         # sort by TPOT
+uv run python scripts/analyze_results.py --sort avg_tps          # sort by throughput
+uv run python scripts/analyze_results.py --dir results/gpu       # analyze GPU results
 ```
 
 ## API

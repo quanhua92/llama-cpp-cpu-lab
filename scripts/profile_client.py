@@ -18,16 +18,16 @@ API_URL = f"{API_BASE}/chat/completions"
 MODELS_URL = f"{API_BASE}/models"
 
 PROMPTS = [
-    "Tell me about software architecture. Answer short, concise, and correct.",
-    "Explain how neural networks learn. Answer short, concise, and correct.",
-    "What is the difference between TCP and UDP? Answer short, concise, and correct.",
-    "How does garbage collection work in Python? Answer short, concise, and correct.",
-    "Describe microservices. Answer short, concise, and correct.",
-    "What is a closure in programming? Answer short, concise, and correct.",
-    "Explain the CAP theorem. Answer short, concise, and correct.",
-    "How does DNS resolution work? Answer short, concise, and correct.",
-    "What are design patterns? Answer short, concise, and correct.",
-    "Describe database transactions. Answer short, concise, and correct.",
+    ("Q01", "Tell me about software architecture. Answer short, concise, and correct."),
+    ("Q02", "Explain how neural networks learn. Answer short, concise, and correct."),
+    ("Q03", "What is the difference between TCP and UDP? Answer short, concise, and correct."),
+    ("Q04", "How does garbage collection work in Python? Answer short, concise, and correct."),
+    ("Q05", "Describe microservices. Answer short, concise, and correct."),
+    ("Q06", "What is a closure in programming? Answer short, concise, and correct."),
+    ("Q07", "Explain the CAP theorem. Answer short, concise, and correct."),
+    ("Q08", "How does DNS resolution work? Answer short, concise, and correct."),
+    ("Q09", "What are design patterns? Answer short, concise, and correct."),
+    ("Q10", "Describe database transactions. Answer short, concise, and correct."),
 ]
 
 
@@ -127,15 +127,14 @@ async def main():
         num_prompts = len(prompts)
 
         results = []
-        for i, prompt in enumerate(prompts):
-            unique_prompt = prompt
-            print(f"\n  -> Iteration {i + 1}/{num_prompts}")
-            print(f"     IN:  {unique_prompt}")
-            res = await profile_single_request(client, unique_prompt, model_name)
+        for i, (qid, prompt) in enumerate(prompts):
+            print(f"\n  -> {qid} [{i + 1}/{num_prompts}]")
+            print(f"     IN:  {prompt}")
+            res = await profile_single_request(client, prompt, model_name)
             if res:
-                results.append(res)
+                results.append((qid, res))
                 print(
-                    f"     Done! (TTFT: {res['ttft_ms']:.2f}ms, Chunks: {res['chunks_generated']})"
+                    f"     [{qid}] TTFT={res['ttft_ms']:.2f}ms TPOT={res['tpot_ms']:.2f}ms Chunks={res['chunks_generated']} Total={res['total_time_s']:.2f}s"
                 )
             else:
                 print("     Failed.")
@@ -145,9 +144,9 @@ async def main():
             print("[error] No data gathered.")
             return
 
-        avg_ttft = sum(r["ttft_ms"] for r in results) / len(results)
-        avg_total = sum(r["total_time_s"] for r in results) / len(results)
-        avg_tpot = sum(r["tpot_ms"] for r in results) / len(results)
+        avg_ttft = sum(r["ttft_ms"] for _, r in results) / len(results)
+        avg_total = sum(r["total_time_s"] for _, r in results) / len(results)
+        avg_tpot = sum(r["tpot_ms"] for _, r in results) / len(results)
 
         print("\n================ PROFILE SUMMARY ================")
         print(f"[info] Average Time to First Token (TTFT): {avg_ttft:.2f} ms")
