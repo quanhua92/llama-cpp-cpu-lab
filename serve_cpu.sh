@@ -38,7 +38,7 @@ usage() {
     done
     echo ""
     echo "Examples:"
-    echo "  $0                                               # default gemma4-e2b :8080"
+    echo "  $0                                               # default gemma4-qat-26b :8080"
     echo "  $0 llama3.2-1b                                   # llama on 8080"
     echo "  $0 qwen2.5-1.5b 8081                             # qwen on 8081"
     echo "  $0 gemma4-e2b --chat-template gemma              # force gemma template"
@@ -51,7 +51,7 @@ usage() {
 }
 
 # Parse: model, optional port, then extra flags for llama-server
-MODEL_KEY="${1:-gemma4-e2b}"
+MODEL_KEY="${1:-gemma4-qat-26b}"
 if [ "$MODEL_KEY" = "--help" ] || [ "$MODEL_KEY" = "-h" ]; then usage; fi
 shift 2>/dev/null || true
 
