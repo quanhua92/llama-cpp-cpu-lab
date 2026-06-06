@@ -1,0 +1,98 @@
+Auto-detected model: gemma-4-31B-it-qat-q4_0.gguf
+
+  -> Iteration 1/3
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+      [think] *   Topic: Design Patterns.
+    *   Constraints: Short, concise, and correct.
+
+    *   What are they? Reusable solutions to common problems in software design.
+    *   Are they code? No, they are templates/blueprints, not finished code.
+    *   Why use them? Standardize communication, improve maintainability, avoid reinventing the wheel.
+
+    *   *Draft 1:* Design patterns are typical solutions to common problems in software design. They aren't specific pieces of code but rather templates for how to solve a problem. There are three main types: creational, structural, and behavioral.
+    *   *Draft 2 (More concise):* Design patterns are reusable, standardized solutions to common problems in software design. They act as blueprints rather than finished code, helping developers create flexible and maintainable systems.
+    *   *Draft 3 (Ultra-concise):* Design patterns are reusable templates for solving common software design problems. They provide a standardized way to structure code for better maintainability and scalability.
+        [out] Design patterns are **reusable, standardized solutions** to common problems in software design. 
+
+They are not finished pieces of code, but rather **templates or blueprints** that describe how to structure classes and objects to make software more maintainable, scalable, and flexible.     Done! (TTFT: 4098.13ms, Chunks: 278)
+
+  -> Iteration 2/3
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+      [think] *   Topic: Software Architecture.
+    *   Constraints: Short, concise, and correct.
+
+    *   What is it? High-level structure of a system.
+    *   What does it involve? Components, relationships, and principles.
+    *   Why is it important? Scalability, maintainability, performance, reliability.
+    *   Common patterns? Monolithic, Microservices, Layered, Event-driven.
+
+    *   *Definition:* Software architecture is the high-level structure of a software system, defining its components, their interactions, and the principles guiding its design.
+    *   *Goal:* To ensure the system meets non-functional requirements (quality attributes) like scalability, security, and maintainability.
+    *   *Key Patterns:*
+        *   *Monolithic:* Single unified unit.
+        *   *Microservices:* Collection of small, independent services.
+        *   *Layered (n-tier):* Organized into layers (e.g., Presentation, Business, Data).
+        *   *Event-Driven:* Reacts to state changes (events).
+    *   *Difference from Design:* Architecture is "what" and "where" (big picture); design is "how" (detailed implementation).
+        [out] **Software architecture** is the high-level structure of a software system. It defines the system's components, their relationships, and the principles guiding its design and evolution.
+
+### Core Purpose
+Its primary goal is to ensure the system meets **non-functional requirements** (quality attributes), such as:
+*   **Scalability:** Ability to handle growth.
+*   **Maintainability:** Ease of updating and fixing.
+*   **Reliability:** Stability and uptime.
+*   **Security:** Protection against threats.
+
+### Common Architectural Patterns
+1.  **Monolithic:** A single, unified unit where all functions are managed in one codebase.
+2.  **Microservices:** A collection of small, independent services that communicate over a network.
+3.  **Layered (n-tier):** Organized into horizontal layers (e.g., Presentation $\rightarrow$ Business $\rightarrow$ Data).
+4.  **Event-Driven:** Components react to "events" (state changes) asynchronously.
+5.  **Serverless:** Logic is executed in ephemeral containers managed by a cloud provider.
+
+### Architecture vs. Design
+*   **Architecture** is the "big picture" (the *what* and *where*). It focuses on high-level decisions that are difficult to change later.
+*   **Design** is the detailed implementation (the *how*). It focuses on specific patterns, classes, and functions within the architectural boundaries.     Done! (TTFT: 4114.06ms, Chunks: 569)
+
+  -> Iteration 3/3
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+      [think] *   Topic: Database transactions.
+    *   Constraints: Short, concise, and correct.
+
+    *   What is it? A logical unit of work.
+    *   What does it do? Ensures data integrity.
+    *   Key properties? ACID (Atomicity, Consistency, Isolation, Durability).
+    *   Key operations? Commit (save) and Rollback (undo).
+
+    *   *Definition:* A database transaction is a sequence of one or more operations executed as a single logical unit of work.
+    *   *Goal:* To ensure data integrity and consistency, even in the event of failures.
+    *   *ACID Properties:*
+        *   **Atomicity:** All operations succeed, or none do ("all or nothing").
+        *   **Consistency:** The database moves from one valid state to another.
+        *   **Isolation:** Concurrent transactions do not interfere with each other.
+        *   **Durability:** Once committed, changes are permanent.
+    *   *Outcomes:*
+        *   **Commit:** Saves changes permanently.
+        *   **Rollback:** Reverts changes if an error occurs.
+        [out] A **database transaction** is a sequence of one or more operations executed as a single logical unit of work. Its primary purpose is to ensure data integrity and consistency.
+
+### ACID Properties
+To guarantee reliability, transactions must follow the **ACID** model:
+*   **Atomicity:** "All or nothing." Either every operation in the transaction succeeds, or the entire transaction is aborted and rolled back.
+*   **Consistency:** A transaction transforms the database from one valid state to another, maintaining all predefined rules (constraints, cascades, triggers).
+*   **Isolation:** Concurrent transactions do not interfere with each other; the result is as if they were executed sequentially.
+*   **Durability:** Once a transaction is committed, the changes are permanent, even in the event of a system crash.
+
+### Key Outcomes
+*   **Commit:** Saves all changes permanently to the database.
+*   **Rollback:** Undoes all changes if an error occurs, returning the database to its previous state.     Done! (TTFT: 3559.46ms, Chunks: 451)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 3923.88 ms
+[info] Average Time per Output Token (TPOT): 587.27 ms
+[info] Estimated Generation Throughput: 1.70 tokens/sec
+[time] Average Total Wall Duration: 257.86 seconds
+=================================================

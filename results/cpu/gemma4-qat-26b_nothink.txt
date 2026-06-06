@@ -1,0 +1,38 @@
+Auto-detected model: gemma-4-26B-A4B-it-qat-q4_0.gguf
+
+  -> Iteration 1/3
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A **database transaction** is a single logical unit of work consisting of one or more operations (such as reading, writing, or deleting data). To ensure data integrity, a transaction must adhere to the **ACID** properties:
+
+*   **Atomicity:** The "all or nothing" rule. Either all operations in the transaction succeed, or the entire transaction is rolled back, leaving the database unchanged.
+*   **Consistency:** A transaction transforms the database from one valid state to another, maintaining all predefined rules, constraints, and triggers.
+*   **Isolation:** Concurrent transactions do not interfere with each other. The intermediate state of a transaction is invisible to other transactions until it is committed.
+*   **Durability:** Once a transaction is committed, its changes are permanent and will survive even in the event of a system failure.     Done! (TTFT: 602.55ms, Chunks: 173)
+
+  -> Iteration 2/3
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** is a function that "remembers" and has access to variables from its outer (enclosing) scope, even after that outer function has finished executing.
+
+In short: **A function + its lexical environment.**     Done! (TTFT: 712.12ms, Chunks: 50)
+
+  -> Iteration 3/3
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through an iterative process of trial and error, driven by three main components:
+
+1.  **Forward Pass:** The network takes input data, passes it through layers of interconnected neurons (weights and biases), and produces a prediction.
+2.  **Loss Function:** The prediction is compared to the actual target value using a loss function, which calculates the "error" (the difference between the prediction and the truth).
+3.  **Backpropagation & Optimization:** 
+    *   **Backpropagation** uses calculus (the chain rule) to calculate how much each weight contributed to the error, moving backward from the output to the input.
+    *   **Optimization (Gradient Descent)** then updates the weights in the direction that reduces the error, slightly adjusting them to minimize the loss.
+
+By repeating this cycle thousands of times across a dataset, the network gradually minimizes error and "learns" the underlying patterns.     Done! (TTFT: 611.39ms, Chunks: 192)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 642.02 ms
+[info] Average Time per Output Token (TPOT): 84.94 ms
+[info] Estimated Generation Throughput: 11.77 tokens/sec
+[time] Average Total Wall Duration: 12.38 seconds
+=================================================

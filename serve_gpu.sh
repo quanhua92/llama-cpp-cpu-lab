@@ -22,6 +22,11 @@ MODELS["qwen3.5-4b"]="unsloth/Qwen3.5-4B-GGUF|Qwen3.5-4B-Q4_K_M.gguf|Qwen3.5 4B 
 MODELS["gemma2-2b"]="bartowski/gemma-2-2b-it-GGUF|gemma-2-2b-it-Q4_K_M.gguf|Gemma 2 2B IT (Q4_K_M) — Dense, no MoE"
 MODELS["deepseek-r1-1.5b"]="unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF|DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf|DeepSeek-R1-Distill-Qwen-1.5B (Q4_K_M) — RL-reasoning distilled"
 MODELS["phi4-mini"]="unsloth/Phi-4-mini-instruct-GGUF|Phi-4-mini-instruct-Q4_K_M.gguf|Phi-4 Mini 3.8B (Q4_K_M) — Microsoft instruction-tuned"
+MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B_q4_0-it.gguf|gemma-4-E2B-it-qat-q4_0.gguf|Gemma 4 E2B QAT (Q4_0, 5B total, 2.3B active) — MoE, QAT quantized"
+MODELS["gemma4-qat-e4b"]="google/gemma-4-E4B-it-qat-q4_0-gguf|gemma-4-E4B_q4_0-it.gguf|gemma-4-E4B-it-qat-q4_0.gguf|Gemma 4 E4B QAT (Q4_0, 8B total, 4.5B active) — MoE, QAT quantized"
+MODELS["gemma4-qat-12b"]="google/gemma-4-12B-it-qat-q4_0-gguf|gemma-4-12b-it-qat-q4_0.gguf|gemma-4-12b-it-qat-q4_0.gguf|Gemma 4 12B QAT (Q4_0, Dense) — QAT quantized"
+MODELS["gemma4-qat-26b"]="google/gemma-4-26B-A4B-it-qat-q4_0-gguf|gemma-4-26B_q4_0-it.gguf|gemma-4-26B-A4B-it-qat-q4_0.gguf|Gemma 4 26B-A4B QAT (Q4_0, 27B total, ~4B active) — MoE, QAT quantized"
+MODELS["gemma4-qat-31b"]="google/gemma-4-31B-it-qat-q4_0-gguf|gemma-4-31B_q4_0-it.gguf|gemma-4-31B-it-qat-q4_0.gguf|Gemma 4 31B QAT (Q4_0, Dense, 33B) — QAT quantized"
 
 usage() {
     echo "Usage: $0 [model] [port] [--no-reasoning] [--chat-template <name>] [--chat-template-file <path>] [extra flags...]"
@@ -79,9 +84,17 @@ EXTRA_ARGS=("${FILTERED_ARGS[@]}")
 PIDFILE="$SCRIPT_DIR/run/server.${PORT}.pid"
 LOG="$SCRIPT_DIR/run/server.${PORT}.log"
 
-IFS='|' read -r HF_REPO GGUF_FILE DISPLAY <<< "${MODELS[$MODEL_KEY]}"
-MODEL_URL="https://huggingface.co/$HF_REPO/resolve/main/$GGUF_FILE"
-MODEL_PATH="$MODEL_DIR/$GGUF_FILE"
+ENTRY="${MODELS[$MODEL_KEY]}"
+PIPE_COUNT=$(echo "$ENTRY" | tr -cd '|' | wc -c)
+if [ "$PIPE_COUNT" -ge 3 ]; then
+    IFS='|' read -r HF_REPO REMOTE_FILE LOCAL_FILE DISPLAY <<< "$ENTRY"
+else
+    IFS='|' read -r HF_REPO GGUF_FILE DISPLAY <<< "$ENTRY"
+    REMOTE_FILE="$GGUF_FILE"
+    LOCAL_FILE="$GGUF_FILE"
+fi
+MODEL_URL="https://huggingface.co/$HF_REPO/resolve/main/$REMOTE_FILE"
+MODEL_PATH="$MODEL_DIR/$LOCAL_FILE"
 
 mkdir -p "$MODEL_DIR"
 

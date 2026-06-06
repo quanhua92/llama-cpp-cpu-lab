@@ -1,0 +1,35 @@
+Auto-detected model: gemma-4-E4B-it-qat-q4_0.gguf
+
+  -> Iteration 1/3
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python primarily uses **reference counting** for garbage collection.
+
+1. **Reference Counting:** Each object keeps a count of how many variables or containers point to it. When the count drops to zero, the object is immediately deallocated.
+2. **Generational Garbage Collector (GC):** A secondary collector handles **reference cycles** (where objects point to each other, keeping their counts above zero even if they are unreachable). It periodically scans and breaks these cycles.     Done! (TTFT: 556.43ms, Chunks: 97)
+
+  -> Iteration 2/3
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are **reusable, proven solutions to common problems** encountered during software design. They are not code snippets, but rather **templates or blueprints** for how to structure and solve recurring design challenges in a robust and flexible way.     Done! (TTFT: 433.74ms, Chunks: 50)
+
+  -> Iteration 3/3
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through a process of **iterative adjustment** based on data.
+
+Here's the concise breakdown:
+
+1. **Forward Propagation:** Input data passes through the network, layer by layer, to produce an output (a prediction).
+2. **Loss Calculation:** A **loss function** measures the difference (error) between the network's prediction and the true target value.
+3. **Backpropagation:** This error is then propagated backward through the network.
+4. **Weight Update (Optimization):** An **optimizer** (like Gradient Descent) uses the calculated error (the gradient) to slightly adjust the network's internal **weights** and **biases**. This adjustment minimizes the loss for the next iteration.
+
+By repeating this cycle over vast amounts of data, the network gradually tunes its weights until it can accurately map inputs to desired outputs.     Done! (TTFT: 444.42ms, Chunks: 180)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 478.20 ms
+[info] Average Time per Output Token (TPOT): 98.04 ms
+[info] Estimated Generation Throughput: 10.20 tokens/sec
+[time] Average Total Wall Duration: 11.15 seconds
+=================================================

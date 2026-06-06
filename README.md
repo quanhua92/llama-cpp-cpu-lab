@@ -10,6 +10,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 - [Benchmark Reports](#benchmark-reports)
 - [Quick Start](#quick-start)
 - [Curated Models](#curated-models)
+- [Gemma 4 QAT vs Q4_K_M Comparison](#gemma-4-qat-vs-q4_k_m-comparison)
 - [Multiple Servers](#multiple-servers)
 - [Benchmarking](#benchmarking)
 - [API](#api)
@@ -22,6 +23,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 
 - [CPU Report](reports/cpu.md)
 - [GPU Report](reports/gpu.md)
+- [Gemma 4 QAT vs Q4_K_M Comparison](reports/gemma4-qat-comparison.md)
 
 ## Quick Start
 
@@ -80,6 +82,7 @@ bash run_gpu_benchmarks.sh
 | `add-model-flow.md` | Guide for adding new GGUF models |
 | `reports/cpu.md` | CPU benchmark results and analysis |
 | `reports/gpu.md` | GPU benchmark results and analysis |
+| `reports/gemma4-qat-comparison.md` | Gemma 4 QAT Q4_0 vs Q4_K_M benchmark comparison |
 | `systemd/llama-cpu.service` | User systemd service (CPU, port 8888) |
 | `systemd/llama-gpu.service` | User systemd service (GPU, port 8889) |
 | `repo/` | llama.cpp source + `build/bin/llama-server` |
@@ -87,7 +90,7 @@ bash run_gpu_benchmarks.sh
 
 ## Curated Models
 
-All Q4_K_M quant, shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`):
+All Q4_K_M quant, shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`). QAT models use Q4_0 quantization (quantization-aware training):
 
 | Key | Model | Size |
 |-----|-------|------|
@@ -106,6 +109,15 @@ All Q4_K_M quant, shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ng
 | `gemma2-2b` | Gemma 2 2B IT (Dense) | 1.6 GB |
 | `deepseek-r1-1.5b` | DeepSeek-R1-Distill-Qwen-1.5B | 1.1 GB |
 | `phi4-mini` | Phi-4 Mini 3.8B (Microsoft) | 2.4 GB |
+| `gemma4-qat-e2b` | Gemma 4 E2B QAT (Q4_0, MoE 2.3B act) | 3.4 GB |
+| `gemma4-qat-e4b` | Gemma 4 E4B QAT (Q4_0, MoE 4.5B act) | 5.2 GB |
+| `gemma4-qat-12b` | Gemma 4 12B QAT (Q4_0, Dense) | 7.0 GB |
+| `gemma4-qat-26b` | Gemma 4 26B-A4B QAT (Q4_0, MoE ~4B act) | 14.4 GB |
+| `gemma4-qat-31b` | Gemma 4 31B QAT (Q4_0, Dense) | 17.7 GB |
+
+## Gemma 4 QAT vs Q4_K_M Comparison
+
+See [reports/gemma4-qat-comparison.md](reports/gemma4-qat-comparison.md) for a detailed side-by-side comparison of Gemma 4 E2B/E4B with post-training Q4_K_M vs quantization-aware-trained Q4_0. Short summary: QAT Q4_0 wins per-token speed and TTFT across all metrics; Q4_K_M wins no-think wall time only due to less verbose output.
 
 ## Multiple Servers
 
@@ -230,5 +242,5 @@ If `hf` is not installed: `uv add huggingface_hub`.
 - `scripts/ask.py` and `scripts/reflect.py` always show `[think]` reasoning tokens.
 - `scripts/profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
 - SmolLM3 3B has a ~3s cold-start penalty on first request
-- See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks across all 16 models
+- See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks across all 20 models
 - See [reports/gpu.md](reports/gpu.md) for full GPU benchmarks across all 16 models

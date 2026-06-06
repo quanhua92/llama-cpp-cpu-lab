@@ -1,0 +1,47 @@
+Auto-detected model: gemma-4-31B-it-qat-q4_0.gguf
+
+  -> Iteration 1/3
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through an iterative process of trial, error, and adjustment:
+
+1.  **Forward Propagation:** The network takes input data, passes it through layers of interconnected nodes (neurons) with assigned **weights** and **biases**, and produces a prediction.
+2.  **Loss Function:** The prediction is compared to the actual target value using a **loss function**, which calculates the error (the difference between the prediction and the truth).
+3.  **Backpropagation:** The network calculates the **gradient** of the loss function—essentially determining how much each weight contributed to the error—by working backward from the output layer to the input layer.
+4.  **Optimization (Gradient Descent):** An optimizer (like SGD or Adam) updates the weights in the opposite direction of the gradient to minimize the loss.
+
+This cycle repeats thousands of times until the network minimizes error and accurately maps inputs to outputs.     Done! (TTFT: 4183.28ms, Chunks: 190)
+
+  -> Iteration 2/3
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS (Domain Name System) translates human-readable domain names (like `google.com`) into machine-readable IP addresses (like `142.250.190.46`).
+
+**The Step-by-Step Process:**
+
+1.  **Request:** Your browser asks the **DNS Resolver** (usually provided by your ISP) for the IP address of a domain.
+2.  **Root Server:** The Resolver queries a **Root Server**, which points it to the correct **TLD Server** (e.g., `.com` or `.org`).
+3.  **TLD Server:** The TLD Server points the Resolver to the **Authoritative Name Server** for that specific domain.
+4.  **Authoritative Server:** This server holds the actual DNS record and returns the **IP address** to the Resolver.
+5.  **Response:** The Resolver gives the IP address to your browser, which then connects to the web server.
+
+**Caching:** To speed this up, browsers and resolvers store (cache) previous results so they don't have to repeat the full search every time.     Done! (TTFT: 4016.06ms, Chunks: 238)
+
+  -> Iteration 3/3
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A **database transaction** is a single logical unit of work that consists of one or more operations (such as reads, writes, or deletes). 
+
+To ensure data integrity, transactions must follow the **ACID** properties:
+
+*   **Atomicity:** "All or nothing." Either the entire transaction succeeds and is committed, or it fails and is rolled back completely.
+*   **Consistency:** A transaction transforms the database from one valid state to another, maintaining all predefined rules (constraints, cascades, triggers).
+*   **Isolation:** Concurrent transactions do not interfere with each other; the intermediate state of one transaction is invisible to others.
+*   **Durability:** Once a transaction is committed, the changes are permanent, even in the event of a system crash.     Done! (TTFT: 3603.28ms, Chunks: 161)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 3934.21 ms
+[info] Average Time per Output Token (TPOT): 568.84 ms
+[info] Estimated Generation Throughput: 1.76 tokens/sec
+[time] Average Total Wall Duration: 115.11 seconds
+=================================================

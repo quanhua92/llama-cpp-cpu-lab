@@ -4,7 +4,7 @@
 
 ## Models Tested
 
-All models in Q4_K_M quantization. Each model was profiled with 3 prompt iterations; values are averages.
+All models profiled with 3 prompt iterations; values are averages. Original 15 models use Q4_K_M quantization; 5 Gemma 4 QAT models use Q4_0 quantization (quantization-aware training).
 
 | Model | Params | Notes |
 |---|---|---|
@@ -23,6 +23,11 @@ All models in Q4_K_M quantization. Each model was profiled with 3 prompt iterati
 | Gemma 2 2B IT | 2B | Google Dense |
 | DeepSeek-R1-Distill-Qwen-1.5B | 1.5B | RL-reasoning distilled |
 | Phi-4 Mini | 3.8B | Microsoft instruction-tuned |
+| Gemma 4 E2B QAT | 2B (MoE) | Google QAT Q4_0 |
+| Gemma 4 E4B QAT | 4B (MoE) | Google QAT Q4_0 |
+| Gemma 4 12B QAT | 12B (Dense) | Google QAT Q4_0 |
+| Gemma 4 26B-A4B QAT | ~4B (MoE 27B) | Google QAT Q4_0 |
+| Gemma 4 31B QAT | 31B (Dense) | Google QAT Q4_0 |
 
 ## Benchmark Modes
 
@@ -54,6 +59,11 @@ Two modes were tested for each model:
 | Gemma 2 2B IT | 242 | 249 | +3% |
 | DeepSeek-R1-Distill-Qwen-1.5B | 153 | 166 | +8% |
 | Phi-4 Mini | 286 | 293 | +3% |
+| Gemma 4 E2B QAT | 233 | 293 | +25% |
+| Gemma 4 E4B QAT | 478 | 542 | +13% |
+| Gemma 4 12B QAT | 1432 | 1522 | +6% |
+| Gemma 4 26B-A4B QAT | 642 | 652 | +2% |
+| Gemma 4 31B QAT | 3934 | 3924 | -0% |
 
 ### Time per Output Token (TPOT) — lower is better
 
@@ -74,6 +84,11 @@ Two modes were tested for each model:
 | Gemma 2 2B IT | 60.46 | 60.20 | -0% |
 | DeepSeek-R1-Distill-Qwen-1.5B | 34.51 | 36.40 | +5% |
 | Phi-4 Mini | 79.77 | 78.74 | -1% |
+| Gemma 4 E2B QAT | 54.20 | 54.82 | +1% |
+| Gemma 4 E4B QAT | 98.04 | 99.30 | +1% |
+| Gemma 4 12B QAT | 228.92 | 239.13 | +4% |
+| Gemma 4 26B-A4B QAT | 84.94 | 91.82 | +8% |
+| Gemma 4 31B QAT | 568.84 | 587.27 | +3% |
 
 ### Generation Throughput — higher is better
 
@@ -94,6 +109,11 @@ Two modes were tested for each model:
 | Gemma 2 2B IT | 16.54 | 16.61 | +0% |
 | DeepSeek-R1-Distill-Qwen-1.5B | 28.98 | 27.47 | -5% |
 | Phi-4 Mini | 12.54 | 12.70 | +1% |
+| Gemma 4 E2B QAT | 18.45 | 18.24 | -1% |
+| Gemma 4 E4B QAT | 10.20 | 10.07 | -1% |
+| Gemma 4 12B QAT | 4.37 | 4.18 | -4% |
+| Gemma 4 26B-A4B QAT | 11.77 | 10.89 | -8% |
+| Gemma 4 31B QAT | 1.76 | 1.70 | -3% |
 
 ### Total Wall Duration — lower is better
 
@@ -114,6 +134,11 @@ Two modes were tested for each model:
 | Gemma 2 2B IT | 4.22 | 3.66 | -13% |
 | DeepSeek-R1-Distill-Qwen-1.5B | 27.37 | 34.38 | +26% |
 | Phi-4 Mini | 5.69 | 5.16 | -9% |
+| Gemma 4 E2B QAT | 9.13 | 19.46 | +113% |
+| Gemma 4 E4B QAT | 11.15 | 45.82 | +311% |
+| Gemma 4 12B QAT | 39.99 | 151.57 | +279% |
+| Gemma 4 26B-A4B QAT | 12.38 | 71.60 | +478% |
+| Gemma 4 31B QAT | 115.11 | 257.86 | +124% |
 
 ## Key Findings
 
@@ -129,9 +154,26 @@ Two modes were tested for each model:
 
 ### 2. TPOT is stable per model
 
-Time per output token is determined almost entirely by model size and quantization, not by thinking mode. The 5-9% variation is within noise. The new models confirm this: Gemma 2 2B IT (+1%), DeepSeek-R1-Distill-Qwen-1.5B (+5%), Phi-4 Mini (+2%).
+Time per output token is determined almost entirely by model size and quantization, not by thinking mode. The 5-9% variation is within noise. The new models confirm this: Gemma 2 2B IT (+1%), DeepSeek-R1-Distill-Qwen-1.5B (+5%), Phi-4 Mini (+2%), Gemma 4 QAT E2B (+1%), Gemma 4 QAT E4B (+1%), Gemma 4 QAT 31B (+3%).
 
-### 3. Throughput ranking (no-think mode)
+### 3. Gemma 4 QAT (Q4_0) vs non-QAT (Q4_K_M)
+
+QAT models use quantization-aware training at Q4_0 precision, versus post-training Q4_K_M. Key comparison (E2B):
+
+| Metric | E2B Q4_K_M | E2B QAT Q4_0 | Δ |
+|---|---|---|---|
+| TTFT (no-think) | 259 ms | 233 ms | -10% |
+| TPOT (no-think) | 57.40 ms | 54.20 ms | -6% |
+| Throughput (no-think) | 17.4 tok/s | 18.5 tok/s | +6% |
+| Wall (no-think) | 8.28 s | 9.13 s | +10% |
+
+QAT E2B is slightly faster per-token (+6% throughput) but produces more output in no-think mode (more verbose answers), resulting in slightly longer wall time. In thinking mode, both produce similar-length responses. QAT reasoning quality is equivalent or better.
+
+- **26B-A4B QAT** is the most interesting QAT model: MoE with only ~4B active params but 27B total. Despite the small active set, it runs at 11.8 tok/s — comparable to the non-QAT E2B (17.4 tok/s). Wall time in thinking mode is 478% higher due to verbose CoT.
+- **31B QAT** (dense 33B) is extremely slow: 1.7 tok/s, 3.9s TTFT. Only viable for no-think mode on CPU. Wall time is 115s no-think, 258s thinking.
+- **12B QAT** (dense 12B) is also slow at 4.4 tok/s with 1.5s TTFT. Usable in no-think mode but painful in thinking mode (152s wall time).
+
+### 4. Throughput ranking (no-think mode)
 
 | Rank | Model | tok/s |
 |---|---|---|
@@ -150,6 +192,10 @@ Time per output token is determined almost entirely by model size and quantizati
 | 13 | Phi-4 Mini | 12.7 |
 | 14 | Qwen 3.5-4B | 10.2 |
 | 15 | Gemma 4 E4B | 9.6 |
+| 16 | Gemma 4 12B QAT | 4.4 |
+| 17 | Gemma 4 E4B QAT | 10.2 |
+| 18 | Gemma 4 26B-A4B QAT | 11.8 |
+| 19 | Gemma 4 31B QAT | 1.8 |
 
 ## Recommendations
 
@@ -161,6 +207,9 @@ Time per output token is determined almost entirely by model size and quantizati
 6. **Qwen 3.5 in thinking mode**: Avoid unless prompts are carefully tuned. All sizes (0.8B, 2B, 4B) hit the token ceiling with repetitive self-editing. No-think mode works fine (no recursive loop).
 7. **Gemma 4 thinking**: Best quality on CPU, but expensive (3-5× wall time, 27s thinking). Pay the cost if reasoning depth matters.
 8. **SmolLM3-3B**: Underperforms in thinking mode (13× wall time). Use no-think mode only.
+9. **Gemma 4 QAT E2B/E4B**: Best QAT models for CPU. E2B QAT matches non-QAT E2B speed (18.5 vs 17.4 tok/s) with potential quality gains from quantization-aware training. Use `gemma4-qat-e2b` as a drop-in replacement for `gemma4-e2b`.
+10. **Gemma 4 QAT 26B-A4B**: Surprisingly fast for a 27B MoE model (11.8 tok/s) due to only ~4B active parameters. Best QAT model for reasoning depth if you can tolerate 12s no-think / 72s thinking wall time.
+11. **Gemma 4 QAT 12B/31B**: Too slow for interactive use on CPU (4.4 and 1.8 tok/s respectively). Only consider for batch/offline workloads.
 
 ## Methodology
 
@@ -169,10 +218,10 @@ Time per output token is determined almost entirely by model size and quantizati
 - Thinking mode uses the default `--reasoning` template auto-detection; no custom Jinja templates
 - Benchmark client (`profile_client.py`) streams responses, records TTFT (time to first output), TPOT (inter-token latency), total wall time, and chunk count
 - Prompts: 3 varied questions about programming/CS topics, each with "Answer short, concise, and correct." constraint
-- `max_tokens`: 4096 for new models (Gemma 2, DeepSeek-R1, Phi-4), 1024 for original 12 models
+- `max_tokens`: 4096 for new models (Gemma 2, DeepSeek-R1, Phi-4, Gemma 4 QAT), 1024 for original 12 models
 - Qwen 3.5 models enter infinite self-critique loops in thinking mode, burning the entire `max_tokens` budget in `[think]` tokens without producing `[out]`. No-think mode works cleanly for 0.8B.
 - DeepSeek-R1-Distill-Qwen-1.5B in no-think mode is prompt-dependent: some prompts finish naturally (556–1527 chunks), others loop to the `max_tokens` ceiling. Thinking mode is reliable (all iterations complete).
 
 ### Test Date
 
-2026-06-03
+2026-06-03 (original 15 models), 2026-06-06 (Gemma 4 QAT models added)

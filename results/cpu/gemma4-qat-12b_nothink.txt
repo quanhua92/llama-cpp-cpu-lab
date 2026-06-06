@@ -1,0 +1,40 @@
+Auto-detected model: gemma-4-12b-it-qat-q4_0.gguf
+
+  -> Iteration 1/3
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python primarily uses two mechanisms for garbage collection:
+
+1.  **Reference Counting:** This is the main mechanism. Every object keeps a count of how many references point to it. When an object's reference count drops to zero, Python immediately deallocates the memory.
+2.  **Generational Garbage Collection (GC):** To handle **reference cycles** (where two objects point to each other but are otherwise unreachable), Python uses a cyclic garbage collector. It organizes objects into three "generations" based on how long they have lived; the GC scans these generations periodically to identify and delete unreachable clusters of objects.
+
+**Summary:** Reference counting handles most cleanup instantly, while the generational GC acts as a backup to clean up complex memory leaks.     Done! (TTFT: 1581.72ms, Chunks: 155)
+
+  -> Iteration 2/3
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] **Design patterns** are reusable, standardized solutions to commonly occurring problems in software design. 
+
+They are not finished pieces of code, but rather **templates** or "blueprints" for how to structure classes and objects to make software more maintainable, scalable, and efficient.
+
+They are typically categorized into three types:
+1.  **Creational:** How objects are created (e.g., Singleton, Factory).
+2.  **Structural:** How objects are composed to form larger structures (e.g., Adapter, Decorator).
+3.  **Behavioral:** How objects communicate and distribute responsibility (e.g., Observer, Strategy).     Done! (TTFT: 1357.15ms, Chunks: 137)
+
+  -> Iteration 3/3
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through an iterative process of trial, error, and adjustment. Here is the step-by-step breakdown:
+
+1.  **Forward Propagation:** The network takes input data (e.g., an image) and passes it through layers of interconnected "neurons." Each connection has a **weight** (strength) and a **bias**. The network performs mathematical calculations to produce an output (a prediction).
+2.  **Loss Function:** The network compares its prediction against the actual correct answer. A **loss function** calculates the "error"—the difference between the guess and the truth.
+3.  **Backpropagation:** The network works backward from the error to determine which specific weights and biases contributed most to the mistake. It calculates the **gradient** (the direction and magnitude of the error).
+4.  **Optimization (Gradient Descent):** An optimizer updates the weights slightly in the opposite direction of the error. By repeating this millions of times, the network gradually minimizes the loss, "learning" to produce more accurate predictions.     Done! (TTFT: 1355.74ms, Chunks: 216)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 1431.54 ms
+[info] Average Time per Output Token (TPOT): 228.92 ms
+[info] Estimated Generation Throughput: 4.37 tokens/sec
+[time] Average Total Wall Duration: 39.99 seconds
+=================================================

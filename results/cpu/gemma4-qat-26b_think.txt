@@ -1,0 +1,147 @@
+Auto-detected model: gemma-4-26B-A4B-it-qat-q4_0.gguf
+
+  -> Iteration 1/3
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+      [think] *   Topic: Database transactions.
+*   Constraints: Short, concise, and correct.
+
+    *   What is it? A single logical unit of work.
+    *   What does it do? Ensures data integrity during multiple operations (insert, update, delete).
+    *   Key properties? ACID (Atomicity, Consistency, Isolation, Durability).
+
+    *   *Definition:* A database transaction is a sequence of one or more operations executed as a single unit of work.
+    *   *Purpose:* To ensure data integrity and consistency, even in the event of errors or system failures.
+    *   *ACID Properties:*
+        *   Atomicity: All or nothing.
+        *   Consistency: Valid state to valid state.
+        *   Isolation: Concurrent transactions don't interfere.
+        *   Durability: Once committed, changes are permanent.
+
+    *   *Definition:* A database transaction is a single logical unit of work consisting of one or more SQL operations.
+    *   *Core Principle:* It follows the **ACID** properties to ensure data integrity:
+        *   **Atomicity:** All operations succeed, or none do ("all or nothing").
+        *   **Consistency:** The database moves from one valid state to another, maintaining all rules/constraints.
+        *   **Isolation:** Concurrent transactions do not interfere with each other.
+        *   **Durability:** Once committed, changes are permanent, even in a system failure.
+
+    *   Short? Yes.
+    *   Concise? Yes.
+    *   Correct? Yes.
+        [out] A **database transaction** is a single logical unit of work consisting of one or more operations (such as reading, inserting, or updating data). It ensures that a series of steps are treated as a single, indivisible action to maintain data integrity.
+
+To be reliable, transactions must adhere to the **ACID** properties:
+
+*   **Atomicity:** "All or nothing." Either the entire transaction succeeds, or the entire transaction is aborted and the database is rolled back to its previous state.
+*   **Consistency:** A transaction transforms the database from one valid state to another, preserving all predefined rules, constraints, and triggers.
+*   **Isolation:** Concurrent transactions do not interfere with each other; the intermediate state of a transaction is invisible to others until it is completed.
+*   **Durability:** Once a transaction is committed, its changes are permanent and will survive even in the event of a system failure.     Done! (TTFT: 667.29ms, Chunks: 526)
+
+  -> Iteration 2/3
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+      [think] *   Topic: CAP Theorem.
+*   Constraints: Short, concise, and correct.
+
+    *   What is it? A principle in distributed systems.
+    *   What are the three components? Consistency (C), Availability (A), Partition Tolerance (P).
+    *   What is the core rule? In the event of a network partition, a system can only guarantee two out of the three.
+
+    *   *Consistency (C):* Every read receives the most recent write or an error. (All nodes see the same data at the same time).
+    *   *Availability (A):* Every request receives a (non-error) response, without the guarantee that it contains the most recent write. (The system stays up).
+    *   *Partition Tolerance (P):* The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes. (The system handles network breaks).
+
+    *   In a distributed system, network partitions *will* happen.
+    *   Therefore, you must choose between C and A when P occurs.
+    *   CP (Consistency + Partition Tolerance): Prioritizes data accuracy over uptime.
+    *   AP (Availability + Partition Tolerance): Prioritizes uptime over data accuracy.
+    *   CA (Consistency + Availability): Only possible in non-distributed systems (single node) or perfect networks (which don't exist in reality).
+
+    *   *Draft 1:* The CAP theorem states that a distributed system can only provide two of three guarantees: Consistency, Availability, and Partition Tolerance. Consistency means all nodes see the same data. Availability means every request gets a response. Partition Tolerance means the system works even if the network breaks. Since network breaks are inevitable, you must choose between C and A.
+
+    *   *Draft 2 (Refining for "Short, Concise, Correct"):*
+        The **CAP Theorem** states that a distributed data store can only provide two of the following three guarantees:
+
+        1. **Consistency (C):** Every read receives the most recent write or an error.
+        2. **Availability (A):** Every request receives a (non-error) response, without the guarantee that it contains the most recent write.
+        3. **Partition Tolerance (P):** The system continues to operate despite network failures that prevent communication between nodes.
+
+        **The Trade-off:**
+        In a distributed system, network partitions (P) are inevitable. Therefore, when a partition occurs, you must choose between:
+        * **CP (Consistency + Partition Tolerance):** The system returns an error to ensure data is accurate.
+        * **AP (Availability + Partition Tolerance):** The system returns the most recent local version of data, even if it's stale.
+
+    *   Short? Yes.
+    *   Concise? Yes.
+    *   Correct? Yes.
+        [out] The **CAP Theorem** states that a distributed data store can only provide two out of the following three guarantees:
+
+1.  **Consistency (C):** Every read receives the most recent write or an error. (All nodes see the same data at the same time).
+2.  **Availability (A):** Every request receives a (non-error) response, without the guarantee that it contains the most recent write. (The system stays operational).
+3.  **Partition Tolerance (P):** The system continues to operate despite an arbitrary number of messages being dropped or delayed by the network between nodes.
+
+### The Trade-off
+In a distributed system, network partitions (P) are inevitable. Therefore, when a partition occurs, you must choose between:
+
+*   **CP (Consistency + Partition Tolerance):** The system prioritizes data accuracy. If a partition occurs, the system will return an error or time out rather than risk returning stale data.
+*   **AP (Availability + Partition Tolerance):** The system prioritizes uptime. If a partition occurs, the system will return the most recent local version of the data, even if it is out of sync with other nodes.
+
+*Note: **CA** (Consistency + Availability) is only possible in a single-node system where network partitions are impossible.*     Done! (TTFT: 616.49ms, Chunks: 885)
+
+  -> Iteration 3/3
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+      [think] *   Topic: DNS resolution process.
+*   Constraints: Short, concise, and correct.
+
+    *   User enters a URL (e.g., `example.com`).
+    *   Browser checks cache (browser, OS, router).
+    *   If not found, request goes to the **DNS Resolver** (ISP or public DNS like 8.8.8.8).
+    *   Resolver asks the **Root Nameserver**.
+    *   Root Nameserver points to the **TLD (Top-Level Domain) Nameserver** (e.g., `.com`).
+    *   TLD Nameserver points to the **Authoritative Nameserver** for that specific domain.
+    *   Authoritative Nameserver provides the IP address.
+    *   Resolver gives IP to the browser.
+    *   Browser connects to the server using the IP.
+
+    *   *Step 1: Request.* User types a domain.
+    *   *Step 2: Cache Check.* Browser/OS checks local cache.
+    *   *Step 3: Resolver.* If no cache, the Recursive Resolver (ISP) is asked.
+    *   *Step 4: Root Server.* Resolver asks Root Server (where is `.com`?).
+    *   *Step 5: TLD Server.* Root points to TLD Server (where is `example.com`?).
+    *   *Step 6: Authoritative Server.* TLD points to Authoritative Server (what is the IP for `example.com`?).
+    *   *Step 7: Response.* Authoritative server gives IP to Resolver, Resolver gives IP to Browser.
+    *   *Step 8: Connection.* Browser uses IP to load the site.
+
+    *   Use a numbered list for clarity.
+    *   Keep descriptions minimal.
+
+    *   *Draft:*
+        1. **User Request:** You type a URL (e.g., `google.com`) into your browser.
+        2. **Local Cache:** The browser/OS checks its own cache for the IP. If not found, it asks the **DNS Resolver** (usually your ISP).
+        3. **Root Nameserver:** The Resolver asks the Root Server, which directs it to the correct **TLD Nameserver** (e.g., `.com`).
+        4. **TLD Nameserver:** The TLD server directs the Resolver to the **Authoritative Nameserver** for that specific domain.
+        5. **Authoritative Nameserver:** This server holds the actual IP address and provides it to the Resolver.
+        6. **Resolution:** The Resolver gives the IP to your browser, and the browser connects to the web server.
+
+    *   Short? Yes.
+    *   Concise? Yes.
+    *   Correct? Yes.
+        [out] DNS resolution is the process of translating a human-readable domain name (like `example.com`) into a machine-readable IP address (like `93.184.216.34`).
+
+Here is the step-by-step process:
+
+1.  **User Request:** You type a URL into your browser.
+2.  **Local Cache Check:** The browser and operating system check their own caches to see if they already know the IP. If not, the request is sent to a **DNS Resolver** (usually provided by your ISP).
+3.  **Root Nameserver:** If the Resolver doesn't have the IP, it asks the **Root Nameserver**. The Root server doesn't know the IP, but it knows where to find the **TLD (Top-Level Domain) Nameserver** (e.g., the `.com` server).
+4.  **TLD Nameserver:** The Resolver then asks the TLD Nameserver. This server directs the Resolver to the **Authoritative Nameserver** for that specific domain.
+5.  **Authoritative Nameserver:** This is the final stop. The Authoritative Nameserver holds the actual DNS records and provides the specific IP address to the Resolver.
+6.  **Resolution:** The Resolver gives the IP address back to your browser.
+7.  **Connection:** Your browser uses the IP address to establish a connection with the web server and loads the site.     Done! (TTFT: 673.36ms, Chunks: 904)
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 652.38 ms
+[info] Average Time per Output Token (TPOT): 91.82 ms
+[info] Estimated Generation Throughput: 10.89 tokens/sec
+[time] Average Total Wall Duration: 71.60 seconds
+=================================================

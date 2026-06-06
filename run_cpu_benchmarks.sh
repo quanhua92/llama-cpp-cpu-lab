@@ -40,6 +40,11 @@ declare -a ALL_KEYS=(
     "gemma2-2b"
     "deepseek-r1-1.5b"
     "phi4-mini"
+    "gemma4-qat-e2b"
+    "gemma4-qat-e4b"
+    "gemma4-qat-12b"
+    "gemma4-qat-26b"
+    "gemma4-qat-31b"
 )
 
 if [ $# -gt 0 ]; then
