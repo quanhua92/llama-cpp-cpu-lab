@@ -1,7 +1,7 @@
 # profile_client.py
 import argparse
 import asyncio
-import random
+
 import time
 from datetime import datetime
 
@@ -123,8 +123,8 @@ async def main():
         model_name = await fetch_model_name(client)
         print(f"Auto-detected model: {model_name}")
 
-        num_prompts = 3
-        prompts = random.sample(PROMPTS, num_prompts)
+        prompts = PROMPTS
+        num_prompts = len(prompts)
 
         results = []
         for i, prompt in enumerate(prompts):
