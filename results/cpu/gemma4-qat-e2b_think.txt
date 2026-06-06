@@ -1,21 +1,69 @@
 Auto-detected model: gemma-4-E2B-it-qat-q4_0.gguf
 
-  -> Iteration 1/3
-     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
 
       [think] Thinking Process:
 
-1.  **Analyze the Request:** The user wants a definition of a "closure" in programming. The constraints are "short, concise, and correct."
-2.  **Define "Closure" (Core Concept):** A closure is a function bundled together with its lexical environment (the variables it captures from its surrounding scope). It allows a function to "remember" and access variables even after the outer function has finished executing.
-3.  **Draft the Definition (Focusing on Conciseness):**
-    *   *Initial thought:* A closure is a function that remembers the variables from the scope where it was created.
-    *   *Refinement (Adding technical accuracy):* A closure is a function that captures and retains access to variables from its surrounding scope, even after the outer function has returned.
-4.  **Final Polish (Ensuring Shortness and Clarity):**
-    *   A closure is a function that remembers and has access to variables from its surrounding scope, even after the outer function has finished executing.
-5.  **Final Output Generation.** (This meets the criteria: short, concise, and correct.)
-        [out] A closure is a function that remembers and has access to variables from its surrounding scope, even after the outer function has finished executing.     Done! (TTFT: 302.68ms, Chunks: 268)
+1.  **Analyze the Request:** The user wants to know about "software architecture." The constraints are "short, concise, and correct."
 
-  -> Iteration 2/3
+2.  **Define Software Architecture (Core Concept):** What is it, fundamentally? It's the high-level structure, organization, and design of a software system. It defines the components, their relationships, and the principles guiding their design and evolution.
+
+3.  **Identify Key Components/Goals (What does it do?):**
+    *   Structure (components, modules).
+    *   Quality Attributes (performance, scalability, security, maintainability).
+    *   Constraints (technology, budget, time).
+    *   Communication (how parts interact).
+
+4.  **Structure the Answer (Short & Concise):** A good answer should cover definition, purpose, and key concerns.
+
+    *   *Drafting - Focus on Definition:* Software architecture is the blueprint.
+    *   *Drafting - Focus on Purpose:* It manages complexity and ensures quality attributes.
+    *   *Drafting - Focus on Scope:* It's the bridge between requirements and implementation.
+
+5.  **Refine and Polish (Ensure Accuracy and Conciseness):** (Self-Correction: Avoid overly academic jargon unless necessary, but keep the core concepts.)
+
+6.  **Final Output Generation.** (This leads to the structured response provided below.)
+        [out] **Software architecture** is the set of major structural decisions that define a software system. It acts as the blueprint, dictating how the system is organized, how its components interact, and the principles that govern its design and evolution.
+
+**Key Functions:**
+
+1. **Structure:** Defines the components (modules, services, databases) and their relationships.
+2. **Quality Attributes:** Ensures the system meets non-functional requirements (e.g., performance, scalability, security, maintainability).
+3. **Constraint Management:** Balances technical choices with business constraints (budget, time, technology).
+4. **Communication:** Establishes the interfaces and communication protocols between different parts of the system.
+
+**In short:** Architecture is the high-level design that determines the system's long-term viability and ability to meet its goals.     [Q01] TTFT=284.16ms TPOT=53.33ms Chunks=469 Total=25.24s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants an explanation of "how neural networks learn." The constraints are "short, concise, and correct."
+
+2.  **Identify Key Concepts (The Core Mechanism):**
+    *   Neural networks learn through adjusting weights.
+    *   This adjustment is based on minimizing error (loss).
+    *   The process involves forward propagation, calculating error, and backward propagation (backpropagation).
+    *   The goal is to find optimal weights.
+
+3.  **Draft the Explanation (Focusing on Conciseness):**
+    *   *Initial thought:* Neural networks learn by taking input, passing it through layers, calculating an output, comparing it to the correct answer (error), and then adjusting the weights using backpropagation to reduce that error.
+    *   *Refinement for conciseness:* Needs to be structured logically.
+
+4.  **Final Polish (Short, Concise, Correct):** (Self-Correction: Ensure the terms "weights," "error," and "backpropagation" are included as they are the technical core.)
+
+5.  **Final Output Generation.** (This matches the provided good answer.)
+        [out] Neural networks learn through an iterative process involving three main steps:
+
+1. **Forward Propagation:** Input data is passed through the network, generating an output.
+2. **Error Calculation:** The network compares its output to the correct answer (the target) to calculate the error (loss).
+3. **Backpropagation:** The error is sent backward through the network. This process uses an algorithm (gradient descent) to adjust the **weights** and **biases** of the connections, minimizing the error for the next attempt.
+
+This cycle repeats thousands or millions of times until the network learns the optimal weights that produce the desired output.     [Q02] TTFT=280.66ms TPOT=52.92ms Chunks=378 Total=20.23s
+
+  -> Q03 [3/10]
      IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
 
       [think] Thinking Process:
@@ -40,9 +88,9 @@ Auto-detected model: gemma-4-E2B-it-qat-q4_0.gguf
 **In short:**
 
 *   **TCP:** Reliable, slower, connection-oriented (used for web browsing, email).
-*   **UDP:** Fast, unreliable, connectionless (used for streaming, gaming, DNS lookups).     Done! (TTFT: 297.02ms, Chunks: 387)
+*   **UDP:** Fast, unreliable, connectionless (used for streaming, gaming, DNS lookups).     [Q03] TTFT=304.37ms TPOT=53.04ms Chunks=387 Total=20.78s
 
-  -> Iteration 3/3
+  -> Q04 [4/10]
      IN:  How does garbage collection work in Python? Answer short, concise, and correct.
 
       [think] Thinking Process:
@@ -67,11 +115,186 @@ Auto-detected model: gemma-4-E2B-it-qat-q4_0.gguf
 
 1. **Reference Counting (Primary):** Every object maintains a count of how many references point to it. When the count drops to zero (meaning no variables or structures are pointing to the object), the memory is immediately deallocated.
 
-2. **Generational Garbage Collection (Secondary):** This mechanism handles **cyclic references** (where objects point to each other in a loop). Python periodically runs a collector to identify and break these cycles, freeing the memory.     Done! (TTFT: 278.05ms, Chunks: 398)
+2. **Generational Garbage Collection (Secondary):** This mechanism handles **cyclic references** (where objects point to each other in a loop). Python periodically runs a collector to identify and break these cycles, freeing the memory.     [Q04] TTFT=304.21ms TPOT=53.18ms Chunks=398 Total=21.42s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants a description of "microservices" that is "short, concise, and correct."
+2.  **Identify Key Concepts of Microservices:**
+    *   Architecture style (decomposing a large application).
+    *   Independent services (small, focused units).
+    *   Independent deployment/scaling.
+    *   Communication (usually APIs/HTTP).
+    *   Technology diversity (polyglot).
+3.  **Draft the Core Definition (Internal Check):** Microservices are an architectural style where a large application is broken down into small, independent services, each running its own process and managing its own data.
+4.  **Refine for Conciseness (Short & Concise):** Focus on the *what* and the *why* (benefits/characteristics).
+5.  **Final Polish (The Answer):** Structure the answer clearly.
+
+*(Self-Correction during drafting: Avoid overly technical jargon unless necessary. Keep it high-level but accurate.)*
+
+6.  **Final Output Generation.** (This leads to the provided good answer.)
+        [out] **Microservices** are an architectural style where a large application is built as a collection of small, independent services.
+
+**Key Characteristics:**
+
+*   **Independent Deployment:** Each service can be developed, deployed, and scaled independently.
+*   **Single Responsibility:** Each service focuses on a specific business capability.
+*   **Decentralized Data:** Services often manage their own databases, rather than sharing a single monolithic database.
+*   **Technology Diversity (Polyglot):** Different services can be written in different programming languages.
+
+**In short:** It is an approach to building software where an application is broken down into small, manageable, and independently deployable services.     [Q05] TTFT=274.65ms TPOT=52.91ms Chunks=378 Total=20.22s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants a definition of a "closure" in programming. The constraints are "short, concise, and correct."
+2.  **Define "Closure" (Core Concept):** A closure is a function bundled together with its lexical environment (the variables it captures from its surrounding scope). It allows a function to "remember" and access variables even after the outer function has finished executing.
+3.  **Draft the Definition (Focusing on Conciseness):**
+    *   *Initial thought:* A closure is a function that remembers the variables from the scope where it was created.
+    *   *Refinement (Adding technical accuracy):* A closure is a function that captures and retains access to variables from its surrounding scope, even after the outer function has returned.
+4.  **Final Polish (Ensuring Shortness and Clarity):**
+    *   A closure is a function that remembers and has access to variables from its surrounding scope, even after the outer function has finished executing.
+5.  **Final Output Generation.** (This meets the criteria: short, concise, and correct.)
+        [out] A closure is a function that remembers and has access to variables from its surrounding scope, even after the outer function has finished executing.     [Q06] TTFT=285.99ms TPOT=52.76ms Chunks=268 Total=14.37s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants an explanation of the CAP theorem. The constraints are "short, concise, and correct."
+2.  **Identify the Core Concept (CAP Theorem):**
+    *   What is it? A fundamental theorem in distributed systems.
+    *   What does it state? A distributed data store can only provide two out of three guarantees simultaneously: Consistency, Availability, and Partition Tolerance.
+3.  **Define the Terms (C, A, P):**
+    *   **Consistency (C):** Every read receives the most recent write or an error. (All nodes see the same data at the same time).
+    *   **Availability (A):** Every request receives a response (without guaranteeing it's the latest data). (The system is always up and responsive).
+    *   **Partition Tolerance (P):** The system continues to operate despite arbitrary network failures (partitions) between nodes. (The system handles network splits).
+4.  **Explain the Trade-off:**
+    *   In a distributed system, network partitions (P) are inevitable. Therefore, the choice is usually between C and A during a partition.
+    *   If you choose C (Consistency), you sacrifice A (Availability).
+    *   If you choose A (Availability), you sacrifice C (Consistency).
+5.  **Structure the Answer (Short, Concise, Correct):**
+    *   Start with the definition.
+    *   Define the three components.
+    *   Explain the core trade-off.
+6.  **Draft the Response (Self-Correction/Refinement):** Ensure the explanation is clear and avoids overly technical jargon where possible, focusing on the relationship between the three letters. (The draft looks good and meets the constraints).
+        [out] The CAP theorem is a fundamental principle in distributed systems stating that a distributed data store can only guarantee **two** of the following three properties simultaneously:
+
+1.  **Consistency (C):** Every read receives the most recent write or an error. (All nodes see the same data at the same time).
+2.  **Availability (A):** Every request receives a response, without the guarantee that it contains the most recent write. (The system is always responsive).
+3.  **Partition Tolerance (P):** The system continues to operate despite arbitrary network failures (partitions) between nodes.
+
+### The Trade-Off
+
+In any real-world distributed system, network partitions (**P**) are inevitable. Therefore, the CAP theorem forces a choice:
+
+*   **CP Systems:** Prioritize **Consistency** and **Partition Tolerance**. If a network partition occurs, the system will refuse to respond to some requests to ensure data integrity. (Sacrifices Availability).
+*   **AP Systems:** Prioritize **Availability** and **Partition Tolerance**. If a network partition occurs, the system will respond to all requests, but the data might be inconsistent across nodes. (Sacrifices Consistency).
+
+**In summary:** You must choose between Consistency and Availability when a network partition occurs.     [Q07] TTFT=243.80ms TPOT=53.38ms Chunks=643 Total=34.52s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants to know how DNS resolution works. The constraints are "short, concise, and correct."
+2.  **Identify Key Components of DNS Resolution:**
+    *   The goal: Translate a domain name (e.g., google.com) into an IP address (e.g., 142.250.191.46).
+    *   The process: A series of lookups involving multiple servers.
+    *   The main players: DNS Resolver (Stub/Recursive), Root Servers, TLD Servers, Authoritative Name Servers.
+3.  **Structure the Explanation (Step-by-Step):**
+    *   Start with the core concept (Query).
+    *   Explain the hierarchy (The lookup process).
+    *   Mention the final result (IP address).
+4.  **Draft the Content (Focusing on Conciseness):**
+
+    *   *Initial thought:* When you type a domain, your computer asks a DNS resolver. The resolver checks the root servers, then the TLD servers, and finally the authoritative server for that domain to get the IP.
+    *   *Refinement for clarity and accuracy:* Use the term "recursive" and "iterative" implicitly or explicitly.
+
+5.  **Final Review against Constraints (Short, Concise, Correct):** The resulting explanation must be accurate and brief. (Self-Correction: Ensure the distinction between the client's request and the server hierarchy is clear.)
+
+6.  **Final Output Generation.** (This leads to the provided good answer.)
+        [out] DNS resolution is the process of translating a human-readable domain name (like `google.com`) into an IP address (like `142.250.191.46`).
+
+The process involves a hierarchy of servers:
+
+1. **Query:** Your device sends a request to a **DNS Resolver** (usually provided by your ISP).
+2. **Root Server:** The Resolver first asks the **Root Servers** for the location of the domain's TLD (Top-Level Domain).
+3. **TLD Server:** The Root Server directs the Resolver to the correct **TLD Server** (e.g., the server for `.com`).
+4. **Authoritative Server:** The TLD Server directs the Resolver to the **Authoritative Name Server** for the specific domain, which holds the actual IP address records.
+5. **Response:** The Authoritative Server returns the IP address to the Resolver, which then returns it to your device.
+
+This process is typically **recursive** (the resolver handles the entire lookup on your behalf).     [Q08] TTFT=265.03ms TPOT=53.14ms Chunks=565 Total=30.24s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user is asking for a definition of "design patterns" and specifically requested the answer to be "short, concise, and correct."
+
+2.  **Define Design Patterns (Core Concept):** Design patterns are reusable solutions to commonly occurring problems in software design. They are not code; they are blueprints or templates.
+
+3.  **Identify Key Characteristics (for conciseness):**
+    *   Reusable.
+    *   Proven solutions.
+    *   Focus on structure and organization.
+    *   Language-agnostic (conceptually).
+
+4.  **Draft the Answer (Iterative Refinement):**
+    *   *Draft 1 (Too long):* Design patterns are established, reusable solutions to common problems encountered during software design. They are not specific code but rather templates or blueprints that help developers structure their code effectively and solve recurring issues.
+    *   *Draft 2 (Better, more concise):* Design patterns are reusable solutions to common problems in software design. They are established templates or blueprints that provide proven ways to structure code and solve recurring design challenges.
+
+5.  **Final Polish (Shortest and most accurate):** Ensure the definition hits the main points without unnecessary jargon.
+
+6.  **Final Output Generation.** (This matches the provided good response.)
+        [out] Design patterns are **reusable solutions to commonly occurring problems** in software design.
+
+They are established templates or blueprints that provide proven ways to structure code, solve recurring design challenges, and improve the overall quality and maintainability of a system.     [Q09] TTFT=286.27ms TPOT=53.35ms Chunks=331 Total=17.89s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants a description of "database transactions." The constraints are "short, concise, and correct."
+
+2.  **Define "Database Transaction":** A transaction is a single logical unit of work that accesses and modifies the contents of a database. It must adhere to ACID properties.
+
+3.  **Identify Key Components (The "What"):**
+    *   Unit of work (a sequence of operations).
+    *   Atomicity (all or nothing).
+    *   Consistency (maintaining database rules).
+    *   Isolation (transactions don't interfere with each other).
+    *   Durability (changes are permanent once committed).
+
+4.  **Draft the Description (Focusing on Conciseness):** Start with a definition, then list the core principles.
+
+5.  **Refine and Format (Short & Correct):**
+
+    *   *Initial thought:* A transaction is a set of operations treated as a single unit. It ensures data integrity using ACID properties.
+    *   *Adding detail (ACID):* Ensure the definition of ACID is clear.
+
+6.  **Final Output Generation.** (This matches the provided good response.)
+        [out] A database transaction is a single logical unit of work that accesses and modifies the contents of a database. It is treated as an atomic operation, meaning it either completes entirely or fails entirely.
+
+Transactions are governed by the **ACID properties**:
+
+*   **Atomicity:** Ensures that all operations within the transaction are completed, or none are.
+*   **Consistency:** Guarantees that the database moves from one valid state to another, maintaining all defined rules.
+*   **Isolation:** Ensures that concurrent transactions do not interfere with each other.
+*   **Durability:** Guarantees that once a transaction is committed, its changes are permanent, even in the event of system failure.     [Q10] TTFT=252.48ms TPOT=53.00ms Chunks=400 Total=21.40s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 292.58 ms
-[info] Average Time per Output Token (TPOT): 54.82 ms
-[info] Estimated Generation Throughput: 18.24 tokens/sec
-[time] Average Total Wall Duration: 19.46 seconds
+[info] Average Time to First Token (TTFT): 278.16 ms
+[info] Average Time per Output Token (TPOT): 53.10 ms
+[info] Estimated Generation Throughput: 18.83 tokens/sec
+[time] Average Total Wall Duration: 22.63 seconds
 =================================================

@@ -1,20 +1,70 @@
 Auto-detected model: SmolLM3-Q4_K_M.gguf
-  -> Iteration 1/3: How does garbage collection work in Python? Answer short, concise, and correct.
-        [out] Python's garbage collection is automatic and uses reference counting. When an object's reference count reaches zero, it is automatically deleted. Done! (TTFT: 948.07ms, Chunks: 28)
 
-     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
-  -> Iteration 2/3: Tell me about software architecture. Answer short, concise, and correct.
-        [out] Software architecture refers to the high-level design of a software system, outlining its components, their relationships, and their interactions. It defines the overall structure, organization, and principles guiding the development of the system. Key aspects include modularity, scalability, maintainability, and performance. Done! (TTFT: 332.63ms, Chunks: 58)
-
+  -> Q01 [1/10]
      IN:  Tell me about software architecture. Answer short, concise, and correct.
-  -> Iteration 3/3: What are design patterns? Answer short, concise, and correct.
-        [out] Design patterns are reusable solutions to common software design problems, providing a standardized approach to solving specific issues, such as the Singleton pattern, Factory pattern, and Observer pattern. Done! (TTFT: 286.19ms, Chunks: 36)
 
+        [out] Software architecture refers to the high-level design of a software system, including its components, their relationships, and their interactions. It defines the overall structure, organization, and principles that guide the development of the system. Key aspects include modularity, scalability, maintainability, and performance.     [Q01] TTFT=2029.44ms TPOT=121.52ms Chunks=59 Total=9.08s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting the weights and biases of their connections (parameters) to minimize the difference between the network's predictions and the actual target values. This process is achieved through backpropagation, where the network iteratively adjusts its parameters based on the error calculated during the forward pass. The goal is to minimize the loss function, which quantifies the difference between the predicted and actual outputs. This is typically done using optimization algorithms like gradient descent.     [Q02] TTFT=669.35ms TPOT=108.24ms Chunks=93 Total=10.63s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP (Transmission Control Protocol) provides reliable, ordered, and error-checked data transmission, while UDP (User Datagram Protocol) offers faster, but less reliable, datagram transmission without error checking.     [Q03] TTFT=805.35ms TPOT=103.42ms Chunks=41 Total=4.94s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python's garbage collection is automatic and uses reference counting. When an object's reference count reaches zero, it is automatically deleted. The garbage collector periodically runs to clean up unreachable objects.     [Q04] TTFT=764.67ms TPOT=111.09ms Chunks=39 Total=4.99s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software design approach where an application is broken down into small, independent services that communicate with each other using APIs. Each service is responsible for a specific business capability and can be developed, deployed, and scaled independently, promoting agility, flexibility, and resilience in large-scale applications.     [Q05] TTFT=628.24ms TPOT=113.99ms Chunks=61 Total=7.47s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure in programming is a function that retains access to its outer function's scope, including variables and parameters, even after the outer function has finished executing.     [Q06] TTFT=656.92ms TPOT=118.11ms Chunks=34 Total=4.55s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that in distributed systems, a trade-off exists between consistency, availability, and partition tolerance. Specifically:
+
+- **Consistency** refers to the system's ability to return a consistent view of data across all nodes.
+- **Availability** means the system can always respond to read and write requests.
+- **Partition tolerance** allows the system to continue functioning even when some nodes are unreachable or disconnected.
+
+The theorem asserts that a distributed system can satisfy at most two of these properties. For example:
+
+- If the system is **consistent** and **available**, it cannot be **partition tolerant**.
+- If the system is **consistent** and **partition tolerant**, it cannot be **available**.
+- If the system is **available** and **partition tolerant**, it cannot be **consistent**.
+
+This fundamental limit is crucial for designing distributed systems, as it helps in making informed trade-offs between these competing properties.     [Q07] TTFT=673.85ms TPOT=117.41ms Chunks=187 Total=22.51s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution involves a client querying a DNS server to translate a domain name into an IP address. The process includes resolving the domain name through recursive queries, caching results, and returning the IP address to the client.     [Q08] TTFT=580.15ms TPOT=112.37ms Chunks=45 Total=5.52s
+
+  -> Q09 [9/10]
      IN:  What are design patterns? Answer short, concise, and correct.
 
+        [out] Design patterns are reusable solutions to common software design problems, providing a standardized way to implement them across different programming languages and projects.     [Q09] TTFT=676.46ms TPOT=109.25ms Chunks=28 Total=3.63s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a set of operations performed on a database that must be treated as a single, all-or-nothing unit. It ensures data consistency and integrity by guaranteeing that either all operations in the transaction are committed to the database or none of them are. Transactions help prevent partial updates, ensuring that the database remains in a consistent state.     [Q10] TTFT=638.54ms TPOT=110.19ms Chunks=72 Total=8.46s
+
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 522.30 ms
-[info] Average Time per Output Token (TPOT): 63.31 ms
-[info] Estimated Generation Throughput: 15.80 tokens/sec
-[time] Average Total Wall Duration: 3.05 seconds
+[info] Average Time to First Token (TTFT): 812.30 ms
+[info] Average Time per Output Token (TPOT): 112.56 ms
+[info] Estimated Generation Throughput: 8.88 tokens/sec
+[time] Average Total Wall Duration: 8.18 seconds
 =================================================

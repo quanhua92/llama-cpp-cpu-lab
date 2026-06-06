@@ -1,5 +1,210 @@
 Auto-detected model: gemma-4-E2B-it-Q4_K_M.gguf
-  -> Iteration 1/3: How does DNS resolution work? Answer short, concise, and correct.
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants to know about "software architecture." The constraints are "short, concise, and correct."
+2.  **Define Software Architecture (Core Concept):** What is it? It's the high-level structure, organization, and design of a software system. It defines the components, their relationships, and the principles governing the system.
+3.  **Identify Key Goals/Focus Areas (What does it achieve?):**
+    *   Addresses quality attributes (performance, security, maintainability).
+    *   Makes the system understandable and manageable.
+    *   Acts as a blueprint.
+4.  **Identify Key Components/Levels (How is it structured?):**
+    *   Architectural Styles/Patterns (e.g., Microservices, Monolith, Event-Driven).
+    *   Design Decisions (Technology stack, communication protocols).
+    *   Stakeholder Alignment.
+5.  **Draft the Answer (Focusing on conciseness):** Start with a definition, move to its purpose, and mention key outcomes.
+6.  **Review against Constraints (Short, Concise, Correct):** The resulting answer must be dense with information but easy to digest.
+
+*(Self-Correction during drafting: Avoid overly academic jargon. Focus on the *why* and *what*, not just the *how*.)*
+
+7.  **Final Output Generation.** (This leads to the structured response below.)
+        [out] **Software architecture** is the set of fundamental decisions about the structure, organization, and design of a software system. It defines how the system's components interact and how they collectively achieve the required functionality and quality attributes.
+
+**Key Aspects:**
+
+1. **Blueprint:** It serves as the high-level blueprint, guiding development and implementation.
+2. **Structure:** It defines the major components, their relationships, and the interfaces between them (e.g., choosing between a Monolith, Microservices, or Event-Driven architecture).
+3. **Quality Attributes:** The primary goal is to ensure the system meets non-functional requirements (NFRs) such as performance, scalability, security, maintainability, and reliability.
+4. **Stakeholder Alignment:** It bridges the gap between business requirements and technical implementation.
+
+**In essence, architecture answers the question: "How will the system be built, and why?"**     [Q01] TTFT=294.76ms TPOT=56.16ms Chunks=502 Total=28.43s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants to know "how neural networks learn." The constraints are "short, concise, and correct."
+2.  **Identify the Core Mechanism:** Neural network learning fundamentally involves adjusting weights and biases based on data and an error signal. This process is called training and optimization.
+3.  **Determine Key Concepts to Include (and exclude):**
+    *   *Include:* Data input, weights/parameters, error/loss function, backpropagation, gradient descent, iterative adjustment.
+    *   *Exclude (for conciseness):* Deep mathematical derivations, specific activation functions (unless necessary for the core explanation), complex architectural details.
+4.  **Draft the Explanation (Iterative Refinement):**
+    *   *Initial thought:* They take data, make a prediction, calculate the error, and use backpropagation to adjust the weights using gradient descent. (Too long/complex).
+    *   *Refinement for Conciseness:* Focus on the cycle: Prediction -> Error -> Adjustment.
+5.  **Final Polish (Ensuring Accuracy and Brevity):** Structure the answer logically.
+
+**(Self-Correction during drafting):** Ensure the distinction between the *process* (learning) and the *components* (weights) is clear.
+
+6.  **Final Output Generation.** (This leads to the provided good answer.)
+        [out] Neural networks learn through an iterative process involving three main steps:
+
+1. **Forward Pass:** Input data is fed through the network, generating a prediction.
+2. **Error Calculation:** A loss function measures the difference between the prediction and the actual correct answer (the error).
+3. **Backpropagation and Optimization:** The error is propagated backward through the network. An optimization algorithm (like Gradient Descent) uses this error signal to adjust the network's weights and biases, minimizing the error for future predictions.
+
+This cycle repeats thousands or millions of times until the network accurately maps the input to the desired output.     [Q02] TTFT=289.27ms TPOT=55.89ms Chunks=418 Total=23.60s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants to know the difference between TCP and UDP. The constraints are "short, concise, and correct."
+2.  **Identify the Core Concepts:** TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are both transport layer protocols.
+3.  **Determine Key Differences (The "What"):**
+    *   **TCP:** Connection-oriented, reliable, ordered delivery, error checking, slower (overhead).
+    *   **UDP:** Connectionless, unreliable (best-effort), fast, low overhead.
+4.  **Structure the Answer (Focusing on the contrast):** A comparison table or bullet points highlighting the main distinctions is usually the clearest format.
+5.  **Draft the Content (Refining for conciseness):**
+
+    *   *Draft 1 (Mental Check):* TCP is reliable and uses connections. UDP is fast and connectionless.
+    *   *Refinement (Adding technical terms):* Focus on reliability, connection setup, and speed/overhead.
+
+6.  **Final Polish (Ensuring conciseness and accuracy):** (This leads to the final provided answer.)
+        [out] **TCP (Transmission Control Protocol):**
+
+*   **Connection-Oriented:** Requires a handshake before data transfer.
+*   **Reliable:** Guarantees delivery, sequencing, and error checking.
+*   **Slower:** Has higher overhead due to reliability mechanisms.
+*   **Use Case:** Web browsing (HTTP), email, file transfer (FTP).
+
+**UDP (User Datagram Protocol):**
+
+*   **Connectionless:** Sends data without establishing a connection.
+*   **Unreliable:** Does not guarantee delivery or order.
+*   **Faster:** Low overhead and minimal processing.
+*   **Use Case:** Streaming video/audio, DNS lookups, online gaming.
+
+***
+
+**In short:** **TCP** prioritizes **reliability** over speed, while **UDP** prioritizes **speed** over reliability.     [Q03] TTFT=292.07ms TPOT=55.90ms Chunks=428 Total=24.16s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants to know "How does garbage collection work in Python?" The constraints are "short, concise, and correct."
+
+2.  **Identify Key Concepts (Python GC):**
+    *   Python primarily uses automatic memory management.
+    *   The main mechanism is reference counting.
+    *   Reference counting handles immediate deallocation when a reference count hits zero.
+    *   A secondary mechanism (the cyclic garbage collector) is needed to handle reference cycles (objects referencing each other, preventing reference counting from clearing them).
+    *   The GC is implemented in C (CPython).
+
+3.  **Draft the Explanation (Focusing on Conciseness):**
+
+    *   *Initial thought:* Python uses reference counting. When a reference count hits zero, the memory is freed. For cycles, a separate cyclic garbage collector runs periodically.
+
+4.  **Refine and Structure (Ensuring Accuracy and Flow):**
+
+    *   Start with the primary method (Reference Counting).
+    *   Introduce the limitation (Cycles).
+    *   Introduce the secondary method (Cyclic GC).
+
+5.  **Final Review against Constraints (Short, Concise, Correct):** The resulting answer must be direct and technically accurate. (Self-Correction: Avoid overly deep C implementation details, focus on the Python behavior.)
+
+6.  **Generate Output.** (This leads to the final provided answer.)
+        [out] Python primarily uses two mechanisms for garbage collection:
+
+1. **Reference Counting (Primary Mechanism):** Every object maintains a count of how many references point to it. When the reference count drops to zero, the object is immediately deallocated, and its memory is freed.
+
+2. **Cyclic Garbage Collector (Secondary Mechanism):** Reference counting cannot handle circular references (where objects reference each other, preventing their counts from reaching zero). The cyclic garbage collector periodically runs to detect and break these reference cycles, freeing the trapped memory.     [Q04] TTFT=280.30ms TPOT=55.87ms Chunks=412 Total=23.24s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants a description of "microservices." The constraints are "short, concise, and correct."
+2.  **Define Microservices (Core Concept):** What are they? An architectural style where a large application is broken down into small, independent, loosely coupled services.
+3.  **Identify Key Characteristics (Why use them?):**
+    *   Independent deployment/scaling.
+    *   Each service handles a specific business capability.
+    *   They communicate via APIs (usually HTTP/REST or messaging).
+    *   They are deployed independently.
+4.  **Draft the Answer (Focusing on Conciseness):** Start with the definition, then mention the benefits/structure.
+5.  **Refine and Edit (Applying Constraints):** Ensure the language is precise and avoids unnecessary jargon while remaining technically accurate.
+
+*Self-Correction during drafting:* Avoid getting bogged down in implementation details (like specific technologies) unless asked. Focus on the *architecture*.
+
+6.  **Final Output Generation.** (This leads to the provided good answer.)
+        [out] Microservices is an architectural style where a large application is broken down into a collection of small, independent services.
+
+**Key characteristics:**
+
+*   **Independence:** Each service is self-contained, responsible for a specific business capability, and can be developed, deployed, and scaled independently.
+*   **Decentralization:** Services communicate with each other, typically via lightweight mechanisms like APIs (REST, gRPC), rather than being tightly coupled.
+*   **Technology Diversity:** Different services can be written in different programming languages and use different data stores.
+
+**In short:** It is an approach to building applications as a suite of small, autonomous services rather than a single, monolithic application.     [Q05] TTFT=260.55ms TPOT=56.12ms Chunks=377 Total=21.36s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants to know "What is a closure in programming?" The constraints are "short, concise, and correct."
+2.  **Define "Closure" (Core Concept):** A closure is a function bundled together with references to its surrounding state (the lexical environment). It allows an inner function to access variables from an outer function even after the outer function has finished executing.
+3.  **Draft Initial Definition (Internal Check):** A closure is when a function remembers the variables from the scope in which it was created, even after that scope has exited.
+4.  **Refine for Conciseness and Accuracy (Targeting the constraints):** Need to use technical terms (scope, lexical environment, persistent access).
+5.  **Final Polish (Short, Concise, Correct):** Structure the answer clearly.
+
+*Self-Correction during drafting: Avoid overly complex jargon unless necessary. Focus on the *mechanism* (function + remembered environment).*
+
+6.  **Final Output Generation.** (This leads to the provided good answer.)
+        [out] A closure is a function bundled together with a reference to its surrounding state (the lexical environment).
+
+This allows an inner function to access and remember variables from its outer function's scope, even after the outer function has finished executing.     [Q06] TTFT=291.07ms TPOT=55.68ms Chunks=276 Total=15.60s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants an explanation of the CAP theorem. The constraints are "short, concise, and correct."
+2.  **Define CAP:** What is the core concept? It states that a distributed data store can only satisfy two out of three guarantees: Consistency, Availability, and Partition Tolerance.
+3.  **Define the Terms (C, A, P):**
+    *   **Consistency (C):** Every read receives the most recent write or an error. (Linearizability/ACID properties).
+    *   **Availability (A):** Every request receives a (non-error) response, without guarantee that it contains the most recent write.
+    *   **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of communication between nodes (network partitions).
+4.  **Explain the Trade-off:** Since network partitions (P) are inevitable in distributed systems, designers must choose between C and A.
+    *   CP systems prioritize Consistency and Partition Tolerance (sacrificing Availability during a partition).
+    *   AP systems prioritize Availability and Partition Tolerance (sacrificing strong Consistency during a partition).
+5.  **Draft the Concise Answer (Iterative Refinement):** Ensure the explanation is direct and hits the key points.
+
+*(Self-Correction during drafting: Avoid overly technical jargon unless necessary. Focus on the relationship between the three components.)*
+
+6.  **Final Output Generation.** (This leads to the provided good answer.)
+        [out] The CAP theorem states that a distributed data store can only simultaneously guarantee two out of the following three properties:
+
+1. **Consistency (C):** Every read receives the most recent write or an error. (All nodes see the same data at the same time.)
+2. **Availability (A):** Every request receives a non-error response, without the guarantee that it contains the most recent write. (The system remains operational.)
+3. **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of communication between nodes (network partitions).
+
+**The Trade-off:** In a distributed system, network partitions (P) are inevitable. Therefore, designers must choose between **Consistency (CP)** or **Availability (AP)**:
+
+* **CP Systems:** Prioritize Consistency and Partition Tolerance. They sacrifice Availability during a network partition.
+* **AP Systems:** Prioritize Availability and Partition Tolerance. They sacrifice strong Consistency during a network partition.     [Q07] TTFT=281.82ms TPOT=56.07ms Chunks=520 Total=29.38s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
       [think] Thinking Process:
 
 1.  **Analyze the Request:** The user wants to know "How does DNS resolution work?" The constraints are "short, concise, and correct."
@@ -7,15 +212,14 @@ Auto-detected model: gemma-4-E2B-it-Q4_K_M.gguf
     *   What is the goal? Translate a domain name (e.g., google.com) into an IP address (e.g., 172.217.16.14).
     *   Who does the work? DNS Servers (specifically, Recursive and Root/TLD servers).
     *   What is the process? A series of queries/lookups.
-3.  **Structure the Explanation (Step-by-Step):**
-    *   Step 1: Client asks the Resolver.
-    *   Step 2: Resolver checks its cache.
-    *   Step 3: If not cached, the Resolver queries the Root servers.
-    *   Step 4: Root servers point to TLD servers.
-    *   Step 5: TLD servers point to the Authoritative Name Server.
-    *   Step 6: Authoritative server provides the final IP address.
-    *   Step 7: The IP address is returned to the client.
-4.  **Draft the Concise Answer (Focusing on the flow):** (Self-Correction: Avoid overly technical jargon unless necessary. Focus on the hierarchy.)
+3.  **Structure the Answer (Step-by-Step Flow):**
+    *   Step 1: User requests a domain.
+    *   Step 2: Local machine checks cache/router.
+    *   Step 3: Recursive DNS server is queried.
+    *   Step 4: The server queries Root, TLD, and Authoritative servers.
+    *   Step 5: The IP address is returned.
+    *   Step 6: The client connects to the IP.
+4.  **Draft the Concise Explanation (Focusing on the core mechanism):** (Self-Correction: Avoid overly technical jargon unless necessary. Focus on the hierarchy.)
 5.  **Final Review against Constraints:**
     *   Short? Yes.
     *   Concise? Yes.
@@ -24,19 +228,44 @@ Auto-detected model: gemma-4-E2B-it-Q4_K_M.gguf
 6.  **Generate Output.** (This leads to the final provided answer.)
         [out] DNS resolution is the process of translating a human-readable domain name (like `example.com`) into a machine-readable IP address.
 
-The process generally follows these steps:
+The process involves these key steps:
 
-1. **Query:** A client (computer) sends a DNS query to a **DNS Resolver** (usually provided by an ISP).
-2. **Hierarchy Lookup:** The Resolver checks its cache. If not found, it queries a hierarchy of DNS servers:
-    * **Root Servers:** Ask where to find the next piece of information.
-    * **TLD Servers:** Ask where to find the domain-specific information.
-    * **Authoritative Name Server:** This server holds the actual record for the domain and provides the final IP address.
-3. **Response:** The Authoritative Name Server returns the IP address to the Resolver, which then passes it back to the client.
+1. **Query Initiation:** A client device (e.g., your computer) requests the IP address for a domain.
+2. **Recursive Resolver:** The request is sent to a DNS Resolver (usually provided by your ISP). This resolver handles the complex lookup.
+3. **Hierarchical Lookup:** The resolver queries a hierarchy of DNS servers:
+    * **Root Servers:** Find the server responsible for the TLD (Top-Level Domain).
+    * **TLD Servers:** Find the server responsible for the specific domain extension (e.g., `.com`, `.org`).
+    * **Authoritative Servers:** Find the final server that holds the actual IP address for the domain.
+4. **Response:** The authoritative server returns the IP address to the resolver, which then passes the IP address back to the client device.
 
-This entire process ensures that the client can connect to the correct server on the internet. Done! (TTFT: 320.83ms, Chunks: 547)
+**In short:** It is a distributed, hierarchical lookup process that maps names to numbers.     [Q08] TTFT=263.79ms TPOT=56.13ms Chunks=559 Total=31.59s
 
-     IN:  How does DNS resolution work? Answer short, concise, and correct.
-  -> Iteration 2/3: Describe database transactions. Answer short, concise, and correct.
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user is asking "What are design patterns?" and specifies the answer must be "short, concise, and correct."
+
+2.  **Define "Design Pattern":** A design pattern is a reusable solution or template to solve a common problem in software design. They are blueprints for how to structure code and solve recurring design challenges.
+
+3.  **Identify Key Components for a Concise Answer:**
+    *   What are they? (Templates/Blueprints)
+    *   What is their purpose? (Solve common problems, improve code quality, promote reusability.)
+    *   What is the benefit? (Standardization, maintainability.)
+
+4.  **Draft the Answer (Iterative Refinement):**
+    *   *Draft 1 (Too long):* Design patterns are proven solutions to common problems in software design. They are reusable templates that guide developers on how to structure code effectively and create flexible, maintainable systems.
+    *   *Draft 2 (More concise):* Design patterns are reusable solutions or blueprints for solving common design problems in software engineering. They provide established ways to structure code and improve system maintainability.
+
+5.  **Final Polish (Ensure maximum conciseness and accuracy):** Focus on the core definition. (This leads to the final provided answer.)
+        [out] Design patterns are reusable solutions or blueprints for solving common design problems in software engineering.
+
+They provide established, proven ways to structure code, improve system maintainability, and promote flexibility.     [Q09] TTFT=275.15ms TPOT=55.89ms Chunks=319 Total=18.05s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
       [think] Thinking Process:
 
 1.  **Analyze the Request:** The user wants a description of "database transactions." The constraints are "short, concise, and correct."
@@ -60,38 +289,11 @@ It must adhere to the **ACID properties** to ensure data integrity:
 *   **Atomicity:** The transaction is treated as a single, indivisible unit; it either completes entirely or fails entirely (all or nothing).
 *   **Consistency:** The transaction brings the database from one valid state to another.
 *   **Isolation:** Concurrent transactions do not interfere with each other.
-*   **Durability:** Once committed, the changes are permanent and survive system failures. Done! (TTFT: 274.62ms, Chunks: 385)
-
-     IN:  Describe database transactions. Answer short, concise, and correct.
-  -> Iteration 3/3: Explain how neural networks learn. Answer short, concise, and correct.
-      [think] Thinking Process:
-
-1.  **Analyze the Request:** The user wants to know "how neural networks learn." The constraints are "short, concise, and correct."
-2.  **Identify the Core Mechanism:** Neural network learning fundamentally involves adjusting weights and biases based on data and an error signal. This process is called training and optimization.
-3.  **Determine Key Concepts to Include (and exclude):**
-    *   *Include:* Data input, weights/parameters, error/loss function, backpropagation, gradient descent, iterative adjustment.
-    *   *Exclude (for conciseness):* Deep mathematical derivations, specific activation functions (unless necessary for the core explanation), complex architectural details.
-4.  **Draft the Explanation (Iterative Refinement):**
-    *   *Initial thought:* They take data, make a prediction, calculate the error, and use backpropagation to adjust the weights using gradient descent. (Too long/complex).
-    *   *Refinement for Conciseness:* Focus on the cycle: Prediction -> Error -> Adjustment.
-5.  **Final Polish (Ensuring Accuracy and Brevity):** Structure the answer logically.
-
-**(Self-Correction during drafting):** Ensure the distinction between the *process* (learning) and the *components* (weights) is clear.
-
-6.  **Final Output Generation.** (This leads to the provided good answer.)
-        [out] Neural networks learn through an iterative process involving three main steps:
-
-1. **Forward Pass:** Input data is fed through the network, generating a prediction.
-2. **Error Calculation:** A loss function measures the difference between the prediction and the actual correct answer (the error).
-3. **Backpropagation and Optimization:** The error is propagated backward through the network. An optimization algorithm (like Gradient Descent) uses this error signal to adjust the network's weights and biases, minimizing the error for future predictions.
-
-This cycle repeats thousands or millions of times until the network accurately maps the input to the desired output. Done! (TTFT: 290.02ms, Chunks: 418)
-
-     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+*   **Durability:** Once committed, the changes are permanent and survive system failures.     [Q10] TTFT=240.26ms TPOT=56.11ms Chunks=385 Total=21.79s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 295.16 ms
-[info] Average Time per Output Token (TPOT): 59.69 ms
-[info] Estimated Generation Throughput: 16.75 tokens/sec
-[time] Average Total Wall Duration: 27.11 seconds
+[info] Average Time to First Token (TTFT): 276.91 ms
+[info] Average Time per Output Token (TPOT): 55.98 ms
+[info] Estimated Generation Throughput: 17.86 tokens/sec
+[time] Average Total Wall Duration: 23.72 seconds
 =================================================

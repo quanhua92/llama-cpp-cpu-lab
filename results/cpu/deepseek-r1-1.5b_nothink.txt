@@ -1,29 +1,129 @@
 Auto-detected model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
 
-  -> Iteration 1/3
-     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
 
         [out] 
 
-The CAP theorem, or Capitalization Adjusted Present Value theorem, is a model in corporate finance that determines the value of a company by considering its capital structure. It posits that the value of a company is the sum of its value in perfect capital markets plus an adjustment for the tax benefits or costs associated with debt and equity financing. The theorem assumes perfect capital markets, meaning no taxes, no transaction costs, and no asymmetric information. It helps in understanding how a company's value changes with different capital structures, aiding investors or managers in making decisions about debt or equity financing.     Done! (TTFT: 137.93ms, Chunks: 716)
+Software architecture is the design principle that determines how a software system is structured and organized. It focuses on the overall structure of the system, considering how different components interact and function together. Key aspects include:
 
-  -> Iteration 2/3
-     IN:  What is a closure in programming? Answer short, concise, and correct.
+1. **Design Principles**: These guide the architecture, such as microservices (breaking the system into independent components) and service-oriented architecture (building around reusable services).
 
-        [out] 
+2. **Maintainability and Scalability**: The architecture ensures the system can be maintained and scaled efficiently, often through design patterns that address common challenges.
 
-A closure is a function that captures variables from its surrounding scope, allowing it to access and use those variables even after the function that created it has finished.     Done! (TTFT: 160.32ms, Chunks: 708)
+3. **Collaboration**: Facilitates teamwork by allowing independent development and testing of components.
 
-  -> Iteration 3/3
+4. **Layering**: Involves structuring the system into layers (application, network, data) to manage responsibilities and resources.
+
+5. **Benefits**: Enhances maintainability, scalability, and collaboration, while addressing challenges like concurrency and resource sharing.
+
+Software architecture is essential in software development, architecture, and system design, influencing the lifecycle from development to deployment.     [Q01] TTFT=341.33ms TPOT=66.08ms Chunks=1227 Total=81.36s
+
+  -> Q02 [2/10]
      IN:  Explain how neural networks learn. Answer short, concise, and correct.
 
         [out] 
 
-Neural networks learn through an iterative process that combines forward and backward propagation, utilizing activation functions to introduce non-linearity, and adjusting weights based on the error between predicted and actual outputs. This adjustment is guided by the learning rate, which determines the step size for weight updates. The learning process involves multiple epochs, where the entire dataset is passed through the network, allowing the network to gradually improve its performance by minimizing the loss function. Activation functions ensure smooth and effective learning by mapping outputs to suitable ranges.     Done! (TTFT: 160.18ms, Chunks: 945)
+Neural networks learn through an iterative process that combines forward and backward propagation, utilizing activation functions to introduce non-linearity, and adjusting weights based on the error between predicted and actual outputs. This adjustment is guided by the learning rate, which determines the step size for weight updates. The learning process involves multiple epochs, where the entire dataset is passed through the network, allowing the network to gradually improve its performance by minimizing the loss function. Activation functions ensure smooth and effective learning by mapping outputs to suitable ranges.     [Q02] TTFT=390.30ms TPOT=63.59ms Chunks=945 Total=60.42s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] 
+
+TCP and UDP are both network protocols, but they serve different purposes and characteristics:
+
+- **TCP (Transmission Control Protocol):**
+  - **Reliability:** More reliable due to its connection-oriented nature and use of headers and sequence numbers for data integrity and order.
+  - **Data Handling:** Handles large, complex data streams and files.
+  - **Connection State:** Maintains a connection state, including identifier, sequence number, and window size.
+  - **Layer:** Layer 3 protocol.
+
+- **UDP (User Datagram Protocol):**
+  - **Speed:** Faster and simpler, as it doesn't require a connection beforehand.
+  - **Data Handling:** Transfers small, simple data units (datagrams).
+  - **Connection State:** Does not maintain a connection state.
+  - **Layer:** Layer 2 protocol.
+
+**Conclusion:** TCP is reliable for large, complex data transfers, while UDP is faster and simpler for small, real-time data. The choice depends on application needs, such as data size and reliability requirements.     [Q03] TTFT=393.72ms TPOT=61.82ms Chunks=772 Total=48.06s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] 
+
+Python's garbage collection mechanism, often referred to as the "object collector," efficiently manages memory by identifying and removing unused objects. Here's a concise explanation of how it works:
+
+1. **Object Creation**: Python creates a large number of objects during program execution.
+
+2. **Program Counter**: The program counter tracks the current instruction being executed. When it reaches the end of the current instruction, it indicates the end of execution.
+
+3. **Garbage Collection**: The object collector checks if the current object is still referenced. If it is, the collector proceeds; if not, the object is collected.
+
+4. **Collection Process**: The collector uses a priority queue to decide which objects to collect first, typically those that are no longer referenced for a longer time.
+
+5. **Marking Collected Objects**: Once collected, objects are marked to avoid removal from memory.
+
+This process ensures that Python efficiently manages memory, preventing memory leaks and optimizing resource usage.     [Q04] TTFT=346.13ms TPOT=65.03ms Chunks=1086 Total=70.90s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] 
+
+Microservices are small, independent web services designed to be deployed and scaled independently. They are built using RESTful APIs and often work together in a microservices architecture, which is a design pattern for decomposing a large application into smaller components. Each microservice handles a specific responsibility, enabling scalability, maintainability, and efficiency. They are typically deployed on any server and can be tested and debugged separately.     [Q05] TTFT=287.21ms TPOT=64.88ms Chunks=833 Total=54.27s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] 
+
+A closure is a function that captures variables from its surrounding scope, allowing it to access and use those variables even after the function that created it has finished.     [Q06] TTFT=377.29ms TPOT=62.15ms Chunks=708 Total=44.32s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] 
+
+The CAP theorem, also known as the Three Stakesholder Theorem, states that a company should prioritize its investment in three areas: capital (funding for growth), acquisition (diversification through investments), and profitability (financial return). Each stakeholder (investors, stakeholders, and employees) has different priorities, so the company should allocate resources equitably to maximize overall value.     [Q07] TTFT=324.30ms TPOT=62.46ms Chunks=556 Total=34.99s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+     [Q08] TTFT=286.71ms TPOT=74.30ms Chunks=4099 Total=304.78s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] 
+
+Design patterns are a set of reusable solutions in software development that address common problems, enabling the creation of components that can be combined in various ways. They provide a flexible approach to software design, avoiding the need to create everything from scratch. These patterns are language-agnostic and can be applied across different aspects of software development, such as UI components, state management, and persistence.
+
+Key points about design patterns:
+
+1. **Reusability**: They offer reusable solutions, saving time and effort by avoiding code duplication.
+2. **Problem Solving**: They address common issues like state management, layout, and persistence.
+3. **Language Agnostic**: They can be used in any programming language, from JavaScript to Python.
+4. **Stateless and Stateful**: Stateless patterns avoid state management, while stateful patterns handle it explicitly.
+5. **Application Across Aspects**: They are used in UI components, state management, and persistence.
+6. **Flexibility and Maintainability**: They provide a balance between flexibility and maintainability, making software more scalable and easier to maintain.
+
+Examples of design patterns include:
+- **Button Pattern**: Defines how buttons are placed relative to other UI elements.
+- **Stateless Pattern**: Avoids state management, useful for databases or external services.
+- **Stateless with Persistence**: Combines stateless with persistence, useful for external services.
+
+Design patterns are widely used, offering a practical approach to software development, balancing flexibility and maintainability.     [Q09] TTFT=341.60ms TPOT=66.64ms Chunks=1527 Total=102.03s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] 
+
+A database transaction is a single event that manages multiple database operations, ensuring consistency, security, and preventing race conditions. It uses a lock mechanism to protect the database from concurrent modifications, maintaining a consistent state and preventing data corruption. Additionally, it ensures data redundancy, providing data integrity and availability.     [Q10] TTFT=300.32ms TPOT=60.79ms Chunks=631 Total=38.60s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 152.81 ms
-[info] Average Time per Output Token (TPOT): 34.51 ms
-[info] Estimated Generation Throughput: 28.98 tokens/sec
-[time] Average Total Wall Duration: 27.37 seconds
+[info] Average Time to First Token (TTFT): 338.89 ms
+[info] Average Time per Output Token (TPOT): 64.77 ms
+[info] Estimated Generation Throughput: 15.44 tokens/sec
+[time] Average Total Wall Duration: 83.97 seconds
 =================================================

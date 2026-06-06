@@ -1,25 +1,102 @@
 Auto-detected model: Qwen3.5-4B-Q4_K_M.gguf
-  -> Iteration 1/3: What are design patterns? Answer short, concise, and correct.
-        [out] Design patterns are **general, reusable solutions** to common problems encountered in software design. They provide a standardized way to structure code, improving maintainability, flexibility, and readability by addressing recurring issues across different projects. Done! (TTFT: 584.40ms, Chunks: 45)
 
-     IN:  What are design patterns? Answer short, concise, and correct.
-  -> Iteration 2/3: What is a closure in programming? Answer short, concise, and correct.
-        [out] A **closure** is a function that remembers and has access to variables from its outer (enclosing) scope, even after that outer scope has finished executing. It effectively "captures" the environment in which it was created, allowing it to use those variables later. Done! (TTFT: 683.74ms, Chunks: 56)
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
 
-     IN:  What is a closure in programming? Answer short, concise, and correct.
-  -> Iteration 3/3: How does garbage collection work in Python? Answer short, concise, and correct.
+        [out] **Software architecture** is the high-level structure of a software system, defining its components, their relationships, and the principles governing their interaction.
+
+Key aspects include:
+*   **Purpose**: It provides a blueprint for building the system, guiding design decisions and ensuring scalability, maintainability, and reliability.
+*   **Core Elements**: It consists of **components** (modules), **connectors** (communication protocols), and **constraints** (rules like performance or security).
+*   **Levels**: It sits above detailed design, focusing on "what" the system does and "how" parts relate, rather than specific code implementation.
+*   **Common Patterns**: Includes styles like Monolithic, Microservices, Layered, and Event-Driven.
+
+In short, it is the strategic foundation upon which all other software development rests.     [Q01] TTFT=1469.38ms TPOT=184.24ms Chunks=173 Total=33.16s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through **backpropagation**, an iterative optimization process:
+
+1.  **Forward Pass**: Input data flows through the network, producing a prediction.
+2.  **Loss Calculation**: The prediction is compared to the actual target using a loss function (e.g., Mean Squared Error) to measure error.
+3.  **Backward Pass**: The network calculates the gradient of the loss with respect to each weight using the **chain rule**.
+4.  **Weight Update**: Weights are adjusted slightly in the direction that reduces the loss (typically via **Stochastic Gradient Descent**).
+
+This cycle repeats over many epochs, allowing the network to refine its internal parameters until it minimizes error and generalizes well to new data.     [Q02] TTFT=1553.68ms TPOT=191.95ms Chunks=158 Total=31.69s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP** (Transmission Control Protocol) is connection-oriented, reliable, and ordered, ensuring data arrives intact but with higher overhead. **UDP** (User Datagram Protocol) is connectionless, fast, and unordered, prioritizing speed over reliability.     [Q03] TTFT=1495.24ms TPOT=180.59ms Chunks=52 Total=10.71s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
         [out] Python uses **automatic memory management** primarily through two mechanisms:
 
 1.  **Reference Counting**: The most common method. Python tracks the number of references to each object. When an object's reference count drops to zero, it is immediately deallocated and its memory is freed.
 2.  **Garbage Collection (GC)**: A background cyclic garbage collector that runs periodically to detect and remove objects involved in **reference cycles** (where objects reference each other, preventing reference counting from reaching zero).
 
-You can manually trigger the cyclic GC using `import gc; gc.collect()`. Done! (TTFT: 711.36ms, Chunks: 122)
+You can manually trigger the cyclic GC using `import gc; gc.collect()`.     [Q04] TTFT=1524.12ms TPOT=181.70ms Chunks=122 Total=23.51s
 
-     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are an architectural style that structures an application as a collection of **small, independent services**. Each service runs in its own process, uses a dedicated language, and communicates with others via lightweight mechanisms (typically APIs).
+
+**Key characteristics:**
+*   **Decoupling:** Services are loosely coupled and can be developed, deployed, and scaled independently.
+*   **Technology Agnosticism:** Each service can use the best-suited technology stack for its specific function.
+*   **Resilience:** A failure in one service does not necessarily crash the entire application.     [Q05] TTFT=1410.28ms TPOT=188.10ms Chunks=120 Total=23.79s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** is a function that remembers and has access to variables from its outer (enclosing) scope, even after that outer scope has finished executing. It effectively "captures" the environment in which it was created, allowing it to use those variables later.     [Q06] TTFT=1605.43ms TPOT=180.18ms Chunks=56 Total=11.52s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The **CAP theorem** states that a distributed data store cannot simultaneously provide more than two of the following three guarantees:
+
+1.  **Consistency (C)**: Every read receives the most recent write or an error.
+2.  **Availability (A)**: Every request receives a (possibly delayed) response.
+3.  **Partition Tolerance (P)**: The system continues to operate despite an arbitrary number of messages being dropped or delayed.
+
+In practice, because network partitions are inevitable in distributed systems, you must choose between **Consistency** and **Availability**. You cannot have all three.     [Q07] TTFT=1424.46ms TPOT=183.58ms Chunks=127 Total=24.56s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution is the process of translating a human-readable domain name (e.g., `www.example.com`) into an IP address that computers use to locate a server. It works through a hierarchical, multi-step query process:
+
+1.  **Local Cache Check**: Your device first checks its own DNS resolver cache.
+2.  **ISP Resolver**: If not found, it queries your Internet Service Provider's (ISP) DNS server.
+3.  **Root Server**: If still missing, the query goes to a root server, which directs it to the correct Top-Level Domain (TLD) server (e.g., `.com`).
+4.  **Authoritative Server**: The TLD server points to the domain's authoritative name server, which holds the specific IP address.
+5.  **Response**: The authoritative server returns the IP address, which is then cached locally for future use.     [Q08] TTFT=1501.47ms TPOT=186.84ms Chunks=185 Total=35.88s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are **general, reusable solutions** to common problems encountered in software design. They provide a standardized way to structure code, improving maintainability, flexibility, and readability by addressing recurring issues across different projects.     [Q09] TTFT=1448.33ms TPOT=178.47ms Chunks=45 Total=9.30s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A **database transaction** is a single logical unit of work that performs one or more operations on the database. It ensures data integrity through the **ACID** properties:
+
+*   **Atomicity**: All operations succeed or all fail together; no partial updates occur.
+*   **Consistency**: The database moves from one valid state to another, adhering to defined rules.
+*   **Isolation**: Concurrent transactions do not interfere with each other.
+*   **Durability**: Once committed, changes are permanently saved, even after system failures.
+
+Transactions are typically managed using commands like `BEGIN`, `COMMIT`, and `ROLLBACK`.     [Q10] TTFT=1322.98ms TPOT=184.81ms Chunks=136 Total=26.27s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 659.84 ms
-[info] Average Time per Output Token (TPOT): 98.12 ms
-[info] Estimated Generation Throughput: 10.19 tokens/sec
-[time] Average Total Wall Duration: 7.91 seconds
+[info] Average Time to First Token (TTFT): 1475.54 ms
+[info] Average Time per Output Token (TPOT): 184.05 ms
+[info] Estimated Generation Throughput: 5.43 tokens/sec
+[time] Average Total Wall Duration: 23.04 seconds
 =================================================

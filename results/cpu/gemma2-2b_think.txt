@@ -1,18 +1,62 @@
 Auto-detected model: gemma-2-2b-it-Q4_K_M.gguf
 
-  -> Iteration 1/3
-     IN:  What is a closure in programming? Answer short, concise, and correct.
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
 
-        [out] A closure is a function that "remembers" its surrounding environment (the variables in its lexical scope) even after the outer function has finished executing. 
-     Done! (TTFT: 325.96ms, Chunks: 35)
+        [out] Software architecture is the **high-level design of a software system**. It defines the structure, components, and interactions of a system to achieve its goals. 
 
-  -> Iteration 2/3
-     IN:  What are design patterns? Answer short, concise, and correct.
+**Key aspects:**
 
-        [out] Design patterns are reusable solutions to common software design problems. They provide a blueprint for structuring code, promoting modularity, and improving maintainability. 
-     Done! (TTFT: 222.31ms, Chunks: 33)
+* **Structure:** How the system is organized (layers, modules, etc.)
+* **Components:** Individual parts of the system (databases, APIs, etc.)
+* **Interactions:** How components communicate and work together
+* **Goals:** How the system fulfills its intended purpose
 
-  -> Iteration 3/3
+**Benefits:**
+
+* **Clarity:** Provides a shared understanding of the system's design.
+* **Scalability:** Enables the system to grow and adapt to changing needs.
+* **Maintainability:** Makes it easier to modify and update the system.
+* **Performance:** Optimizes the system's efficiency and responsiveness. 
+
+
+Think of it as the blueprint for building a software house. 
+     [Q01] TTFT=267.03ms TPOT=60.11ms Chunks=181 Total=11.09s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting the **weights** of connections between neurons. 
+
+This adjustment happens through a process called **backpropagation**, where the network compares its output to the desired output and uses this difference to update the weights. 
+
+The goal is to find weights that minimize the error between the predicted and actual output, effectively "teaching" the network to make accurate predictions. 
+     [Q02] TTFT=248.61ms TPOT=59.09ms Chunks=81 Total=4.98s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol)**: Reliable, ordered delivery of data. Like sending a letter with guaranteed delivery.
+
+**UDP (User Datagram Protocol)**: Unreliable, fast delivery of data. Like sending a postcard, no guarantee of arrival. 
+     [Q03] TTFT=265.65ms TPOT=58.14ms Chunks=56 Total=3.46s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python uses **reference counting** for garbage collection. 
+
+Here's the basic idea:
+
+* **Every object has a count:**  This count tracks how many references point to it.
+* **When a reference count reaches zero:** The object is considered garbage and is removed. 
+* **Automatic:** Python handles this process in the background, freeing up memory. 
+
+
+Let me know if you'd like a more detailed explanation! 
+     [Q04] TTFT=244.96ms TPOT=58.82ms Chunks=96 Total=5.83s
+
+  -> Q05 [5/10]
      IN:  Describe microservices. Answer short, concise, and correct.
 
         [out] Microservices are **independent, modular software components** that communicate over a network to deliver a larger application. 
@@ -26,11 +70,54 @@ Auto-detected model: gemma-2-2b-it-Q4_K_M.gguf
 
 
 This architecture promotes flexibility, resilience, and faster development cycles. 
-     Done! (TTFT: 199.30ms, Chunks: 103)
+     [Q05] TTFT=238.04ms TPOT=59.25ms Chunks=103 Total=6.28s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that "remembers" its surrounding environment (the variables in its lexical scope) even after the outer function has finished executing. 
+     [Q06] TTFT=248.59ms TPOT=57.38ms Chunks=35 Total=2.20s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that in a distributed system, you can only choose **two** out of the following three properties:
+
+* **Consistency:** All nodes see the same data at the same time.
+* **Availability:** The system is always up and running, even if some nodes fail.
+* **Partition tolerance:** The system continues to operate even if there's a network partition (e.g., a router failure).
+
+You can't have all three simultaneously. 
+     [Q07] TTFT=240.85ms TPOT=59.36ms Chunks=102 Total=6.24s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution translates human-readable domain names (e.g., google.com) into IP addresses (e.g., 172.217.160.142) that computers use to communicate. 
+
+It works by:
+
+1. **User requests:** You type a domain name into your browser.
+2. **DNS lookup:** Your computer sends a request to a DNS server.
+3. **Server response:** The DNS server finds the IP address associated with the domain name.
+4. **Connection:** Your computer connects to the server using the IP address. 
+     [Q08] TTFT=260.81ms TPOT=59.71ms Chunks=129 Total=7.90s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common software design problems. They provide a blueprint for structuring code, promoting modularity, and improving maintainability. 
+     [Q09] TTFT=255.37ms TPOT=57.10ms Chunks=33 Total=2.08s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a group of one or more database operations (like reading, writing, or deleting data) that are treated as a single unit of work. They ensure data consistency by either completing all operations or rolling back any that fail. 
+     [Q10] TTFT=272.46ms TPOT=58.41ms Chunks=52 Total=3.25s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 249.19 ms
-[info] Average Time per Output Token (TPOT): 60.20 ms
-[info] Estimated Generation Throughput: 16.61 tokens/sec
-[time] Average Total Wall Duration: 3.66 seconds
+[info] Average Time to First Token (TTFT): 254.24 ms
+[info] Average Time per Output Token (TPOT): 58.74 ms
+[info] Estimated Generation Throughput: 17.02 tokens/sec
+[time] Average Total Wall Duration: 5.33 seconds
 =================================================

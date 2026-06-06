@@ -10,6 +10,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 - [Benchmark Reports](#benchmark-reports)
 - [Quick Start](#quick-start)
 - [Curated Models](#curated-models)
+- [Why CPU-Only LLMs?](#why-cpu-only-llms)
 - [Gemma 4 QAT vs Q4_K_M Comparison](#gemma-4-qat-vs-q4_k_m-comparison)
 - [Multiple Servers](#multiple-servers)
 - [Benchmarking](#benchmarking)
@@ -115,6 +116,32 @@ All Q4_K_M quant, shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ng
 | `gemma4-qat-12b` | Gemma 4 12B QAT (Q4_0, Dense) | 7.0 GB |
 | `gemma4-qat-26b` | Gemma 4 26B-A4B QAT (Q4_0, MoE ~4B act) | 14.4 GB |
 | `gemma4-qat-31b` | Gemma 4 31B QAT (Q4_0, Dense) | 17.7 GB |
+
+## Why CPU-Only LLMs?
+
+GPU pricing for LLM inference can be expensive:
+- **Cloud GPU**: $1-4/hr (A10G/H100) — adds up fast for long-running services
+- **Local GPU**: $300-4,000+ for consumer GPUs (RTX 3060 → RTX 4090)
+- **Power/heat**: GPUs draw 200-350W+ and need cooling
+
+The numbers in this repo (2-32 tok/s) come from a **10th-gen Intel i7-10700** (8C/16T, 2020). Newer hardware can do significantly better:
+- **Apple Silicon** (M1/M2/M3/M4): Unified memory architecture gives the CPU direct access to GPU-speed bandwidth. A base M2 runs small LLMs at 10-20 tok/s without a discrete GPU.
+- **Newer x86** (Arrow Lake, Zen 5): Larger caches and faster memory improve memory-bound inference. Expect 1.5-2x throughput over 10th-gen at the same core count.
+- **Server CPUs** (EPYC, Xeon): More cores and memory channels offset the lack of a GPU for batch workloads.
+
+Even at 5-10 tok/s, CPU-only inference is useful for non-interactive workloads where latency doesn't matter but **cost, privacy, and portability** do:
+
+| Use Case | Why CPU Works |
+|---|---|
+| **Batch summarization** | Queue documents, collect results later. Throughput is total output/time, not per-second speed. |
+| **Code review / linting** | Feed code, get feedback async. Developer keeps working while waiting. |
+| **Data extraction & classification** | Tag items, extract fields from thousands of documents. Short outputs, high volume. |
+| **Translation** | Translate large text files or subtitles offline. |
+| **Report generation** | Fill templates with LLM-generated text nightly. |
+| **Privacy-sensitive tasks** | No data leaves the machine. No API costs, no rate limits, no vendor lock-in. |
+| **Edge / air-gapped environments** | Runs on any x86 server with 64 GB RAM. No GPU needed. |
+
+**Rule of thumb**: If a human is waiting for the response interactively, aim for 20+ tok/s (small models like Qwen 2.5-0.5B, Llama 3.2-1B). For batch/offline pipelines, even 2-5 tok/s (larger models like Gemma 4 QAT 12B/31B) is fine — just queue more work.
 
 ## Gemma 4 QAT vs Q4_K_M Comparison
 
@@ -246,6 +273,20 @@ uv run hf download bartowski/gemma-2-2b-it-GGUF gemma-2-2b-it-Q4_K_M.gguf --loca
 ```
 
 If `hf` is not installed: `uv add huggingface_hub`.
+
+## Glossary
+
+| Abbreviation | Full Name | Description |
+|---|---|---|
+| **TTFT** | Time to First Token | How long until the first output token arrives (ms). Lower = more responsive. |
+| **TPOT** | Time Per Output Token | Average inter-chunk latency (ms). Lower = faster streaming. Note: in think mode this includes reasoning chunks, so it appears faster than the actual answer token speed. |
+| **Throughput** | Tokens per second | `1000 / TPOT`. Higher = more tokens generated per second. Same caveat as TPOT for think mode. |
+| **TTOT** | Total Time of Test | Total wall-clock duration for one question including TTFT + all token generation. |
+| **CoT** | Chain-of-Thought | Model reasons step-by-step before answering (think mode). |
+| **QAT** | Quantization-Aware Training | Model trained with quantization in mind (Q4_0), typically more accurate than post-training quant. |
+| **MoE** | Mixture of Experts | Architecture where only a subset of params are active per token. Total params >> active params. |
+| **Q4_K_M** | 4-bit quantization | Post-training quantization with mixed precision (K-quants). Good balance of size/quality. |
+| **Q4_0** | 4-bit quantization | Uniform 4-bit quant. Used by QAT models. Slightly less efficient per-bit than Q4_K_M. |
 
 ## Notes
 

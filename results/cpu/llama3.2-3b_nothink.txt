@@ -1,5 +1,68 @@
 Auto-detected model: llama-3.2-3b-instruct-q4_k_m.gguf
-  -> Iteration 1/3: What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Here's a concise overview of software architecture:
+
+**Definition:** The overall structure and organization of a software system, including its components, interactions, and relationships.
+
+**Key aspects:**
+
+1. **Modularity**: Breaking down the system into independent, reusable components (modules).
+2. **Abstraction**: Hiding implementation details and showing only necessary information to the outside world.
+3. **Scalability**: Designing the system to handle increased load, traffic, or complexity.
+4. **Maintainability**: Ensuring the system is easy to understand, modify, and extend.
+5. **Flexibility**: Allowing the system to adapt to changing requirements and technologies.
+
+**Types of software architecture:**
+
+1. **Monolithic**: A single, self-contained system.
+2. **Microservices**: A collection of small, independent services.
+3. **Event-driven**: Focused on handling events and notifications.
+4. **Service-oriented**: Emphasizing services and interactions between them.
+
+**Benefits:**
+
+1. **Improved maintainability and scalability**
+2. **Enhanced flexibility and adaptability**
+3. **Better modularity and reusability**
+4. **Reduced technical debt and complexity**
+
+**Best practices:**
+
+1. **Follow design patterns and principles**
+2. **Use modular and scalable design**
+3. **Prioritize maintainability and flexibility**
+4. **Continuously refactor and improve the architecture**     [Q01] TTFT=740.68ms TPOT=121.83ms Chunks=288 Total=35.71s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of how neural networks learn:
+
+**The Learning Process:**
+
+1. **Input**: The network receives input data, such as images, text, or audio.
+2. **Forward Pass**: The input data is propagated through the network, generating an output.
+3. **Error Calculation**: The difference between the predicted output and the actual output (ground truth) is calculated.
+4. **Backward Pass**: The error is propagated backwards through the network, adjusting the weights and biases of each layer.
+5. **Weight Update**: The weights and biases are updated based on the error, using an optimization algorithm (e.g., stochastic gradient descent).
+6. **Repeat**: Steps 2-5 are repeated for multiple iterations, with the network adjusting its parameters to minimize the error.
+
+**Key Concepts:**
+
+* **Activation Functions**: Introduce non-linearity to the network, allowing it to learn complex relationships.
+* **Gradient Descent**: An optimization algorithm that adjusts the weights and biases to minimize the error.
+* **Backpropagation**: The process of propagating the error backwards through the network to adjust the weights and biases.
+
+**Learning Objective:**
+
+The network learns to minimize the error between its predictions and the actual outputs, resulting in improved performance on the task at hand.     [Q02] TTFT=614.71ms TPOT=122.71ms Chunks=263 Total=32.76s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
         [out] Here is the difference between TCP and UDP:
 
 **TCP (Transmission Control Protocol)**
@@ -16,27 +79,116 @@ Auto-detected model: llama-3.2-3b-instruct-q4_k_m.gguf
 * Fast: Less overhead due to no connection establishment or error checking.
 * Less reliable: May not deliver data packets at all.
 
-In summary: TCP is reliable and slower, while UDP is faster but less reliable. Done! (TTFT: 414.50ms, Chunks: 154)
+In summary: TCP is reliable and slower, while UDP is faster but less reliable.     [Q03] TTFT=681.22ms TPOT=124.09ms Chunks=154 Total=19.67s
 
-     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
-  -> Iteration 2/3: Explain the CAP theorem. Answer short, concise, and correct.
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] **Garbage Collection in Python**
+
+Python's garbage collection is a mechanism that automatically frees up memory occupied by objects that are no longer needed or referenced. Here's a simplified overview:
+
+1. **Object Creation**: When an object is created, Python allocates memory for it.
+2. **Reference Counting**: Each object has a reference count, which is the number of variables that reference the object. When the reference count reaches 0, the object is considered garbage.
+3. **Garbage Collection Cycle**: Python periodically runs a garbage collection cycle, which:
+	* Iterates through all objects in memory.
+	* Decrements the reference count of each object.
+	* Frees memory occupied by objects with a reference count of 0.
+4. **Finalization**: When an object is garbage collected, Python may call its `__del__` method (if defined) to perform any necessary cleanup.
+
+**Example**:
+```python
+import gc
+
+class MyClass:
+    def __init__(self):
+        print("Object created")
+
+    def __del__(self):
+        print("Object deleted")
+
+obj = MyClass()
+del obj
+gc.collect()  # Trigger garbage collection
+```
+In this example, the `MyClass` object is created, referenced by the `obj` variable, and then deleted using `del`. The `__del__` method is called when the object is garbage collected, printing "Object deleted".     [Q04] TTFT=617.60ms TPOT=124.80ms Chunks=291 Total=36.81s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] **Microservices**:
+
+A microservices architecture is a software development approach that structures an application as a collection of small, independent services. Each service is responsible for a specific business capability and can be developed, tested, and deployed independently of other services.
+
+Key characteristics:
+
+* **Loose Coupling**: Services communicate with each other using APIs or messaging systems.
+* **Autonomy**: Each service is responsible for its own behavior and can be developed independently.
+* **Organized Around Business Capabilities**: Services are designed to meet specific business needs.
+* **Scaling**: Services can be scaled independently to meet changing demands.
+
+This approach promotes flexibility, scalability, and maintainability, making it easier to develop, deploy, and manage complex applications.     [Q05] TTFT=554.33ms TPOT=116.19ms Chunks=149 Total=17.75s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] In programming, a closure is a function that has access to its own scope and the scope of its outer functions, even when called outside of its original context.     [Q06] TTFT=680.15ms TPOT=110.57ms Chunks=35 Total=4.44s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
         [out] The CAP theorem states that it is impossible for a distributed data storage system to simultaneously guarantee all three of the following:
 
 1. **Consistency**: All nodes in the system see the same data value for a given data item.
 2. **Availability**: Every request to a non-failing node in the system receives a response, without the guarantee that it contains the most recent version of the information.
 3. **Partition tolerance**: The system continues to function and make progress even when there are network partitions (i.e., when some nodes in the system cannot communicate with each other).
 
-In other words, you can't have all three at the same time. Done! (TTFT: 317.66ms, Chunks: 133)
+In other words, you can't have all three at the same time.     [Q07] TTFT=628.34ms TPOT=125.36ms Chunks=133 Total=17.18s
 
-     IN:  Explain the CAP theorem. Answer short, concise, and correct.
-  -> Iteration 3/3: What is a closure in programming? Answer short, concise, and correct.
-        [out] In programming, a closure is a function that has access to its own scope and the scope of its outer functions, even when called outside of its original context. Done! (TTFT: 251.82ms, Chunks: 35)
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
 
-     IN:  What is a closure in programming? Answer short, concise, and correct.
+        [out] Here's a concise explanation of how DNS resolution works:
+
+1. **User request**: A user types a domain name into a web browser or other application.
+2. **DNS query**: The application sends a DNS query to a DNS resolver (usually the operating system or a third-party service) to resolve the domain name to an IP address.
+3. **DNS cache**: The DNS resolver checks the DNS cache (a local memory store) to see if the IP address is already cached.
+4. **Recursive query**: If the IP address is not cached, the DNS resolver sends a recursive query to a root DNS server (e.g., `8.8.8.8`).
+5. **TTL lookup**: The root DNS server returns the IP address with a Time To Live (TTL) value, which indicates how long the IP address is valid.
+6. **Recursive response**: The DNS resolver receives the IP address and caches it in its own DNS cache.
+7. **Final response**: The DNS resolver returns the IP address to the original application, which can then use it to connect to the domain's server.
+
+That's the basic process of DNS resolution!     [Q08] TTFT=628.22ms TPOT=125.06ms Chunks=238 Total=30.27s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design, providing a proven and tested approach to solving specific design challenges. They are documented patterns of behavior or solutions to problems that can be applied to a wide range of situations, making it easier to write maintainable, flexible, and scalable code.     [Q09] TTFT=555.79ms TPOT=123.75ms Chunks=62 Total=8.10s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] **Database Transactions**
+
+A database transaction is a sequence of operations that are executed as a single, all-or-nothing unit of work. It ensures that either all changes are made and committed, or none are, to maintain data consistency and integrity.
+
+**Key Characteristics:**
+
+1. **Atomicity**: A transaction is treated as a single, indivisible unit.
+2. **Consistency**: The transaction maintains the data's consistency and integrity.
+3. **Isolation**: Multiple transactions can execute concurrently without interfering with each other.
+4. **Durability**: Once committed, the transaction's effects are permanent and survive system failures.
+
+**Transaction States:**
+
+1. **Active**: The transaction is being executed.
+2. **Committed**: The transaction is complete and its effects are permanent.
+3. **Rolled Back**: The transaction is cancelled and its effects are discarded.
+4. **Aborted**: The transaction is terminated due to an error or exception.     [Q10] TTFT=511.64ms TPOT=127.27ms Chunks=194 Total=25.08s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 327.99 ms
-[info] Average Time per Output Token (TPOT): 67.15 ms
-[info] Estimated Generation Throughput: 14.89 tokens/sec
-[time] Average Total Wall Duration: 7.56 seconds
+[info] Average Time to First Token (TTFT): 621.27 ms
+[info] Average Time per Output Token (TPOT): 122.16 ms
+[info] Estimated Generation Throughput: 8.19 tokens/sec
+[time] Average Total Wall Duration: 22.78 seconds
 =================================================

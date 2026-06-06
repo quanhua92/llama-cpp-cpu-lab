@@ -1,21 +1,31 @@
 Auto-detected model: Qwen3.5-2B-Q4_K_M.gguf
-  -> Iteration 1/3: Describe database transactions. Answer short, concise, and correct.
-        [out] **Database transactions** are atomic units of work that consist of a sequence of one or more SQL statements. They ensure data integrity by guaranteeing that either **all** operations within the transaction succeed or **none** of them succeed, preventing partial updates.
 
-Key characteristics include:
-*   **Atomicity**: All or nothing; the database treats the entire transaction as a single unit.
-*   **Consistency**: Ensures the database remains in a valid state after the transaction.
-*   **Isolation**: Prevents concurrent transactions from interfering with each other.
-*   **Durability**: Once committed, changes are permanently saved even if the system crashes.
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
 
-Common mechanisms include **ACID** (Atomicity, Consistency, Isolation, Durability) and **two-phase commit (2PC)** protocols. Done! (TTFT: 240.22ms, Chunks: 169)
+        [out] **Software architecture** is the high-level design of a system that defines its structural components, their relationships, and the rules governing their interactions. It serves as the blueprint for the entire software lifecycle, ensuring scalability, maintainability, and reliability.
 
-     IN:  Describe database transactions. Answer short, concise, and correct.
-  -> Iteration 2/3: What is a closure in programming? Answer short, concise, and correct.
-        [out] A **closure** is a function that captures and retains access to variables from its enclosing (outer) scope, even after the outer function has finished executing. It allows the function to use those variables within its own scope. Done! (TTFT: 291.75ms, Chunks: 47)
+Key aspects include:
+*   **Components:** The distinct parts of the system (e.g., database, API, frontend).
+*   **Interactions:** How components communicate (e.g., REST, synchronous calls).
+*   **Constraints:** Technical and business limitations influencing the design.
 
-     IN:  What is a closure in programming? Answer short, concise, and correct.
-  -> Iteration 3/3: What is the difference between TCP and UDP? Answer short, concise, and correct.
+A well-architected system is modular, loosely coupled, and adaptable to change.     [Q01] TTFT=607.41ms TPOT=81.47ms Chunks=129 Total=11.04s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through **training** using a process called **backpropagation**.
+
+1.  **Forward Pass**: Input data is fed into the network, and it processes it to generate a prediction.
+2.  **Loss Calculation**: The network compares its prediction to the actual correct answer. The difference (error) is calculated and quantified as a "loss."
+3.  **Backpropagation**: The error is propagated backward through the network layer by layer. This calculates how much each individual neuron contributed to the mistake.
+4.  **Update**: Using this information, the network adjusts the weights (connections) between neurons via an optimization algorithm (like gradient descent).
+5.  **Iteration**: This cycle repeats thousands or millions of times until the network's predictions become highly accurate.     [Q02] TTFT=592.08ms TPOT=88.60ms Chunks=166 Total=15.21s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
         [out] **TCP (Transmission Control Protocol)** is a connection-oriented, reliable, and ordered transport layer protocol. It guarantees delivery by establishing a handshake, ensuring data integrity through acknowledgments, and retransmitting lost packets.
 
 **UDP (User Datagram Protocol)** is a connectionless, unreliable, and unordered transport layer protocol. It does not establish a connection, does not guarantee delivery, and does not ensure order or retransmission of lost packets.
@@ -24,13 +34,81 @@ Common mechanisms include **ACID** (Atomicity, Consistency, Isolation, Durabilit
 *   **Reliability:** TCP is reliable; UDP is not.
 *   **Connection:** TCP requires a connection; UDP does not.
 *   **Ordering:** TCP ensures data is received in order; UDP does not.
-*   **Use Case:** TCP is used for web browsing, email, and file transfers; UDP is used for streaming, VoIP, and DNS. Done! (TTFT: 296.46ms, Chunks: 178)
+*   **Use Case:** TCP is used for web browsing, email, and file transfers; UDP is used for streaming, VoIP, and DNS.     [Q03] TTFT=658.16ms TPOT=86.95ms Chunks=178 Total=16.05s
 
-     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python's garbage collection is **automatic** and **not explicitly managed** by the programmer.
+
+Here is how it works:
+1.  **Reference Counting**: Every object has a reference count. When an object is created, its count is 1.
+2.  **Deletion**: When an object is no longer referenced by any variable, its reference count drops to 0.
+3.  **Collection**: The Python interpreter automatically deletes the object once the count reaches 0.
+4.  **Cycle Detection**: If objects form a cycle (e.g., `a` points to `b`, `b` points to `c`, `c` points to `a`), the interpreter uses a **generation-based collector** (typically a mark-and-sweep algorithm) to break cycles and reclaim memory.
+
+**Key Takeaway**: You do not need to manually call `del` or manage memory; Python handles this efficiently for most scenarios.     [Q04] TTFT=591.70ms TPOT=81.65ms Chunks=199 Total=16.76s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] **Microservices** are a software architecture pattern where an application is divided into small, independent services. Each service:
+
+*   **Has its own identity** (e.g., a unique URL).
+*   **Communicates via lightweight protocols** (like HTTP or gRPC).
+*   **Operates independently**, meaning it can be developed, deployed, and scaled separately.
+*   **Uses its own database**, allowing for data isolation and flexibility.
+
+This approach contrasts with monolithic architectures, where all code and data reside in a single, large unit.     [Q05] TTFT=662.49ms TPOT=85.95ms Chunks=118 Total=10.72s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** is a function that captures and retains access to variables from its enclosing (outer) scope, even after the outer function has finished executing. It allows the function to use those variables within its own scope.     [Q06] TTFT=584.36ms TPOT=79.87ms Chunks=47 Total=4.26s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The **CAP theorem** (Consistency, Availability, Partition tolerance) states that in a distributed system, you can only satisfy two of the following three properties simultaneously:
+
+1.  **Consistency**: All nodes see the same data at the same time (no duplicates, no race conditions).
+2.  **Availability**: Every request receives a response, even if some nodes are unavailable or slow.
+3.  **Partition Tolerance**: The system continues to operate despite network partitions (communication failures between nodes).
+
+**Trade-off**: If a network partition occurs, the system must choose between consistency and availability. It cannot guarantee both at the same time.     [Q07] TTFT=626.19ms TPOT=84.71ms Chunks=136 Total=12.06s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS (Domain Name System) translates human-readable domain names (like `www.example.com`) into machine-readable IP addresses (like `93.184.216.34`) using a hierarchical, distributed database.
+
+1.  **Query**: A user requests the IP address for a domain.
+2.  **Lookup**: The client sends this request to a **DNS resolver** (often a local computer or a public DNS like Google's).
+3.  **Resolution**: The resolver checks its own cache. If the IP is cached, it returns it immediately. Otherwise, it queries **authoritative DNS servers** (the domain's official servers).
+4.  **Propagation**: The authoritative server returns the IP to the resolver.
+5.  **Response**: The resolver returns the IP to the client, which then uses it to connect to the website.     [Q08] TTFT=564.99ms TPOT=86.92ms Chunks=183 Total=16.39s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] **Design patterns** are reusable, proven solutions to common software design problems. They provide a standardized template for creating classes and objects, helping developers write more maintainable, scalable, and efficient code by avoiding common pitfalls.     [Q09] TTFT=554.40ms TPOT=80.30ms Chunks=46 Total=4.17s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] **Database transactions** are atomic units of work that consist of a sequence of one or more SQL statements. They ensure data integrity by guaranteeing that either **all** operations within the transaction succeed or **none** of them succeed, preventing partial updates.
+
+Key characteristics include:
+*   **Atomicity**: All or nothing; the database treats the entire transaction as a single unit.
+*   **Consistency**: Ensures the database remains in a valid state after the transaction.
+*   **Isolation**: Prevents concurrent transactions from interfering with each other.
+*   **Durability**: Once committed, changes are permanently saved even if the system crashes.
+
+Common mechanisms include **ACID** (Atomicity, Consistency, Isolation, Durability) and **two-phase commit (2PC)** protocols.     [Q10] TTFT=613.02ms TPOT=85.05ms Chunks=169 Total=14.90s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 276.14 ms
-[info] Average Time per Output Token (TPOT): 47.23 ms
-[info] Estimated Generation Throughput: 21.17 tokens/sec
-[time] Average Total Wall Duration: 6.48 seconds
+[info] Average Time to First Token (TTFT): 605.48 ms
+[info] Average Time per Output Token (TPOT): 84.15 ms
+[info] Estimated Generation Throughput: 11.88 tokens/sec
+[time] Average Total Wall Duration: 12.15 seconds
 =================================================

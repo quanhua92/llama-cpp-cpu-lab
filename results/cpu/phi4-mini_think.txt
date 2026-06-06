@@ -1,23 +1,58 @@
 Auto-detected model: Phi-4-mini-instruct-Q4_K_M.gguf
 
-  -> Iteration 1/3
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture refers to the high-level structure of a software system, including its components, their relationships, and the principles used to ensure the system's functionality, performance, and maintainability. It defines the software's overall organization and guides its development and evolution.     [Q01] TTFT=264.62ms TPOT=75.81ms Chunks=54 Total=4.28s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting weights through backpropagation and gradient descent to minimize the error between predicted and actual outputs. They use activation functions to introduce non-linearity, enabling them to learn complex patterns. Training involves forward propagation to make predictions and backpropagation to update weights based on the loss function's gradient.     [Q02] TTFT=303.41ms TPOT=76.37ms Chunks=66 Total=5.27s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP (Transmission Control Protocol) is connection-oriented, reliable, and ensures data is delivered in order, while UDP (User Datagram Protocol) is connectionless, faster, but does not guarantee delivery order or reliability.     [Q03] TTFT=346.47ms TPOT=75.02ms Chunks=45 Total=3.65s
+
+  -> Q04 [4/10]
      IN:  How does garbage collection work in Python? Answer short, concise, and correct.
 
-        [out] In Python, garbage collection is handled by the built-in `gc` module. It uses reference counting and a generational garbage collector to track objects and reclaim memory from those that are no longer in use. When an object's reference count drops to zero, it's immediately reclaimed. Cycles of references are detected and collected using a generational approach, with frequent collections for younger generations and less frequent for older ones.     Done! (TTFT: 328.90ms, Chunks: 84)
+        [out] In Python, garbage collection is handled by the built-in `gc` module. It uses reference counting and a generational garbage collector to track objects and reclaim memory from those that are no longer in use. When an object's reference count drops to zero, it's immediately reclaimed. Cycles of references are detected and collected using a generational approach, with frequent collections for younger generations and less frequent for older ones.     [Q04] TTFT=352.44ms TPOT=76.91ms Chunks=84 Total=6.74s
 
-  -> Iteration 2/3
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software development technique that structures an application as a collection of small, autonomous services that work together, each fulfilling a specific business capability.     [Q05] TTFT=350.86ms TPOT=74.08ms Chunks=33 Total=2.72s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that captures the outer function's variables from its surrounding scope.     [Q06] TTFT=370.13ms TPOT=70.81ms Chunks=20 Total=1.72s
+
+  -> Q07 [7/10]
      IN:  Explain the CAP theorem. Answer short, concise, and correct.
 
-        [out] The CAP theorem states that a distributed system can only simultaneously provide two out of the following three guarantees: Consistency, Availability, and Partition tolerance. Consistency ensures that all nodes see the same data at the same time; availability ensures that every request receives a response, regardless of whether data is stored or not; partition tolerance means the system continues to operate despite network failures.     Done! (TTFT: 249.45ms, Chunks: 77)
+        [out] The CAP theorem states that a distributed system can only simultaneously provide two out of the following three guarantees: Consistency, Availability, and Partition tolerance. Consistency ensures that all nodes see the same data at the same time; availability ensures that every request receives a response, regardless of whether data is stored or not; partition tolerance means the system continues to operate despite network failures.     [Q07] TTFT=287.93ms TPOT=76.25ms Chunks=77 Total=6.08s
 
-  -> Iteration 3/3
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution is the process of converting a human-readable domain name (like www.example.com) into an IP address (like 192.0.2.1) that computers use to identify each other on the network. It involves querying DNS servers, starting from the root server, moving through TLD servers (like .com, .org), and finally reaching the authoritative server for the domain to get the IP address.     [Q08] TTFT=320.19ms TPOT=77.05ms Chunks=87 Total=6.95s
+
+  -> Q09 [9/10]
      IN:  What are design patterns? Answer short, concise, and correct.
 
-        [out] Design patterns are standard solutions to common problems in software design that can be applied to improve code quality and efficiency.     Done! (TTFT: 301.61ms, Chunks: 25)
+        [out] Design patterns are standard solutions to common problems in software design that can be applied to improve code quality and efficiency.     [Q09] TTFT=308.77ms TPOT=72.05ms Chunks=25 Total=2.04s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a sequence of operations performed as a single logical unit of work that must either be completed entirely or not at all, ensuring data integrity and consistency. It adheres to ACID properties: Atomicity, Consistency, Isolation, and Durability. Transactions are used to manage changes to the database and can be rolled back if an error occurs.     [Q10] TTFT=302.83ms TPOT=76.60ms Chunks=75 Total=5.97s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 293.32 ms
-[info] Average Time per Output Token (TPOT): 78.74 ms
-[info] Estimated Generation Throughput: 12.70 tokens/sec
-[time] Average Total Wall Duration: 5.16 seconds
+[info] Average Time to First Token (TTFT): 320.77 ms
+[info] Average Time per Output Token (TPOT): 75.10 ms
+[info] Estimated Generation Throughput: 13.32 tokens/sec
+[time] Average Total Wall Duration: 4.54 seconds
 =================================================

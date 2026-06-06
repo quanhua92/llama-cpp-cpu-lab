@@ -1,15 +1,8 @@
 Auto-detected model: llama-3.2-3b-instruct-q4_k_m.gguf
-  -> Iteration 1/3: Explain the CAP theorem. Answer short, concise, and correct.
-        [out] The CAP theorem states that it is impossible for a distributed data storage system to simultaneously guarantee all three of the following:
 
-1. **Consistency**: All nodes in the system see the same data value for a given data item.
-2. **Availability**: Every request to a non-failing node in the system receives a response, without the guarantee that it contains the most recent version of the information.
-3. **Partition tolerance**: The system continues to function and make progress even when there are network partitions (i.e., when some nodes in the system cannot communicate with each other).
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
 
-In other words, you can choose two out of the three, but not all three at the same time. Done! (TTFT: 350.41ms, Chunks: 140)
-
-     IN:  Explain the CAP theorem. Answer short, concise, and correct.
-  -> Iteration 2/3: Tell me about software architecture. Answer short, concise, and correct.
         [out] Here's a concise overview of software architecture:
 
 **Definition:** The overall structure and organization of a software system, including its components, interactions, and relationships.
@@ -18,13 +11,13 @@ In other words, you can choose two out of the three, but not all three at the sa
 
 1. **Modularity**: Breaking down the system into independent, reusable components (modules).
 2. **Abstraction**: Hiding implementation details and showing only necessary information to the outside world.
-3. **Scalability**: Designing the system to grow and adapt to changing requirements.
-4. **Flexibility**: Allowing for easy modification, extension, or replacement of components.
-5. **Maintainability**: Ensuring the system is easy to understand, modify, and debug.
+3. **Scalability**: Designing the system to handle increased load, traffic, or complexity.
+4. **Maintainability**: Ensuring the system is easy to understand, modify, and extend.
+5. **Flexibility**: Allowing the system to adapt to changing requirements and technologies.
 
 **Types of software architecture:**
 
-1. **Monolithic**: A single, integrated system.
+1. **Monolithic**: A single, self-contained system.
 2. **Microservices**: A collection of small, independent services.
 3. **Event-driven**: Focused on handling events and notifications.
 4. **Service-oriented**: Emphasizing services and interactions between them.
@@ -34,19 +27,147 @@ In other words, you can choose two out of the three, but not all three at the sa
 1. **Improved maintainability and scalability**
 2. **Enhanced flexibility and adaptability**
 3. **Better modularity and reusability**
-4. **Reduced complexity and increased readability**
+4. **Reduced technical debt and complexity**
 
 **Best practices:**
 
-1. **Follow the Single Responsibility Principle (SRP)**
-2. **Use design patterns and principles**
-3. **Implement modular, loosely-coupled components**
-4. **Use version control and continuous integration**
+1. **Follow design patterns and principles**
+2. **Use modular and scalable design**
+3. **Prioritize maintainability and flexibility**
+4. **Continuously refactor and improve the architecture**     [Q01] TTFT=275.81ms TPOT=66.17ms Chunks=288 Total=19.27s
 
-Remember, software architecture is a critical aspect of software development, and a well-designed architecture can make a significant difference in the success and maintainability of a system. Done! (TTFT: 250.50ms, Chunks: 323)
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
 
-     IN:  Tell me about software architecture. Answer short, concise, and correct.
-  -> Iteration 3/3: Describe database transactions. Answer short, concise, and correct.
+        [out] Here's a concise explanation of how neural networks learn:
+
+**The Learning Process:**
+
+1. **Input**: The network receives input data, such as images, text, or audio.
+2. **Forward Pass**: The input data is propagated through the network, generating an output.
+3. **Error Calculation**: The difference between the predicted output and the actual output (ground truth) is calculated.
+4. **Backward Pass**: The error is propagated backwards through the network, adjusting the weights and biases of each layer.
+5. **Weight Update**: The weights and biases are updated based on the error, using an optimization algorithm (e.g., stochastic gradient descent).
+6. **Repeat**: Steps 2-5 are repeated for multiple iterations, with the network adjusting its parameters to minimize the error.
+
+**Key Concepts:**
+
+* **Activation Functions**: Introduce non-linearity to the network, allowing it to learn complex relationships.
+* **Gradient Descent**: An optimization algorithm that adjusts the weights and biases to minimize the error.
+* **Backpropagation**: The process of propagating the error backwards through the network to adjust the weights and biases.
+
+**Learning Objective:**
+
+The network learns to minimize the error between its predictions and the actual outputs, resulting in improved performance on the task at hand.     [Q02] TTFT=326.91ms TPOT=65.08ms Chunks=263 Total=17.38s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] Here is the difference between TCP and UDP:
+
+**TCP (Transmission Control Protocol)**
+
+* Connection-oriented: Establishes a connection before data is sent.
+* Reliable: Guarantees delivery of data packets in the correct order.
+* Error-checked: Corrects errors and retransmits packets if necessary.
+* Slower: More overhead due to connection establishment and error checking.
+
+**UDP (User Datagram Protocol)**
+
+* Connectionless: Does not establish a connection before sending data.
+* Unreliable: Does not guarantee delivery of data packets.
+* Fast: Less overhead due to no connection establishment or error checking.
+* Less reliable: May not deliver data packets at all.
+
+In summary: TCP is reliable and slower, while UDP is faster but less reliable.     [Q03] TTFT=290.83ms TPOT=64.18ms Chunks=154 Total=10.11s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] **Garbage Collection in Python**
+
+Python's garbage collection is a mechanism that automatically frees up memory occupied by objects that are no longer needed or referenced. Here's a simplified overview:
+
+1. **Object Creation**: When an object is created, Python allocates memory for it.
+2. **Reference Counting**: Each object has a reference count, which is the number of variables that reference the object. When the reference count reaches 0, the object is considered garbage.
+3. **Garbage Collection Cycle**: Python periodically runs a garbage collection cycle, which:
+	* Iterates through all objects in memory.
+	* Decrements the reference count of each object.
+	* Frees memory occupied by objects with a reference count of 0.
+4. **Finalization**: When an object is garbage collected, Python may call its `__del__` method (if defined) to perform any necessary cleanup.
+
+**Example**:
+```python
+import gc
+
+class MyClass:
+    def __init__(self):
+        print("Object created")
+
+    def __del__(self):
+        print("Object deleted")
+
+obj = MyClass()
+del obj
+gc.collect()  # Trigger garbage collection
+```
+In this example, the `MyClass` object is created, referenced by the `obj` variable, and then deleted using `del`. The `__del__` method is called when the object is garbage collected, printing "Object deleted".     [Q04] TTFT=266.13ms TPOT=66.18ms Chunks=291 Total=19.46s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] **Microservices**:
+
+A microservices architecture is a software development approach that structures an application as a collection of small, independent services. Each service is responsible for a specific business capability and can be developed, tested, and deployed independently of other services.
+
+Key characteristics:
+
+* **Loose Coupling**: Services communicate with each other using APIs or messaging systems.
+* **Autonomy**: Each service is responsible for its own behavior and can be developed independently.
+* **Organized Around Business Capabilities**: Services are designed to meet specific business needs.
+* **Scaling**: Services can be scaled independently to meet changing demands.
+
+This approach promotes flexibility, scalability, and maintainability, making it easier to develop, deploy, and manage complex applications.     [Q05] TTFT=233.53ms TPOT=64.64ms Chunks=149 Total=9.80s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] In programming, a closure is a function that has access to its own scope and the scope of its outer functions, even when called outside of its original context.     [Q06] TTFT=283.83ms TPOT=61.66ms Chunks=35 Total=2.38s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that it is impossible for a distributed data storage system to simultaneously guarantee all three of the following:
+
+1. **Consistency**: All nodes in the system see the same data value for a given data item.
+2. **Availability**: Every request to a non-failing node in the system receives a response, without the guarantee that it contains the most recent version of the information.
+3. **Partition tolerance**: The system continues to function and make progress even when there are network partitions (i.e., when some nodes in the system cannot communicate with each other).
+
+In other words, you can't have all three at the same time.     [Q07] TTFT=263.06ms TPOT=64.34ms Chunks=133 Total=8.76s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of how DNS resolution works:
+
+1. **User request**: A user types a domain name into a web browser or other application.
+2. **DNS query**: The application sends a DNS query to a DNS resolver (usually the operating system or a third-party service) to resolve the domain name to an IP address.
+3. **DNS cache**: The DNS resolver checks the DNS cache (a local memory store) to see if the IP address is already cached.
+4. **Recursive query**: If the IP address is not cached, the DNS resolver sends a recursive query to a root DNS server (e.g., `8.8.8.8`).
+5. **TTL lookup**: The root DNS server returns the IP address with a Time To Live (TTL) value, which indicates how long the IP address is valid.
+6. **Recursive response**: The DNS resolver receives the IP address and caches it in its own DNS cache.
+7. **Final response**: The DNS resolver returns the IP address to the original application, which can then use it to connect to the domain's server.
+
+That's the basic process of DNS resolution!     [Q08] TTFT=253.82ms TPOT=64.96ms Chunks=238 Total=15.65s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design, providing a proven and tested approach to solving specific design challenges. They are documented patterns of behavior or solutions to problems that can be applied to a wide range of situations, making it easier to write maintainable, flexible, and scalable code.     [Q09] TTFT=271.41ms TPOT=62.92ms Chunks=62 Total=4.11s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
         [out] **Database Transactions**
 
 A database transaction is a sequence of operations that are executed as a single, all-or-nothing unit of work. It ensures that either all changes are made and committed, or none are, to maintain data consistency and integrity.
@@ -63,13 +184,11 @@ A database transaction is a sequence of operations that are executed as a single
 1. **Active**: The transaction is being executed.
 2. **Committed**: The transaction is complete and its effects are permanent.
 3. **Rolled Back**: The transaction is cancelled and its effects are discarded.
-4. **Aborted**: The transaction is terminated due to an error or exception. Done! (TTFT: 257.75ms, Chunks: 194)
-
-     IN:  Describe database transactions. Answer short, concise, and correct.
+4. **Aborted**: The transaction is terminated due to an error or exception.     [Q10] TTFT=232.48ms TPOT=64.55ms Chunks=194 Total=12.69s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 286.22 ms
-[info] Average Time per Output Token (TPOT): 68.72 ms
-[info] Estimated Generation Throughput: 14.55 tokens/sec
-[time] Average Total Wall Duration: 15.30 seconds
+[info] Average Time to First Token (TTFT): 269.78 ms
+[info] Average Time per Output Token (TPOT): 64.47 ms
+[info] Estimated Generation Throughput: 15.51 tokens/sec
+[time] Average Total Wall Duration: 11.96 seconds
 =================================================

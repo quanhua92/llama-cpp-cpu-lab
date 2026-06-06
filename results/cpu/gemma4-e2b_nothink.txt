@@ -1,5 +1,8 @@
 Auto-detected model: gemma-4-E2B-it-Q4_K_M.gguf
-  -> Iteration 1/3: Tell me about software architecture. Answer short, concise, and correct.
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
         [out] **Software architecture** is the high-level structure of a software system, defining its components, their relationships, and the principles governing their design and evolution.
 
 **Key aspects:**
@@ -8,10 +11,59 @@ Auto-detected model: gemma-4-E2B-it-Q4_K_M.gguf
 * **Design Decisions:** Makes crucial, high-impact decisions (e.g., architectural style like Microservices, Monolith, Event-Driven).
 * **Quality Attributes (Non-Functional Requirements):** Focuses on ensuring the system meets requirements like performance, scalability, security, and maintainability.
 
-**In short:** It's the blueprint that guides the entire development process, ensuring the system is robust, maintainable, and capable of meeting business needs. Done! (TTFT: 270.81ms, Chunks: 155)
+**In short:** It's the blueprint that guides the entire development process, ensuring the system is robust, maintainable, and capable of meeting business needs.     [Q01] TTFT=719.76ms TPOT=104.53ms Chunks=155 Total=16.82s
 
-     IN:  Tell me about software architecture. Answer short, concise, and correct.
-  -> Iteration 2/3: How does DNS resolution work? Answer short, concise, and correct.
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through an iterative process involving:
+
+1. **Forward Propagation:** Input data passes through the network, generating an output prediction.
+2. **Loss Calculation:** A function measures the difference (error) between the predicted output and the actual target.
+3. **Backpropagation:** The error is propagated backward through the network to calculate the gradient (the direction and magnitude of change needed for each weight).
+4. **Weight Update:** An optimization algorithm (like Gradient Descent) uses the calculated gradients to adjust the network's weights and biases, minimizing the loss for the next iteration.
+
+This cycle repeats until the network's predictions are sufficiently accurate.     [Q02] TTFT=486.25ms TPOT=106.40ms Chunks=137 Total=14.96s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol):** Connection-oriented, reliable, ensures data delivery and order. (Slower, more overhead)
+
+**UDP (User Datagram Protocol):** Connectionless, unreliable, faster, minimal overhead. (Best for speed where occasional loss is acceptable)     [Q03] TTFT=585.26ms TPOT=101.83ms Chunks=60 Total=6.59s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python uses **automatic memory management** primarily through **reference counting** and a **generational garbage collector** to handle cyclic references.
+
+1. **Reference Counting:** Every object keeps a count of how many references point to it. When the count drops to zero, the object is immediately deallocated.
+2. **Generational GC:** This mechanism periodically scans for and cleans up **reference cycles** (objects referencing each other but no external references exist). It divides objects into generations based on how long they have survived, optimizing the collection process.     [Q04] TTFT=584.40ms TPOT=104.07ms Chunks=111 Total=12.03s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] **Microservices** are an architectural style where a large application is broken down into a collection of small, independent, and loosely coupled services. Each service runs its own process, communicates via lightweight mechanisms (like APIs), and can be developed, deployed, and scaled independently.     [Q05] TTFT=457.40ms TPOT=94.07ms Chunks=57 Total=5.73s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** in programming is a function bundled together with references to its surrounding state (the lexical environment). This allows an inner function to access variables from its outer function even after the outer function has finished executing.     [Q06] TTFT=565.16ms TPOT=102.86ms Chunks=46 Total=5.19s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that a distributed data store can only provide **two** of the following three guarantees at any given time:
+
+1. **Consistency (C):** Every read receives the most recent write or an error.
+2. **Availability (A):** Every request receives a (non-error) response, without the guarantee that it contains the most recent write.
+3. **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of some nodes (network partitions).
+
+In a distributed system, **Partition Tolerance (P) is generally considered mandatory.** Therefore, a system must choose between **Consistency (C)** and **Availability (A)** when a network partition occurs.     [Q07] TTFT=526.64ms TPOT=106.83ms Chunks=148 Total=16.23s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
         [out] DNS resolution is the process of translating a human-readable **domain name** (e.g., `www.example.com`) into an **IP address** (e.g., `192.0.2.1`) that computers use to locate a server on the internet.
 
 Here are the key steps:
@@ -19,17 +71,30 @@ Here are the key steps:
 1. **Query:** A client (your device) asks a **DNS Resolver** (usually provided by your ISP) for the IP address of the desired domain.
 2. **Recursive Lookup:** If the resolver doesn't have the answer cached, it queries a **Root Name Server**, which directs it to the appropriate **TLD (Top-Level Domain) server** (e.g., `.com`).
 3. **Authoritative Lookup:** The TLD server directs the resolver to the **Authoritative Name Server** for the specific domain, which finally provides the correct IP address.
-4. **Response:** The IP address is sent back to the client, allowing the client to connect to the correct server. Done! (TTFT: 250.73ms, Chunks: 217)
+4. **Response:** The IP address is sent back to the client, allowing the client to connect to the correct server.     [Q08] TTFT=553.22ms TPOT=97.22ms Chunks=217 Total=21.55s
 
-     IN:  How does DNS resolution work? Answer short, concise, and correct.
-  -> Iteration 3/3: What is a closure in programming? Answer short, concise, and correct.
-        [out] A **closure** in programming is a function bundled together with references to its surrounding state (the lexical environment). This allows an inner function to access variables from its outer function even after the outer function has finished executing. Done! (TTFT: 254.41ms, Chunks: 46)
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
 
-     IN:  What is a closure in programming? Answer short, concise, and correct.
+        [out] Design patterns are **reusable solutions to commonly occurring problems** in software design.
+
+They are not finished code, but rather **templates or blueprints** for how to structure code and solve recurring design challenges effectively.     [Q09] TTFT=495.43ms TPOT=102.53ms Chunks=45 Total=5.01s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a **single, logical unit of work** that accesses and possibly modifies the contents of a database.
+
+It must adhere to the **ACID properties**:
+
+* **Atomicity:** All operations in the transaction succeed, or none of them do (all or nothing).
+* **Consistency:** The transaction brings the database from one valid state to another.
+* **Isolation:** Concurrent transactions do not interfere with each other.
+* **Durability:** Once a transaction is committed, its changes are permanent and survive system failures.     [Q10] TTFT=479.33ms TPOT=102.63ms Chunks=113 Total=11.97s
 
 ================ PROFILE SUMMARY ================
-[info] Average Time to First Token (TTFT): 258.65 ms
-[info] Average Time per Output Token (TPOT): 57.40 ms
-[info] Estimated Generation Throughput: 17.42 tokens/sec
-[time] Average Total Wall Duration: 8.28 seconds
+[info] Average Time to First Token (TTFT): 545.29 ms
+[info] Average Time per Output Token (TPOT): 102.30 ms
+[info] Estimated Generation Throughput: 9.78 tokens/sec
+[time] Average Total Wall Duration: 11.61 seconds
 =================================================
