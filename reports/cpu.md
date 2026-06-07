@@ -4,7 +4,7 @@
 
 ## Models Tested
 
-20 models profiled with 10 fixed questions per mode. Original 15 models use Q4_K_M quantization; 5 Gemma 4 QAT models use Q4_0 quantization (quantization-aware training).
+22 models profiled with 10 fixed questions per mode. Original 15 models use Q4_K_M quantization; 5 Gemma 4 QAT models use Q4_0 quantization (quantization-aware training). 2 Qwen 3.6 models use UD-Q4_K_M.
 
 | Model | Params | Notes |
 |---|---|---|
@@ -17,17 +17,19 @@
 | Qwen 3.5-4B | 4B | Latest gen |
 | Llama 3.2-1B | 1B | Meta |
 | Llama 3.2-3B | 3B | Meta |
-| Gemma 4 E2B | 2B | Google MoE |
-| Gemma 4 E4B | 4B | Google MoE |
+| Gemma 4 E2B | 2.3B | Google Dense |
+| Gemma 4 E4B | 4.5B | Google Dense |
 | SmolLM3-3B | 3B | HuggingFace |
 | Gemma 2 2B IT | 2B | Google Dense |
 | DeepSeek-R1-Distill-Qwen-1.5B | 1.5B | RL-reasoning distilled |
 | Phi-4 Mini | 3.8B | Microsoft instruction-tuned |
-| Gemma 4 E2B QAT | 2B (MoE) | Google QAT Q4_0 |
-| Gemma 4 E4B QAT | 4B (MoE) | Google QAT Q4_0 |
-| Gemma 4 12B QAT | 12B (Dense) | Google QAT Q4_0 |
-| Gemma 4 26B-A4B QAT | ~4B (MoE 27B) | Google QAT Q4_0 |
+| Gemma 4 E2B QAT | 2.3B (Dense) | Google QAT Q4_0 |
+| Gemma 4 E4B QAT | 4.5B (Dense) | Google QAT Q4_0 |
+| Gemma 4 12B QAT | 12B (Dense, Unified) | Google QAT Q4_0 |
+| Gemma 4 26B-A4B QAT | ~4B (MoE 26B) | Google QAT Q4_0 |
 | Gemma 4 31B QAT | 31B (Dense) | Google QAT Q4_0 |
+| Qwen 3.6 35B-A3B | ~3B (MoE 35B) | UD-Q4_K_M (Unsloth Dynamic) |
+| Qwen 3.6 27B | 27B (Dense) | Q4_K_M |
 
 ## Benchmark Modes
 
@@ -61,7 +63,9 @@
 | Gemma 4 E4B QAT | 1,014.1 | 551.6 | -45% |
 | Gemma 4 12B QAT | 2,976.9 | 1,494.5 | -49% |
 | Gemma 4 26B-A4B QAT | 1,380.2 | 675.1 | -51% |
-| Gemma 4 31B QAT | — | 7,167.1 | — |
+| Gemma 4 31B QAT | 3,948.1 | 7,167.1 | +81% |
+| Qwen 3.6 35B-A3B | 727.5 | 705.6 | -3% |
+| Qwen 3.6 27B | 3,655.0 | 3,293.0 | -10% |
 
 ### Time per Output Token (TPOT) — lower is better
 
@@ -86,7 +90,9 @@
 | Gemma 4 E4B QAT | 184.7 | 99.6 | -46% |
 | Gemma 4 12B QAT | 420.8 | 236.1 | -43% |
 | Gemma 4 26B-A4B QAT | 159.6 | 88.2 | -44% |
-| Gemma 4 31B QAT | — | 1,000.2 | — |
+| Gemma 4 31B QAT | 565.2 | 1,000.2 | +77% |
+| Qwen 3.6 35B-A3B | 95.7 | 99.3 | +4% |
+| Qwen 3.6 27B | 521.5 | 532.7 | +2% |
 
 ### Generation Throughput — higher is better
 
@@ -111,7 +117,9 @@
 | Gemma 4 E4B QAT | 5.41 | 10.04 | +85% |
 | Gemma 4 12B QAT | 2.38 | 4.24 | +78% |
 | Gemma 4 26B-A4B QAT | 6.27 | 11.34 | +80% |
-| Gemma 4 31B QAT | — | 1.00 | — |
+| Gemma 4 31B QAT | 1.77 | 1.00 | -43% |
+| Qwen 3.6 35B-A3B | 10.45 | 10.08 | -4% |
+| Qwen 3.6 27B | 1.92 | 1.88 | -2% |
 
 ### Total Wall Duration — lower is better
 
@@ -136,13 +144,14 @@
 | Gemma 4 E4B QAT | 22.3 | 58.9 | +164% |
 | Gemma 4 12B QAT | 83.7 | 139.2 | +66% |
 | Gemma 4 26B-A4B QAT | 32.3 | 62.6 | +94% |
-| Gemma 4 31B QAT | — | 477.9 | — |
-
+| Gemma 4 31B QAT | 103.5 | 477.9 | +362% |
+| Qwen 3.6 35B-A3B | 9.0 | 57.6 | +540% |
+| Qwen 3.6 27B | 53.3 | 312.2 | +486% |
 ## Key Findings
 
 ### 1. Think mode has lower per-token latency across all models
 
-All models show 42-55% lower TPOT in think mode. This is because TPOT measures inter-chunk latency across all output chunks (both reasoning and answer), and thinking produces many more short reasoning tokens which amortize the cost. However, wall time is a different story — thinking generates vastly more tokens overall.
+All models except 31B and Qwen 3.6 show 42-55% lower TPOT in think mode. Exceptions: 31B (565ms → 1000ms, +77%), Qwen 3.6 35B-A3B (95.7ms → 99.3ms, +4%), Qwen 3.6 27B (521.5ms → 532.7ms, +2%). This is because TPOT measures inter-chunk latency across all output chunks (both reasoning and answer), and thinking produces many more short reasoning tokens which amortize the cost. However, wall time is a different story — thinking generates vastly more tokens overall.
 
 ### 2. Wall time tells the real cost of thinking
 
@@ -150,7 +159,7 @@ Think mode wall time splits into two categories:
 
 **Wall time improves (think faster):** Qwen 2.5 family, Qwen 2.5 Coder, Llama 3.2, Gemma 2 2B IT, DeepSeek-R1, Phi-4 Mini. These models produce concise reasoning and finish quickly — total time is lower because TPOT gains outweigh the extra tokens.
 
-**Wall time explodes (think much slower):** Qwen 3.5 family (+637% to +1,609%), Gemma 4 family (+60% to +164%), SmolLM3-3B (+305%). These models produce verbose chain-of-thought that dominates the total time.
+**Wall time explodes (think much slower):** Qwen 3.5 family (+637% to +1,609%), Qwen 3.6 family (+486% to +540%), Gemma 4 family (+60% to +164%), SmolLM3-3B (+305%). These models produce verbose chain-of-thought that dominates the total time.
 
 ### 3. Qwen 3.5 thinking is unusably slow on CPU
 
@@ -171,7 +180,7 @@ No-think mode works cleanly. Avoid thinking mode for Qwen 3.5 on CPU.
 | Wall (no-think) | 11.6 s | 14.1 s | +21% |
 | Throughput (think) | 17.86 tok/s | 18.83 tok/s | +5% |
 
-QAT and non-QAT are nearly identical in per-token speed. QAT models produce slightly more output (hence higher wall time) but with potentially better quality from quantization-aware training.
+QAT and non-QAT are nearly identical in per-token speed. Wall time varies by model and question because QAT and Q4_K_M produce different-length answers.
 
 ### 5. Throughput ranking (no-think mode)
 
@@ -184,24 +193,27 @@ QAT and non-QAT are nearly identical in per-token speed. QAT models produce slig
 | 5 | Qwen 2.5-1.5B | 16.7 |
 | 6 | DeepSeek-R1-Distill-Qwen-1.5B | 15.4 |
 | 7 | Qwen 3.5-2B | 11.9 |
-| 8 | Gemma 4 E2B QAT | 10.0 |
-| 9 | Gemma 4 E2B | 9.8 |
-| 10 | Gemma 2 2B IT | 9.1 |
-| 11 | Qwen 2.5-3B | 9.2 |
-| 12 | SmolLM3-3B | 8.9 |
-| 13 | Llama 3.2-3B | 8.2 |
-| 14 | Phi-4 Mini | 7.1 |
-| 15 | Gemma 4 26B-A4B QAT | 6.3 |
-| 16 | Qwen 3.5-4B | 5.4 |
-| 17 | Gemma 4 E4B QAT | 5.4 |
-| 18 | Gemma 4 E4B | 5.1 |
-| 19 | Gemma 4 12B QAT | 2.4 |
+| 8 | Qwen 3.6 35B-A3B | 10.5 |
+| 9 | Gemma 4 E2B QAT | 10.0 |
+| 10 | Gemma 4 E2B | 9.8 |
+| 11 | Gemma 2 2B IT | 9.1 |
+| 12 | Qwen 2.5-3B | 9.2 |
+| 13 | SmolLM3-3B | 8.9 |
+| 14 | Llama 3.2-3B | 8.2 |
+| 15 | Phi-4 Mini | 7.1 |
+| 16 | Gemma 4 26B-A4B QAT | 6.3 |
+| 17 | Qwen 3.5-4B | 5.4 |
+| 18 | Gemma 4 E4B QAT | 5.4 |
+| 19 | Gemma 4 E4B | 5.1 |
+| 20 | Gemma 4 12B QAT | 2.4 |
+| 21 | Qwen 3.6 27B | 1.9 |
+| 22 | Gemma 4 31B QAT | 1.8 |
 
 ### 6. Question-level consistency
 
 TPOT is highly consistent across questions — std dev ranges from 2-16 ms (nothink) and 0.2-2.1 ms (think) regardless of question topic. Think mode TPOT is extremely predictable (CV <1% for most models). Nothink TPOT varies more because output length per question affects chunk distribution. TTFT varies more (23-433 ms std dev nothink, 12-787 ms think) because first-token latency depends on prompt complexity.
 
-The exception is Q10 (database transactions) in think mode, which shows dramatically lower values because gemma4-qat-31b only completed 9/10 questions, skewing the average.
+The exception is Gemma 4 QAT 31B in think mode, which only completed 9/10 questions (Q10 missing), skewing some averages.
 
 ## Recommendations
 
@@ -212,9 +224,12 @@ The exception is Q10 (database transactions) in think mode, which shows dramatic
 5. **Qwen 3.5**: Use `--no-reasoning` only. Think mode loops to token ceiling.
 6. **Gemma 4**: Best quality but 2-3x wall time in think mode. Use no-think for interactive use.
 7. **Gemma 4 QAT E2B**: Best QAT model for CPU — nearly identical speed to non-QAT with potential quality gains
-8. **Gemma 4 QAT 26B-A4B**: Surprisingly fast for a 27B MoE (6.3 tok/s no-think) — only ~4B active params
-9. **Gemma 4 QAT 12B/31B**: Too slow for interactive use (2.4 and 1.0 tok/s). Batch/offline only.
-10. **SmolLM3-3B**: 4x slower in think mode (8.2s → 33.1s). Use no-think only.
+8. **Gemma 4 QAT 26B-A4B**: Surprisingly fast for a 26B MoE (6.3 tok/s no-think) — only ~4B active params
+9. **Gemma 4 QAT 12B**: Too slow for interactive use (2.4 tok/s no-think). Batch/offline only.
+10. **Gemma 4 QAT 31B**: Slowest model (1.8 tok/s no-think, 1.0 tok/s think). 103s no-think wall, 478s think wall. Think mode 4.6x slower. Batch/offline only.
+11. **Qwen 3.6 35B-A3B**: Fastest MoE on CPU (10.5 tok/s no-think, 10.1 tok/s think). Only ~3B active params. Think wall 6.4x slower due to verbose reasoning.
+12. **Qwen 3.6 27B**: Dense 27B, similar speed to 31B QAT (1.9 tok/s no-think). Think wall 5.9x slower. Batch/offline only.
+11. **SmolLM3-3B**: 4x slower in think mode (8.2s → 33.1s). Use no-think only.
 
 ## Methodology
 
@@ -243,4 +258,4 @@ The exception is Q10 (database transactions) in think mode, which shows dramatic
 
 ### Test Date
 
-2026-06-06 (all 20 models, 10 questions, think + nothink modes)
+2026-06-06 (original 20 models) and 2026-06-07 (Qwen 3.6 models, 10 questions, think + nothink modes)

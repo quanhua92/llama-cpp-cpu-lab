@@ -34,18 +34,18 @@
 
 ## All MoE Models at a Glance
 
-TPOT scales with **active params**, not total model size. This is why 26B-A4B (27B total, ~4B active) is faster per-token than E4B (8B total, 4.5B active).
+TPOT scales with **active params**, not total model size. This is why 26B-A4B (26B total, ~4B active) is faster per-token than E4B (4.5B total, 4.5B active).
 
 | Model | Type | Active | Total | Size | NT tok/s | TH tok/s | NT TTFT | TH TTFT |
 |---|---|---|---|---|---|---|---|---|
-| **gemma4-e2b** | MoE Q4_K_M | 2.3B | 5B | 2.9 GB | **9.78** | **17.86** | **545 ms** | **277 ms** |
-| **gemma4-qat-e2b** | MoE QAT | 2.3B | 5B | 3.4 GB | 9.96 | 18.83 | 526 ms | 278 ms |
-| **gemma4-e4b** | MoE Q4_K_M | 4.5B | 8B | 4.7 GB | 5.13 | 9.64 | 1,020 ms | 566 ms |
-| **gemma4-qat-e4b** | MoE QAT | 4.5B | 8B | 5.2 GB | 5.41 | 10.04 | **1,014 ms** | **552 ms** |
-| **gemma4-qat-26b** | MoE QAT | ~4B | 27B | 14.4 GB | **6.27** | **11.34** | 1,380 ms | 675 ms |
+| **gemma4-e2b** | Dense Q4_K_M | 2.3B | 2.3B | 2.9 GB | **9.78** | **17.86** | **545 ms** | **277 ms** |
+| **gemma4-qat-e2b** | Dense QAT | 2.3B | 2.3B | 3.4 GB | 9.96 | 18.83 | 526 ms | 278 ms |
+| **gemma4-e4b** | Dense Q4_K_M | 4.5B | 4.5B | 4.7 GB | 5.13 | 9.64 | 1,020 ms | 566 ms |
+| **gemma4-qat-e4b** | Dense QAT | 4.5B | 4.5B | 5.2 GB | 5.41 | 10.04 | **1,014 ms** | **552 ms** |
+| **gemma4-qat-26b-a4b** | MoE QAT | ~4B | 26B | 14.4 GB | **6.27** | **11.34** | 1,380 ms | 675 ms |
 | **qwen3.5-4b** | Dense Q4_K_M | 4B | 4B | 2.7 GB | 5.43 | 10.04 | 1,476 ms | 658 ms |
 
-**Takeaway**: Doubling active params (2.3B → 4.5B) roughly halves throughput (9.8 → 5.1 tok/s). QAT gives a consistent ~5% speedup over Q4_K_M on the same architecture. The 26B-A4B MoE beats both 4.5B MoE models and the 4B dense model because it activates slightly fewer params per token (~4B vs 4.5B). Think mode is ~80% faster than nothink for all models.
+**Takeaway**: Throughput scales with model size for dense models — doubling params roughly halves tok/s (2.3B → 4.5B: 9.8 → 5.1). QAT gives ~5% speedup over Q4_K_M on the same architecture. The 26B-A4B is the only MoE model — it activates ~4B params per token from a 26B pool, beating the 4.5B dense models in speed while having much more knowledge. Think mode is ~80% faster than nothink for all models.
 
 ## Per-Question Detail
 
@@ -92,7 +92,7 @@ Same consistent ~4% advantage for QAT Q4_0 across all questions.
 
 ## 26B-A4B vs E4B: Same Active Params, Different Total Size
 
-Both models are MoE with ~4B active parameters, but 26B-A4B has 27B total parameters vs E4B's 8B total. This means 26B-A4B can route to a much larger pool of expert knowledge while keeping compute per token similar to E4B.
+Both models have ~4B active parameters per token, but 26B-A4B is MoE (26B total parameters) while E4B is dense (4.5B total parameters). This means 26B-A4B can route to a much larger pool of expert knowledge while keeping compute per token similar to E4B.
 
 ### Speed Comparison
 
@@ -109,23 +109,23 @@ Both models are MoE with ~4B active parameters, but 26B-A4B has 27B total parame
 
 | | 26B-A4B | E4B |
 |---|---|---|
-| Total params | 27B (MoE) | 8B (MoE) |
+| Total params | 26B (MoE) | 4.5B (Dense) |
 | Active params | ~4B | ~4.5B |
 | Model size | 14.4 GB | 4.7 GB |
 | NoThink throughput | **6.27 tok/s** | 5.13 tok/s |
 | Think throughput | **11.34 tok/s** | 9.64 tok/s |
 | TTFT (nothink) | 1,380 ms | **1,020 ms** |
-| Expert diversity | 16+ experts | Fewer experts |
+| Expert diversity | 128 total (8 routed + 1 shared) | None (dense) |
 
-**26B-A4B is faster per-token despite being 3x larger** because it activates roughly the same number of parameters per forward pass (~4B). The MoE routing overhead is minimal — llama.cpp handles expert switching efficiently.
+**26B-A4B is faster per-token despite being 6x larger** because it activates roughly the same number of parameters per forward pass (~4B) as the 4.5B dense E4B model. The MoE routing overhead is minimal — llama.cpp handles expert switching efficiently.
 
-**The tradeoff is TTFT and memory**: loading 14.4 GB into RAM takes longer, so first-token latency is ~26-35% higher. But once inference starts, each token is generated faster. The 4B active params come from a much larger pool of 27B total weights, giving the model access to more specialized knowledge per token without paying the compute cost of a full 27B dense model.
+**The tradeoff is TTFT and memory**: loading 14.4 GB into RAM takes longer, so first-token latency is ~26-35% higher. But once inference starts, each token is generated faster. The 4B active params come from a much larger pool of 26B total weights, giving the model access to more specialized knowledge per token without paying the compute cost of a full 31B dense model.
 
-**Why this matters**: 26B-A4B gives you the generation speed of a 4B model but with the knowledge capacity of a 27B model. For batch workloads where TTFT doesn't matter and you need higher quality reasoning from a larger model, 26B-A4B is the best CPU MoE option. The only cost is RAM (14.4 GB vs 4.7 GB).
+**Why this matters**: 26B-A4B gives you the generation speed of a 4B model but with the knowledge capacity of a 26B model. For batch workloads where TTFT doesn't matter and you need higher quality reasoning from a larger model, 26B-A4B is the best CPU MoE option. The only cost is RAM (14.4 GB vs 4.7 GB).
 
 ## 12B QAT: The Dense Alternative
 
-The 12B QAT is a dense model (all 12B params active per token), unlike the MoE models above. It has no Q4_K_M equivalent — it's QAT-only. This makes it the only "unified" Gemma 4 model in this lineup (no expert routing, no quantization choice).
+The 12B QAT is a dense model (all 12B params active per token), unlike the MoE models above. Google only provides QAT Q4_0 quantization officially — community Q4_K_M GGUFs are available from Unsloth. This makes our 12B data QAT-only. The "Unified" in 12B means it's encoder-free: image/audio projections go directly into the LLM embedding space, unlike other Gemma 4 models which use dedicated encoders.
 
 ### Speed Comparison
 
@@ -178,25 +178,25 @@ The 12B QAT is a dense model (all 12B params active per token), unlike the MoE m
 
 The 12B QAT is **3x slower than 26B-A4B** per-token (421 ms vs 160 ms nothink) because it activates all 12B parameters every forward pass, while 26B-A4B only activates ~4B via MoE routing. This is the fundamental dense-vs-MoE tradeoff:
 
-- **MoE advantage**: 26B-A4B runs at the speed of a 4B model because only ~4B params are active per token, even though it has 27B total knowledge. The 12B model must compute through all 12B params every time.
+- **MoE advantage**: 26B-A4B runs at the speed of a 4B model because only ~4B params are active per token, even though it has 26B total knowledge. The 12B model must compute through all 12B params every time.
 - **Dense stability**: The 12B's think-mode TPOT has a coefficient of variation (CV) of 0.7% (std 1.7 ms), similar to the MoE models — all show extremely uniform inter-chunk latency during reasoning generation.
 - **TTFT cost scales with total size**: The 12B's TTFT (2,977 ms nothink) is 2x the 26B-A4B's (1,380 ms), despite 26B being 2.25x larger on disk. This is because prompt processing (prefill) touches all parameters — 12B dense = 12B computations, while 26B-A4B still only computes ~4B active params during prefill but pays for loading 14.4 GB into memory.
 
-**When to use 12B QAT**: If you need a model that processes every token through the same dense computation (no expert routing), the 12B QAT provides consistent behavior. But for CPU throughput, MoE models with similar or fewer active params (26B-A4B, E4B) are significantly faster. The 12B's strength is simplicity and consistency — it doesn't depend on routing quality.
+**When to use 12B QAT**: If you need a model that processes every token through the same dense computation (no expert routing), the 12B QAT provides consistent behavior. But for CPU throughput, the MoE 26B-A4B (with ~4B active params) and dense models with similar size are significantly faster. The 12B's strength is simplicity and consistency — it doesn't depend on routing quality.
 
 ## Recommendation
 
-**gemma4-qat-26b is the recommended default** for CPU inference. It activates only ~4B params per token (via MoE routing) but draws from a 27B knowledge pool — giving it the speed of a 4B model with the reasoning quality of a much larger model. On a 64 GB machine, the 14.4 GB model size is well within budget.
+**gemma4-qat-26b-a4b is the recommended default** for CPU inference. It activates only ~4B params per token (via MoE routing) but draws from a 26B knowledge pool — giving it the speed of a 4B model with the reasoning quality of a much larger model. On a 64 GB machine, the 14.4 GB model size is well within budget.
 
 | | E2B (previous default) | 26B-A4B (new default) |
 |---|---|---|
 | RAM | 2.9 GB | 14.4 GB |
 | NT tok/s | 9.78 | 6.27 (-36%) |
 | TH tok/s | 17.86 | 11.34 (-36%) |
-| Knowledge pool | 5B | 27B |
+| Knowledge pool | 2.3B | 26B |
 | Active params/token | 2.3B | ~4B |
 
-The 36% speed loss over E2B buys you 5.4x more total parameters to route from. For interactive use where quality matters more than raw speed, this is a strong tradeoff. Use E2B only when speed is paramount (e.g., high-throughput batch processing, very slow machines, or RAM-constrained environments).
+The 36% speed loss over E2B buys you 11x more total parameters to route from. For interactive use where quality matters more than raw speed, this is a strong tradeoff. Use E2B only when speed is paramount (e.g., high-throughput batch processing, very slow machines, or RAM-constrained environments).
 
 ## Methodology
 

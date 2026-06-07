@@ -25,14 +25,15 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 - [CPU Report](reports/cpu.md)
 - [GPU Report](reports/gpu.md)
 - [Gemma 4 QAT vs Q4_K_M Comparison](reports/gemma4-qat-comparison.md)
+- [Qwen 3.6 35B-A3B vs Gemma 4 26B-A4B Comparison](reports/qwen3.6-35b-a3b-vs-gemma4-26b-a4b.md)
 
 ## Quick Start
 
 ```bash
-# CPU server (default gemma4-qat-26b on port 8080)
+# CPU server (default gemma4-qat-26b-a4b on port 8080)
 ./serve_cpu.sh
 
-# GPU server (default gemma4-qat-26b on port 8080)
+# GPU server (default gemma4-qat-26b-a4b on port 8080)
 ./serve_gpu.sh
 
 # Or pick a model + port
@@ -67,12 +68,23 @@ bash run_gpu_benchmarks.sh
 
 # Generate example outputs (CPU)
 ./generate_examples_cpu.sh                              # all models
-./generate_examples_cpu.sh gemma4-qat-26b              # single model
+./generate_examples_cpu.sh gemma4-qat-26b-a4b              # single model
 ./generate_examples_cpu.sh --prompts ask               # only ask prompt
 ./generate_examples_cpu.sh --prompts reflect            # only reflect prompt
 ./generate_examples_cpu.sh --question "your prompt"    # custom question → _custom.md
 ./generate_examples_cpu.sh --question "your prompt" --name recursion  # → _recursion.md
 ./generate_examples_cpu.sh --no-reasoning --skip-existing
+
+# Large models (12B+) can take 10-20 min per prompt.
+# Use nohup to avoid shell timeout:
+nohup ./generate_examples_cpu.sh gemma4-qat-12b > /tmp/examples.log 2>&1 &
+nohup ./generate_examples_cpu.sh gemma4-qat-26b-a4b > /tmp/examples.log 2>&1 &
+nohup ./generate_examples_cpu.sh gemma4-qat-31b > /tmp/examples.log 2>&1 &
+
+# Or run all models in background, check progress:
+nohup ./generate_examples_cpu.sh > /tmp/examples.log 2>&1 &
+tail -f /tmp/examples.log
+ls examples/cpu/*.md | wc -l  # count completed files
 
 # Generate example outputs (GPU)
 ./generate_examples_gpu.sh
@@ -106,12 +118,12 @@ bash run_gpu_benchmarks.sh
 
 ## Curated Models
 
-All Q4_K_M quant, shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`). QAT models use Q4_0 quantization (quantization-aware training):
+All Q4_K_M quant unless noted. Shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`). QAT models use Q4_0 quantization (quantization-aware training):
 
 | Key | Model | Size |
 |-----|-------|------|
-| `gemma4-e2b` | Gemma 4 E2B (MoE 2.3B act) | 2.9 GB |
-| `gemma4-e4b` | Gemma 4 E4B (MoE 4.5B act) | 4.7 GB |
+| `gemma4-e2b` | Gemma 4 E2B (Dense 2.3B) | 2.9 GB |
+| `gemma4-e4b` | Gemma 4 E4B (Dense 4.5B) | 4.7 GB |
 | `qwen2.5-0.5b` | Qwen2.5 0.5B | 469 MB |
 | `qwen2.5-1.5b` | Qwen2.5 1.5B | 1.1 GB |
 | `qwen2.5-3b` | Qwen2.5 3B | 2.0 GB |
@@ -125,11 +137,13 @@ All Q4_K_M quant, shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ng
 | `gemma2-2b` | Gemma 2 2B IT (Dense) | 1.6 GB |
 | `deepseek-r1-1.5b` | DeepSeek-R1-Distill-Qwen-1.5B | 1.1 GB |
 | `phi4-mini` | Phi-4 Mini 3.8B (Microsoft) | 2.4 GB |
-| `gemma4-qat-e2b` | Gemma 4 E2B QAT (Q4_0, MoE 2.3B act) | 3.4 GB |
-| `gemma4-qat-e4b` | Gemma 4 E4B QAT (Q4_0, MoE 4.5B act) | 5.2 GB |
-| `gemma4-qat-12b` | Gemma 4 12B QAT (Q4_0, Dense) | 7.0 GB |
-| `gemma4-qat-26b` | Gemma 4 26B-A4B QAT (Q4_0, MoE ~4B act) | 14.4 GB |
+| `gemma4-qat-e2b` | Gemma 4 E2B QAT (Q4_0, Dense 2.3B) | 3.4 GB |
+| `gemma4-qat-e4b` | Gemma 4 E4B QAT (Q4_0, Dense 4.5B) | 5.2 GB |
+| `gemma4-qat-12b` | Gemma 4 12B QAT (Q4_0, Dense, Unified) | 7.0 GB |
+| `gemma4-qat-26b-a4b` | Gemma 4 26B-A4B QAT (Q4_0, MoE ~4B act) | 14.4 GB |
 | `gemma4-qat-31b` | Gemma 4 31B QAT (Q4_0, Dense) | 17.7 GB |
+| `qwen3.6-35b-a3b` | Qwen 3.6 35B-A3B (UD-Q4_K_M, MoE ~3B act) | 22.1 GB |
+| `qwen3.6-27b` | Qwen 3.6 27B (Q4_K_M, Dense) | 16 GB |
 
 ## Why CPU-Only LLMs?
 
@@ -159,20 +173,22 @@ Even at 5-10 tok/s, CPU-only inference is useful for non-interactive workloads w
 
 ## Gemma 4 QAT vs Q4_K_M Comparison
 
-See [reports/gemma4-qat-comparison.md](reports/gemma4-qat-comparison.md) for a detailed side-by-side comparison of Gemma 4 E2B/E4B with post-training Q4_K_M vs quantization-aware-trained Q4_0. Short summary: QAT Q4_0 wins per-token speed and TTFT across all metrics; Q4_K_M wins no-think wall time only due to less verbose output.
+See [reports/gemma4-qat-comparison.md](reports/gemma4-qat-comparison.md) for a detailed side-by-side comparison of Gemma 4 E2B/E4B with post-training Q4_K_M vs quantization-aware-trained Q4_0. Short summary: QAT Q4_0 wins per-token speed and TTFT across all metrics; wall time varies by model (QAT wins for E4B, Q4_K_M wins for E2B).
 
 ## Multiple Servers
 
 Run different models on different ports simultaneously:
 
 ```bash
-./serve_cpu.sh gemma4-qat-26b 8888   # primary CPU (matches systemd service)
+./serve_cpu.sh gemma4-qat-26b-a4b 8888   # primary CPU (matches systemd service)
 ./serve_gpu.sh gemma4-e2b 8889   # primary GPU (matches systemd service)
 ./serve_cpu.sh qwen2.5-0.5b 8081 # fast sidecar
 ./stop.sh 8081                    # kill just the sidecar
 ```
 
 ## Benchmarking
+
+> **Important: Run only one benchmark at a time.** The machine has 8 cores / 16 threads. Running multiple benchmarks simultaneously (or a benchmark alongside an example generation) will distort results and may cause OOM/timeouts. Always wait for the current run to fully complete before starting the next.
 
 ```bash
 # CPU — all models (thinking ON, default) → results/cpu/*_think.txt
@@ -258,8 +274,8 @@ Verify: `loginctl show-user $(whoami) | grep Linger` should show `Linger=yes`.
 Edit the service file:
 
 ```bash
-# Change gemma4-qat-26b to another model key (CPU)
-sed -i 's/gemma4-qat-26b/llama3.2-1b/' ~/.config/systemd/user/llama-cpu.service
+# Change gemma4-qat-26b-a4b to another model key (CPU)
+sed -i 's/gemma4-qat-26b-a4b/llama3.2-1b/' ~/.config/systemd/user/llama-cpu.service
 
 # Reload and restart
 systemctl --user daemon-reload
@@ -308,5 +324,5 @@ If `hf` is not installed: `uv add huggingface_hub`.
 - `scripts/ask.py` and `scripts/reflect.py` always show `[think]` reasoning tokens.
 - `scripts/profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
 - SmolLM3 3B has a ~3s cold-start penalty on first request
-- See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks across all 20 models
-- See [reports/gpu.md](reports/gpu.md) for full GPU benchmarks across all 16 models
+- See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks across all 22 models
+- See [reports/gpu.md](reports/gpu.md) for full GPU benchmarks

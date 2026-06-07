@@ -1,0 +1,421 @@
+Auto-detected model: Qwen3.6-27B-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Topic:** Software architecture
+   - **Requirements:** Short, concise, and correct
+   - **Implicit need:** Clear definition, key components/purpose, and maybe a brief mention of common patterns, all in a tight format.
+
+2.  **Define Software Architecture (Core Concept):**
+   - It's the high-level structure of a software system.
+   - Defines how components interact, are organized, and how they fulfill functional/non-functional requirements.
+   - Acts as a blueprint for developers and stakeholders.
+
+3.  **Identify Key Elements (for conciseness):**
+   - Structure/Components
+   - Relationships/Interactions
+   - Design principles & constraints
+   - Addresses both functional and non-functional requirements (performance, security, scalability, etc.)
+
+4.  **Draft - Mental Refinement (aiming for short & precise):**
+   Software architecture is the high-level blueprint of a system that defines its core structure, component relationships, and design principles. It dictates how parts interact, communicate, and scale while balancing functional needs with non-functional requirements like performance, security, and maintainability. Common patterns include monolithic, microservices, layered, and event-driven architectures.
+
+5.  **Check against Requirements:**
+   - Short? Yes (~3 sentences, ~50 words)
+   - Concise? Yes, no fluff, direct definitions and key points
+   - Correct? Yes, aligns with standard definitions (IEEE, ISO/IEC/IEEE 14710, etc.)
+   - Covers essentials? Definition, purpose, key concerns, examples
+
+6.  **Final Polish:**
+   Ensure technical accuracy and tight phrasing. Remove any redundancy. Verify terminology.
+   "Software architecture is the high-level blueprint of a system that defines its core structure, component relationships, and governing design principles. It dictates how modules interact, communicate, and scale while balancing functional requirements with non-functional concerns like performance, security, and maintainability. Common patterns include monolithic, microservices, layered, and event-driven architectures."
+
+   Word count: ~48. Meets all criteria. Ready.✅
+
+        [out] Software architecture is the high-level blueprint of a system that defines its core structure, component relationships, and governing design principles. It dictates how modules interact, communicate, and scale while balancing functional requirements with non-functional concerns like performance, security, reliability, and maintainability. Common patterns include monolithic, microservices, layered, and event-driven architectures.     [Q01] TTFT=2856.04ms TPOT=519.39ms Chunks=534 Total=279.69s
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Topic:** How neural networks learn
+   - **Requirements:** Short, concise, correct
+   - **Key elements to cover:** Basic mechanism, key steps, core concepts
+
+2.  **Identify Core Concepts of Neural Network Learning:**
+   - Forward pass (input → weights → output)
+   - Loss function (measures error)
+   - Backpropagation (computes gradients)
+   - Optimization/Weight update (adjusts weights using gradients, e.g., gradient descent)
+   - Iteration (repeats over data)
+
+3.  **Draft - Mental Refinement (aiming for conciseness & accuracy):**
+   Neural networks learn by iteratively adjusting internal parameters (weights and biases) to minimize prediction error. This happens in four steps: (1) Forward pass: input data flows through layers to produce a prediction. (2) Loss calculation: a loss function measures the difference between prediction and true value. (3) Backpropagation: gradients of the loss with respect to each weight are computed using the chain rule. (4) Weight update: an optimizer (e.g., gradient descent) adjusts weights in the direction that reduces loss. This cycle repeats over many data examples until performance converges.
+
+4.  **Check Against Requirements:**
+   - *Short?* Yes, ~70 words.
+   - *Concise?* Yes, no fluff, direct steps.
+   - *Correct?* Yes, covers forward pass, loss, backprop, optimization, iteration accurately.
+   - *Clear?* Logical flow, standard terminology.
+
+5.  **Final Polish:**
+   Ensure technical accuracy while maintaining brevity. The draft is solid. I'll output it exactly as refined.✅
+
+        [out] Neural networks learn by iteratively adjusting internal parameters (weights and biases) to minimize prediction error. The process follows four steps:
+
+1. **Forward pass:** Input data flows through layers, transformed by weights and activation functions, producing a prediction.
+2. **Loss calculation:** A loss function quantifies the error between the prediction and the true target.
+3. **Backpropagation:** Using the chain rule, gradients of the loss with respect to every weight are computed backward through the network.
+4. **Weight update:** An optimizer (e.g., gradient descent) adjusts weights in the direction that reduces the loss.
+
+This cycle repeats over many data examples (epochs) until the network's predictions converge to acceptable accuracy.     [Q02] TTFT=3235.61ms TPOT=525.92ms Chunks=529 Total=280.92s
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Question:** What is the difference between TCP and UDP?
+   - **Requirements:** Short, concise, and correct.
+
+2.  **Identify Key Concepts:**
+   - TCP (Transmission Control Protocol) vs UDP (User Datagram Protocol)
+   - Core differences: Connection-oriented vs connectionless, reliability, ordering, speed/overhead, use cases.
+
+3.  **Draft - Mental Refinement (aiming for conciseness):**
+   TCP is connection-oriented, reliable, and guarantees ordered delivery with error checking and retransmission, making it slower but ideal for data integrity (e.g., web browsing, email). UDP is connectionless, unreliable, and sends data without guarantees of delivery or order, making it faster and ideal for real-time applications (e.g., video streaming, gaming).
+
+4.  **Check Against Requirements:**
+   - Short? Yes, ~2 sentences.
+   - Concise? Yes, focuses on core differences without fluff.
+   - Correct? Yes, accurately describes connection model, reliability, ordering, speed/overhead, and typical use cases.
+
+5.  **Final Polish (ensure maximum precision and brevity):**
+   TCP is connection-oriented and reliable, guaranteeing ordered delivery with error checking and retransmission (slower, used for web/email). UDP is connectionless and unreliable, sending data without delivery/order guarantees (faster, used for streaming/gaming).
+
+   This meets all criteria. I'll output this.✅
+
+        [out] **TCP** is connection-oriented and reliable: it guarantees ordered delivery, checks for errors, and retransmits lost data (slower, used for web, email, file transfers).  
+**UDP** is connectionless and unreliable: it sends data without delivery/order guarantees or retransmission (faster, lower overhead, used for live streaming, gaming, VoIP).     [Q03] TTFT=3664.20ms TPOT=535.31ms Chunks=406 Total=220.46s
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Question:** How does garbage collection work in Python?
+   - **Requirements:** Short, concise, and correct.
+
+2.  **Identify Key Concepts of Python's Garbage Collection:**
+   - Primary mechanism: Reference counting
+   - Secondary mechanism: Cyclic garbage collector (for reference cycles)
+   - How reference counting works: Tracks number of references to each object; when count reaches 0, memory is freed immediately.
+   - How cyclic GC works: Detects and collects objects involved in reference cycles that reference counting can't handle; uses generational approach (generations 0, 1, 2).
+   - Additional details (optional but relevant): `gc` module, `__del__` destructors, memory management vs garbage collection.
+
+3.  **Draft - Mental Refinement (aiming for short & concise):**
+   Python uses a hybrid garbage collection system:
+   - **Reference counting** is the primary mechanism. Every object tracks how many references point to it. When the count drops to zero, the object is immediately deallocated.
+   - **Cyclic garbage collector** handles reference cycles (objects referencing each other). It periodically scans for unreachable cycles using a generational approach (three generations) and frees them.
+   - The `gc` module allows manual control and tuning.
+
+4.  **Check Against Requirements:**
+   - Short? Yes, ~3 bullet points.
+   - Concise? Yes, no fluff.
+   - Correct? Yes, accurately describes Python's dual mechanism (ref counting + cyclic GC), mentions generations, and notes the `gc` module.
+
+   Could be even tighter:
+   Python uses a hybrid approach:
+   1. **Reference counting** (primary): Tracks references to each object. Memory is freed immediately when the count reaches zero.
+   2. **Cyclic garbage collector** (secondary): Periodically detects and collects reference cycles that reference counting can't resolve, using a generational algorithm (generations 0, 1, 2).
+   The `gc` module provides manual control and diagnostics.
+
+5.  **Final Polish:** Ensure technical accuracy and brevity. Matches Python's actual implementation (CPython). No extra details needed. Ready.✅
+   Output matches the refined version.✅
+   Proceed. 
+   Output generation. 
+   [Self-Correction/Verification during thought]
+   - Is reference counting technically "garbage collection"? In Python docs, it's often called memory management, but it's universally described as the primary GC mechanism. I'll clarify it's the primary mechanism.
+   - Cyclic GC is indeed generational.
+   - Correct and concise. All good.✅
+   Output matches response. 
+   Proceeds. 
+   [Output Generation] -> *See response.* 
+   *(Self-Correction/Note during drafting)*: I should make sure it's explicitly clear that reference counting handles most cases instantly, while the cyclic collector handles edge cases. The draft already does this. Length is ~50 words. Perfect.✅
+   Final check of the prompt: "Answer short, concise, and correct." -> Met.✅
+   Output matches the refined version.✅
+   [Done.] 
+   *Output Generation* (matches the final refined version)
+   "Python uses a hybrid garbage collection system:
+   - **Reference counting** (primary): Every object tracks its reference count. Memory is freed immediately when the count drops to zero.
+   - **Cyclic garbage collector** (secondary): Periodically detects and collects reference cycles (objects referencing each other) that reference counting can’t resolve, using a generational algorithm (generations 0, 1, 2).
+   The built-in `gc` module allows manual control, tuning, and diagnostics." 
+   This is accurate, covers both mechanisms, explains how they work, and stays within the requested constraints.✅
+   Proceeds. 
+   [Output] -> *Proceeds to generate response.* 
+   *(Note: I'll make it slightly tighter to strictly meet "short, concise")*
+   "Python uses a hybrid approach:
+   1. **Reference counting** (primary): Tracks references to each object. Memory is freed immediately when the count reaches zero.
+   2. **Cyclic garbage collector** (secondary): Periodically scans for and collects reference cycles that reference counting can’t resolve, using a generational algorithm (generations 0, 1, 2).
+   The `gc` module provides manual control and diagnostics." 
+   Perfect.✅
+   Output matches. 
+   [Done.]
+
+        [out] Python uses a hybrid approach:
+
+1. **Reference counting** (primary): Every object tracks how many references point to it. Memory is freed immediately when the count drops to zero.
+2. **Cyclic garbage collector** (secondary): Periodically detects and collects reference cycles (objects referencing each other) that reference counting can't resolve, using a generational algorithm (generations 0, 1, 2).
+
+The built-in `gc` module allows manual control, tuning, and diagnostics.     [Q04] TTFT=3463.62ms TPOT=540.01ms Chunks=1093 Total=593.16s
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Topic:** Microservices
+   - **Requirements:** Short, concise, and correct
+   - **Goal:** Provide a clear, accurate definition/description that meets the constraints
+
+2.  **Identify Key Concepts of Microservices:**
+   - Architectural style
+   - Decomposes application into small, independent services
+   - Each service handles a specific business capability
+   - Services communicate via lightweight protocols (usually HTTP/REST, gRPC, messaging)
+   - Independently deployable, scalable, and maintainable
+   - Often use decentralized data management
+   - Contrasts with monolithic architecture
+
+3.  **Draft - Mental Refinement (aiming for short & concise):**
+   Microservices are an architectural style that structures an application as a collection of small, independent, loosely coupled services. Each service owns a specific business function, runs in its own process, communicates via lightweight APIs (like REST or messaging), and can be developed, deployed, and scaled independently. This contrasts with monolithic architectures, enabling greater flexibility, resilience, and team autonomy.
+
+4.  **Check Against Requirements:**
+   - *Short?* Yes, ~3 sentences, ~50 words.
+   - *Concise?* Yes, no fluff, straight to key characteristics.
+   - *Correct?* Yes, accurately captures the core principles (independent services, specific business capability, lightweight communication, independent deployment/scaling, contrast to monolith).
+
+5.  **Final Polish (ensure maximum precision & brevity):**
+   Microservices are an architectural style that structures an application as a collection of small, independent, loosely coupled services. Each service encapsulates a specific business capability, runs in its own process, communicates via lightweight APIs (e.g., REST, gRPC, or messaging), and can be developed, deployed, and scaled independently. This enables greater agility, resilience, and team autonomy compared to monolithic architectures.
+
+   Word count: ~58. Meets all criteria. Ready.✅
+
+        [out] Microservices are an architectural style that structures an application as a collection of small, independent, loosely coupled services. Each service encapsulates a single business capability, runs in its own process, communicates via lightweight APIs (e.g., REST, gRPC, or messaging), and can be developed, deployed, and scaled independently. This approach enables greater agility, resilience, and team autonomy compared to monolithic architectures.     [Q05] TTFT=3021.62ms TPOT=542.43ms Chunks=516 Total=282.37s
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Question:** What is a closure in programming?
+   - **Requirements:** Short, concise, and correct.
+
+2.  **Define Closure (Core Concept):**
+   - A closure is a function that captures and retains access to variables from its enclosing (lexical) scope, even after the outer function has finished executing.
+   - Key elements: function + reference to its lexical environment.
+
+3.  **Identify Key Components for Conciseness:**
+   - Function
+   - Captures/retains access to outer scope variables
+   - Persists after outer function returns
+   - Lexical scoping
+
+4.  **Draft (Mental Refinement):**
+   A closure is a function that retains access to variables from its enclosing lexical scope, even after the outer function has finished executing. It bundles the function together with its referenced environment.
+
+5.  **Check Against Requirements:**
+   - Short? Yes, ~2 sentences.
+   - Concise? Yes, no fluff.
+   - Correct? Yes, matches standard CS definition.
+
+6.  **Final Polish:**
+   "A closure is a function that captures and retains access to variables from its enclosing lexical scope, even after the outer function has finished executing. It effectively bundles the function with its referenced environment."
+
+   This is accurate, covers the essential mechanism (lexical scoping + persistence), and meets the length constraint. I'll make it slightly tighter if possible, but it's already good.
+
+   Alternative: "A closure is a function that retains access to variables from its outer (lexical) scope, even after that scope has finished executing. It bundles the function with its referenced environment."
+
+   Both are fine. I'll go with the refined version.✅
+
+        [out] A closure is a function that captures and retains access to variables from its enclosing lexical scope, even after the outer function has finished executing. It effectively bundles the function together with its referenced environment.     [Q06] TTFT=3485.22ms TPOT=542.23ms Chunks=422 Total=231.76s
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Topic:** CAP theorem
+   - **Requirements:** Short, concise, and correct
+
+2.  **Identify Key Concepts of CAP Theorem:**
+   - Stands for Consistency, Availability, Partition Tolerance
+   - Applies to distributed data stores/systems
+   - States that a distributed system can only guarantee at most two of the three properties simultaneously
+   - Partition tolerance is usually non-negotiable in real-world distributed systems, so the practical choice is between CP (Consistency + Partition Tolerance) and AP (Availability + Partition Tolerance)
+
+3.  **Draft - Mental Refinement (aiming for short & concise):**
+   The CAP theorem states that a distributed data system can only guarantee two of three properties at once:
+   - **Consistency:** Every read receives the most recent write or an error.
+   - **Availability:** Every request receives a (non-error) response, without guarantee it's the most recent data.
+   - **Partition Tolerance:** The system continues operating despite network failures splitting nodes into isolated groups.
+   In practice, partition tolerance is essential for distributed systems, so designers must choose between CP (prioritizing consistency) or AP (prioritizing availability) during network partitions.
+
+4.  **Check against Requirements:**
+   - Short? Yes, ~70 words.
+   - Concise? Yes, bullet points + clear explanation.
+   - Correct? Yes, accurately reflects the theorem and its practical implications.
+
+   One minor adjustment: Make it even tighter and ensure technical precision. The theorem is specifically about *distributed* systems, and the "two out of three" is a simplification but widely accepted. I'll keep it precise.
+
+   Refined version:
+   The CAP theorem states that a distributed data system can only guarantee two of three properties simultaneously:
+   • **Consistency:** All nodes see the same data at the same time.
+   • **Availability:** Every request gets a response, even if data isn’t up-to-date.
+   • **Partition Tolerance:** The system keeps working despite network failures isolating nodes.
+   Since network partitions are inevitable in distributed systems, practical designs choose either **CP** (consistency over availability during splits) or **AP** (availability over consistency).
+
+5.  **Final Verification:**
+   - Accurate? Yes.
+   - Short/concise? Yes, ~60 words.
+   - Covers core concept + practical implication? Yes.
+   - Matches request exactly. Ready.✅
+
+        [out] The CAP theorem states that a distributed data system can only guarantee two of three properties simultaneously:
+
+• **Consistency:** Every read receives the most recent write or an error.  
+• **Availability:** Every request receives a non-error response, without guaranteeing it's the latest data.  
+• **Partition Tolerance:** The system continues operating despite network failures that isolate nodes.
+
+Since network partitions are inevitable in real-world distributed systems, practical architectures must choose either **CP** (prioritize consistency during splits) or **AP** (prioritize availability during splits).     [Q07] TTFT=3498.72ms TPOT=533.62ms Chunks=661 Total=355.69s
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Question:** How does DNS resolution work?
+   - **Requirements:** Short, concise, and correct.
+
+2.  **Identify Key Concepts of DNS Resolution:**
+   - User enters a domain name (e.g., example.com)
+   - Browser/OS checks local cache
+   - If not cached, query goes to recursive resolver (usually ISP or public DNS like 8.8.8.8)
+   - Recursive resolver checks its cache
+   - If not cached, it queries root servers
+   - Root servers refer to TLD servers (e.g., .com)
+   - TLD servers refer to authoritative nameservers for the domain
+   - Authoritative nameservers return the IP address
+   - Recursive resolver caches the result and returns it to the user
+   - User's device connects to the IP address
+
+3.  **Condense to Short & Concise:**
+   Need to strip fluff, keep the logical flow, ensure technical accuracy, and keep it brief.
+   Draft:
+   When you enter a domain name, your device first checks its local cache. If not found, it sends a query to a recursive DNS resolver (usually provided by your ISP). The resolver checks its cache, then queries root servers, which direct it to the appropriate Top-Level Domain (TLD) server (e.g., .com). The TLD server points to the domain’s authoritative nameserver, which returns the actual IP address. The resolver caches this result, sends it back to your device, and your browser connects to the IP.
+
+4.  **Check Against Requirements:**
+   - Short? Yes, ~3 sentences.
+   - Concise? Yes, covers the full chain without extra details.
+   - Correct? Yes, accurately describes recursive resolution, caching, root → TLD → authoritative flow.
+   - Could be tighter? Let's refine slightly for maximum precision and brevity.
+
+   Refined:
+   When you request a domain, your device checks its local cache. If missing, it queries a recursive DNS resolver. The resolver checks its cache, then contacts root servers, which direct it to the appropriate TLD server (e.g., .com). The TLD server refers it to the domain’s authoritative nameserver, which returns the IP address. The resolver caches the result, sends it back to your device, and your browser connects to the IP.
+
+5.  **Final Verification:**
+   - Covers: local cache → recursive resolver → root → TLD → authoritative → IP → cache & return
+   - Technically accurate
+   - Meets "short, concise, correct" requirement
+   - No fluff, no unnecessary jargon explained unless necessary
+   - Ready. Output matches refined version.✅
+
+        [out] When you request a domain, your device first checks its local cache. If not found, it sends a query to a recursive DNS resolver. The resolver checks its cache, then contacts root servers, which direct it to the appropriate TLD server (e.g., `.com`). The TLD server points to the domain's authoritative nameserver, which returns the actual IP address. The resolver caches the result, sends it back to your device, and your browser connects to the IP.     [Q08] TTFT=3198.66ms TPOT=526.63ms Chunks=690 Total=366.04s
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Question:** "What are design patterns?"
+   - **Constraints:** "Answer short, concise, and correct."
+
+2.  **Identify Key Concepts:**
+   - Design patterns are reusable solutions to common software design problems.
+   - They are not finished code, but templates/guidelines.
+   - They promote best practices, improve code readability, maintainability, and reusability.
+   - Originated from the "Gang of Four" book (1994).
+
+3.  **Draft - Mental Refinement (aiming for short & concise):**
+   Design patterns are proven, reusable templates for solving common software design problems. They are not finished code but rather guidelines that promote best practices, improve code maintainability, and facilitate communication among developers.
+
+4.  **Check Constraints:**
+   - Short? Yes, ~2 sentences.
+   - Concise? Yes, gets straight to the point without fluff.
+   - Correct? Yes, accurately reflects the standard definition in software engineering.
+
+5.  **Final Polish:**
+   Design patterns are proven, reusable templates for solving common software design problems. They are not finished code but rather best-practice guidelines that improve code maintainability, reusability, and developer communication.
+
+   Word count: ~38. Fits constraints perfectly. Covers what they are, what they aren't, and their purpose. Ready.✅
+
+        [out] Design patterns are proven, reusable templates for solving common software design problems. They are not finished code but rather best-practice guidelines that improve code maintainability, reusability, and developer communication.     [Q09] TTFT=3403.18ms TPOT=518.88ms Chunks=354 Total=186.57s
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+      [think] Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Topic:** Database transactions
+   - **Requirements:** Short, concise, and correct
+   - **Goal:** Provide a clear, accurate definition/description that meets the constraints
+
+2.  **Identify Key Concepts of Database Transactions:**
+   - A transaction is a logical unit of work
+   - It consists of one or more database operations (reads/writes)
+   - It follows ACID properties: Atomicity, Consistency, Isolation, Durability
+   - It either completes fully (commit) or fails completely (rollback)
+   - Ensures data integrity and reliability
+
+3.  **Draft - Mental Refinement (aiming for short & concise):**
+   A database transaction is a logical unit of work comprising one or more operations that must execute as a single, indivisible sequence. It follows the ACID properties: Atomicity (all-or-nothing execution), Consistency (maintains database rules), Isolation (concurrent transactions don’t interfere), and Durability (committed changes persist). Transactions either commit (save changes) or rollback (undo changes) to ensure data integrity.
+
+4.  **Check Against Requirements:**
+   - Short? Yes, ~3 sentences
+   - Concise? Yes, no fluff, straight to key points
+   - Correct? Yes, accurately covers definition, ACID, commit/rollback, and purpose
+   - Could be tighter? Let's trim slightly for maximum conciseness while preserving accuracy.
+
+   Revised: A database transaction is a logical unit of work containing one or more operations that execute as a single, indivisible sequence. It guarantees data integrity through ACID properties: Atomicity (all-or-nothing), Consistency (valid state maintained), Isolation (concurrent operations don’t interfere), and Durability (committed changes persist). Transactions either commit (save) or rollback (undo) entirely.
+
+5.  **Final Verification:**
+   - Covers definition? Yes
+   - Mentions ACID? Yes, with brief explanations
+   - Mentions commit/rollback? Yes
+   - Short/concise? ~3 sentences, ~50 words
+   - Technically accurate? Yes, standard database theory
+   - Meets all constraints? Yes
+
+   Ready. Output matches the revised version.✅
+
+        [out] A database transaction is a logical unit of work containing one or more operations that execute as a single, indivisible sequence. It ensures data integrity through the ACID properties: **Atomicity** (all operations succeed or none do), **Consistency** (database rules are preserved), **Isolation** (concurrent transactions don't interfere), and **Durability** (committed changes survive failures). Transactions either **commit** (permanently save changes) or **rollback** (undo all changes) to maintain reliability.     [Q10] TTFT=3102.82ms TPOT=542.23ms Chunks=596 Total=325.73s
+
+================ PROFILE SUMMARY ================
+[info] Average Time to First Token (TTFT): 3292.97 ms
+[info] Average Time per Output Token (TPOT): 532.66 ms
+[info] Estimated Generation Throughput: 1.88 tokens/sec
+[time] Average Total Wall Duration: 312.24 seconds
+=================================================

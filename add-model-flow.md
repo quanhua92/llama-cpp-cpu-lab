@@ -39,7 +39,7 @@ MODELS["<key>"]="<org>/<repo>|<local-filename>.gguf|<display description>"
 Example:
 ```bash
 MODELS["qwen3.5-2b"]="unsloth/Qwen3.5-2B-GGUF|Qwen3.5-2B-Q4_K_M.gguf|Qwen3.5 2B (Q4_K_M)"
-MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B-it-qat-q4_0.gguf|Gemma 4 E2B QAT (Q4_0) — MoE, QAT quantized"
+MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B-it-qat-q4_0.gguf|Gemma 4 E2B QAT (Q4_0) — Dense 2.3B, QAT quantized"
 ```
 
 ## 4. Add to run_cpu_benchmarks.sh and run_gpu_benchmarks.sh

@@ -14,7 +14,7 @@ Per-model example outputs for debugging and quality comparison.
 ./generate_examples_cpu.sh
 
 # Single model
-./generate_examples_cpu.sh gemma4-qat-26b
+./generate_examples_cpu.sh gemma4-qat-26b-a4b
 
 # Only ask or only reflect
 ./generate_examples_cpu.sh --prompts ask
@@ -29,6 +29,11 @@ Per-model example outputs for debugging and quality comparison.
 
 # Skip already-generated files
 ./generate_examples_cpu.sh --skip-existing
+
+# Large models (12B+) take 10-20 min per prompt. Use nohup to avoid timeout:
+nohup ./generate_examples_cpu.sh gemma4-qat-12b > /tmp/examples.log 2>&1 &
+nohup ./generate_examples_cpu.sh gemma4-qat-26b-a4b > /tmp/examples.log 2>&1 &
+nohup ./generate_examples_cpu.sh gemma4-qat-31b > /tmp/examples.log 2>&1 &
 
 # GPU
 ./generate_examples_gpu.sh

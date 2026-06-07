@@ -14,19 +14,21 @@ MODELS["qwen2.5-3b"]="Qwen/Qwen2.5-3B-Instruct-GGUF|qwen2.5-3b-instruct-q4_k_m.g
 MODELS["qwen2.5-coder-1.5b"]="Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF|qwen2.5-coder-1.5b-instruct-q4_k_m.gguf|Qwen2.5 Coder 1.5B (Q4_K_M)"
 MODELS["llama3.2-1b"]="hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF|llama-3.2-1b-instruct-q4_k_m.gguf|Llama 3.2 1B (Q4_K_M)"
 MODELS["llama3.2-3b"]="hugging-quants/Llama-3.2-3B-Instruct-Q4_K_M-GGUF|llama-3.2-3b-instruct-q4_k_m.gguf|Llama 3.2 3B (Q4_K_M)"
-MODELS["gemma4-e2b"]="unsloth/gemma-4-E2B-it-GGUF|gemma-4-E2B-it-Q4_K_M.gguf|Gemma 4 E2B (Q4_K_M, 5B total, 2.3B active) — MoE, multimodal, 128K ctx"
-MODELS["gemma4-e4b"]="unsloth/gemma-4-E4B-it-GGUF|gemma-4-E4B-it-Q4_K_M.gguf|Gemma 4 E4B (Q4_K_M, 8B total, 4.5B active) — MoE, multimodal, 128K ctx"
+MODELS["gemma4-e2b"]="unsloth/gemma-4-E2B-it-GGUF|gemma-4-E2B-it-Q4_K_M.gguf|Gemma 4 E2B (Q4_K_M, Dense 2.3B) — multimodal, 128K ctx"
+MODELS["gemma4-e4b"]="unsloth/gemma-4-E4B-it-GGUF|gemma-4-E4B-it-Q4_K_M.gguf|Gemma 4 E4B (Q4_K_M, Dense 4.5B) — multimodal, 128K ctx"
 MODELS["qwen3.5-0.8b"]="unsloth/Qwen3.5-0.8B-GGUF|Qwen3.5-0.8B-Q4_K_M.gguf|Qwen3.5 0.8B (Q4_K_M)"
 MODELS["qwen3.5-2b"]="unsloth/Qwen3.5-2B-GGUF|Qwen3.5-2B-Q4_K_M.gguf|Qwen3.5 2B (Q4_K_M)"
 MODELS["qwen3.5-4b"]="unsloth/Qwen3.5-4B-GGUF|Qwen3.5-4B-Q4_K_M.gguf|Qwen3.5 4B (Q4_K_M)"
 MODELS["gemma2-2b"]="bartowski/gemma-2-2b-it-GGUF|gemma-2-2b-it-Q4_K_M.gguf|Gemma 2 2B IT (Q4_K_M) — Dense, no MoE"
 MODELS["deepseek-r1-1.5b"]="unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF|DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf|DeepSeek-R1-Distill-Qwen-1.5B (Q4_K_M) — RL-reasoning distilled"
 MODELS["phi4-mini"]="unsloth/Phi-4-mini-instruct-GGUF|Phi-4-mini-instruct-Q4_K_M.gguf|Phi-4 Mini 3.8B (Q4_K_M) — Microsoft instruction-tuned"
-MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B_q4_0-it.gguf|gemma-4-E2B-it-qat-q4_0.gguf|Gemma 4 E2B QAT (Q4_0, 5B total, 2.3B active) — MoE, QAT quantized"
-MODELS["gemma4-qat-e4b"]="google/gemma-4-E4B-it-qat-q4_0-gguf|gemma-4-E4B_q4_0-it.gguf|gemma-4-E4B-it-qat-q4_0.gguf|Gemma 4 E4B QAT (Q4_0, 8B total, 4.5B active) — MoE, QAT quantized"
+MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B_q4_0-it.gguf|gemma-4-E2B-it-qat-q4_0.gguf|Gemma 4 E2B QAT (Q4_0, Dense 2.3B) — QAT quantized"
+MODELS["gemma4-qat-e4b"]="google/gemma-4-E4B-it-qat-q4_0-gguf|gemma-4-E4B_q4_0-it.gguf|gemma-4-E4B-it-qat-q4_0.gguf|Gemma 4 E4B QAT (Q4_0, Dense 4.5B) — QAT quantized"
 MODELS["gemma4-qat-12b"]="google/gemma-4-12B-it-qat-q4_0-gguf|gemma-4-12b-it-qat-q4_0.gguf|gemma-4-12b-it-qat-q4_0.gguf|Gemma 4 12B QAT (Q4_0, Dense) — QAT quantized"
-MODELS["gemma4-qat-26b"]="google/gemma-4-26B-A4B-it-qat-q4_0-gguf|gemma-4-26B_q4_0-it.gguf|gemma-4-26B-A4B-it-qat-q4_0.gguf|Gemma 4 26B-A4B QAT (Q4_0, 27B total, ~4B active) — MoE, QAT quantized"
+MODELS["gemma4-qat-26b-a4b"]="google/gemma-4-26B-A4B-it-qat-q4_0-gguf|gemma-4-26B_q4_0-it.gguf|gemma-4-26B-A4B-it-qat-q4_0.gguf|Gemma 4 26B-A4B QAT (Q4_0, 27B total, ~4B active) — MoE, QAT quantized"
 MODELS["gemma4-qat-31b"]="google/gemma-4-31B-it-qat-q4_0-gguf|gemma-4-31B_q4_0-it.gguf|gemma-4-31B-it-qat-q4_0.gguf|Gemma 4 31B QAT (Q4_0, Dense, 33B) — QAT quantized"
+MODELS["qwen3.6-35b-a3b"]="unsloth/Qwen3.6-35B-A3B-GGUF|Qwen3.6-35B-A3B-UD-Q4_K_M.gguf|Qwen3.6 35B-A3B (UD-Q4_K_M, MoE 35B, ~3B active) — vision-language"
+MODELS["qwen3.6-27b"]="unsloth/Qwen3.6-27B-GGUF|Qwen3.6-27B-Q4_K_M.gguf|Qwen3.6 27B (Q4_K_M, Dense) — vision-language"
 
 usage() {
     echo "Usage: $0 [model] [port] [--no-reasoning] [--chat-template <name>] [--chat-template-file <path>] [extra flags...]"
@@ -38,7 +40,7 @@ usage() {
     done
     echo ""
     echo "Examples:"
-    echo "  $0                                               # default gemma4-qat-26b :8080"
+     echo "  $0                                               # default gemma4-qat-26b-a4b :8080"
     echo "  $0 llama3.2-1b                                   # llama on 8080"
     echo "  $0 qwen2.5-1.5b 8081                             # qwen on 8081"
     echo "  $0 gemma4-e2b --chat-template gemma              # force gemma template"
@@ -51,7 +53,7 @@ usage() {
 }
 
 # Parse: model, optional port, then extra flags for llama-server
-MODEL_KEY="${1:-gemma4-qat-26b}"
+MODEL_KEY="${1:-gemma4-qat-26b-a4b}"
 if [ "$MODEL_KEY" = "--help" ] || [ "$MODEL_KEY" = "-h" ]; then usage; fi
 shift 2>/dev/null || true
 

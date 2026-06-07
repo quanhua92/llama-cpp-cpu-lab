@@ -48,9 +48,11 @@ declare -a ALL_KEYS=(
     "gemma4-e4b"
     "gemma4-qat-e4b"
     "gemma4-qat-12b"
-    "gemma4-qat-26b"
-    "gemma4-qat-31b"
-)
+    "gemma4-qat-26b-a4b"
+     "gemma4-qat-31b"
+     "qwen3.6-35b-a3b"
+     "qwen3.6-27b"
+ )
 
 if [ $# -gt 0 ]; then
     MODEL_KEYS=("$@")
