@@ -60,10 +60,38 @@ echo "Started: $!"
 ### Monitor Progress
 
 ```bash
-ls results/gpu/<key>*.txt        # results
-ls examples/gpu/<key>*.md        # examples
-tail -5 /tmp/bench_gpu_think.log # last 5 lines of log
+# Check process is alive
+ps -p <PID> -o pid,cmd
+
+# Check log tail
+tail -20 /tmp/bench_gpu_think.log
+
+# Check for failures in results
+grep -c "Failed\." results/gpu/<key>_think.txt
+
+# Check for timing data (means questions completed)
+grep -c "timings" results/gpu/<key>_think.txt
 ```
+
+**Do NOT use `ls | wc -l` alone** — it shows file count but not whether the process finished. Always pair with `ps -p <PID>`.
+
+### Monitor Loop
+
+When asked to monitor, keep checking every 60s until done or max ~15 min:
+
+```bash
+for i in 1 2 3; do
+  ps -p <PID> -o pid,cmd 2>/dev/null || { echo "Process finished"; break; }
+  count=$(ls results/gpu/*_nothink.txt 2>/dev/null | wc -l)
+  echo "=== $(date +%H:%M:%S) === $count/6 done"
+  tail -3 /tmp/bench_gpu_think.log
+  sleep 60
+done
+```
+
+If still running after 3 checks, immediately run the same loop again. Repeat until done. Never ask the user to say "check again".
+
+Stops early if process finishes. If still running after 15 min, report status and stop. Adjust the number based on expected runtime.
 
 ### What You Get
 

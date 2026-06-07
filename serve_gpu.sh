@@ -77,11 +77,15 @@ N_GL=99
 # Handle --ngl N and --no-reasoning → --reasoning off
 FILTERED_ARGS=()
 i=0
+skip=false
 for arg in "${EXTRA_ARGS[@]}"; do
-    if [ "$arg" = "--no-reasoning" ]; then
+    if [ "$skip" = true ]; then
+        skip=false
+    elif [ "$arg" = "--no-reasoning" ]; then
         FILTERED_ARGS+=("--reasoning" "off")
     elif [ "$arg" = "--ngl" ]; then
         N_GL="${EXTRA_ARGS[$((i+1))]}"
+        skip=true
     else
         FILTERED_ARGS+=("$arg")
     fi

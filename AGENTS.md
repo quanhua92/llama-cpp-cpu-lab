@@ -12,13 +12,17 @@ Mandatory rules for all agents working in this repository. These are non-negotia
 
 4. **NEVER chain `pkill`/`kill` with other commands in one shell invocation.** `pkill` can hang or match the wrong process. Run `pkill` as a separate command, verify it completed, then run the next command.
 
-5. **NEVER use `tail -f` or long-running `while sleep` loops in bash.** These block the shell tool and cannot be interrupted cleanly. Use single `ls` or `tail -5` (no `-f`) to check status.
+5. **NEVER use `tail -f` or long-running `while sleep` loops in bash.** These block the shell tool and cannot be interrupted cleanly.
 
-6. **NEVER run a benchmark step without first confirming the previous step finished.** Check `ls results/gpu/*.txt` or `ps -p <PID>` before starting the next step.
+6. **NEVER run a benchmark step without first confirming the previous step finished.** Check `ps -p <PID>` and the log before starting the next step.
 
 7. **NEVER assume SCP transfers are complete.** Always check with `ls -la` before and after a delay, or `ps aux | grep scp`.
 
 8. **NEVER use `rm -f` or `rm -rf` on result/example files.** If cleanup is needed, list what would be deleted and ask for confirmation.
+
+9. **NEVER assume a benchmark step is done just because the file count hasn't changed.** A model may be mid-run. Check the process and log.
+
+10. **NEVER use `ls *.txt | wc -l` as the only completion check.** It tells you file count but not whether the process finished. Always pair with `ps -p <PID>`.
 
 ## ALWAYS
 
@@ -37,6 +41,26 @@ Mandatory rules for all agents working in this repository. These are non-negotia
 7. **Always use server-side metrics (`predicted_per_second`).** Client-side TPOT is deprecated and removed from all scripts.
 
 8. **Always match existing code style.** No comments unless asked. Mimic surrounding patterns.
+
+9. **Always monitor benchmarks by checking BOTH the process AND the log, not just file count.**
+   - Check process: `ps -p <PID> -o pid,cmd`
+   - Check log tail: `tail -20 /tmp/bench_gpu_think.log`
+   - Check for failures: `grep -c "Failed\." results/gpu/<key>_think.txt`
+   - Check for timing data: `grep -c "timings" results/gpu/<key>_think.txt`
+   - File count alone (`ls | wc -l`) is NOT sufficient to confirm completion.
+
+10. **When user asks to monitor, check 3 times with 60s sleep. If still running, immediately start another round of 3 checks. Keep going until done. Never ask the user to say "check again".**
+    ```bash
+    for i in 1 2 3; do
+      ps -p <PID> -o pid,cmd 2>/dev/null || { echo "Process finished"; break; }
+      count=$(ls results/gpu/*_nothink.txt 2>/dev/null | wc -l)
+      echo "=== $(date +%H:%M:%S) === $count/6 done"
+      tail -3 /tmp/bench_gpu_think.log
+      sleep 60
+    done
+    ```
+    After the loop, if the process is still running, run the same loop again in a new tool call. Repeat until process finishes. Never stop and wait for the user to ask.
+    This monitors for up to 15 minutes. Stops early if process finishes. If still running after 15 min, report status and stop. Adjust the number based on expected runtime.
 
 ## Project Context
 

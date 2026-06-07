@@ -133,8 +133,10 @@ echo "================ VALIDATION ================"
 ALL_OK=true
 for f in "$RESULTS_DIR"/*${SUFFIX}.txt; do
     [ -f "$f" ] || continue
-    total=$(grep -c "\[Q" "$f" 2>/dev/null || echo 0)
-    fails=$(grep -c "Failed\." "$f" 2>/dev/null || echo 0)
+    total=$(grep -c "\[Q" "$f" 2>/dev/null)
+    total=${total:-0}
+    fails=$(grep -c "Failed\." "$f" 2>/dev/null)
+    fails=${fails:-0}
     if [ "$total" -gt 0 ] && [ "$fails" -gt 0 ]; then
         echo "  FAIL: $(basename "$f") — $fails/$total questions failed"
         ALL_OK=false
