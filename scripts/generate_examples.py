@@ -53,6 +53,7 @@ async def call_llm(client, messages, model_name, max_tokens=4096):
     thinking = ""
     content = ""
     completion_tokens = 0
+    server_timings = {}
 
     try:
         async with client.stream("POST", API_URL, json=payload, timeout=300.0) as stream:
@@ -70,6 +71,7 @@ async def call_llm(client, messages, model_name, max_tokens=4096):
                         data = json.loads(line[6:])
                         timings = data.get("timings", {})
                         if timings:
+                            server_timings = timings
                             completion_tokens = timings.get("predicted_n", completion_tokens)
                         delta = data.get("choices", [{}])[0].get("delta", {})
                         if delta.get("reasoning_content"):
@@ -90,6 +92,7 @@ async def call_llm(client, messages, model_name, max_tokens=4096):
                 "tokens": completion_tokens,
                 "thinking": thinking,
                 "content": content,
+                "server_timings": server_timings,
             }, None
     except Exception as e:
         return None, f"Request failed: {e}"
@@ -164,9 +167,21 @@ Revise the original response incorporating the critique feedback. Improve clarit
     }, None
 
 
-def write_ask_output(output_dir, model_key, model_filename, prompt, data):
+def format_timings_line(timings):
+    if not timings:
+        return "[timings] (none)"
+    parts = []
+    for key in ("prompt_n", "prompt_ms", "prompt_per_token_ms", "prompt_per_second",
+                "predicted_n", "predicted_ms", "predicted_per_token_ms", "predicted_per_second"):
+        if key in timings:
+            parts.append(f"{key}={timings[key]}")
+    return "[timings] " + ", ".join(parts)
+
+
+def write_ask_output(output_dir, model_key, model_filename, prompt, data, raw_data):
     os.makedirs(output_dir, exist_ok=True)
     filepath = os.path.join(output_dir, f"{model_key}_ask.md")
+    json_path = os.path.join(output_dir, f"{model_key}_ask.json")
 
     step = data["steps"][0]
     r = step["result"]
@@ -183,6 +198,8 @@ def write_ask_output(output_dir, model_key, model_filename, prompt, data):
         lines.append(f" [think] {r['thinking']}")
     if r["content"]:
         lines.append(f"   [out] {r['content']}")
+    lines.append("")
+    lines.append(format_timings_line(r.get("server_timings", {})))
     lines.extend([
         "",
         "=" * 60,
@@ -192,12 +209,17 @@ def write_ask_output(output_dir, model_key, model_filename, prompt, data):
     with open(filepath, "w") as f:
         f.write("\n".join(lines) + "\n")
 
+    if raw_data:
+        with open(json_path, "w") as f:
+            json.dump(raw_data, f)
+
     return filepath
 
 
-def write_reflect_output(output_dir, model_key, model_filename, prompt, data):
+def write_reflect_output(output_dir, model_key, model_filename, prompt, data, raw_data):
     os.makedirs(output_dir, exist_ok=True)
     filepath = os.path.join(output_dir, f"{model_key}_reflect.md")
+    json_path = os.path.join(output_dir, f"{model_key}_reflect.json")
 
     lines = [
         f"Model: {model_filename}",
@@ -225,6 +247,7 @@ def write_reflect_output(output_dir, model_key, model_filename, prompt, data):
             lines.append(f"      [think] {r['thinking']}")
         if r["content"]:
             lines.append(f"        [out] {r['content']}")
+        lines.append(format_timings_line(r.get("server_timings", {})))
 
     avg_tps = sum(all_tps) / len(all_tps) if all_tps else 0
 
@@ -243,6 +266,10 @@ def write_reflect_output(output_dir, model_key, model_filename, prompt, data):
 
     with open(filepath, "w") as f:
         f.write("\n".join(lines) + "\n")
+
+    if raw_data:
+        with open(json_path, "w") as f:
+            json.dump(raw_data, f)
 
     return filepath
 
@@ -284,10 +311,10 @@ async def main():
                 continue
 
             if prompt_name == "reflect":
-                filepath = write_reflect_output(args.output_dir, args.model_key, model_filename, prompt, data)
+                filepath = write_reflect_output(args.output_dir, args.model_key, model_filename, prompt, data, data)
                 total_tokens = sum(s["result"]["tokens"] for s in data["steps"])
             else:
-                filepath = write_ask_output(args.output_dir, args.model_key, model_filename, prompt, data)
+                filepath = write_ask_output(args.output_dir, args.model_key, model_filename, prompt, data, data)
                 total_tokens = data["steps"][0]["result"]["tokens"]
 
             print(f"  [{prompt_name}] Done: {filepath} ({total_tokens} tokens)")

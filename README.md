@@ -368,9 +368,12 @@ If `hf` is not installed: `uv add huggingface_hub`.
 
 | Abbreviation | Full Name | Description |
 |---|---|---|
-| **TTFT** | Time to First Token | How long until the first output token arrives (ms). Lower = more responsive. |
-| **TPOT** | Time Per Output Token | Average inter-chunk latency (ms). Lower = faster streaming. Note: in think mode this includes reasoning chunks, so it appears faster than the actual answer token speed. |
-| **Throughput** | Tokens per second | `1000 / TPOT`. Higher = more tokens generated per second. Same caveat as TPOT for think mode. |
+| **TTFT** | Time to First Token | How long until the first output token arrives (ms). Lower = more responsive. Client-side measurement. |
+| **TPOT** | Time Per Output Token (client) | Average inter-chunk latency (ms). **Deprecated** — use Decode Speed instead. In think mode this includes reasoning chunks, making it inaccurate. |
+| **Decode Speed** | predicted\_per\_second | Actual tokens generated per second (from llama.cpp server). The real generation throughput. |
+| **Decode Time** | predicted\_per\_token\_ms | Milliseconds per generated token. `1000 / decode_speed`. |
+| **Prefill Time** | prompt\_ms | Time to process the prompt tokens before generation starts. Lower = faster first response. |
+| **Prefill Speed** | prompt\_per\_second | Prompt tokens processed per second. Higher = better GPU utilization for prompt. |
 | **TTOT** | Total Time of Test | Total wall-clock duration for one question including TTFT + all token generation. |
 | **CoT** | Chain-of-Thought | Model reasons step-by-step before answering (think mode). |
 | **QAT** | Quantization-Aware Training | Model trained with quantization in mind (Q4_0), typically more accurate than post-training quant. |

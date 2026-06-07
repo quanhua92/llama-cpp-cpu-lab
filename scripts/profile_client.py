@@ -1,15 +1,16 @@
 # profile_client.py
 import argparse
 import asyncio
-
+import json
 import time
-from datetime import datetime
+from pathlib import Path
 
 import httpx
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--reasoning", action="store_true", help="Show [think] reasoning tokens")
 parser.add_argument("--port", type=int, default=8080, help="Server port (default: 8080)")
+parser.add_argument("--output", type=str, default=None, help="Output file path (base for .txt tee and .json save)")
 args = parser.parse_args()
 SHOW_REASONING = args.reasoning
 
@@ -47,6 +48,8 @@ async def profile_single_request(client: httpx.AsyncClient, prompt: str, model_n
     response = ""
     printed_thinking_header = False
     printed_response_header = False
+    server_timings = {}
+    last_chunk = {}
 
     try:
         async with client.stream(
@@ -63,9 +66,11 @@ async def profile_single_request(client: httpx.AsyncClient, prompt: str, model_n
                     ttft = time.perf_counter() - start_time
                 token_chunks += 1
                 if chunk.startswith("data: ") and chunk != "data: [DONE]":
-                    import json
                     try:
                         data = json.loads(chunk[6:])
+                        last_chunk = data
+                        if "timings" in data:
+                            server_timings = data["timings"]
                         delta = data.get("choices", [{}])[0].get("delta", {})
                         content = delta.get("content", "")
                         reasoning = delta.get("reasoning_content", "")
@@ -86,19 +91,13 @@ async def profile_single_request(client: httpx.AsyncClient, prompt: str, model_n
                         pass
 
         total_duration = time.perf_counter() - start_time
-        tpot = (
-            (total_duration - ttft) / max(1, token_chunks - 1)
-            if token_chunks > 1
-            else 0
-        )
 
         return {
             "ttft_ms": ttft * 1000,
             "total_time_s": total_duration,
-            "chunks_generated": token_chunks,
-            "tpot_ms": tpot * 1000,
             "thinking": thinking,
             "response": response,
+            "server_timings": server_timings,
         }
     except Exception as e:
         print(f"Request failed: {e}")
@@ -118,6 +117,18 @@ async def fetch_model_name(client: httpx.AsyncClient) -> str:
     return "unknown"
 
 
+def format_server_timings_line(timings):
+    if not timings:
+        return "[timings] (none)"
+    parts = []
+    for key in ("prompt_n", "prompt_ms", "prompt_per_token_ms", "prompt_per_second",
+                "predicted_n", "predicted_ms", "predicted_per_token_ms", "predicted_per_second",
+                "cache_n", "cache_ms"):
+        if key in timings:
+            parts.append(f"{key}={timings[key]}")
+    return "[timings] " + ", ".join(parts)
+
+
 async def main():
     async with httpx.AsyncClient() as client:
         model_name = await fetch_model_name(client)
@@ -127,15 +138,29 @@ async def main():
         num_prompts = len(prompts)
 
         results = []
+        all_raw = []
         for i, (qid, prompt) in enumerate(prompts):
             print(f"\n  -> {qid} [{i + 1}/{num_prompts}]")
             print(f"     IN:  {prompt}")
             res = await profile_single_request(client, prompt, model_name)
             if res:
                 results.append((qid, res))
+                timings = res.get("server_timings", {})
                 print(
-                    f"     [{qid}] TTFT={res['ttft_ms']:.2f}ms TPOT={res['tpot_ms']:.2f}ms Chunks={res['chunks_generated']} Total={res['total_time_s']:.2f}s"
+                    f"     [{qid}] TTFT={res['ttft_ms']:.2f}ms Total={res['total_time_s']:.2f}s"
                 )
+                if timings:
+                    print(f"     {format_server_timings_line(timings)}")
+                all_raw.append({
+                    "qid": qid,
+                    "prompt": prompt,
+                    "model": model_name,
+                    "ttft_ms": res["ttft_ms"],
+                    "total_time_s": res["total_time_s"],
+                    "server_timings": timings,
+                    "thinking_length": len(res.get("thinking", "")),
+                    "response_length": len(res.get("response", "")),
+                })
             else:
                 print("     Failed.")
             await asyncio.sleep(0.5)
@@ -146,14 +171,47 @@ async def main():
 
         avg_ttft = sum(r["ttft_ms"] for _, r in results) / len(results)
         avg_total = sum(r["total_time_s"] for _, r in results) / len(results)
-        avg_tpot = sum(r["tpot_ms"] for _, r in results) / len(results)
+
+        has_server_timings = any(r.get("server_timings") for _, r in results)
+        avg_server_tps = 0
+        avg_server_tpot = 0
+        avg_prompt_ms = 0
+        total_predicted = 0
+        total_predicted_ms = 0
+        total_prompt_ms = 0
+        if has_server_timings:
+            for _, r in results:
+                t = r.get("server_timings", {})
+                if t:
+                    total_predicted += t.get("predicted_n", 0)
+                    total_predicted_ms += t.get("predicted_ms", 0)
+                    total_prompt_ms += t.get("prompt_ms", 0)
+            if total_predicted_ms > 0:
+                avg_server_tps = total_predicted / (total_predicted_ms / 1000)
+            if total_predicted > 0:
+                avg_server_tpot = total_predicted_ms / total_predicted
+            if has_server_timings:
+                avg_prompt_ms = total_prompt_ms / sum(1 for _, r in results if r.get("server_timings"))
 
         print("\n================ PROFILE SUMMARY ================")
-        print(f"[info] Average Time to First Token (TTFT): {avg_ttft:.2f} ms")
-        print(f"[info] Average Time per Output Token (TPOT): {avg_tpot:.2f} ms")
-        print(f"[info] Estimated Generation Throughput: {1000 / avg_tpot:.2f} tokens/sec")
+        print(f"[info] Model: {model_name}")
+        print(f"[info] Questions: {len(results)}")
+        print(f"[info] Average TTFT (client): {avg_ttft:.2f} ms")
+        if has_server_timings:
+            print(f"[info] Average Prompt Time (server): {avg_prompt_ms:.2f} ms")
+            print(f"[info] Total Predicted Tokens (server): {total_predicted}")
+            print(f"[info] Total Predicted Time (server): {total_predicted_ms:.2f} ms")
+            print(f"[info] Average Decode Speed (server): {avg_server_tps:.2f} tokens/sec")
+            print(f"[info] Average ms/token (server): {avg_server_tpot:.2f} ms")
         print(f"[time] Average Total Wall Duration: {avg_total:.2f} seconds")
         print("=================================================")
+
+        if args.output:
+            json_path = Path(args.output).with_suffix(".json")
+            json_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(json_path, "w") as f:
+                json.dump({"model": model_name, "results": all_raw}, f)
+            print(f"\n[info] Raw JSON saved to {json_path}")
 
 
 if __name__ == "__main__":

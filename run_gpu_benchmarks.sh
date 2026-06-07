@@ -116,7 +116,7 @@ for key in "${MODEL_KEYS[@]}"; do
     # Run profile
     echo "  -> Running profile..."
     output_file="$RESULTS_DIR/${key}${SUFFIX}.txt"
-    uv run --active python scripts/profile_client.py --port "$PORT" "${CLIENT_EXTRA[@]}" 2>&1 | tee "$output_file"
+    uv run --active python scripts/profile_client.py --port "$PORT" "${CLIENT_EXTRA[@]}" --output "$output_file" 2>&1 | tee "$output_file"
 
     # Cleanup this server
     ./stop.sh "$PORT" 2>/dev/null || true

@@ -7,6 +7,34 @@ Per-model example outputs for debugging and quality comparison.
 - `cpu/` — Per-model outputs generated on CPU (i7-10700)
 - `gpu/` — Per-model outputs generated on GPU
 
+## Output files
+
+Each model produces:
+- `{model}_ask.md` / `{model}_ask.json` — single prompt response
+- `{model}_reflect.md` / `{model}_reflect.json` — reflection agent (generate → critique → revise)
+
+The `.md` files contain `[think]` reasoning, `[out]` answer, `[timings]` server metrics, and summary.
+The `.json` files contain the raw server timing data for re-analysis.
+
+### Timings format
+
+Each `.md` file includes `[timings]` lines with real metrics from the llama.cpp server:
+
+```
+[timings] prompt_n=35, prompt_ms=5.6, prompt_per_token_ms=0.16, prompt_per_second=6242, predicted_n=16, predicted_ms=36.4, predicted_per_token_ms=2.27, predicted_per_second=440
+```
+
+| Field | Meaning |
+|-------|---------|
+| `prompt_n` | Number of prompt tokens |
+| `prompt_ms` | Time to process prompt (prefill) |
+| `prompt_per_token_ms` | ms per prompt token |
+| `prompt_per_second` | prompt tokens/sec (prefill speed) |
+| `predicted_n` | Number of generated tokens |
+| `predicted_ms` | Total generation time |
+| `predicted_per_token_ms` | ms per generated token (decode time) |
+| `predicted_per_second` | tokens/sec (decode speed) |
+
 ## Generating
 
 ```bash
@@ -36,7 +64,7 @@ nohup ./generate_examples_cpu.sh gemma4-qat-26b-a4b > /tmp/examples.log 2>&1 &
 nohup ./generate_examples_cpu.sh gemma4-qat-31b > /tmp/examples.log 2>&1 &
 
 # GPU
-./generate_examples_gpu.sh
+nohup ./generate_examples_gpu.sh > /tmp/examples_gpu.log 2>&1 &
+tail -f /tmp/examples_gpu.log
+ls examples/gpu/*.md | wc -l  # count completed files
 ```
-
-Each model produces `{model}_ask.md` and `{model}_reflect.md` with `[think]` reasoning, `[out]` answer, and timing (TTFT, tok/s, total tokens).

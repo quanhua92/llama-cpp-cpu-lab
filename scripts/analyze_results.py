@@ -25,8 +25,12 @@ PROMPTS = {
 }
 
 METRIC_RE = re.compile(
-    r"\[(Q\d{2})\]\s+TTFT=([\d.]+)ms\s+TPOT=([\d.]+)ms\s+Chunks=(\d+)\s+Total=([\d.]+)s"
+    r"\[(Q\d{2})\]\s+TTFT=([\d.]+)ms\s+Total=([\d.]+)s"
 )
+
+TIMINGS_RE = re.compile(
+    r"\[timings\]\s+prompt_n=(\d+),\s*prompt_ms=([\d.]+),\s*prompt_per_token_ms=([\d.]+),\s*prompt_per_second=([\d.]+),\s*predicted_n=(\d+),\s*predicted_ms=([\d.]+),\s*predicted_per_token_ms=([\d.]+),\s*predicted_per_second=([\d.]+)"
+    )
 
 FAILED_RE = re.compile(r"Failed\.")
 
@@ -47,12 +51,35 @@ def parse_result_file(filepath: Path) -> dict:
 
     for m in METRIC_RE.finditer(text):
         qid = m.group(1)
-        data["questions"][qid] = {
+        q_data = {
             "ttft_ms": float(m.group(2)),
-            "tpot_ms": float(m.group(3)),
-            "chunks": int(m.group(4)),
-            "total_s": float(m.group(5)),
+            "total_s": float(m.group(3)),
         }
+        data["questions"][qid] = q_data
+
+    for m in TIMINGS_RE.finditer(text):
+        qid = None
+        q_lines = text.split("\n")
+        for line in q_lines:
+            if "[timings]" in line:
+                pos = text.index(line)
+                for prev_line in reversed(text[:pos].split("\n")):
+                    qm = METRIC_RE.search(prev_line)
+                    if qm:
+                        qid = qm.group(1)
+                        break
+                break
+        if qid and qid in data["questions"]:
+            data["questions"][qid].update({
+                "server_prompt_n": int(m.group(1)),
+                "server_prompt_ms": float(m.group(2)),
+                "server_prompt_per_token_ms": float(m.group(3)),
+                "server_prompt_per_second": float(m.group(4)),
+                "server_predicted_n": int(m.group(5)),
+                "server_predicted_ms": float(m.group(6)),
+                "server_predicted_per_token_ms": float(m.group(7)),
+                "server_predicted_per_second": float(m.group(8)),
+            })
 
     return data
 
@@ -67,7 +94,7 @@ def load_all_results(results_dir: Path) -> list[dict]:
     return results
 
 
-def print_overview_table(results: list[dict], sort_by: str = "avg_tpot"):
+def print_overview_table(results: list[dict], sort_by: str = "avg_decode_speed"):
     modes = sorted(set(r["mode"] for r in results))
 
     for mode in modes:
@@ -82,8 +109,7 @@ def print_overview_table(results: list[dict], sort_by: str = "avg_tpot"):
         table.add_column("Model", style="bold", min_width=18)
         table.add_column("Questions", justify="right")
         table.add_column("Avg TTFT", justify="right")
-        table.add_column("Avg TPOT", justify="right")
-        table.add_column("Avg T/s", justify="right", style="green bold")
+        table.add_column("Avg Decode (tok/s)", justify="right", style="green bold")
         table.add_column("Avg Total", justify="right")
 
         rows = []
@@ -93,29 +119,31 @@ def print_overview_table(results: list[dict], sort_by: str = "avg_tpot"):
                 continue
             n = len(qs)
             avg_ttft = sum(v["ttft_ms"] for v in qs.values()) / n
-            avg_tpot = sum(v["tpot_ms"] for v in qs.values()) / n
             avg_total = sum(v["total_s"] for v in qs.values()) / n
-            avg_tps = 1000 / avg_tpot if avg_tpot > 0 else 0
-            rows.append((r["model"], n, avg_ttft, avg_tpot, avg_tps, avg_total))
 
-        sort_idx = {"avg_ttft": 2, "avg_tpot": 3, "avg_tps": 4, "avg_total": 5}[sort_by]
-        reverse = sort_by in ("avg_tps",)
+            total_pred_n = sum(v.get("server_predicted_n", 0) for v in qs.values())
+            total_pred_ms = sum(v.get("server_predicted_ms", 0) for v in qs.values())
+            avg_decode_speed = (total_pred_n / (total_pred_ms / 1000)) if total_pred_ms > 0 else 0
+
+            rows.append((r["model"], n, avg_ttft, avg_decode_speed, avg_total))
+
+        sort_idx = {"avg_ttft": 2, "avg_decode_speed": 3, "avg_total": 4}[sort_by]
+        reverse = sort_by in ("avg_decode_speed",)
         rows.sort(key=lambda x: x[sort_idx], reverse=reverse)
 
-        for model, n, avg_ttft, avg_tpot, avg_tps, avg_total in rows:
+        for model, n, avg_ttft, avg_decode_speed, avg_total in rows:
             table.add_row(
                 model,
                 str(n),
                 f"{avg_ttft:,.1f}",
-                f"{avg_tpot:,.1f}",
-                f"{avg_tps:,.2f}",
+                f"{avg_decode_speed:,.2f}",
                 f"{avg_total:,.1f}",
             )
 
         console.print(table)
 
 
-def print_per_question_tables(results: list[dict], sort_by: str = "tpot_ms"):
+def print_per_question_tables(results: list[dict], sort_by: str = "server_predicted_per_second"):
     modes = sorted(set(r["mode"] for r in results))
     all_qids = [f"Q{i:02d}" for i in range(1, 11)]
 
@@ -130,39 +158,30 @@ def print_per_question_tables(results: list[dict], sort_by: str = "tpot_ms"):
             table = Table(show_lines=True)
             table.add_column("Model", style="bold", min_width=18)
             table.add_column("TTFT (ms)", justify="right")
-            table.add_column("TPOT (ms)", justify="right")
-            table.add_column("T/s", justify="right", style="green bold")
-            table.add_column("Chunks", justify="right")
+            table.add_column("Decode (tok/s)", justify="right", style="green bold")
             table.add_column("Total (s)", justify="right")
 
             rows = []
             for r in mode_results:
                 if qid in r["questions"]:
                     q = r["questions"][qid]
-                    tps = 1000 / q["tpot_ms"] if q["tpot_ms"] > 0 else 0
+                    decode_speed = q.get("server_predicted_per_second", 0)
                     rows.append((
                         r["model"],
                         q["ttft_ms"],
-                        q["tpot_ms"],
-                        tps,
-                        q["chunks"],
+                        decode_speed,
                         q["total_s"],
                     ))
 
-            per_key = {"avg_ttft": "ttft_ms", "avg_tpot": "tpot_ms", "avg_tps": "tps", "avg_total": "total_s",
-                       "ttft_ms": "ttft_ms", "tpot_ms": "tpot_ms", "tps": "tps", "chunks": "chunks", "total_s": "total_s"}
-            sort_key = per_key.get(sort_by, "tpot_ms")
-            sort_idx = {"ttft_ms": 1, "tpot_ms": 2, "tps": 3, "chunks": 4, "total_s": 5}[sort_key]
-            reverse = sort_by == 3
+            sort_idx = {"ttft_ms": 1, "server_predicted_per_second": 2, "total_s": 3}.get(sort_by, 2)
+            reverse = sort_by == "server_predicted_per_second"
             rows.sort(key=lambda x: x[sort_idx], reverse=reverse)
 
-            for model, ttft, tpot, tps, chunks, total in rows:
+            for model, ttft, decode_speed, total in rows:
                 table.add_row(
                     model,
                     f"{ttft:,.1f}",
-                    f"{tpot:,.1f}",
-                    f"{tps:,.2f}",
-                    str(chunks),
+                    f"{decode_speed:,.2f}",
                     f"{total:,.1f}",
                 )
 
@@ -184,12 +203,10 @@ def print_comparison_table(results: list[dict]):
     table.add_column("Model", style="bold", min_width=18)
     table.add_column("Think TTFT", justify="right")
     table.add_column("NoThink TTFT", justify="right")
-    table.add_column("Think TPOT", justify="right")
-    table.add_column("NoThink TPOT", justify="right")
-    table.add_column("Think T/s", justify="right", style="green")
-    table.add_column("NoThink T/s", justify="right", style="green")
+    table.add_column("Think Decode", justify="right", style="green")
+    table.add_column("NoThink Decode", justify="right", style="green")
     table.add_column("TTFT Δ%", justify="right")
-    table.add_column("TPOT Δ%", justify="right")
+    table.add_column("Decode Δ%", justify="right")
 
     rows = []
     for model in common:
@@ -202,31 +219,34 @@ def print_comparison_table(results: list[dict]):
 
         t_ttft = sum(v["ttft_ms"] for v in t_qs.values()) / n_t
         nt_ttft = sum(v["ttft_ms"] for v in nt_qs.values()) / n_nt
-        t_tpot = sum(v["tpot_ms"] for v in t_qs.values()) / n_t
-        nt_tpot = sum(v["tpot_ms"] for v in nt_qs.values()) / n_nt
-        t_tps = 1000 / t_tpot if t_tpot > 0 else 0
-        nt_tps = 1000 / nt_tpot if nt_tpot > 0 else 0
+
+        t_pred_n = sum(v.get("server_predicted_n", 0) for v in t_qs.values())
+        t_pred_ms = sum(v.get("server_predicted_ms", 0) for v in t_qs.values())
+        t_decode = (t_pred_n / (t_pred_ms / 1000)) if t_pred_ms > 0 else 0
+
+        nt_pred_n = sum(v.get("server_predicted_n", 0) for v in nt_qs.values())
+        nt_pred_ms = sum(v.get("server_predicted_ms", 0) for v in nt_qs.values())
+        nt_decode = (nt_pred_n / (nt_pred_ms / 1000)) if nt_pred_ms > 0 else 0
+
         ttft_delta = ((t_ttft - nt_ttft) / nt_ttft * 100) if nt_ttft > 0 else 0
-        tpot_delta = ((t_tpot - nt_tpot) / nt_tpot * 100) if nt_tpot > 0 else 0
+        decode_delta = ((t_decode - nt_decode) / nt_decode * 100) if nt_decode > 0 else 0
 
         rows.append((
-            model, t_ttft, nt_ttft, t_tpot, nt_tpot, t_tps, nt_tps,
-            ttft_delta, tpot_delta,
+            model, t_ttft, nt_ttft, t_decode, nt_decode,
+            ttft_delta, decode_delta,
         ))
 
-    rows.sort(key=lambda x: x[7])
+    rows.sort(key=lambda x: x[5])
 
-    for model, t_ttft, nt_ttft, t_tpot, nt_tpot, t_tps, nt_tps, ttft_d, tpot_d in rows:
+    for model, t_ttft, nt_ttft, t_decode, nt_decode, ttft_d, decode_d in rows:
         table.add_row(
             model,
             f"{t_ttft:,.1f}",
             f"{nt_ttft:,.1f}",
-            f"{t_tpot:,.1f}",
-            f"{nt_tpot:,.1f}",
-            f"{t_tps:,.2f}",
-            f"{nt_tps:,.2f}",
+            f"{t_decode:,.2f}",
+            f"{nt_decode:,.2f}",
             f"{ttft_d:+.1f}%",
-            f"{tpot_d:+.1f}%",
+            f"{decode_d:+.1f}%",
         )
 
     console.print(table)
@@ -246,15 +266,17 @@ def print_question_stability(results: list[dict]):
         table.add_column("Topic", min_width=22)
         table.add_column("Mean TTFT", justify="right")
         table.add_column("Std TTFT", justify="right")
-        table.add_column("Mean TPOT", justify="right")
-        table.add_column("Std TPOT", justify="right")
+        table.add_column("Mean Decode", justify="right")
+        table.add_column("Std Decode", justify="right")
 
         for qid in all_qids:
-            ttfts, tpots = [], []
+            ttfts, decode_speeds = [], []
             for r in mode_results:
                 if qid in r["questions"]:
                     ttfts.append(r["questions"][qid]["ttft_ms"])
-                    tpots.append(r["questions"][qid]["tpot_ms"])
+                    ds = r["questions"][qid].get("server_predicted_per_second", 0)
+                    if ds > 0:
+                        decode_speeds.append(ds)
 
             if not ttfts:
                 continue
@@ -262,17 +284,23 @@ def print_question_stability(results: list[dict]):
             import statistics
             n = len(ttfts)
             mean_ttft = sum(ttfts) / n
-            mean_tpot = sum(tpots) / n
             std_ttft = statistics.stdev(ttfts) if n > 1 else 0
-            std_tpot = statistics.stdev(tpots) if n > 1 else 0
+
+            if decode_speeds:
+                n_ds = len(decode_speeds)
+                mean_decode = sum(decode_speeds) / n_ds
+                std_decode = statistics.stdev(decode_speeds) if n_ds > 1 else 0
+            else:
+                mean_decode = 0
+                std_decode = 0
 
             table.add_row(
                 qid,
                 PROMPTS.get(qid, ""),
                 f"{mean_ttft:,.1f}",
                 f"{std_ttft:,.1f}",
-                f"{mean_tpot:,.1f}",
-                f"{std_tpot:,.1f}",
+                f"{mean_decode:,.2f}",
+                f"{std_decode:,.2f}",
             )
 
         console.print(table)
@@ -285,9 +313,9 @@ def main():
         help="Results directory (default: results/cpu)",
     )
     parser.add_argument(
-        "--sort", type=str, default="avg_tpot",
-        choices=["avg_ttft", "avg_tpot", "avg_tps", "avg_total", "ttft_ms", "tpot_ms", "tps"],
-        help="Sort metric (default: avg_tpot)",
+        "--sort", type=str, default="avg_decode_speed",
+        choices=["avg_ttft", "avg_decode_speed", "avg_total", "ttft_ms", "server_predicted_per_second", "total_s"],
+        help="Sort metric (default: avg_decode_speed)",
     )
     parser.add_argument(
         "--section", type=str, default="all",
