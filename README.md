@@ -140,10 +140,10 @@ All Q4_K_M quant unless noted. Shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) 
 | `gemma4-qat-e2b` | Gemma 4 E2B QAT (Q4_0, Dense 2.3B) | 3.4 GB |
 | `gemma4-qat-e4b` | Gemma 4 E4B QAT (Q4_0, Dense 4.5B) | 5.2 GB |
 | `gemma4-qat-12b` | Gemma 4 12B QAT (Q4_0, Dense, Unified) | 7.0 GB |
-| `gemma4-qat-26b-a4b` | Gemma 4 26B-A4B QAT (Q4_0, MoE ~4B act) | 14.4 GB |
+| `gemma4-qat-26b-a4b` | Gemma 4 26B-A4B QAT (Q4_0, MoE ~3.8B act) | 14.4 GB |
 | `gemma4-qat-31b` | Gemma 4 31B QAT (Q4_0, Dense) | 17.7 GB |
 | `qwen3.6-35b-a3b` | Qwen 3.6 35B-A3B (UD-Q4_K_M, MoE ~3B act) | 22.1 GB |
-| `qwen3.6-27b` | Qwen 3.6 27B (Q4_K_M, Dense) | 16 GB |
+| `qwen3.6-27b` | Qwen 3.6 27B (Q4_K_M, Dense) | 16.8 GB |
 
 ## Why CPU-Only LLMs?
 

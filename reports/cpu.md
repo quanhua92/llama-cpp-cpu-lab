@@ -26,7 +26,7 @@
 | Gemma 4 E2B QAT | 2.3B (Dense) | Google QAT Q4_0 |
 | Gemma 4 E4B QAT | 4.5B (Dense) | Google QAT Q4_0 |
 | Gemma 4 12B QAT | 12B (Dense, Unified) | Google QAT Q4_0 |
-| Gemma 4 26B-A4B QAT | ~4B (MoE 26B) | Google QAT Q4_0 |
+| Gemma 4 26B-A4B QAT | ~3.8B (MoE 25.2B) | Google QAT Q4_0 |
 | Gemma 4 31B QAT | 31B (Dense) | Google QAT Q4_0 |
 | Qwen 3.6 35B-A3B | ~3B (MoE 35B) | UD-Q4_K_M (Unsloth Dynamic) |
 | Qwen 3.6 27B | 27B (Dense) | Q4_K_M |
@@ -45,25 +45,25 @@
 | Model | No Think (ms) | Think (ms) | Δ |
 |---|---|---|---|
 | Qwen 2.5-0.5B | 180.6 | 94.9 | -47% |
-| Qwen 2.5-1.5B | 329.6 | 153.0 | -53% |
+| Qwen 2.5-1.5B | 329.6 | 152.9 | -54% |
 | Qwen 2.5-3B | 631.2 | 295.7 | -53% |
-| Qwen 2.5 Coder-1.5B | 339.6 | 153.2 | -54% |
+| Qwen 2.5 Coder-1.5B | 339.6 | 153.2 | -55% |
 | Qwen 3.5-0.8B | 352.9 | 179.9 | -49% |
-| Qwen 3.5-2B | 605.5 | 303.6 | -49% |
+| Qwen 3.5-2B | 605.5 | 303.6 | -50% |
 | Qwen 3.5-4B | 1,475.5 | 658.1 | -55% |
 | Llama 3.2-1B | 218.5 | 122.6 | -44% |
-| Llama 3.2-3B | 621.3 | 269.8 | -56% |
+| Llama 3.2-3B | 621.3 | 269.8 | -57% |
 | Gemma 4 E2B | 545.3 | 276.9 | -49% |
-| Gemma 4 E4B | 1,020.5 | 566.1 | -44% |
-| SmolLM3-3B | 812.3 | 570.0 | -29% |
+| Gemma 4 E4B | 1,020.5 | 566.1 | -45% |
+| SmolLM3-3B | 812.3 | 570.0 | -30% |
 | Gemma 2 2B IT | 556.6 | 254.2 | -54% |
-| DeepSeek-R1-Distill-Qwen-1.5B | 338.9 | 169.8 | -49% |
+| DeepSeek-R1-Distill-Qwen-1.5B | 338.9 | 169.8 | -50% |
 | Phi-4 Mini | 688.0 | 320.8 | -53% |
 | Gemma 4 E2B QAT | 526.3 | 278.2 | -47% |
-| Gemma 4 E4B QAT | 1,014.1 | 551.6 | -45% |
-| Gemma 4 12B QAT | 2,976.9 | 1,494.5 | -49% |
+| Gemma 4 E4B QAT | 1,014.1 | 551.6 | -46% |
+| Gemma 4 12B QAT | 2,976.9 | 1,494.5 | -50% |
 | Gemma 4 26B-A4B QAT | 1,380.2 | 675.1 | -51% |
-| Gemma 4 31B QAT | 3,948.1 | 7,167.1 | +81% |
+| Gemma 4 31B QAT | 3,948.1 | 7,167.1 | +82% |
 | Qwen 3.6 35B-A3B | 727.5 | 705.6 | -3% |
 | Qwen 3.6 27B | 3,655.0 | 3,293.0 | -10% |
 
@@ -71,27 +71,27 @@
 
 | Model | No Think (ms) | Think (ms) | Δ |
 |---|---|---|---|
-| Qwen 2.5-0.5B | 31.1 | 14.1 | -54% |
-| Qwen 2.5-1.5B | 59.7 | 31.7 | -46% |
-| Qwen 2.5-3B | 108.4 | 59.9 | -44% |
+| Qwen 2.5-0.5B | 31.1 | 14.1 | -55% |
+| Qwen 2.5-1.5B | 59.7 | 31.7 | -47% |
+| Qwen 2.5-3B | 108.4 | 59.9 | -45% |
 | Qwen 2.5 Coder-1.5B | 56.0 | 30.6 | -45% |
 | Qwen 3.5-0.8B | 40.5 | 23.3 | -42% |
-| Qwen 3.5-2B | 84.1 | 46.3 | -44% |
-| Qwen 3.5-4B | 184.0 | 99.6 | -45% |
+| Qwen 3.5-2B | 84.2 | 46.2 | -45% |
+| Qwen 3.5-4B | 184.1 | 99.6 | -46% |
 | Llama 3.2-1B | 48.7 | 25.6 | -47% |
 | Llama 3.2-3B | 122.2 | 64.5 | -47% |
 | Gemma 4 E2B | 102.3 | 56.0 | -45% |
-| Gemma 4 E4B | 195.0 | 103.7 | -46% |
-| SmolLM3-3B | 112.6 | 65.6 | -41% |
-| Gemma 2 2B IT | 109.9 | 58.7 | -46% |
-| DeepSeek-R1-Distill-Qwen-1.5B | 64.8 | 34.3 | -47% |
-| Phi-4 Mini | 141.7 | 75.1 | -47% |
+| Gemma 4 E4B | 195.0 | 103.7 | -47% |
+| SmolLM3-3B | 112.6 | 65.6 | -42% |
+| Gemma 2 2B IT | 109.9 | 58.7 | -47% |
+| DeepSeek-R1-Distill-Qwen-1.5B | 64.8 | 34.2 | -47% |
+| Phi-4 Mini | 141.8 | 75.1 | -47% |
 | Gemma 4 E2B QAT | 100.4 | 53.1 | -47% |
-| Gemma 4 E4B QAT | 184.7 | 99.6 | -46% |
-| Gemma 4 12B QAT | 420.8 | 236.1 | -43% |
-| Gemma 4 26B-A4B QAT | 159.6 | 88.2 | -44% |
+| Gemma 4 E4B QAT | 184.8 | 99.6 | -46% |
+| Gemma 4 12B QAT | 420.8 | 236.1 | -44% |
+| Gemma 4 26B-A4B QAT | 159.6 | 88.2 | -45% |
 | Gemma 4 31B QAT | 565.2 | 1,000.2 | +77% |
-| Qwen 3.6 35B-A3B | 95.7 | 99.3 | +4% |
+| Qwen 3.6 35B-A3B | 95.7 | 99.2 | +4% |
 | Qwen 3.6 27B | 521.5 | 532.7 | +2% |
 
 ### Generation Throughput — higher is better
@@ -101,23 +101,23 @@
 | Qwen 2.5-0.5B | 32.14 | 71.03 | +121% |
 | Qwen 2.5-1.5B | 16.74 | 31.55 | +88% |
 | Qwen 2.5-3B | 9.23 | 16.71 | +81% |
-| Qwen 2.5 Coder-1.5B | 17.86 | 32.63 | +82% |
-| Qwen 3.5-0.8B | 24.68 | 42.89 | +73% |
-| Qwen 3.5-2B | 11.88 | 21.62 | +81% |
-| Qwen 3.5-4B | 5.43 | 10.04 | +84% |
+| Qwen 2.5 Coder-1.5B | 17.86 | 32.63 | +83% |
+| Qwen 3.5-0.8B | 24.68 | 42.89 | +74% |
+| Qwen 3.5-2B | 11.88 | 21.62 | +82% |
+| Qwen 3.5-4B | 5.43 | 10.04 | +85% |
 | Llama 3.2-1B | 20.52 | 39.04 | +90% |
 | Llama 3.2-3B | 8.19 | 15.51 | +89% |
-| Gemma 4 E2B | 9.78 | 17.86 | +82% |
+| Gemma 4 E2B | 9.78 | 17.86 | +83% |
 | Gemma 4 E4B | 5.13 | 9.64 | +88% |
-| SmolLM3-3B | 8.88 | 15.25 | +71% |
-| Gemma 2 2B IT | 9.10 | 17.03 | +87% |
+| SmolLM3-3B | 8.88 | 15.25 | +72% |
+| Gemma 2 2B IT | 9.10 | 17.02 | +87% |
 | DeepSeek-R1-Distill-Qwen-1.5B | 15.44 | 29.20 | +89% |
-| Phi-4 Mini | 7.05 | 13.32 | +88% |
+| Phi-4 Mini | 7.05 | 13.32 | +89% |
 | Gemma 4 E2B QAT | 9.96 | 18.83 | +89% |
-| Gemma 4 E4B QAT | 5.41 | 10.04 | +85% |
+| Gemma 4 E4B QAT | 5.41 | 10.04 | +86% |
 | Gemma 4 12B QAT | 2.38 | 4.24 | +78% |
-| Gemma 4 26B-A4B QAT | 6.27 | 11.34 | +80% |
-| Gemma 4 31B QAT | 1.77 | 1.00 | -43% |
+| Gemma 4 26B-A4B QAT | 6.27 | 11.34 | +81% |
+| Gemma 4 31B QAT | 1.77 | 1.00 | -44% |
 | Qwen 3.6 35B-A3B | 10.45 | 10.08 | -4% |
 | Qwen 3.6 27B | 1.92 | 1.88 | -2% |
 
@@ -125,22 +125,22 @@
 
 | Model | No Think (s) | Think (s) | Δ |
 |---|---|---|---|
-| Qwen 2.5-0.5B | 18.1 | 8.7 | -51% |
-| Qwen 2.5-1.5B | 5.0 | 2.6 | -48% |
-| Qwen 2.5-3B | 5.9 | 3.2 | -45% |
-| Qwen 2.5 Coder-1.5B | 2.5 | 1.4 | -44% |
-| Qwen 3.5-0.8B | 5.1 | 87.9 | +1,624% |
-| Qwen 3.5-2B | 12.2 | 173.9 | +1,325% |
-| Qwen 3.5-4B | 23.0 | 169.9 | +639% |
+| Qwen 2.5-0.5B | 18.1 | 8.7 | -52% |
+| Qwen 2.5-1.5B | 5.0 | 2.6 | -47% |
+| Qwen 2.5-3B | 5.9 | 3.2 | -46% |
+| Qwen 2.5 Coder-1.5B | 2.5 | 1.4 | -45% |
+| Qwen 3.5-0.8B | 5.1 | 87.9 | +1,610% |
+| Qwen 3.5-2B | 12.2 | 173.9 | +1,331% |
+| Qwen 3.5-4B | 23.0 | 169.9 | +637% |
 | Llama 3.2-1B | 9.1 | 4.8 | -47% |
 | Llama 3.2-3B | 22.8 | 12.0 | -47% |
 | Gemma 4 E2B | 11.6 | 23.7 | +104% |
-| Gemma 4 E4B | 25.3 | 53.6 | +112% |
-| SmolLM3-3B | 8.2 | 33.1 | +303% |
+| Gemma 4 E4B | 25.3 | 53.6 | +111% |
+| SmolLM3-3B | 8.2 | 33.1 | +305% |
 | Gemma 2 2B IT | 10.1 | 5.3 | -47% |
-| DeepSeek-R1-Distill-Qwen-1.5B | 84.0 | 44.0 | -47% |
+| DeepSeek-R1-Distill-Qwen-1.5B | 84.0 | 44.0 | -48% |
 | Phi-4 Mini | 8.7 | 4.5 | -48% |
-| Gemma 4 E2B QAT | 14.1 | 22.6 | +60% |
+| Gemma 4 E2B QAT | 14.1 | 22.6 | +61% |
 | Gemma 4 E4B QAT | 22.3 | 58.9 | +164% |
 | Gemma 4 12B QAT | 83.7 | 139.2 | +66% |
 | Gemma 4 26B-A4B QAT | 32.3 | 62.6 | +94% |
@@ -151,7 +151,7 @@
 
 ### 1. Think mode has lower per-token latency across all models
 
-All models except 31B and Qwen 3.6 show 42-55% lower TPOT in think mode. Exceptions: 31B (565ms → 1000ms, +77%), Qwen 3.6 35B-A3B (95.7ms → 99.3ms, +4%), Qwen 3.6 27B (521.5ms → 532.7ms, +2%). This is because TPOT measures inter-chunk latency across all output chunks (both reasoning and answer), and thinking produces many more short reasoning tokens which amortize the cost. However, wall time is a different story — thinking generates vastly more tokens overall.
+All models except 31B and Qwen 3.6 show 42-55% lower TPOT in think mode. Exceptions: 31B (565ms → 1000ms, +77%), Qwen 3.6 35B-A3B (95.7ms → 99.2ms, +4%), Qwen 3.6 27B (521.5ms → 532.7ms, +2%). This is because TPOT measures inter-chunk latency across all output chunks (both reasoning and answer), and thinking produces many more short reasoning tokens which amortize the cost. However, wall time is a different story — thinking generates vastly more tokens overall.
 
 ### 2. Wall time tells the real cost of thinking
 
@@ -159,7 +159,7 @@ Think mode wall time splits into two categories:
 
 **Wall time improves (think faster):** Qwen 2.5 family, Qwen 2.5 Coder, Llama 3.2, Gemma 2 2B IT, DeepSeek-R1, Phi-4 Mini. These models produce concise reasoning and finish quickly — total time is lower because TPOT gains outweigh the extra tokens.
 
-**Wall time explodes (think much slower):** Qwen 3.5 family (+637% to +1,609%), Qwen 3.6 family (+486% to +540%), Gemma 4 family (+60% to +164%), SmolLM3-3B (+305%). These models produce verbose chain-of-thought that dominates the total time.
+**Wall time explodes (think much slower):** Qwen 3.5 family (+637% to +1,610%), Qwen 3.6 family (+486% to +540%), Gemma 4 family (+61% to +362%), SmolLM3-3B (+305%). These models produce verbose chain-of-thought that dominates the total time.
 
 ### 3. Qwen 3.5 thinking is unusably slow on CPU
 
@@ -196,8 +196,8 @@ QAT and non-QAT are nearly identical in per-token speed. Wall time varies by mod
 | 8 | Qwen 3.6 35B-A3B | 10.5 |
 | 9 | Gemma 4 E2B QAT | 10.0 |
 | 10 | Gemma 4 E2B | 9.8 |
-| 11 | Gemma 2 2B IT | 9.1 |
-| 12 | Qwen 2.5-3B | 9.2 |
+| 11 | Qwen 2.5-3B | 9.2 |
+| 12 | Gemma 2 2B IT | 9.1 |
 | 13 | SmolLM3-3B | 8.9 |
 | 14 | Llama 3.2-3B | 8.2 |
 | 15 | Phi-4 Mini | 7.1 |
@@ -224,12 +224,12 @@ The exception is Gemma 4 QAT 31B in think mode, which only completed 9/10 questi
 5. **Qwen 3.5**: Use `--no-reasoning` only. Think mode loops to token ceiling.
 6. **Gemma 4**: Best quality but 2-3x wall time in think mode. Use no-think for interactive use.
 7. **Gemma 4 QAT E2B**: Best QAT model for CPU — nearly identical speed to non-QAT with potential quality gains
-8. **Gemma 4 QAT 26B-A4B**: Surprisingly fast for a 26B MoE (6.3 tok/s no-think) — only ~4B active params
+8. **Gemma 4 QAT 26B-A4B**: Surprisingly fast for a 26B MoE (6.3 tok/s no-think) — only ~3.8B active params
 9. **Gemma 4 QAT 12B**: Too slow for interactive use (2.4 tok/s no-think). Batch/offline only.
 10. **Gemma 4 QAT 31B**: Slowest model (1.8 tok/s no-think, 1.0 tok/s think). 103s no-think wall, 478s think wall. Think mode 4.6x slower. Batch/offline only.
 11. **Qwen 3.6 35B-A3B**: Fastest MoE on CPU (10.5 tok/s no-think, 10.1 tok/s think). Only ~3B active params. Think wall 6.4x slower due to verbose reasoning.
 12. **Qwen 3.6 27B**: Dense 27B, similar speed to 31B QAT (1.9 tok/s no-think). Think wall 5.9x slower. Batch/offline only.
-11. **SmolLM3-3B**: 4x slower in think mode (8.2s → 33.1s). Use no-think only.
+13. **SmolLM3-3B**: 4x slower in think mode (8.2s → 33.1s). Use no-think only.
 
 ## Methodology
 

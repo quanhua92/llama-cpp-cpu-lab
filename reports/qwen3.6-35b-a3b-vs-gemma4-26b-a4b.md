@@ -9,7 +9,7 @@
 |---|---|---|
 | **Architecture** | MoE (Mixture of Experts) | MoE (Gated DeltaNet + Gated Attention + MoE) |
 | **Total params** | 26B | 35B |
-| **Active params** | ~4B | ~3B |
+| **Active params** | ~3.8B | ~3B |
 | **Experts** | 128 total (8 routed + 1 shared) | 256 total (8 routed + 1 shared) |
 | **Quantization** | Q4_0 (QAT) | UD-Q4_K_M (Unsloth Dynamic) |
 | **File size** | 14.4 GB | 22.1 GB |
@@ -31,18 +31,18 @@
 | **Throughput** | 6.27 tok/s | 10.45 tok/s | Qwen **67% faster** |
 | **Avg wall time** | 32.3s | 9.0s | Qwen **72% faster** |
 
-**Qwen 3.6 dominates no-think mode.** 67% higher throughput despite 8B more total parameters. This is because Qwen activates only ~3B params per token (vs ~4B for Gemma), and the smaller active parameter set dominates CPU inference cost. Additionally, Gemma 4's no-think mode still generates verbose markdown-formatted answers, while Qwen's answers are more concise.
+**Qwen 3.6 dominates no-think mode.** 67% higher throughput despite 8B more total parameters. This is because Qwen activates only ~3B params per token (vs ~3.8B for Gemma), and the smaller active parameter set dominates CPU inference cost. Additionally, Gemma 4's no-think mode still generates verbose markdown-formatted answers, while Qwen's answers are more concise.
 
 ### Think Mode (reasoning on)
 
 | Metric | Gemma 4 26B-A4B | Qwen 3.6 35B-A3B | Delta |
 |---|---|---|---|
 | **TTFT** | 675 ms | 706 ms | Gemma **4% faster** |
-| **TPOT** | 88 ms | 99 ms | Gemma **12% faster** |
-| **Throughput** | 11.34 tok/s | 10.08 tok/s | Gemma **12% faster** |
+| **TPOT** | 88 ms | 99 ms | Gemma **11% faster** |
+| **Throughput** | 11.34 tok/s | 10.08 tok/s | Gemma **13% faster** |
 | **Avg wall time** | 62.6s | 57.6s | Qwen **8% faster** |
 
-**Think mode is much closer.** Gemma has a 12% per-token advantage, but Qwen produces shorter thinking blocks and shorter answers, resulting in 8% lower wall time overall.
+**Think mode is much closer.** Gemma has an 11% per-token advantage, but Qwen produces shorter thinking blocks and shorter answers, resulting in 8% lower wall time overall.
 
 **Why the think/nothink flip?** In think mode, TPOT includes reasoning tokens (both models generate thinking chunks at the same speed they generate output). Gemma's thinking is free-form brainstorming — lots of short bullet points. Qwen's thinking is structured step-by-step with longer reasoning chains. The net effect: Gemma generates more total chunks per question, but each chunk is faster to produce.
 
@@ -249,7 +249,7 @@ Both models handle Vietnamese creative writing well. The reflect flow produces h
 | | Gemma 4 26B-A4B | Qwen 3.6 35B-A3B | Winner |
 |---|---|---|---|
 | **No-think speed** | 6.27 tok/s | 10.45 tok/s | **Qwen (+67%)** |
-| **Think speed (TPOT)** | 88 ms | 99 ms | **Gemma (+12%)** |
+| **Think speed (TPOT)** | 88 ms | 99 ms | **Gemma (+11%)** |
 | **Think wall time** | 62.6s | 57.6s | **Qwen (-8%)** |
 | **Factual response quality** | Verbose, ignores constraints | Concise, follows constraints | **Qwen** |
 | **Creative writing quality** | Literary, atmospheric | Practical, grounded | **Tie** |

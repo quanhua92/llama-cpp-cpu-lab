@@ -25,8 +25,8 @@ MODELS["phi4-mini"]="unsloth/Phi-4-mini-instruct-GGUF|Phi-4-mini-instruct-Q4_K_M
 MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B_q4_0-it.gguf|gemma-4-E2B-it-qat-q4_0.gguf|Gemma 4 E2B QAT (Q4_0, Dense 2.3B) — QAT quantized"
 MODELS["gemma4-qat-e4b"]="google/gemma-4-E4B-it-qat-q4_0-gguf|gemma-4-E4B_q4_0-it.gguf|gemma-4-E4B-it-qat-q4_0.gguf|Gemma 4 E4B QAT (Q4_0, Dense 4.5B) — QAT quantized"
 MODELS["gemma4-qat-12b"]="google/gemma-4-12B-it-qat-q4_0-gguf|gemma-4-12b-it-qat-q4_0.gguf|gemma-4-12b-it-qat-q4_0.gguf|Gemma 4 12B QAT (Q4_0, Dense) — QAT quantized"
-MODELS["gemma4-qat-26b-a4b"]="google/gemma-4-26B-A4B-it-qat-q4_0-gguf|gemma-4-26B_q4_0-it.gguf|gemma-4-26B-A4B-it-qat-q4_0.gguf|Gemma 4 26B-A4B QAT (Q4_0, 27B total, ~4B active) — MoE, QAT quantized"
-MODELS["gemma4-qat-31b"]="google/gemma-4-31B-it-qat-q4_0-gguf|gemma-4-31B_q4_0-it.gguf|gemma-4-31B-it-qat-q4_0.gguf|Gemma 4 31B QAT (Q4_0, Dense, 33B) — QAT quantized"
+MODELS["gemma4-qat-26b-a4b"]="google/gemma-4-26B-A4B-it-qat-q4_0-gguf|gemma-4-26B_q4_0-it.gguf|gemma-4-26B-A4B-it-qat-q4_0.gguf|Gemma 4 26B-A4B QAT (Q4_0, 25.2B total, ~3.8B active) — MoE, QAT quantized"
+MODELS["gemma4-qat-31b"]="google/gemma-4-31B-it-qat-q4_0-gguf|gemma-4-31B_q4_0-it.gguf|gemma-4-31B-it-qat-q4_0.gguf|Gemma 4 31B QAT (Q4_0, Dense, 30.7B) — QAT quantized"
 MODELS["qwen3.6-35b-a3b"]="unsloth/Qwen3.6-35B-A3B-GGUF|Qwen3.6-35B-A3B-UD-Q4_K_M.gguf|Qwen3.6 35B-A3B (UD-Q4_K_M, MoE 35B, ~3B active) — vision-language"
 MODELS["qwen3.6-27b"]="unsloth/Qwen3.6-27B-GGUF|Qwen3.6-27B-Q4_K_M.gguf|Qwen3.6 27B (Q4_K_M, Dense) — vision-language"
 
