@@ -1,5 +1,5 @@
 [Unit]
-Description=llama.cpp CPU LLM Server (gemma4-e2b)
+Description=llama.cpp CPU LLM Server
 After=network.target
 
 [Service]
@@ -7,7 +7,7 @@ Type=forking
 Environment=LD_LIBRARY_PATH=%h/local-llm-lab/repo/build/bin
 WorkingDirectory=%h/local-llm-lab
 PIDFile=%h/local-llm-lab/run/server.8888.pid
-ExecStart=%h/local-llm-lab/serve_cpu.sh gemma4-e2b 8888
+ExecStart=%h/local-llm-lab/serve_cpu.sh gemma4-qat-26b 8888
 ExecStop=%h/local-llm-lab/stop.sh 8888
 Restart=on-failure
 RestartSec=5

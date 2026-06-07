@@ -7,7 +7,7 @@ import time
 import httpx
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--port", type=int, default=8888, help="Server port (default: 8888)")
+parser.add_argument("--port", type=int, default=8080, help="Server port (default: 8080)")
 parser.add_argument("--max-tokens", type=int, default=8192, help="Max tokens per step (default: 8192)")
 parser.add_argument("task", nargs="?", default="Write a Python function that calculates fibonacci numbers efficiently",
                     help="Task for the reflection agent (default: fibonacci)")

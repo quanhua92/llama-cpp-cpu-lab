@@ -29,10 +29,10 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 ## Quick Start
 
 ```bash
-# CPU server (default gemma4-e2b on port 8080)
+# CPU server (default gemma4-qat-26b on port 8080)
 ./serve_cpu.sh
 
-# GPU server (default gemma4-e2b on port 8080)
+# GPU server (default gemma4-qat-26b on port 8080)
 ./serve_gpu.sh
 
 # Or pick a model + port
@@ -64,6 +64,18 @@ bash run_cpu_benchmarks.sh
 
 # Run full benchmark suite (GPU)
 bash run_gpu_benchmarks.sh
+
+# Generate example outputs (CPU)
+./generate_examples_cpu.sh                              # all models
+./generate_examples_cpu.sh gemma4-qat-26b              # single model
+./generate_examples_cpu.sh --prompts ask               # only ask prompt
+./generate_examples_cpu.sh --prompts reflect            # only reflect prompt
+./generate_examples_cpu.sh --question "your prompt"    # custom question → _custom.md
+./generate_examples_cpu.sh --question "your prompt" --name recursion  # → _recursion.md
+./generate_examples_cpu.sh --no-reasoning --skip-existing
+
+# Generate example outputs (GPU)
+./generate_examples_gpu.sh
 ```
 
 ## Files
@@ -77,8 +89,10 @@ bash run_gpu_benchmarks.sh
 | `scripts/reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
 | `scripts/profile_client.py` | Streaming benchmark: 10 fixed questions, TTFT, TPOT, tok/s |
 | `scripts/analyze_results.py` | Parse benchmark results: overview, per-question, comparison, stability |
-| `examples/ask_example.md` | Example `ask.py` output (Vietnamese: letter to the future) |
-| `examples/reflect_example.md` | Example `reflect.py` output (Vietnamese: robot chef introduces Phở) |
+| `scripts/generate_examples.py` | Generate example outputs per model with streaming capture |
+| `generate_examples_cpu.sh` | Run generate_examples across all models (CPU) → `examples/cpu/` |
+| `generate_examples_gpu.sh` | Run generate_examples across all models (GPU) → `examples/gpu/` |
+| `examples/` | Per-model example outputs (`cpu/` and `gpu/`) |
 | `run_cpu_benchmarks.sh` | Run profile across all models (CPU) → `results/cpu/` |
 | `run_gpu_benchmarks.sh` | Run profile across all models (GPU) → `results/gpu/` |
 | `add-model-flow.md` | Guide for adding new GGUF models |
@@ -152,7 +166,7 @@ See [reports/gemma4-qat-comparison.md](reports/gemma4-qat-comparison.md) for a d
 Run different models on different ports simultaneously:
 
 ```bash
-./serve_cpu.sh gemma4-e2b 8888   # primary CPU (matches systemd service)
+./serve_cpu.sh gemma4-qat-26b 8888   # primary CPU (matches systemd service)
 ./serve_gpu.sh gemma4-e2b 8889   # primary GPU (matches systemd service)
 ./serve_cpu.sh qwen2.5-0.5b 8081 # fast sidecar
 ./stop.sh 8081                    # kill just the sidecar
@@ -244,8 +258,8 @@ Verify: `loginctl show-user $(whoami) | grep Linger` should show `Linger=yes`.
 Edit the service file:
 
 ```bash
-# Change gemma4-e2b to another model key (CPU)
-sed -i 's/gemma4-e2b/llama3.2-1b/' ~/.config/systemd/user/llama-cpu.service
+# Change gemma4-qat-26b to another model key (CPU)
+sed -i 's/gemma4-qat-26b/llama3.2-1b/' ~/.config/systemd/user/llama-cpu.service
 
 # Reload and restart
 systemctl --user daemon-reload

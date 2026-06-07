@@ -7,7 +7,7 @@ import time
 import httpx
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--port", type=int, default=8888, help="Server port (default: 8888)")
+parser.add_argument("--port", type=int, default=8080, help="Server port (default: 8080)")
 parser.add_argument("--max-tokens", type=int, default=8192, help="Max tokens (default: 8192)")
 parser.add_argument("prompt", help="Prompt to send")
 args = parser.parse_args()
