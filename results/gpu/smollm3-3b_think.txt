@@ -1,0 +1,270 @@
+Auto-detected model: SmolLM3-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+      [think] 
+Okay, the user is asking about software architecture, and they want a short, concise, and correct answer. Let me start by recalling the key components of software architecture. It's a high-level design that outlines the structure and components of a system. The main goal is to organize the system into manageable parts, ensuring scalability, maintainability, and efficiency.
+
+I should mention the different layers, like the user interface, business logic, and data storage. Also, the importance of modularity and separation of concerns. Maybe include terms like components, interfaces, and dependencies. Oh, and the role of design patterns in guiding the architecture. But I need to keep it brief. Let me structure it step by step: definition, key elements (layers, modularity, separation), and maybe a brief mention of design patterns and scalability. Avoid jargon where possible, but since the user is asking for correct terms, I should include them. Let me check if I'm missing anything crucial. Oh, maybe mention that it's a blueprint for the system's structure. Alright, that should cover the essentials without being too verbose.
+
+        [out] 
+
+Software architecture is the high-level design of a system, outlining its components, interfaces, and relationships to ensure scalability, maintainability, and efficiency. Key elements include:  
+- **Layers** (e.g., UI, business logic, data storage).  
+- **Modularity** (separate components with clear responsibilities).  
+- **Separation of Concerns** (distinct layers for UI, data, and processing).  
+- **Dependency Management** (ensuring components communicate effectively).  
+- **Scalability** (design for growth and adaptability).  
+- **Design Patterns** (guiding principles like MVC or microservices).  
+
+It provides a blueprint for building and managing complex systems.     [Q01] TTFT=54.53ms Total=3.10s
+     [timings] prompt_n=262, prompt_ms=50.86, prompt_per_token_ms=0.19412213740458015, prompt_per_second=5151.395988989383, predicted_n=368, predicted_ms=3048.448, predicted_per_token_ms=8.283826086956521, predicted_per_second=120.71716493113873, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+      [think] 
+Okay, the user is asking how neural networks learn. Let me start by recalling the basics. Neural networks are inspired by the human brain, so they use a similar structure with layers of nodes or neurons. The key process is through training data.
+
+First, during training, the network adjusts its weights and biases to minimize the difference between its predictions and the actual labels. This is done using an optimization algorithm, usually gradient descent. The error is calculated, and the gradients of the loss function with respect to the weights are computed. Then, the weights are updated in the opposite direction of the gradient to reduce the error.
+
+I should mention backpropagation, which is the method used to compute these gradients. It's a crucial step where the error is propagated backward through the network to update the weights. Also, activation functions are used in each layer to introduce non-linearity, allowing the network to model complex patterns.
+
+Reinforcement learning is another aspect, where the network learns by interacting with an environment and receiving rewards or penalties. But the user might be more interested in supervised learning, which is the most common approach. So I should focus on that first.
+
+I need to keep the answer concise. Let me structure it: start with the general idea of adjusting weights to minimize error, mention backpropagation, activation functions, and maybe touch on optimization algorithms. Avoid jargon where possible, but since the user is asking about neural networks, some technical terms are necessary.
+
+Wait, the user wants a short, concise, and correct answer. So I need to be precise without going into too much detail. Let me check if I'm missing anything. The process involves forward propagation to make predictions, then backpropagation to adjust weights. The goal is to minimize the loss function, leading to better performance on the training data.
+
+Yes, that's the core. I should also mention that the network learns by example, using the training data to adjust its parameters. Maybe include an example like a neural network trying to recognize images by adjusting weights to minimize classification errors.
+
+I think that's all. Let me put it together in a clear, concise way.
+
+        [out] 
+
+Neural networks learn by adjusting their internal parameters (weights and biases) to minimize the difference between predicted outputs and actual labels during training. This is achieved through **backpropagation**, where gradients of the loss function are computed and used to iteratively update the parameters in the direction that reduces error. Activation functions in each layer introduce non-linearity, enabling the network to model complex patterns. The process is optimized using algorithms like gradient descent, and the network improves its performance on training data over iterations.     [Q02] TTFT=34.63ms Total=4.47s
+     [timings] prompt_n=20, prompt_ms=12.384, prompt_per_token_ms=0.6192, prompt_per_second=1614.9870801033592, predicted_n=533, predicted_ms=4436.81, predicted_per_token_ms=8.32422138836773, predicted_per_second=120.13135563614398, cache_n=243
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+      [think] 
+Okay, so I need to explain the difference between TCP and UDP in a short, concise, and correct way. Let me start by recalling what I know about these two protocols.
+
+TCP stands for Transmission Control Protocol. It's connection-oriented, which means that before data is sent, the receiver acknowledges it. This ensures that data is delivered in the correct order and that any lost packets are retransmitted. TCP also provides flow control and error checking, which helps in maintaining reliable communication over the network.
+
+UDP, on the other hand, is User Datagram Protocol. It's connectionless, meaning there's no setup or teardown process. UDP doesn't check for errors or retransmit lost packets. It's faster because it doesn't have these overheads, but it's less reliable. The receiver doesn't acknowledge the packets, so if a packet is lost, the sender might not know and might send another one, leading to duplication.
+
+So the main differences are: TCP is reliable with acknowledgments and retransmission, UDP is unreliable and doesn't check for errors. Also, TCP uses port numbers for communication, while UDP doesn't require them. But maybe I should mention that UDP is better for real-time applications where speed is more important than reliability, like video streaming or online gaming, whereas TCP is used for things like email, file transfers, where reliability is crucial.
+
+Wait, but the user asked for a short answer. So I need to condense this. Let me try to summarize:
+
+TCP is reliable, connection-oriented, with acknowledgments and retransmission. UDP is unreliable, connectionless, no acknowledgments, no retransmission. TCP uses port numbers, UDP doesn't. TCP is better for critical data, UDP for speed and real-time.
+
+I should check if I got the key points right. Maybe mention that TCP ensures data arrives in order and handles errors, while UDP doesn't. Also, TCP requires a connection to be established, UDP doesn't. That's the main difference. Let me make sure the answer is concise and correct.
+
+        [out] 
+
+TCP (Transmission Control Protocol) is reliable, connection-oriented, with acknowledgments and retransmission to ensure data arrives in order and is error-free. UDP (User Datagram Protocol) is unreliable, connectionless, and does not check for errors or retransmit lost packets, prioritizing speed over reliability. TCP uses port numbers for communication, while UDP does not. TCP is ideal for critical data, UDP for real-time applications.     [Q03] TTFT=39.20ms Total=4.24s
+     [timings] prompt_n=22, prompt_ms=12.339, prompt_per_token_ms=0.5608636363636363, prompt_per_second=1782.9645838398574, predicted_n=505, predicted_ms=4201.92, predicted_per_token_ms=8.320633663366337, predicted_per_second=120.18315436752722, cache_n=243
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+      [think] 
+Okay, the user is asking how garbage collection works in Python. Let me start by recalling what I know about Python's memory management. Python uses automatic memory management through a garbage collector. The main components are the reference counting and the cyclic garbage collector.
+
+Reference counting is the basic mechanism. When an object is created, its reference count is set to 1. Each time an object is referenced, the count increases, and when it's no longer referenced, the count decreases. When the count reaches zero, the object is eligible for collection. However, reference counting has some issues, like the "memory leak" problem where objects are not released even if they're no longer used because their reference count doesn't drop to zero.
+
+Then there's the cyclic garbage collector. This is used to handle circular references, where two or more objects reference each other. The cyclic collector identifies these cycles and breaks them, allowing the objects to be collected. This is important because reference counting alone can't handle such cases.
+
+So, the process is: objects are created with a reference count. When references are added or removed, the count is adjusted. If the count reaches zero, the object is collected. If there's a cycle, the cyclic collector steps in to break it. The garbage collector runs periodically, checking for objects that can be safely collected.
+
+I should mention that Python's garbage collector is not real-time, so it might not collect immediately when an object is no longer needed. It's more of a background process that runs when the system is idle. Also, the cyclic collector is optional and can be disabled, but it's recommended to leave it on for better performance.
+
+Wait, the user wants a short, concise answer. So I need to condense this into a few sentences. Let me make sure to include the key points: reference counting, cyclic garbage collector, handling circular references, and the periodic nature of the collector. Avoid technical jargon where possible, but still be accurate.
+
+Also, note that Python's garbage collector is part of the CPython implementation, and other implementations like PyPy might have different approaches. But the user is probably asking about CPython, so I should stick to that.
+
+Putting it all together: Python uses reference counting and a cyclic garbage collector to manage memory. Reference counting tracks object references, and the cyclic collector handles circular references. The garbage collector runs periodically to collect objects that are no longer referenced, ensuring memory safety without manual intervention.
+
+        [out] 
+
+Python uses reference counting and a cyclic garbage collector to manage memory. Reference counting tracks object references, and the cyclic collector breaks circular references to allow safe collection. The garbage collector runs periodically to reclaim memory, ensuring objects are deleted when no longer referenced.     [Q04] TTFT=38.07ms Total=4.60s
+     [timings] prompt_n=21, prompt_ms=12.318, prompt_per_token_ms=0.5865714285714285, prompt_per_second=1704.822211397954, predicted_n=548, predicted_ms=4562.594, predicted_per_token_ms=8.325901459854014, predicted_per_second=120.10711450547649, cache_n=243
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+      [think] 
+Okay, the user is asking for a short, concise, and correct description of microservices. Let me start by recalling what microservices are. They are a software design approach where an application is broken down into small, independent services that communicate with each other using APIs. Each service is responsible for a specific business capability and can be developed, deployed, and scaled independently.
+
+I need to make sure the answer is concise. Let me avoid any unnecessary details. The key points are: decomposition into services, independence, communication via APIs, and scalability. Also, mention that each service can be developed and deployed separately, which allows for faster development and easier maintenance.
+
+Wait, should I include the benefits like agility or fault tolerance? The user didn't ask for benefits, just a description. So maybe stick to the definition. Also, clarify that they are part of a larger system but operate as separate units. Maybe mention that they can be developed in different programming languages and use different databases, which is a common practice.
+
+Let me check if there's any confusion between microservices and other architectures. For example, monolithic vs. microservices. But the user just wants a definition, so maybe not necessary to compare. Keep it straightforward.
+
+Putting it all together: Microservices are a design approach where an application is divided into small, independent services that communicate via APIs. Each service handles a specific business capability and can be developed, deployed, and scaled independently. This allows for agility, scalability, and easier maintenance.
+
+Yes, that's concise and covers the main points. Make sure the language is clear and not too technical. Avoid jargon where possible. Alright, that should do it.
+
+        [out] 
+
+Microservices are a software design approach where an application is decomposed into small, independent services that communicate via APIs. Each service handles a specific business capability and can be developed, deployed, and scaled independently, enabling agility, scalability, and fault tolerance.     [Q05] TTFT=40.21ms Total=3.28s
+     [timings] prompt_n=17, prompt_ms=12.144, prompt_per_token_ms=0.7143529411764706, prompt_per_second=1399.8682476943347, predicted_n=391, predicted_ms=3243.863, predicted_per_token_ms=8.296324808184142, predicted_per_second=120.53530004195616, cache_n=243
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+      [think] 
+Okay, the user is asking for a short, concise, and correct answer about what a closure is in programming. Let me start by recalling the definition of a closure. A closure is a function that has access to its own scope, including variables from the outer function, even after the outer function has finished executing. 
+
+I need to make sure the answer is brief but still accurate. Maybe mention that it's a function that remembers the environment in which it was created. Also, note that closures can capture variables from the surrounding scope, which allows them to retain state. 
+
+Wait, the user wants it short and correct. So perhaps a one-sentence answer would be best. Let me check some sources to confirm. Yes, a closure is a function that has access to its own scope, including variables from the surrounding scope. It's created when a function is defined inside another function and references variables from the outer function's scope. 
+
+I should avoid technical jargon where possible. Maybe use an example if needed, but the user asked for a short answer. So stick to the definition. Make sure to mention that it's a function that can "remember" the environment, allowing it to access variables from the outer function. 
+
+Double-check for any inaccuracies. For example, a closure is not just a function that returns another function; it's a function that has access to the variables from the outer scope. Also, closures are used for creating private variables and maintaining state between function calls. 
+
+Yes, the key points are: a closure is a function that has access to its own scope, including variables from the outer function, and it's created when a function is defined inside another function. The answer should capture that essence concisely.
+
+        [out] 
+
+A closure is a function that retains access to its lexical environment, including variables from the outer scope, even after the outer function has completed execution.     [Q06] TTFT=34.66ms Total=3.23s
+     [timings] prompt_n=20, prompt_ms=12.181, prompt_per_token_ms=0.60905, prompt_per_second=1641.9013217305642, predicted_n=385, predicted_ms=3195.125, predicted_per_token_ms=8.299025974025975, predicted_per_second=120.49606822894253, cache_n=243
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+      [think] 
+Okay, so I need to explain the CAP theorem. Let me start by recalling what I know. CAP stands for Consistency, Availability, and Partition tolerance. It's a theorem that describes the trade-offs in distributed systems. 
+
+First, Consistency. I think this means that all nodes in the system have the same view of the data. If a node is down, the system should still be able to provide the same data to any other node. But if a partition occurs, maybe consistency is compromised because some nodes might have different data.
+
+Availability is about the system being able to handle requests even when some nodes are down. So, if a node goes down, the system should still be able to process requests from other nodes. But if a partition happens, maybe some nodes can't reach others, so availability might be affected.
+
+Partition tolerance is when the system can handle partitions, which are splits in the network where some nodes are unreachable from others. The theorem says that in a distributed system, you can't have all three: consistency, availability, and partition tolerance at the same time. So you have to choose two.
+
+Wait, the theorem states that in any distributed system, you can't have all three properties. So the system must choose between consistency and availability, or between availability and partition tolerance. For example, if you prioritize consistency, you might have to sacrifice availability in case of a partition. Or if you prioritize partition tolerance, you might have to sacrifice availability.
+
+Let me check if I got the three properties right. Consistency is about data being consistent across all nodes. Availability is about the system being able to handle requests even when some nodes are down. Partition tolerance is about handling partitions where some nodes are unreachable.
+
+So the CAP theorem is a fundamental limit in distributed systems. It's important for designing systems that can handle failures and partitions. For example, a database might choose to be consistent and available, but if a partition occurs, it might have to drop some consistency to maintain availability. Or a system might prioritize partition tolerance and availability, but then consistency might be compromised.
+
+I should also mention the three possible combinations: CA (Consistency and Availability), CP (Consistency and Partition Tolerance), and AP (Availability and Partition Tolerance). Each combination has different implications. For instance, a system that is CP (Consistency and Partition Tolerance) might be more reliable in a stable environment but less available during partitions. A system that is AP (Availability and Partition Tolerance) might be more scalable but less consistent in a partitioned environment.
+
+I need to make sure the explanation is concise and correct. Let me structure it step by step: define CAP, the three properties, the trade-offs, and the possible combinations. Avoid technical jargon where possible, but since it's a technical concept, some terms are necessary. Make sure to highlight the key takeaway that you can't have all three, and the implications for system design.
+
+        [out] 
+
+The CAP theorem (Consistency, Availability, Partition Tolerance) states that in any distributed system, you cannot simultaneously guarantee all three properties:  
+1. **Consistency**: All nodes have identical data views.  
+2. **Availability**: The system can handle requests even when some nodes are down.  
+3. **Partition Tolerance**: The system remains functional during network partitions (unreachable nodes).  
+
+The theorem asserts that you must choose between two properties. The three possible combinations are:  
+- **CA**: Consistency and Availability (e.g., databases like MySQL).  
+- **CP**: Consistency and Partition Tolerance (e.g., financial systems requiring reliability).  
+- **AP**: Availability and Partition Tolerance (e.g., cloud services like AWS).  
+
+Each choice balances trade-offs:  
+- **CA** ensures data consistency but may fail during partitions.  
+- **CP** prioritizes reliability but risks inconsistency in partitions.  
+- **AP** ensures availability during partitions but may lose consistency.  
+
+This limits the design of distributed systems, requiring careful trade-offs to handle failures and partitions.     [Q07] TTFT=34.68ms Total=6.89s
+     [timings] prompt_n=19, prompt_ms=12.244, prompt_per_token_ms=0.6444210526315789, prompt_per_second=1551.780463900686, predicted_n=819, predicted_ms=6857.938, predicted_per_token_ms=8.373550671550671, predicted_per_second=119.42365183237294, cache_n=243
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+      [think] 
+Okay, so I need to explain how DNS resolution works in a short, concise, and correct way. Let me start by recalling what I know about DNS. DNS stands for Domain Name System. It's like a phonebook for the internet, right? Instead of remembering IP addresses, we use domain names. When you type a website name into your browser, your computer needs to find the corresponding IP address to connect to the server.
+
+So the process starts when you enter a URL. The browser sends a request to the DNS server. But wait, how does the browser know which DNS server to use? Maybe it uses the default one provided by the operating system or the router. Once the request is sent, the DNS server receives it. The server then looks up the domain name in its database. If it's in the cache, it can quickly return the IP address. If not, it has to query other DNS servers, maybe through a recursive process.
+
+I remember that DNS servers can be hierarchical. There's a root server, then top-level domains (like .com), and then the specific domain. Each level might have its own server. The recursive query goes through these levels until it finds the IP address. Once found, the IP is returned to the client, which then connects to the server using that IP.
+
+Also, there's something about the DNS resolution process involving multiple steps: recursive, iterative, and caching. The recursive query is when the client asks a server to resolve the name, and the server then queries other servers until it gets the answer. Iterative queries are when the client asks for the IP directly, but that's less common. Caching is important because once a server resolves a domain, it stores the answer in its cache for future requests, which speeds up subsequent lookups.
+
+Wait, but the user asked for a concise answer. So I need to condense all that. Let me try to outline the main points:
+
+1. DNS resolution is the process of converting a domain name into an IP address.
+2. When you enter a URL, your browser sends a request to a DNS server.
+3. The DNS server checks its cache first. If the name is there, it returns the IP.
+4. If not, it queries other DNS servers recursively until it finds the IP.
+5. The IP is then returned to the client, which connects to the server.
+6. DNS servers use a hierarchical structure (root, TLD, domain) to resolve names.
+7. Caching helps speed up future lookups by storing resolved IP addresses.
+
+I need to make sure this is accurate and not missing any key steps. Also, avoid technical jargon where possible. Let me check if I missed anything. Oh, maybe mention that the DNS server uses a protocol like UDP or TCP, but that might be too detailed. The user wants it short, so maybe just mention the process without the protocol specifics. Also, the hierarchical structure is important for the resolution process. Alright, I think that covers the main points concisely.
+
+        [out] 
+
+DNS resolution converts a domain name into an IP address for internet communication. When you enter a URL, your browser sends a request to a DNS server. If the name is in the server's cache, the IP is returned. If not, the server recursively queries other DNS servers through a hierarchical structure (root, TLD, domain) until the IP is found. The IP is then sent to the client, which connects to the server using that address. Caching speeds up future lookups by storing resolved IP addresses.     [Q08] TTFT=56.96ms Total=6.11s
+     [timings] prompt_n=17, prompt_ms=12.092, prompt_per_token_ms=0.7112941176470589, prompt_per_second=1405.8881905391993, predicted_n=724, predicted_ms=6050.447, predicted_per_token_ms=8.35697099447514, predicted_per_second=119.66058044967586, cache_n=245
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+      [think] 
+Okay, the user is asking for a short, concise, and correct answer about design patterns. Let me start by recalling what design patterns are. They are reusable solutions to common problems in software design, right? They provide a standard way to solve recurring issues, making code more maintainable and efficient.
+
+I need to make sure the answer is brief but covers the key points. The user probably wants a definition that's not too technical but still accurate. Maybe mention that they are patterns or models that help in solving problems, like the Singleton pattern for managing resources or the Factory pattern for creating objects. Also, it's important to note that they are not just code snippets but more about the structure and principles behind them.
+
+Wait, should I include examples? The user said concise, so maybe not. Just a general statement. Also, the answer should be correct, so I need to avoid any inaccuracies. Let me check if there's a standard definition. Yes, design patterns are a set of proven solutions to common problems in software design, promoting reusable code and better organization.
+
+I should also mention that they are categorized into different types, like creational, structural, and behavioral, but maybe that's too detailed. The user wants it short, so perhaps just a brief mention. Alright, putting it all together: design patterns are reusable solutions to common software design problems, promoting maintainable and efficient code. That should cover it without being too verbose.
+
+        [out] 
+
+Design patterns are reusable solutions to common software design problems, promoting maintainable, efficient, and scalable code. They provide standardized approaches to address recurring issues, such as object creation, communication, and structuring complex systems.     [Q09] TTFT=53.72ms Total=2.86s
+     [timings] prompt_n=17, prompt_ms=12.106, prompt_per_token_ms=0.7121176470588235, prompt_per_second=1404.2623492483067, predicted_n=338, predicted_ms=2801.85, predicted_per_token_ms=8.289497041420118, predicted_per_second=120.63458072345058, cache_n=244
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+      [think] 
+Okay, the user is asking about database transactions. Let me start by recalling what a transaction is. From what I remember, a transaction is a set of operations that must be treated as a single, all-or-nothing unit. So, if any part of the transaction fails, the entire thing is rolled back.
+
+I need to explain the key points: ACID properties—Atomicity, Consistency, Isolation, Durability. Atomicity is the all-or-nothing part. Consistency ensures the database remains in a valid state. Isolation prevents concurrent transactions from interfering with each other. Durability means that once committed, the changes persist even if the system crashes.
+
+Also, common use cases like banking transactions where you can't withdraw more than you have. Maybe mention the isolation level, like read committed or repeatable reads. And the isolation level affects how transactions interact. For example, in read committed, a transaction can read data modified by another transaction that hasn't committed yet.
+
+I should also note that transactions are crucial for maintaining data integrity and ensuring that operations are processed correctly. Maybe mention the isolation level again in the context of how transactions handle concurrency.
+
+Wait, the user wants a short, concise answer. So I need to be brief but cover the essentials. Let me structure it: define a transaction, mention the ACID properties, and maybe a simple example. Avoid getting too technical but still accurate.
+
+Check if there's any common misconception to address. For example, transactions don't necessarily have to be long; they can be a single operation. Also, the isolation level is a parameter that can be adjusted, affecting how transactions interact.
+
+Make sure to mention that the goal is to ensure data consistency and reliability. Maybe end with a note on the importance in applications like banking or financial systems where data integrity is critical.
+
+Alright, putting it all together in a concise way without fluff.
+
+        [out] 
+
+A **database transaction** is a sequence of operations treated as a single, all-or-nothing unit. It ensures data consistency and reliability through the ACID properties:  
+- **Atomicity**: All operations must complete or none.  
+- **Consistency**: The database remains in a valid state after execution.  
+- **Isolation**: Concurrent transactions do not interfere with each other.  
+- **Durability**: Changes persist even if the system crashes.  
+
+Common use cases include banking transactions (e.g., withdrawing funds) and financial record-keeping, where data integrity is critical. Transactions prevent partial updates and ensure data consistency across multiple operations.     [Q10] TTFT=33.63ms Total=4.32s
+     [timings] prompt_n=17, prompt_ms=12.118, prompt_per_token_ms=0.7128235294117647, prompt_per_second=1402.8717610166693, predicted_n=515, predicted_ms=4285.46, predicted_per_token_ms=8.321281553398059, predicted_per_second=120.17379697862073, cache_n=243
+
+================ PROFILE SUMMARY ================
+[info] Model: SmolLM3-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 42.03 ms
+[info] Average Prompt Time (server): 16.08 ms
+[info] Total Predicted Tokens (server): 5126
+[info] Total Predicted Time (server): 42684.46 ms
+[info] Average Decode Speed (server): 120.09 tokens/sec
+[info] Average ms/token (server): 8.33 ms
+[time] Average Total Wall Duration: 4.31 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/smollm3-3b_think.json

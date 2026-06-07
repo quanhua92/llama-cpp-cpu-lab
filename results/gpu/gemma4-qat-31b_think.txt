@@ -1,0 +1,334 @@
+Auto-detected model: gemma-4-31B-it-qat-q4_0.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+      [think] *   Topic: Software Architecture.
+    *   Constraints: Short, concise, and correct.
+
+    *   What is it? High-level structure of a software system.
+    *   What does it involve? Components, relationships, and principles.
+    *   Why is it important? Scalability, maintainability, performance, reliability.
+    *   Common patterns? Monolithic, Microservices, Layered, Event-driven.
+
+    *   *Definition:* Software architecture is the high-level structure of a system, defining its components, their interactions, and the principles guiding its design.
+    *   *Goal:* To ensure the system meets non-functional requirements (quality attributes) like scalability, security, and maintainability.
+    *   *Key Patterns:*
+        *   *Monolithic:* Single unified unit.
+        *   *Microservices:* Collection of small, independent services.
+        *   *Layered (n-tier):* Organized into layers (e.g., Presentation, Business, Data).
+        *   *Event-Driven:* Reacts to state changes (events).
+    *   *Difference from Design:* Architecture is "the big picture" (strategic); design is "the detail" (tactical).
+        [out] **Software architecture** is the high-level structure of a software system. It defines the system's components, their relationships, and the principles guiding its design and evolution.
+
+### Core Purpose
+Its primary goal is to ensure the system meets **non-functional requirements** (quality attributes), such as:
+*   **Scalability:** Ability to handle growth.
+*   **Maintainability:** Ease of updating and fixing.
+*   **Reliability:** Stability and uptime.
+*   **Security:** Protection against threats.
+
+### Common Architectural Patterns
+1.  **Monolithic:** The entire application is built as a single, unified unit.
+2.  **Microservices:** The application is split into small, independent services that communicate via APIs.
+3.  **Layered (n-tier):** Organized into horizontal layers (e.g., Presentation $\rightarrow$ Business $\rightarrow$ Data).
+4.  **Event-Driven:** Components react to "events" (state changes) asynchronously.
+5.  **Serverless:** Logic is executed in ephemeral containers managed by a cloud provider.
+
+### Architecture vs. Design
+*   **Architecture (Strategic):** The "big picture." Decisions that are hard to change later (e.g., "We will use microservices").
+*   **Design (Tactical):** The detailed implementation. Decisions that are easier to refactor (e.g., "We will use the Strategy pattern for this class").     [Q01] TTFT=1074.28ms Total=83.20s
+     [timings] prompt_n=30, prompt_ms=1072.036, prompt_per_token_ms=35.73453333333334, prompt_per_second=27.98413486114272, predicted_n=571, predicted_ms=82126.59, predicted_per_token_ms=143.82940455341506, predicted_per_second=6.952681220540145, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+      [think] *   Topic: How neural networks learn.
+    *   Constraints: Short, concise, and correct.
+
+    *   Neural networks consist of layers of neurons with weights and biases.
+    *   Learning is the process of adjusting these weights/biases to minimize error.
+    *   Key components: Forward propagation, Loss function, Backpropagation, Optimizer (Gradient Descent).
+
+    *   *Step 1: Forward Pass.* Input goes through the network, weights are applied, and a prediction is made.
+    *   *Step 2: Loss Calculation.* The prediction is compared to the actual target using a loss function (error).
+    *   *Step 3: Backward Pass (Backpropagation).* The error is sent backward through the network to find how much each weight contributed to the error (gradients).
+    *   *Step 4: Update.* An optimizer (like Gradient Descent) adjusts the weights to reduce the error.
+    *   *Repeat.* This happens thousands of times until the error is minimized.
+
+    *   *Draft 1:* Neural networks learn by adjusting weights. First, they do a forward pass to get a prediction. Then they calculate the loss. Then they use backpropagation to find the gradient. Finally, they use gradient descent to update weights. Repeat.
+
+    *   *Draft 2 (More professional/concise):* Neural networks learn by iteratively adjusting internal parameters (weights and biases) to minimize the difference between their predictions and actual targets. This happens in four main steps:
+        1. **Forward Propagation:** Input data passes through the network to produce a prediction.
+        2. **Loss Function:** The prediction is compared to the target to calculate the error (loss).
+        3. **Backpropagation:** The error is sent backward through the network to calculate the gradient (how much each weight contributed to the error).
+        4. **Optimization:** An optimizer (e.g., Gradient Descent) updates the weights to reduce the loss.
+
+    *   Short? Yes.
+    *   Concise? Yes.
+    *   Correct? Yes.
+        [out] Neural networks learn by iteratively adjusting internal parameters (**weights and biases**) to minimize the difference between their predictions and the actual target. This process occurs in four main steps:
+
+1. **Forward Propagation:** Input data passes through the network layers to produce a prediction.
+2. **Loss Function:** The prediction is compared to the ground truth to calculate the **loss** (the error).
+3. **Backpropagation:** The network calculates the **gradient** (the derivative of the loss), determining how much each weight contributed to the error by moving backward from the output to the input.
+4. **Optimization:** An optimizer (e.g., **Gradient Descent**) updates the weights in the opposite direction of the gradient to reduce the loss.
+
+This cycle repeats thousands of times until the network converges on a set of weights that produce accurate results.     [Q02] TTFT=1024.78ms Total=89.38s
+     [timings] prompt_n=23, prompt_ms=860.426, prompt_per_token_ms=37.40982608695652, prompt_per_second=26.73094490403591, predicted_n=612, predicted_ms=88357.314, predicted_per_token_ms=144.37469607843138, predicted_per_second=6.9264215071091915, cache_n=7
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+      [think] *   Topic: Difference between TCP (Transmission Control Protocol) and UDP (User Datagram Protocol).
+    *   Constraints: Short, concise, and correct.
+
+    *   TCP: Connection-oriented, reliable, ordered, slower (overhead), flow control, error checking.
+    *   UDP: Connectionless, unreliable (best-effort), unordered, faster (low overhead), no flow control.
+
+    *   *TCP (Transmission Control Protocol):* Reliable, connection-oriented. Ensures all data arrives in order and without errors. Used for web browsing (HTTP), email (SMTP).
+    *   *UDP (User Datagram Protocol):* Fast, connectionless. Sends data without checking if it arrived. Used for streaming, gaming, VoIP.
+
+    *   *TCP:* Reliable, connection-oriented, guarantees delivery and order. (Slower)
+    *   *UDP:* Fast, connectionless, no guarantee of delivery or order. (Faster)
+
+    *   TCP: Connection-oriented, reliable, ensures data arrives in order. (e.g., Web, Email)
+    *   UDP: Connectionless, unreliable, prioritizes speed over accuracy. (e.g., Streaming, Gaming)
+        [out] **TCP (Transmission Control Protocol)**
+*   **Connection-oriented:** Establishes a connection before sending data.
+*   **Reliable:** Guarantees delivery, checks for errors, and retransmits lost packets.
+*   **Ordered:** Ensures data arrives in the correct sequence.
+*   **Use case:** Web browsing (HTTP), Email (SMTP), File transfer (FTP).
+
+**UDP (User Datagram Protocol)**
+*   **Connectionless:** Sends data without establishing a connection.
+*   **Unreliable:** No guarantee of delivery; lost packets are not resent.
+*   **Unordered:** Data may arrive in any order.
+*   **Use case:** Live streaming, Online gaming, VoIP (Zoom/Discord).     [Q03] TTFT=1211.85ms Total=60.24s
+     [timings] prompt_n=26, prompt_ms=1034.268, prompt_per_token_ms=39.779538461538465, prompt_per_second=25.13855209674862, predicted_n=414, predicted_ms=59032.102, predicted_per_token_ms=142.58961835748792, predicted_per_second=7.01313329482999, cache_n=7
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+      [think] *   Topic: Garbage Collection (GC) in Python.
+    *   Constraints: Short, concise, and correct.
+
+    *   Python primarily uses *Reference Counting*.
+    *   It supplements this with a *Generational Garbage Collector* to handle reference cycles.
+
+    *   *Reference Counting:* Every object has a count of how many references point to it. When count = 0, it's deleted immediately.
+    *   *Generational GC:* Handles "circular references" (A points to B, B points to A). It divides objects into three generations (0, 1, 2). Older objects are scanned less frequently.
+
+    *   *Draft 1:* Python uses reference counting as its main way to manage memory. When an object's reference count hits zero, it's deleted. But reference counting can't handle circular references. To fix this, Python has a generational garbage collector. It looks for cycles and deletes them. It uses three generations to optimize performance.
+
+    *   *Draft 2 (More concise):* Python uses two main mechanisms:
+        1. **Reference Counting:** The primary method. Objects are deleted as soon as their reference count drops to zero.
+        2. **Generational Garbage Collection:** A backup mechanism to handle **circular references** (where objects point to each other). It categorizes objects into three generations; older objects are scanned less frequently to improve efficiency.
+        [out] Python uses two primary mechanisms for garbage collection:
+
+1. **Reference Counting:** The primary method. Every object tracks how many references point to it. When an object's reference count drops to **zero**, it is immediately deallocated.
+2. **Generational Garbage Collection:** A backup mechanism used to detect and fix **circular references** (where two or more objects point to each other, preventing their reference counts from ever reaching zero). 
+
+**How Generational GC works:**
+* It categorizes objects into three **generations** (0, 1, and 2).
+* New objects start in Generation 0.
+* If an object survives a collection cycle, it is moved to an older generation.
+* Older generations are scanned less frequently than younger ones, optimizing performance.     [Q04] TTFT=1110.81ms Total=68.19s
+     [timings] prompt_n=25, prompt_ms=987.481, prompt_per_token_ms=39.49924, prompt_per_second=25.316942807000842, predicted_n=466, predicted_ms=67080.188, predicted_per_token_ms=143.94890128755364, predicted_per_second=6.946909570378664, cache_n=7
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+      [think] *   Topic: Microservices.
+    *   Constraints: Short, concise, and correct.
+
+    *   What are they? An architectural style.
+    *   How do they work? Decomposing a large application into small, independent services.
+    *   Key characteristics:
+        *   Single responsibility (do one thing well).
+        *   Independent deployment.
+        *   Decoupled (communicate via APIs/lightweight protocols).
+        *   Technology agnostic (different services can use different languages/databases).
+
+    *   *Draft 1:* Microservices are an architectural style where a large application is built as a collection of small, independent services. Each service runs its own process and communicates via lightweight mechanisms like HTTP APIs. They are independently deployable and scalable.
+
+    *   *Draft 2 (More concise):* Microservices are an architectural approach that structures an application as a collection of small, independent, and loosely coupled services. Each service focuses on a single business capability, has its own database, and communicates via lightweight APIs.
+
+    *   *Draft 3 (Bullet points for maximum clarity/conciseness):*
+        Microservices are an architectural style that structures an application as a collection of small, independent services.
+        Key traits:
+        - **Single Responsibility:** Each service handles one specific business function.
+        - **Independence:** Services are developed, deployed, and scaled separately.
+        - **Decoupling:** They communicate via lightweight APIs (e.g., REST, gRPC).
+        - **Polyglot:** Different services can use different languages or databases.
+        [out] **Microservices** are an architectural style that structures an application as a collection of small, independent, and loosely coupled services.
+
+**Key Characteristics:**
+*   **Single Responsibility:** Each service focuses on one specific business capability.
+*   **Independence:** Services are developed, deployed, and scaled independently.
+*   **Decoupling:** They communicate via lightweight protocols (e.g., REST APIs, gRPC, or message brokers).
+*   **Polyglot:** Different services can use different programming languages and databases.
+
+**Main Benefit:** Increased agility and scalability compared to a traditional monolithic architecture.     [Q05] TTFT=1065.21ms Total=67.83s
+     [timings] prompt_n=21, prompt_ms=926.136, prompt_per_token_ms=44.10171428571429, prompt_per_second=22.674855528777634, predicted_n=466, predicted_ms=66761.346, predicted_per_token_ms=143.26469098712448, predicted_per_second=6.980086950314034, cache_n=7
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+      [think] *   Topic: Closure in programming.
+    *   Constraints: Short, concise, and correct.
+
+    *   What is it? A function that remembers its lexical scope even when executed outside that scope.
+    *   Key components: A function + its environment (variables from the outer scope).
+
+    *   *Draft 1:* A closure is a function that has access to variables from its outer scope even after the outer function has finished executing.
+    *   *Draft 2:* A closure is a function bundled together with references to its surrounding state (the lexical environment).
+    *   *Draft 3 (Combining for clarity):* A closure is a function that "remembers" and can access variables from its outer (lexical) scope, even after that outer scope has closed.
+
+    *   Short? Yes.
+    *   Concise? Yes.
+    *   Correct? Yes.
+        [out] A **closure** is a function that remembers and can access variables from its outer (lexical) scope, even after that outer function has finished executing.     [Q06] TTFT=1101.71ms Total=33.13s
+     [timings] prompt_n=24, prompt_ms=963.594, prompt_per_token_ms=40.149750000000004, prompt_per_second=24.90675533471566, predicted_n=227, predicted_ms=32030.057, predicted_per_token_ms=141.10157268722466, predicted_per_second=7.087093226215614, cache_n=7
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+      [think] *   Topic: CAP Theorem.
+    *   Constraints: Short, concise, and correct.
+
+    *   C: Consistency (Every read receives the most recent write or an error).
+    *   A: Availability (Every request receives a (non-error) response, without the guarantee that it contains the most recent write).
+    *   P: Partition Tolerance (The system continues to operate despite an arbitrary number of messages being dropped or delayed by the network between nodes).
+
+    *   The core rule: In a distributed system, you can only guarantee **two out of three** at any given time.
+    *   Crucial nuance: Since network partitions (P) are inevitable in distributed systems, the real choice is usually between **Consistency (CP)** and **Availability (AP)** during a partition.
+
+    *   *Draft 1:* The CAP theorem says a distributed system can't have Consistency, Availability, and Partition Tolerance all at once. Consistency means all nodes see the same data. Availability means every request gets a response. Partition Tolerance means the system works even if nodes can't talk. You have to pick two. Usually, since partitions happen, you pick CP or AP.
+
+    *   *Draft 2 (More concise):* The CAP theorem states that a distributed data store can only provide two of the following three guarantees:
+        1. **Consistency (C):** Every read receives the most recent write.
+        2. **Availability (A):** Every request receives a response (success/failure).
+        3. **Partition Tolerance (P):** The system operates despite network failures.
+        Because network partitions are inevitable, systems must choose between **Consistency (CP)** or **Availability (AP)** when a partition occurs.
+
+    *   Short? Yes.
+    *   Concise? Yes.
+    *   Correct? Yes.
+        [out] The **CAP Theorem** states that a distributed system can only simultaneously provide two out of the following three guarantees:
+
+1.  **Consistency (C):** Every read receives the most recent write or an error.
+2.  **Availability (A):** Every request receives a (non-error) response, without the guarantee that it contains the most recent write.
+3.  **Partition Tolerance (P):** The system continues to operate despite an arbitrary number of messages being dropped or delayed by the network between nodes.
+
+**The Bottom Line:** Because network partitions are inevitable in distributed systems, you must choose between **Consistency (CP)** or **Availability (AP)** when a partition occurs.     [Q07] TTFT=971.68ms Total=78.47s
+     [timings] prompt_n=22, prompt_ms=894.426, prompt_per_token_ms=40.655727272727276, prompt_per_second=24.596780505038986, predicted_n=536, predicted_ms=77497.487, predicted_per_token_ms=144.58486380597014, predicted_per_second=6.916353300591542, cache_n=7
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+      [think] *   Topic: DNS (Domain Name System) resolution.
+    *   Constraints: Short, concise, and correct.
+
+    *   User enters a URL (e.g., `www.google.com`).
+    *   Browser checks cache.
+    *   OS checks cache.
+    *   Request goes to the Recursive Resolver (ISP).
+    *   Resolver asks the Root Server.
+    *   Root Server points to the TLD (Top-Level Domain) Server (e.g., `.com`).
+    *   TLD Server points to the Authoritative Name Server.
+    *   Authoritative Name Server provides the IP address.
+    *   Resolver gives the IP to the browser.
+    *   Browser connects to the IP.
+
+    *   *Step 1: Request.* User enters a domain name.
+    *   *Step 2: Resolver.* The DNS resolver (usually from the ISP) searches for the IP.
+    *   *Step 3: Root Server.* Resolver asks the Root server for the TLD server (e.g., .com).
+    *   *Step 4: TLD Server.* Resolver asks the TLD server for the Authoritative server.
+    *   *Step 5: Authoritative Server.* Resolver asks the Authoritative server for the specific IP.
+    *   *Step 6: Response.* The IP is returned to the browser, which loads the site.
+
+    *   *Draft:* DNS translates human-readable domain names (like `example.com`) into machine-readable IP addresses (like `93.184.216.34`).
+    *   *Process:*
+        1. **Recursive Resolver:** Your computer asks a resolver (ISP) for the IP.
+        2. **Root Server:** The resolver asks the Root server where to find the TLD (e.g., `.com`).
+        3. **TLD Server:** The resolver asks the TLD server for the Authoritative Name Server.
+        4. **Authoritative Server:** The resolver asks this server for the final IP address.
+        5. **Result:** The resolver returns the IP to your browser, which connects to the server.
+        [out] DNS (Domain Name System) translates human-readable domain names (e.g., `google.com`) into machine-readable IP addresses (e.g., `142.250.190.46`).
+
+**The Resolution Process:**
+
+1.  **Request:** Your browser checks its cache; if not found, it sends a request to a **Recursive Resolver** (usually provided by your ISP).
+2.  **Root Server:** The resolver asks a **Root Server** for the location of the **TLD (Top-Level Domain) Server** (e.g., the `.com` server).
+3.  **TLD Server:** The resolver asks the TLD server for the **Authoritative Name Server** responsible for that specific domain.
+4.  **Authoritative Server:** The resolver asks the Authoritative server for the actual **IP address**.
+5.  **Response:** The resolver returns the IP address to your browser, which then connects to the web server to load the page.     [Q08] TTFT=1035.18ms Total=100.94s
+     [timings] prompt_n=23, prompt_ms=880.601, prompt_per_token_ms=38.287, prompt_per_second=26.11852587039987, predicted_n=688, predicted_ms=99901.939, predicted_per_token_ms=145.2063066860465, predicted_per_second=6.886753219074156, cache_n=7
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+      [think] *   Topic: Design Patterns.
+    *   Constraints: Short, concise, and correct.
+
+    *   What are they? Reusable solutions to common problems in software design.
+    *   Are they code? No, they are templates/blueprints, not finished code.
+    *   Why use them? Standardize communication, improve maintainability, avoid reinventing the wheel.
+
+    *   *Draft 1:* Design patterns are typical solutions to common problems in software design. They aren't specific pieces of code but rather templates for how to solve a problem. There are three main types: creational, structural, and behavioral.
+    *   *Draft 2 (More concise):* Design patterns are reusable, generalized solutions to commonly occurring problems in software design. They act as templates for solving architectural challenges rather than finished code.
+    *   *Draft 3 (Ultra-concise):* Design patterns are standardized, reusable solutions to common problems in software design. They provide a blueprint for structuring code to make it more maintainable and scalable.
+        [out] Design patterns are **standardized, reusable solutions** to commonly occurring problems in software design. 
+
+They are not finished pieces of code, but rather **templates or blueprints** that describe how to structure classes and objects to make code more maintainable, scalable, and efficient.     [Q09] TTFT=1103.31ms Total=40.83s
+     [timings] prompt_n=22, prompt_ms=908.123, prompt_per_token_ms=41.278318181818186, prompt_per_second=24.22579320202219, predicted_n=280, predicted_ms=39726.159, predicted_per_token_ms=141.87913928571427, predicted_per_second=7.048252512909693, cache_n=7
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+      [think] *   Topic: Database transactions.
+    *   Constraints: Short, concise, and correct.
+
+    *   What is it? A logical unit of work.
+    *   What does it do? Ensures data integrity.
+    *   Key properties? ACID (Atomicity, Consistency, Isolation, Durability).
+    *   Key operations? Commit (save) and Rollback (undo).
+
+    *   *Definition:* A database transaction is a sequence of one or more operations executed as a single logical unit of work.
+    *   *Goal:* To ensure data integrity and consistency, even in the event of failures.
+    *   *ACID Properties:*
+        *   **Atomicity:** All operations succeed, or none do ("all or nothing").
+        *   **Consistency:** The database moves from one valid state to another.
+        *   **Isolation:** Concurrent transactions do not interfere with each other.
+        *   **Durability:** Once committed, changes are permanent.
+    *   *Outcomes:*
+        *   **Commit:** Saves changes permanently.
+        *   **Rollback:** Reverts changes if an error occurs.
+        [out] A **database transaction** is a sequence of one or more operations executed as a single logical unit of work. Its primary purpose is to ensure data integrity and consistency.
+
+Transactions are defined by the **ACID** properties:
+
+*   **Atomicity:** "All or nothing." Either every operation in the transaction succeeds, or the entire transaction is aborted and rolled back.
+*   **Consistency:** A transaction transforms the database from one valid state to another, maintaining all predefined rules (constraints, cascades, triggers).
+*   **Isolation:** Concurrent transactions do not interfere with each other; the result is as if they were executed sequentially.
+*   **Durability:** Once a transaction is committed, the changes are permanent, even in the event of a system crash.
+
+**Key Outcomes:**
+*   **Commit:** Saves all changes permanently to the database.
+*   **Rollback:** Reverts all changes if an error occurs, returning the database to its previous state.     [Q10] TTFT=933.38ms Total=64.94s
+     [timings] prompt_n=21, prompt_ms=843.286, prompt_per_token_ms=40.15647619047619, prompt_per_second=24.902583465158916, predicted_n=447, predicted_ms=64003.479, predicted_per_token_ms=143.1845167785235, predicted_per_second=6.983995354377533, cache_n=7
+
+================ PROFILE SUMMARY ================
+[info] Model: gemma-4-31B-it-qat-q4_0.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 1063.22 ms
+[info] Average Prompt Time (server): 937.04 ms
+[info] Total Predicted Tokens (server): 4707
+[info] Total Predicted Time (server): 676516.66 ms
+[info] Average Decode Speed (server): 6.96 tokens/sec
+[info] Average ms/token (server): 143.73 ms
+[time] Average Total Wall Duration: 68.72 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/gemma4-qat-31b_think.json

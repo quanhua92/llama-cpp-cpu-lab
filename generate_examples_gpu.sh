@@ -38,6 +38,7 @@ declare -a ALL_KEYS=(
     "qwen2.5-0.5b"
     "qwen3.5-0.8b"
     "llama3.2-1b"
+    "llama3.2-3b"
     "qwen2.5-1.5b"
     "qwen2.5-coder-1.5b"
     "deepseek-r1-1.5b"

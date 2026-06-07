@@ -1,0 +1,75 @@
+Auto-detected model: qwen2.5-3b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the fundamental structure of a software system, defining its components, their relationships, and their interfaces. It guides the design and development of software, ensuring it is scalable, maintainable, and meets the requirements.     [Q01] TTFT=29.83ms Total=0.40s
+     [timings] prompt_n=43, prompt_ms=27.039, prompt_per_token_ms=0.6288139534883721, prompt_per_second=1590.2954990939013, predicted_n=45, predicted_ms=367.682, predicted_per_token_ms=8.170711111111112, predicted_per_second=122.38836820948538, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through a process called backpropagation, which involves adjusting the weights of connections between neurons to minimize the difference between predicted and actual outputs. This is done using algorithms like gradient descent, where the network iteratively updates weights based on the error calculated during training.     [Q02] TTFT=19.01ms Total=0.48s
+     [timings] prompt_n=20, prompt_ms=12.199, prompt_per_token_ms=0.60995, prompt_per_second=1639.4786457906387, predicted_n=56, predicted_ms=455.739, predicted_per_token_ms=8.138196428571428, predicted_per_second=122.8773486578941, cache_n=24
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP is a connection-oriented protocol that ensures data delivery, providing acknowledgment and error correction, while UDP is connectionless, providing lower latency but without reliability guarantees.     [Q03] TTFT=18.91ms Total=0.28s
+     [timings] prompt_n=22, prompt_ms=12.227, prompt_per_token_ms=0.5557727272727273, prompt_per_second=1799.2966385867342, predicted_n=32, predicted_ms=257.613, predicted_per_token_ms=8.05040625, predicted_per_second=124.21733375256683, cache_n=24
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Garbage collection in Python works by periodically scanning the data structures for objects that are no longer reachable from any live objects, and then removing these unreachable objects. Python uses a reference counting mechanism combined with a cyclic garbage collector to manage memory. When an object's reference count drops to zero, it is automatically deleted, and if an object is part of a cycle, the entire cycle is cleaned up.     [Q04] TTFT=18.72ms Total=0.67s
+     [timings] prompt_n=21, prompt_ms=12.223, prompt_per_token_ms=0.582047619047619, prompt_per_second=1718.0724862963266, predicted_n=80, predicted_ms=653.828, predicted_per_token_ms=8.17285, predicted_per_second=122.35633836421812, cache_n=24
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software design where an application is composed of small, independently deployable services that communicate with each other over well-defined APIs. Each service is a small, focused application that performs a specific business function.     [Q05] TTFT=19.47ms Total=0.38s
+     [timings] prompt_n=17, prompt_ms=12.124, prompt_per_token_ms=0.7131764705882353, prompt_per_second=1402.1774991751897, predicted_n=44, predicted_ms=356.365, predicted_per_token_ms=8.099204545454546, predicted_per_second=123.46891529751798, cache_n=24
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that has access to variables from an outer (enclosing) function even after the outer function has finished executing.     [Q06] TTFT=19.49ms Total=0.24s
+     [timings] prompt_n=18, prompt_ms=12.144, prompt_per_token_ms=0.6746666666666666, prompt_per_second=1482.213438735178, predicted_n=28, predicted_ms=224.395, predicted_per_token_ms=8.014107142857144, predicted_per_second=124.77996390293902, cache_n=26
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that in a distributed system, it is impossible to simultaneously ensure consistency, availability, and partition tolerance.     [Q07] TTFT=17.77ms Total=0.22s
+     [timings] prompt_n=19, prompt_ms=12.149, prompt_per_token_ms=0.6394210526315789, prompt_per_second=1563.9147254918103, predicted_n=25, predicted_ms=199.616, predicted_per_token_ms=7.984640000000001, predicted_per_second=125.24046168643794, cache_n=24
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution involves translating human-readable domain names into IP addresses that computers use to communicate. When a domain name is entered, a DNS resolver checks local DNS cache first. If not found, it queries a DNS server, which may query other DNS servers if necessary. The process ends when the IP address is found and returned.     [Q08] TTFT=18.64ms Total=0.55s
+     [timings] prompt_n=19, prompt_ms=12.136, prompt_per_token_ms=0.6387368421052632, prompt_per_second=1565.5899802241267, predicted_n=65, predicted_ms=529.753, predicted_per_token_ms=8.150046153846155, predicted_per_second=122.69869165441251, cache_n=24
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are proven solutions to common problems in software design, expressed as reusable templates.     [Q09] TTFT=19.59ms Total=0.16s
+     [timings] prompt_n=17, prompt_ms=12.052, prompt_per_token_ms=0.7089411764705882, prompt_per_second=1410.5542648523067, predicted_n=18, predicted_ms=141.664, predicted_per_token_ms=7.870222222222221, predicted_per_second=127.0612152699345, cache_n=25
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a set of operations that are treated as a single unit of work. They ensure data consistency and integrity, allowing either all operations to be applied or none to be applied. Transactions are defined by ACID properties: Atomicity, Consistency, Isolation, and Durability.     [Q10] TTFT=16.82ms Total=0.50s
+     [timings] prompt_n=17, prompt_ms=12.147, prompt_per_token_ms=0.7145294117647059, prompt_per_second=1399.5225158475344, predicted_n=59, predicted_ms=480.415, predicted_per_token_ms=8.142627118644068, predicted_per_second=122.81048676664966, cache_n=24
+
+================ PROFILE SUMMARY ================
+[info] Model: qwen2.5-3b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 19.83 ms
+[info] Average Prompt Time (server): 13.64 ms
+[info] Total Predicted Tokens (server): 452
+[info] Total Predicted Time (server): 3667.07 ms
+[info] Average Decode Speed (server): 123.26 tokens/sec
+[info] Average ms/token (server): 8.11 ms
+[time] Average Total Wall Duration: 0.39 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/qwen2.5-3b_nothink.json

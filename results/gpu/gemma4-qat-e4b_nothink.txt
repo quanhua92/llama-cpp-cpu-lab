@@ -1,0 +1,134 @@
+Auto-detected model: gemma-4-E4B-it-qat-q4_0.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] **Software Architecture** is the high-level structure of a software system.
+
+It defines:
+
+* **Components:** The major building blocks of the system.
+* **Connectors:** How these components interact (APIs, message queues, etc.).
+* **Principles/Constraints:** The fundamental rules and design decisions that govern the system's behavior.
+
+**Purpose:** To ensure the system meets its quality attributes (e.g., scalability, security, maintainability) and fulfills business requirements.
+
+**It is *not* the code itself, but the blueprint for the code.**     [Q01] TTFT=85.53ms Total=1.60s
+     [timings] prompt_n=23, prompt_ms=83.72, prompt_per_token_ms=3.64, prompt_per_second=274.72527472527474, predicted_n=120, predicted_ms=1516.97, predicted_per_token_ms=12.641416666666666, predicted_per_second=79.10505810925727, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through a process of **iterative adjustment** based on data.
+
+Here's the concise breakdown:
+
+1. **Forward Propagation:** Input data passes through the network, layer by layer, to produce an output (a prediction).
+2. **Loss Calculation:** A **loss function** measures the difference (error) between the network's prediction and the true target value.
+3. **Backpropagation:** This error is then propagated backward through the network.
+4. **Weight Update (Optimization):** An **optimizer** (like Gradient Descent) uses the calculated error (the gradient) to slightly adjust the network's internal **weights** and **biases**. This adjustment aims to reduce the loss in the next iteration.
+
+By repeating this cycle (Forward $\rightarrow$ Loss $\rightarrow$ Backward $\rightarrow$ Update) over vast amounts of data, the network gradually tunes its weights until it minimizes the error and learns the underlying patterns in the data.     [Q02] TTFT=36.82ms Total=2.55s
+     [timings] prompt_n=22, prompt_ms=30.985, prompt_per_token_ms=1.408409090909091, prompt_per_second=710.0209778925287, predicted_n=199, predicted_ms=2516.362, predicted_per_token_ms=12.645035175879398, predicted_per_second=79.08242136862661, cache_n=1
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol)** is **connection-oriented**, reliable, and guarantees delivery through acknowledgments and retransmissions. It is slower but ensures data integrity.
+
+**UDP (User Datagram Protocol)** is **connectionless**, unreliable, and sends data without guarantees of delivery or order. It is faster and has lower overhead.
+
+**In short:** TCP prioritizes **reliability**; UDP prioritizes **speed**.     [Q03] TTFT=38.51ms Total=1.13s
+     [timings] prompt_n=25, prompt_ms=31.055, prompt_per_token_ms=1.2422, prompt_per_second=805.0233456770247, predicted_n=87, predicted_ms=1093.825, predicted_per_token_ms=12.572701149425288, predicted_per_second=79.53740314949832, cache_n=1
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python primarily uses **reference counting** for garbage collection.
+
+1. **Reference Counting:** Each object keeps a count of how many variables or containers point to it. When the count drops to zero, the memory is immediately deallocated.
+2. **Generational Garbage Collector (GC):** A secondary collector is used to detect and clean up **reference cycles** (objects that reference each other, keeping their counts above zero even when unreachable). It periodically scans and breaks these cycles.     [Q04] TTFT=36.85ms Total=1.27s
+     [timings] prompt_n=24, prompt_ms=30.992, prompt_per_token_ms=1.2913333333333334, prompt_per_second=774.3933918430562, predicted_n=98, predicted_ms=1235.378, predicted_per_token_ms=12.605897959183674, predicted_per_second=79.32794658800789, cache_n=1
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices is an architectural style where a large application is broken down into a collection of **small, independent, and loosely coupled services**.
+
+Each service:
+* **Focuses on a single business capability** (e.g., payments, users, inventory).
+* **Can be developed, deployed, and scaled independently** from other services.
+* **Communicates with other services** via lightweight mechanisms (usually APIs).     [Q05] TTFT=37.27ms Total=1.13s
+     [timings] prompt_n=20, prompt_ms=31.578, prompt_per_token_ms=1.5789, prompt_per_second=633.3523339033504, predicted_n=87, predicted_ms=1094.433, predicted_per_token_ms=12.579689655172414, predicted_per_second=79.49321703567053, cache_n=1
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** is a function bundled together with references to its surrounding state (the **lexical environment**).
+
+In simpler terms, it allows an inner function to access and remember variables from its outer function's scope even after the outer function has finished executing.     [Q06] TTFT=36.00ms Total=0.72s
+     [timings] prompt_n=23, prompt_ms=30.946, prompt_per_token_ms=1.3454782608695652, prompt_per_second=743.2301428294447, predicted_n=55, predicted_ms=687.767, predicted_per_token_ms=12.504854545454547, predicted_per_second=79.9689429705118, cache_n=1
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that a distributed data store can only provide **two** of the following three guarantees simultaneously:
+
+1. **Consistency (C):** Every read receives the most recent write or an error.
+2. **Availability (A):** Every request receives a non-error response, without the guarantee that it contains the most recent write.
+3. **Partition Tolerance (P):** The system continues to operate despite an arbitrary number of messages being dropped or delayed by the network (a network partition).
+
+**In short: You must choose between Consistency and Availability when a network partition occurs.**     [Q07] TTFT=35.32ms Total=1.59s
+     [timings] prompt_n=21, prompt_ms=30.866, prompt_per_token_ms=1.469809523809524, prompt_per_second=680.3602669604095, predicted_n=123, predicted_ms=1552.141, predicted_per_token_ms=12.619032520325204, predicted_per_second=79.24537783616307, cache_n=1
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution translates human-readable domain names (like `www.google.com`) into machine-readable IP addresses (like `142.250.191.46`).
+
+Here is the concise process:
+
+1. **Query:** The client (your device) asks a **DNS Resolver** (usually provided by your ISP) for the IP address of the domain.
+2. **Root Server:** The Resolver queries a **Root Name Server** to find the correct TLD server.
+3. **TLD Server:** The Resolver queries the **Top-Level Domain (TLD) Server** (e.g., `.com`) to find the authoritative name server for that domain.
+4. **Authoritative Server:** The Resolver queries the **Authoritative Name Server** for the domain, which holds the actual DNS records.
+5. **Response:** The Authoritative Server returns the IP address to the Resolver.
+6. **Caching & Delivery:** The Resolver caches this IP and sends it back to the client, which can then connect to the website.     [Q08] TTFT=37.40ms Total=2.86s
+     [timings] prompt_n=22, prompt_ms=30.913, prompt_per_token_ms=1.4051363636363636, prompt_per_second=711.6746999644162, predicted_n=223, predicted_ms=2822.147, predicted_per_token_ms=12.655367713004484, predicted_per_second=79.01785413729334, cache_n=1
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are **reusable, proven solutions to common problems** encountered during software design. They are not code snippets, but rather templates or blueprints for how to structure and solve recurring design challenges in a robust and flexible way.     [Q09] TTFT=38.87ms Total=0.61s
+     [timings] prompt_n=21, prompt_ms=30.858, prompt_per_token_ms=1.4694285714285715, prompt_per_second=680.5366517596733, predicted_n=46, predicted_ms=573.876, predicted_per_token_ms=12.475565217391305, predicted_per_second=80.15668890143516, cache_n=1
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a **single, logical unit of work** that accesses and possibly modifies the contents of a database.
+
+It is a sequence of one or more SQL statements treated as a single, indivisible operation.
+
+### Key Characteristics (ACID Properties)
+
+Transactions must adhere to the **ACID** properties to ensure data integrity:
+
+1. **Atomicity:** The transaction must execute entirely or not at all. If any part fails, the entire transaction is rolled back, leaving the database unchanged.
+2. **Consistency:** A transaction must bring the database from one valid state to another. It ensures that any data written adheres to all defined rules (constraints, triggers).
+3. **Isolation:** Concurrent transactions must not interfere with each other. The result of running multiple transactions simultaneously should be the same as if they were run sequentially.
+4. **Durability:** Once a transaction has been committed, its changes are permanent and will survive subsequent system failures (like power loss).     [Q10] TTFT=34.73ms Total=2.58s
+     [timings] prompt_n=20, prompt_ms=30.28, prompt_per_token_ms=1.514, prompt_per_second=660.5019815059445, predicted_n=201, predicted_ms=2543.406, predicted_per_token_ms=12.653761194029851, predicted_per_second=79.02788622815233, cache_n=1
+
+================ PROFILE SUMMARY ================
+[info] Model: gemma-4-E4B-it-qat-q4_0.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 41.73 ms
+[info] Average Prompt Time (server): 36.22 ms
+[info] Total Predicted Tokens (server): 1239
+[info] Total Predicted Time (server): 15636.31 ms
+[info] Average Decode Speed (server): 79.24 tokens/sec
+[info] Average ms/token (server): 12.62 ms
+[time] Average Total Wall Duration: 1.61 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/gemma4-qat-e4b_nothink.json

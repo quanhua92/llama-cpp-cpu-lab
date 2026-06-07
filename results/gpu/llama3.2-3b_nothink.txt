@@ -1,0 +1,230 @@
+Auto-detected model: llama-3.2-3b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Here's a concise overview of software architecture:
+
+**Definition:** The overall structure and organization of a software system, including its components, interactions, and relationships.
+
+**Key aspects:**
+
+1. **Modularity**: Breaking down the system into independent, reusable components (modules).
+2. **Abstraction**: Hiding implementation details and showing only necessary information to the outside world.
+3. **Scalability**: Designing the system to grow and adapt to changing requirements.
+4. **Flexibility**: Allowing for easy modification, extension, or replacement of components.
+5. **Maintainability**: Ensuring the system is easy to understand, modify, and debug.
+
+**Types of software architecture:**
+
+1. **Monolithic**: A single, integrated system.
+2. **Microservices**: A collection of small, independent services.
+3. **Event-driven**: Focused on handling events and notifications.
+4. **Service-oriented**: Emphasizing services that communicate with each other.
+
+**Benefits:**
+
+1. Improved maintainability and scalability
+2. Enhanced flexibility and adaptability
+3. Better performance and reliability
+4. Reduced complexity and increased modularity
+
+**Best practices:**
+
+1. Follow the SOLID principles (Single responsibility, Open/closed, Liskov substitution, Interface segregation, and Dependency inversion).
+2. Use design patterns and principles (e.g., Singleton, Factory, Observer).
+3. Implement modular, loosely-coupled components.
+4. Use version control and continuous integration to manage changes.
+
+This is just a brief overview, but I hope it provides a solid foundation for understanding software architecture!     [Q01] TTFT=16.90ms Total=2.77s
+     [timings] prompt_n=24, prompt_ms=15.243, prompt_per_token_ms=0.635125, prompt_per_second=1574.493209998032, predicted_n=325, predicted_ms=2749.394, predicted_per_token_ms=8.459673846153846, predicted_per_second=118.20786689721444, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of how neural networks learn:
+
+**The Learning Process:**
+
+1. **Input**: The network receives input data, such as images, text, or audio.
+2. **Forward Pass**: The input data is propagated through the network, generating an output.
+3. **Error Calculation**: The difference between the predicted output and the actual output (ground truth) is calculated.
+4. **Backward Pass**: The error is propagated backwards through the network, adjusting the weights and biases of each layer.
+5. **Weight Update**: The weights and biases are updated based on the error, using an optimization algorithm (e.g., stochastic gradient descent).
+6. **Repeat**: Steps 2-5 are repeated for multiple iterations, with the network adjusting its parameters to minimize the error.
+
+**Key Concepts:**
+
+* **Activation Functions**: Introduce non-linearity to the network, allowing it to learn complex relationships.
+* **Gradient Descent**: An optimization algorithm that adjusts the weights and biases to minimize the error.
+* **Backpropagation**: The process of propagating the error backwards through the network to adjust the weights and biases.
+
+**Learning Objective:**
+
+The network learns to minimize the error between its predictions and the actual outputs, resulting in improved performance on the task at hand.     [Q02] TTFT=29.43ms Total=2.23s
+     [timings] prompt_n=20, prompt_ms=11.463, prompt_per_token_ms=0.5731499999999999, prompt_per_second=1744.7439588240427, predicted_n=261, predicted_ms=2203.837, predicted_per_token_ms=8.443819923371647, predicted_per_second=118.42981127914634, cache_n=5
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] Here is the difference between TCP and UDP:
+
+**TCP (Transmission Control Protocol)**
+
+* Connection-oriented: Establishes a connection before data is sent.
+* Reliable: Guarantees delivery of data packets in the correct order.
+* Error-checked: Corrects errors and retransmits packets if necessary.
+* Slower: More overhead due to connection establishment and error checking.
+
+**UDP (User Datagram Protocol)**
+
+* Connectionless: Does not establish a connection before sending data.
+* Unreliable: Does not guarantee delivery of data packets.
+* Fast: Less overhead due to no connection establishment.
+* Less reliable: May not deliver data packets at all.
+
+In summary: TCP is reliable and slower, while UDP is fast but less reliable.     [Q03] TTFT=26.14ms Total=1.28s
+     [timings] prompt_n=22, prompt_ms=11.609, prompt_per_token_ms=0.5276818181818181, prompt_per_second=1895.081402360238, predicted_n=149, predicted_ms=1252.41, predicted_per_token_ms=8.405436241610738, predicted_per_second=118.97062463570235, cache_n=5
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] **Garbage Collection in Python**
+
+Python's garbage collection is a mechanism that automatically frees up memory occupied by objects that are no longer needed or referenced.
+
+Here's a simplified overview:
+
+1. **Object Creation**: When an object is created, Python allocates memory for it.
+2. **Reference Counting**: Each object has a reference count, which is the number of variables that reference the object. When the reference count reaches 0, the object is considered garbage.
+3. **Garbage Collection Cycle**: Python periodically runs a garbage collection cycle, which:
+	* Iterates through all objects in memory.
+	* Decrements the reference count of each object.
+	* Frees memory occupied by objects with a reference count of 0.
+4. **Finalization**: When an object is garbage collected, Python may call its `__del__` method (if defined) to perform any necessary cleanup.
+
+**Example**:
+```python
+import gc
+
+class MyClass:
+    def __init__(self):
+        print("Object created")
+
+    def __del__(self):
+        print("Object deleted")
+
+obj = MyClass()
+obj = None  # Remove reference
+gc.collect()  # Trigger garbage collection
+```
+Output:
+```
+Object created
+Object deleted
+```
+Note: Python's garbage collection is not as efficient as some other languages, but it's designed to be easy to use and flexible.     [Q04] TTFT=22.52ms Total=2.42s
+     [timings] prompt_n=21, prompt_ms=11.544, prompt_per_token_ms=0.5497142857142857, prompt_per_second=1819.126819126819, predicted_n=284, predicted_ms=2399.918, predicted_per_token_ms=8.450415492957747, predicted_per_second=118.33737652703132, cache_n=5
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] **Microservices**: A software development approach where an application is broken down into small, independent, and loosely-coupled services that communicate with each other using APIs. Each service is responsible for a specific business capability and can be developed, deployed, and scaled independently.     [Q05] TTFT=27.44ms Total=0.48s
+     [timings] prompt_n=17, prompt_ms=11.389, prompt_per_token_ms=0.6699411764705882, prompt_per_second=1492.6683642110809, predicted_n=54, predicted_ms=448.915, predicted_per_token_ms=8.31324074074074, predicted_per_second=120.29003263424033, cache_n=5
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] In programming, a closure is a function that has access to its own scope and the scope of its outer functions, even when the outer functions have returned.     [Q06] TTFT=18.03ms Total=0.28s
+     [timings] prompt_n=20, prompt_ms=11.487, prompt_per_token_ms=0.57435, prompt_per_second=1741.0986332375728, predicted_n=32, predicted_ms=263.69, predicted_per_token_ms=8.2403125, predicted_per_second=121.3546209564261, cache_n=5
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that it is impossible for a distributed data storage system to simultaneously guarantee all three of the following:
+
+1. **Consistency**: All nodes in the system see the same data value for a given data item.
+2. **Availability**: Every request to a non-failing node in the system receives a response, without the guarantee that it contains the most recent version of the information.
+3. **Partition tolerance**: The system continues to function and make progress even when there are network partitions (i.e., when some nodes in the system cannot communicate with each other).
+
+In other words, you can choose two out of the three, but not all three at the same time.     [Q07] TTFT=16.98ms Total=1.18s
+     [timings] prompt_n=19, prompt_ms=11.523, prompt_per_token_ms=0.6064736842105263, prompt_per_second=1648.8761607220342, predicted_n=138, predicted_ms=1160.531, predicted_per_token_ms=8.409644927536231, predicted_per_second=118.91108466727732, cache_n=5
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of how DNS resolution works:
+
+**Step 1: User Request**
+A user types a URL into their browser, e.g., `example.com`.
+
+**Step 2: DNS Query**
+The browser sends a DNS query to the operating system's DNS resolver, which is usually provided by the internet service provider (ISP).
+
+**Step 3: DNS Cache**
+The DNS resolver checks the DNS cache, a local memory store that contains recently resolved domain names. If the domain name is cached, the resolver returns the cached IP address.
+
+**Step 4: Recursive DNS**
+If the domain name is not cached, the DNS resolver sends a recursive DNS query to a root DNS server (e.g., `8.8.8.8`).
+
+**Step 5: Root DNS Server**
+The root DNS server receives the query and directs it to a top-level domain (TLD) server (e.g., `.com`).
+
+**Step 6: TLD Server**
+The TLD server receives the query and directs it to a name server (e.g., `ns1.example.com`).
+
+**Step 7: Name Server**
+The name server receives the query and returns the IP address associated with the domain name.
+
+**Step 8: DNS Resolution Complete**
+The DNS resolver receives the IP address and returns it to the browser, which can then establish a connection to the server.
+
+That's the basic process of DNS resolution!     [Q08] TTFT=21.49ms Total=2.50s
+     [timings] prompt_n=19, prompt_ms=11.474, prompt_per_token_ms=0.6038947368421053, prompt_per_second=1655.9177270350358, predicted_n=293, predicted_ms=2476.711, predicted_per_token_ms=8.4529385665529, predicted_per_second=118.30205462001825, cache_n=5
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design, providing a proven and standardized approach to solving specific design challenges. They are documented patterns of behavior or solutions to problems that can be applied to a wide range of situations, making it easier to write maintainable, flexible, and scalable code.     [Q09] TTFT=27.89ms Total=0.53s
+     [timings] prompt_n=18, prompt_ms=11.422, prompt_per_token_ms=0.6345555555555555, prompt_per_second=1575.9061460339697, predicted_n=60, predicted_ms=500.17, predicted_per_token_ms=8.336166666666667, predicted_per_second=119.95921386728511, cache_n=5
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] **Database Transactions**
+
+A database transaction is a sequence of operations that are executed as a single, all-or-nothing unit of work. It ensures that either all changes are made and the database is left in a consistent state, or none of the changes are made and the database is left unchanged.
+
+**Key Characteristics:**
+
+1. **Atomicity**: A transaction is treated as a single, indivisible unit.
+2. **Consistency**: The transaction maintains the integrity of the database.
+3. **Isolation**: Multiple transactions can run concurrently without interfering with each other.
+4. **Durability**: Once a transaction is committed, its effects are permanent.
+
+**Transaction States:**
+
+1. **Uncommitted**: The transaction has not been committed or rolled back.
+2. **Committed**: The transaction has been successfully committed.
+3. **Rolled Back**: The transaction has been rolled back, and its effects are discarded.
+
+**Best Practices:**
+
+1. Use transactions to ensure data consistency and integrity.
+2. Keep transactions short and focused to minimize the risk of errors.
+3. Use locking mechanisms to prevent concurrent modifications to shared data.     [Q10] TTFT=18.21ms Total=1.95s
+     [timings] prompt_n=17, prompt_ms=11.417, prompt_per_token_ms=0.6715882352941176, prompt_per_second=1489.007620215468, predicted_n=229, predicted_ms=1928.105, predicted_per_token_ms=8.41967248908297, predicted_per_second=118.7694653558805, cache_n=5
+
+================ PROFILE SUMMARY ================
+[info] Model: llama-3.2-3b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 22.50 ms
+[info] Average Prompt Time (server): 11.86 ms
+[info] Total Predicted Tokens (server): 1825
+[info] Total Predicted Time (server): 15383.68 ms
+[info] Average Decode Speed (server): 118.63 tokens/sec
+[info] Average ms/token (server): 8.43 ms
+[time] Average Total Wall Duration: 1.56 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/llama3.2-3b_nothink.json

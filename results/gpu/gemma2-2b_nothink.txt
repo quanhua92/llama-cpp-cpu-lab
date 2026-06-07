@@ -1,0 +1,135 @@
+Auto-detected model: gemma-2-2b-it-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the **high-level design of a software system**. It defines the **structure, components, and relationships** of a system, outlining how it will be built and how its components will interact. 
+
+**Key aspects include:**
+
+* **Components:**  Modules, services, databases, etc.
+* **Relationships:** How components connect and communicate.
+* **Abstractions:**  Simplifying complex interactions.
+* **Scalability:**  Ability to handle growth.
+* **Maintainability:**  Ease of modification and updates.
+
+**Benefits:**
+
+* **Improved communication:**  Clear understanding of the system's design.
+* **Reduced complexity:**  Breaking down large systems into manageable parts.
+* **Faster development:**  Clear roadmap for building the system.
+* **Increased reliability:**  Well-defined structure for robust software. 
+
+
+Think of it as the blueprint for your software project. 
+     [Q01] TTFT=31.33ms Total=1.54s
+     [timings] prompt_n=23, prompt_ms=29.177, prompt_per_token_ms=1.2685652173913042, prompt_per_second=788.2921479247352, predicted_n=191, predicted_ms=1510.603, predicted_per_token_ms=7.908916230366493, predicted_per_second=126.43957413033073, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting the **weights** of connections between neurons. 
+
+This adjustment happens through a process called **backpropagation**, where the network compares its output to the desired output and calculates the error. This error is then used to adjust the weights, making the network better at predicting the desired output in the future. 
+
+Essentially, the network learns by iteratively refining its connections based on the feedback it receives. 
+     [Q02] TTFT=29.92ms Total=0.72s
+     [timings] prompt_n=22, prompt_ms=17.745, prompt_per_token_ms=0.8065909090909091, prompt_per_second=1239.7858551704705, predicted_n=88, predicted_ms=693.089, predicted_per_token_ms=7.876011363636365, predicted_per_second=126.9678208714898, cache_n=1
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol)**:
+* **Reliable:** Ensures data arrives in order and without errors.
+* **Slower:**  More overhead for error checking and flow control.
+
+**UDP (User Datagram Protocol)**:
+* **Unreliable:** No error checking, data may arrive out of order or be lost.
+* **Faster:** Less overhead, ideal for real-time applications like streaming. 
+     [Q03] TTFT=25.89ms Total=0.73s
+     [timings] prompt_n=25, prompt_ms=17.93, prompt_per_token_ms=0.7172, prompt_per_second=1394.3112102621305, predicted_n=89, predicted_ms=700.713, predicted_per_token_ms=7.8731797752808985, predicted_per_second=127.01348483615975, cache_n=1
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python uses **reference counting** for garbage collection. 
+
+Here's the basic idea:
+
+* **Every object has a count:**  This count tracks how many references point to it.
+* **When count reaches zero:** The object is considered garbage and is removed. 
+* **Reference counting is efficient:** It's relatively simple to implement and doesn't require manual memory management. 
+
+
+Let me know if you'd like a more detailed explanation! 
+     [Q04] TTFT=26.24ms Total=0.81s
+     [timings] prompt_n=24, prompt_ms=17.773, prompt_per_token_ms=0.7405416666666667, prompt_per_second=1350.362910032071, predicted_n=99, predicted_ms=779.183, predicted_per_token_ms=7.870535353535353, predicted_per_second=127.05616010616248, cache_n=1
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software architecture style where an application is broken down into small, independent services. Each service focuses on a specific business capability and communicates with others via APIs. This promotes modularity, scalability, and resilience. 
+     [Q05] TTFT=26.77ms Total=0.39s
+     [timings] prompt_n=20, prompt_ms=18.616, prompt_per_token_ms=0.9308, prompt_per_second=1074.3446497636442, predicted_n=47, predicted_ms=365.55, predicted_per_token_ms=7.777659574468085, predicted_per_second=128.57338257420324, cache_n=1
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that "remembers" its surrounding environment (variables, functions, etc.) even after the outer function has finished executing. 
+     [Q06] TTFT=24.00ms Total=0.27s
+     [timings] prompt_n=23, prompt_ms=17.771, prompt_per_token_ms=0.7726521739130435, prompt_per_second=1294.2434303078048, predicted_n=32, predicted_ms=246.297, predicted_per_token_ms=7.69678125, predicted_per_second=129.92444081738714, cache_n=1
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that in a distributed system, you can only choose **two** out of the following three properties:
+
+* **Consistency:** All nodes see the same data at the same time.
+* **Availability:** The system is always up and running, even if some nodes fail.
+* **Partition tolerance:** The system continues to operate even if there's a network partition (a split in the network).
+
+You can't have all three simultaneously. 
+     [Q07] TTFT=23.59ms Total=0.79s
+     [timings] prompt_n=21, prompt_ms=17.64, prompt_per_token_ms=0.8400000000000001, prompt_per_second=1190.4761904761904, predicted_n=98, predicted_ms=768.746, predicted_per_token_ms=7.84434693877551, predicted_per_second=127.48033810907633, cache_n=1
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution translates human-readable domain names (e.g., google.com) into IP addresses (e.g., 172.217.160.142) that computers use to communicate. 
+
+It works by:
+
+1. **Querying a DNS server:** Your device sends a request to a DNS server.
+2. **Searching for the IP address:** The server checks its cache or queries a root server to find the IP address associated with the domain name.
+3. **Returning the IP address:** The server sends the IP address back to your device.
+4. **Connecting to the website:** Your device uses the IP address to connect to the website. 
+     [Q08] TTFT=26.58ms Total=1.20s
+     [timings] prompt_n=22, prompt_ms=17.752, prompt_per_token_ms=0.8069090909090909, prompt_per_second=1239.2969806219019, predicted_n=149, predicted_ms=1173.503, predicted_per_token_ms=7.875859060402684, predicted_per_second=126.97027617313293, cache_n=1
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common software design problems. They provide a blueprint for structuring code, promoting modularity, and improving maintainability. 
+     [Q09] TTFT=28.22ms Total=0.27s
+     [timings] prompt_n=21, prompt_ms=17.635, prompt_per_token_ms=0.8397619047619048, prompt_per_second=1190.8137227105187, predicted_n=31, predicted_ms=238.53, predicted_per_token_ms=7.694516129032258, predicted_per_second=129.96268813147194, cache_n=1
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a group of one or more database operations (like reading, writing, or deleting data) that are treated as a single unit of work. They ensure data consistency by either completing all operations or none at all. 
+     [Q10] TTFT=23.52ms Total=0.40s
+     [timings] prompt_n=20, prompt_ms=17.632, prompt_per_token_ms=0.8816, prompt_per_second=1134.3012704174228, predicted_n=48, predicted_ms=373.341, predicted_per_token_ms=7.7779375, predicted_per_second=128.5687883195256, cache_n=1
+
+================ PROFILE SUMMARY ================
+[info] Model: gemma-2-2b-it-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 26.61 ms
+[info] Average Prompt Time (server): 18.97 ms
+[info] Total Predicted Tokens (server): 872
+[info] Total Predicted Time (server): 6849.55 ms
+[info] Average Decode Speed (server): 127.31 tokens/sec
+[info] Average ms/token (server): 7.85 ms
+[time] Average Total Wall Duration: 0.71 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/gemma2-2b_nothink.json

@@ -1,0 +1,373 @@
+Auto-detected model: gemma-4-E4B-it-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+      [think] Here's a thinking process to construct the answer:
+
+1.  **Analyze the Request:** The user wants to know about "software architecture." The constraints are strict: "short, concise, and correct."
+
+2.  **Define Software Architecture (Core Concept):** What is it, fundamentally? It's the structure, organization, and design of a system. It dictates how components interact and how the system meets its goals (non-functional requirements).
+
+3.  **Identify Key Components/Elements (What does it involve?):**
+    *   Structure (components, modules).
+    *   Relationships (interactions, interfaces).
+    *   Design decisions (patterns, technologies).
+    *   Goals (scalability, security, maintainability).
+
+4.  **Structure the Answer (Applying the Constraints):** A good structure will be definition $\rightarrow$ purpose $\rightarrow$ examples.
+
+    *   *Drafting the Definition (Short & Concise):* Start with a clear, high-level definition.
+    *   *Drafting the Purpose (Why is it needed?):* Focus on the *impact* of the architecture (the "why").
+    *   *Drafting Examples (How is it done?):* Mention common architectural styles.
+
+5.  **Refining and Editing for Brevity (Self-Correction/Review):**
+
+    *   *(Initial thought on definition: "It's the blueprint for the software.")* -> Too simple. Needs more technical depth.
+    *   *(Refinement: "It defines the structure, components, and relationships.")* -> Better.
+    *   *(Initial thought on purpose: "It makes the code work well.")* -> Too vague. Needs specific qualities.
+    *   *(Refinement: Focus on Non-Functional Requirements: Scalability, reliability, maintainability.)* -> Correct and concise.
+    *   *(Initial thought on examples: "Microservices, Monolith.")* -> Perfect.
+
+6.  **Final Polish:** Assemble the points into a clean, bulleted, or paragraph format that is easy to read and highly dense with information. (This leads to the final provided answer.)
+        [out] **Software architecture** is the fundamental structure of a software system. It defines the components, their relationships, and the principles governing their design and evolution.
+
+### Key Concepts
+
+*   **Blueprint:** It acts as the high-level blueprint, dictating how the system is organized and how different parts interact.
+*   **Design Decisions:** It involves critical, high-level decisions (e.g., choosing a database type, deciding on communication protocols) that are difficult and expensive to change later.
+*   **Focus:** It primarily addresses **non-functional requirements** (the "ilities") such as scalability, security, performance, and maintainability, rather than just the functional features.
+
+### Purpose
+
+The primary goal is to ensure the system meets its quality attributes and business goals while remaining manageable and robust over time.
+
+### Common Architectural Styles
+
+Architectures are patterns used to structure the system. Examples include:
+
+*   **Monolithic:** A single, unified unit where all components are tightly coupled. (Simple, but hard to scale.)
+*   **Microservices:** The application is broken down into small, independent services that communicate via APIs. (Highly scalable, complex to manage.)
+*   **Layered (N-Tier):** Components are organized into horizontal layers (e.g., Presentation $\rightarrow$ Business Logic $\rightarrow$ Data Access). (Common, good for separation of concerns.)
+*   **Event-Driven:** Components communicate by producing and consuming events. (Excellent for real-time, asynchronous systems.)     [Q01] TTFT=174.85ms Total=10.59s
+     [timings] prompt_n=30, prompt_ms=172.664, prompt_per_token_ms=5.755466666666666, prompt_per_second=173.74785710976232, predicted_n=773, predicted_ms=10412.715, predicted_per_token_ms=13.470523932729625, predicted_per_second=74.23616223050377, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+      [think] Here's a thinking process to construct the answer:
+
+1.  **Analyze the Request:** The user wants an explanation of "how neural networks learn." The constraints are strict: "short, concise, and correct."
+
+2.  **Identify Key Concepts (The Core Mechanism):**
+    *   Neural networks learn by adjusting internal parameters (weights and biases).
+    *   They need data (input) and a target (output).
+    *   They measure the error (loss function).
+    *   They use an optimization algorithm (Gradient Descent) to minimize that error.
+    *   The specific mechanism for adjusting weights is Backpropagation.
+
+3.  **Drafting - Focusing on Conciseness (Iterative Refinement):**
+
+    *   *Draft 1 (Too technical/long):* The network makes a prediction, calculates the difference between the prediction and the true value (the loss). Then, backpropagation calculates the gradient of this loss with respect to the weights. Gradient descent uses this gradient to slightly adjust the weights in the direction that reduces the loss. This process repeats many times.
+
+    *   *Draft 2 (More concise, hitting the main points):* Learning involves three steps: Forward Pass (prediction), Loss Calculation (error measurement), and Backpropagation/Optimization (weight adjustment). The network iteratively adjusts its weights to minimize the error.
+
+4.  **Final Polish (Ensuring Clarity and Flow):** Structure the explanation logically (Input $\rightarrow$ Error $\rightarrow$ Adjustment). Use precise terminology (weights, loss function, backpropagation, gradient descent).
+
+5.  **Final Output Generation.** (This leads to the provided concise answer.)
+        [out] Neural networks learn through an iterative process of prediction, error measurement, and adjustment.
+
+1.  **Forward Pass (Prediction):** Input data is fed through the network. Each neuron applies mathematical functions (weighted sums) to produce an output prediction.
+2.  **Loss Calculation (Error Measurement):** A **loss function** compares the network's prediction to the actual correct answer, quantifying the error.
+3.  **Backpropagation (Error Distribution):** The error is sent backward through the network. This process calculates the **gradient**—the rate at which the error changes with respect to each weight and bias.
+4.  **Optimization (Weight Adjustment):** An algorithm, typically **Gradient Descent**, uses the gradient to slightly adjust the weights and biases. These adjustments are made in the direction that minimizes the loss.
+
+This cycle repeats thousands of times until the network's predictions are consistently accurate, meaning the loss is minimized.     [Q02] TTFT=60.26ms Total=7.36s
+     [timings] prompt_n=23, prompt_ms=44.87, prompt_per_token_ms=1.9508695652173913, prompt_per_second=512.5919322487185, predicted_n=544, predicted_ms=7296.018, predicted_per_token_ms=13.411797794117646, predicted_per_second=74.56121955839473, cache_n=7
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+      [think] Here's a thinking process to arrive at the suggested answer:
+
+1.  **Analyze the Request:** The user wants to know the difference between TCP and UDP. The constraints are strict: "short, concise, and correct."
+
+2.  **Identify the Core Concepts (TCP vs. UDP):**
+    *   **TCP (Transmission Control Protocol):** Reliable, connection-oriented, guarantees delivery, handles ordering. (Think: Email, Web browsing).
+    *   **UDP (User Datagram Protocol):** Fast, connectionless, unreliable (best-effort), no guarantee of delivery or order. (Think: Streaming video, DNS lookups).
+
+3.  **Structure the Comparison (for conciseness):** A direct comparison using key features is the most efficient method.
+
+    *   *Feature 1: Connection* (TCP = Connection-oriented; UDP = Connectionless)
+    *   *Feature 2: Reliability* (TCP = Reliable/Guaranteed; UDP = Unreliable/Best-effort)
+    *   *Feature 3: Speed/Overhead* (TCP = Slower/Higher overhead; UDP = Faster/Lower overhead)
+    *   *Feature 4: Use Case* (TCP = Data integrity needed; UDP = Speed needed)
+
+4.  **Draft the Answer (Iterative Refinement):**
+
+    *   *(Draft 1 - Too verbose):* TCP is reliable and makes sure all packets arrive in order, which is good for websites. UDP is fast and doesn't check if packets arrive, which is good for video streaming.
+    *   *(Draft 2 - Better, but needs structure):* TCP is connection-oriented and reliable. UDP is connectionless and fast. TCP guarantees delivery; UDP does not.
+    *   *(Final Polish - Meeting the "short, concise, and correct" criteria):* Use bullet points or a clear comparative structure. Focus on the *why* (reliability vs. speed).
+
+5.  **Final Selection (The chosen output):** (This matches the provided good answer, prioritizing the key differences in reliability and connection.)
+        [out] **TCP (Transmission Control Protocol):**
+*   **Connection-Oriented:** Requires a handshake to establish a connection before data transfer.
+*   **Reliable:** Guarantees that all data packets arrive, are in the correct order, and are error-free (it retransmits lost packets).
+*   **Use Case:** Web browsing (HTTP), email (SMTP)—where data integrity is critical.
+
+**UDP (User Datagram Protocol):**
+*   **Connectionless:** Sends data packets without establishing a formal connection.
+*   **Unreliable:** Does not guarantee delivery or order; if a packet is lost, it is not retransmitted.
+*   **Use Case:** Video streaming, online gaming, DNS—where speed is more important than guaranteed delivery.
+
+***
+
+**In short:** TCP prioritizes **reliability** (accuracy), while UDP prioritizes **speed** (efficiency).     [Q03] TTFT=58.90ms Total=8.61s
+     [timings] prompt_n=26, prompt_ms=44.973, prompt_per_token_ms=1.7297307692307693, prompt_per_second=578.1246525693193, predicted_n=636, predicted_ms=8550.529, predicted_per_token_ms=13.444227987421383, predicted_per_second=74.38136283731684, cache_n=7
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+      [think] Here's a thinking process to construct the answer:
+
+1.  **Analyze the Request:** The user wants to know how garbage collection (GC) works in Python. The constraints are: "short, concise, and correct."
+
+2.  **Identify Key Mechanisms in Python GC:** Python uses a hybrid approach.
+    *   **Primary Mechanism:** Reference Counting (the most fundamental and immediate method).
+    *   **Secondary Mechanism:** Generational Garbage Collection (for handling cyclic references that reference counting misses).
+
+3.  **Draft the Explanation (Focusing on Conciseness):**
+
+    *   *Attempt 1 (Mental Draft):* Python uses reference counting. When an object's reference count drops to zero, it's deleted. It also has a separate GC for cycles, which uses a generational approach. (A bit too long.)
+
+    *   *Refining for Conciseness (Structuring the answer):* Start with the primary method, then address the exception/secondary method.
+
+4.  **Final Polish (Checking against constraints):**
+
+    *   *Short?* Yes.
+    *   *Concise?* Yes, uses bullet points/clear separation.
+    *   *Correct?* Yes, accurately describes the two components.
+
+5.  **Generate the Output.** (This leads to the provided final answer.)
+        [out] Python uses a two-pronged approach:
+
+1.  **Reference Counting (Primary):** This is the main mechanism. Every object keeps a count of how many references point to it. When the count drops to zero, the object is immediately deallocated.
+2.  **Generational Garbage Collection (Secondary):** This handles **cyclic references** (objects that reference each other, preventing their reference count from ever reaching zero). The GC periodically scans for and breaks these cycles, freeing the memory.     [Q04] TTFT=59.65ms Total=5.26s
+     [timings] prompt_n=25, prompt_ms=44.871, prompt_per_token_ms=1.79484, prompt_per_second=557.1527267054445, predicted_n=389, predicted_ms=5200.704, predicted_per_token_ms=13.369419023136246, predicted_per_second=74.79756586800556, cache_n=7
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+      [think] Here's a thinking process to arrive at the suggested answer:
+
+1.  **Analyze the Request:** The user wants a description of "microservices." The constraints are strict: "short, concise, and correct."
+
+2.  **Define Microservices (Core Concept):**
+    *   What are they? An architectural style.
+    *   What do they do? Break down a large application (monolith) into smaller, independent services.
+    *   How do they communicate? Via APIs (usually HTTP/REST).
+    *   What is the benefit? Scalability, resilience, independent deployment.
+
+3.  **Drafting - Attempt 1 (Mental Outline):**
+    Microservices are small, independent services that make up a large application. Each service handles a specific business function. They communicate via APIs. This allows teams to deploy and scale parts of the application separately. (A bit too long.)
+
+4.  **Refining for Conciseness and Correctness (Focusing on Key Terms):**
+    *   *Start with the definition:* Architectural style.
+    *   *Identify the core mechanism:* Breaking down a monolith.
+    *   *Identify the structure:* Small, independent services.
+    *   *Identify the benefit/operation:* Independent deployment and scaling.
+
+5.  **Final Polish (Selecting the best structure for maximum impact and brevity):** (This leads directly to the provided answer.)
+
+    *Self-Correction Check:* Is it short? Yes. Is it concise? Yes. Is it correct? Yes.
+
+6.  **Generate Output.** (The final response.)
+        [out] Microservices is an architectural style where a large application is broken down into a collection of small, independent services.
+
+**Key Characteristics:**
+
+*   **Independence:** Each service is self-contained and manages its own data.
+*   **Functionality:** Each service handles a single, specific business capability (e.g., "User Authentication," "Order Processing").
+*   **Communication:** Services communicate with each other via lightweight APIs (usually REST or gRPC).
+*   **Deployment:** Services can be developed, deployed, and scaled independently of one another.
+
+**In short:** It replaces a single, large application (monolith) with many small, specialized, and loosely coupled services.     [Q05] TTFT=58.61ms Total=6.56s
+     [timings] prompt_n=21, prompt_ms=46.458, prompt_per_token_ms=2.212285714285714, prompt_per_second=452.02118042102546, predicted_n=486, predicted_ms=6506.099, predicted_per_token_ms=13.387034979423868, predicted_per_second=74.69913999156792, cache_n=7
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user wants a definition of "closure in programming."
+2.  **Analyze the Constraints:** The answer must be "short, concise, and correct."
+3.  **Define "Closure" (Technical Core):** A closure is a function bundled together with references to its surrounding state (the lexical environment). It allows the inner function to access variables from the outer function even after the outer function has finished executing.
+4.  **Drafting - Attempt 1 (Too long):** A closure is when a function remembers and can access variables from the scope in which it was created, even if that scope is no longer active.
+5.  **Refining for Conciseness (Focusing on the mechanism):** A closure is a function that retains access to its lexical environment (the variables of its outer scope) even after that outer scope has completed execution.
+6.  **Final Polish (Shortest, clearest version):** Use the key terms: "function," "lexical environment," and "retains access."
+
+*(Self-Correction during drafting: Ensure I don't just say "it remembers variables," but specify *how* it remembers them—the lexical environment.)*
+
+7.  **Final Output Generation.**
+        [out] A closure is a function that retains access to its lexical environment (the variables of its outer scope) even after that outer scope has finished executing.
+
+In short, it allows an inner function to "remember" and use variables from its parent function.     [Q06] TTFT=59.16ms Total=4.36s
+     [timings] prompt_n=24, prompt_ms=44.851, prompt_per_token_ms=1.8687916666666666, prompt_per_second=535.1051258611849, predicted_n=322, predicted_ms=4302.148, predicted_per_token_ms=13.360708074534163, predicted_per_second=74.84633257619217, cache_n=7
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+      [think] Here's a thinking process to construct the answer:
+
+1.  **Analyze the Request:** The user wants an explanation of the CAP theorem. The constraints are strict: "short, concise, and correct."
+
+2.  **Define CAP (The Core Concept):**
+    *   CAP stands for Consistency, Availability, and Partition Tolerance.
+    *   The theorem states that a distributed data store can only guarantee *two* of these three properties simultaneously.
+
+3.  **Define the Components (Briefly):**
+    *   **Consistency (C):** Every read receives the most recent write or an error. (All nodes see the same data at the same time).
+    *   **Availability (A):** Every request receives a non-error response (the system is always up and responsive).
+    *   **Partition Tolerance (P):** The system continues to operate despite arbitrary network failures (partitions) between nodes.
+
+4.  **Synthesize the Explanation (Drafting the structure):**
+    *   *Introduction:* State the theorem's premise (the trade-off).
+    *   *The Components:* Define C, A, and P.
+    *   *The Implication:* Explain why P is usually mandatory in distributed systems, forcing the choice between C and A.
+
+5.  **Refining for Conciseness and Correctness (Self-Correction/Editing):**
+    *   *Initial draft might be too wordy.* Need to use bullet points or very short sentences.
+    *   *Focus on the trade-off.* The most critical point is that you must sacrifice one property when a partition occurs.
+
+6.  **Final Polish (The resulting structure):** (This leads directly to the provided good answer.)
+        [out] The CAP theorem states that a distributed data store can only guarantee **two** of the following three properties at any given time:
+
+### The Properties
+
+*   **Consistency (C):** Every read receives the most recent write or an error. All nodes see the same data simultaneously.
+*   **Availability (A):** Every request receives a non-error response, meaning the system is always responsive.
+*   **Partition Tolerance (P):** The system continues to operate despite arbitrary network failures (partitions) between nodes.
+
+### The Core Principle
+
+In any real-world distributed system, network partitions (**P**) are inevitable. Therefore, the CAP theorem forces a fundamental trade-off: when a partition occurs, the system must choose between **Consistency (C)** or **Availability (A)**.
+
+*   **Choose CA (Sacrifice P):** Not possible in a distributed system.
+*   **Choose CP (Sacrifice A):** The system prioritizes data correctness. If a partition occurs, the system stops responding to some requests until consistency is restored.
+*   **Choose AP (Sacrifice C):** The system prioritizes uptime. If a partition occurs, the system continues to respond, but different nodes may return different, potentially stale, data.     [Q07] TTFT=55.36ms Total=8.55s
+     [timings] prompt_n=22, prompt_ms=45.158, prompt_per_token_ms=2.052636363636364, prompt_per_second=487.17835156561404, predicted_n=632, predicted_ms=8493.107, predicted_per_token_ms=13.438460443037975, predicted_per_second=74.4132859741435, cache_n=7
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+      [think] Here's a thinking process to construct the answer:
+
+1.  **Analyze the Request:** The user wants to know "How does DNS resolution work?" The constraints are strict: "Answer short, concise, and correct."
+
+2.  **Identify the Core Process (DNS Resolution):** DNS translates human-readable domain names (e.g., `google.com`) into machine-readable IP addresses (e.g., `142.250.191.46`).
+
+3.  **Determine the Key Players/Steps (The Workflow):**
+    *   The client (browser/OS) asks a resolver.
+    *   The resolver starts the query.
+    *   It queries the Root Server.
+    *   The Root Server directs it to the TLD Server (.com, .org, etc.).
+    *   The TLD Server directs it to the Authoritative Name Server for the specific domain.
+    *   The Authoritative Server provides the final IP address.
+    *   The resolver caches the result and returns it to the client.
+
+4.  **Drafting and Condensing (Applying the Constraints):** The full workflow is too long for "short and concise." I need to summarize the *process* rather than listing every server interaction.
+
+    *   *Draft 1 (Too detailed):* A client asks a DNS resolver. The resolver queries the root server, then the TLD server, then the authoritative server. The authoritative server gives the IP, and the resolver caches it.
+    *   *Refining for Conciseness (Focusing on the flow):* Start with the client's request and end with the IP. Use bullet points or numbered steps for clarity.
+
+5.  **Final Polish (Review against constraints):**
+    *   *Short?* Yes.
+    *   *Concise?* Yes, avoids jargon where possible, focuses on the sequence.
+    *   *Correct?* Yes, accurately describes the hierarchical lookup process.
+
+6.  **Final Output Generation.** (This leads to the provided answer.)
+        [out] DNS resolution is the process of translating a human-readable domain name (like `example.com`) into a machine-readable IP address (like `192.0.2.1`).
+
+The process follows a hierarchical lookup:
+
+1.  **Query:** A client (your browser) sends a request to a **DNS Resolver** (usually provided by your ISP).
+2.  **Root Server:** The Resolver first asks a **Root Server** for the location of the domain's Top-Level Domain (TLD, e.g., `.com`).
+3.  **TLD Server:** The Resolver then asks the relevant **TLD Server** for the specific domain's authoritative server.
+4.  **Authoritative Server:** The Resolver finally queries the domain's **Authoritative Name Server**, which holds the actual record. This server returns the IP address.
+5.  **Response:** The Resolver caches the IP address and sends it back to the client, allowing the browser to connect to the correct server.     [Q08] TTFT=59.40ms Total=8.92s
+     [timings] prompt_n=23, prompt_ms=44.76, prompt_per_token_ms=1.9460869565217391, prompt_per_second=513.851653261841, predicted_n=659, predicted_ms=8856.69, predicted_per_token_ms=13.43959028831563, predicted_per_second=74.40703016589718, cache_n=7
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+      [think] Thinking Process:
+
+1.  **Analyze the Request:** The user is asking "What are design patterns?"
+2.  **Analyze the Constraints:** The answer must be "short, concise, and correct."
+3.  **Define "Design Pattern" (Core Concept):** A reusable solution to a common problem in software design. They are blueprints, not finished code.
+4.  **Drafting - Attempt 1 (Mental Check):** Design patterns are templates for solving common software problems. (Good, but maybe too simple.)
+5.  **Refining for Conciseness and Accuracy (Focusing on the "Why"):** They provide proven, standardized solutions.
+6.  **Final Polish (Combining the elements):** Ensure the definition is precise and immediately understandable.
+
+*Self-Correction during drafting: Avoid overly technical jargon (like "Gang of Four") unless necessary, as the request demands simplicity.*
+
+7.  **Final Output Generation.** (This leads to the provided answer.)
+        [out] Design patterns are reusable, proven solutions to common problems encountered during software design.
+
+They are not finished code, but rather blueprints or templates that describe how classes and objects should interact to solve a specific design challenge efficiently and robustly.     [Q09] TTFT=58.78ms Total=3.50s
+     [timings] prompt_n=22, prompt_ms=44.646, prompt_per_token_ms=2.0293636363636365, prompt_per_second=492.7653093222237, predicted_n=258, predicted_ms=3441.085, predicted_per_token_ms=13.337538759689922, predicted_per_second=74.9763519355087, cache_n=7
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+      [think] Here's a thinking process to construct the answer:
+
+1.  **Analyze the Request:** The user wants a description of "database transactions." The constraints are strict: "short, concise, and correct."
+
+2.  **Define a Transaction (Core Concept):** A transaction is a single, logical unit of work that accesses and potentially modifies the contents of a database. It must be treated as an atomic whole.
+
+3.  **Identify the Essential Properties (ACID):** To be correct, the description *must* include the ACID properties, as these define what a transaction guarantees.
+    *   **A**tomicity: All or nothing.
+    *   **C**onsistency: Moves the database from one valid state to another.
+    *   **I**solation: Concurrent transactions don't interfere with each other.
+    *   **D**urability: Changes are permanent, even after system failure.
+
+4.  **Structure the Answer (Short and Concise):**
+    *   *Definition:* Start with a clear, brief definition.
+    *   *Purpose:* Explain *why* they are used (data integrity).
+    *   *Mechanism:* List the ACID properties (the technical core).
+
+5.  **Drafting and Refining (Self-Correction/Editing):**
+
+    *   *(Draft 1 - Mental Check):* A transaction is a set of operations. It must follow ACID. (Too brief, lacks context).
+    *   *(Draft 2 - Adding Detail):* A transaction is a logical unit of work. It ensures data integrity. It uses ACID properties: Atomicity, Consistency, Isolation, Durability. (Good, but can be tighter).
+    *   *(Final Polish - Focusing on flow and impact):* Use bullet points for maximum conciseness. Ensure the language is precise (e.g., "logical unit of work," "guarantees data integrity").
+
+6.  **Final Output Generation.** (This leads to the provided concise answer.)
+        [out] A database transaction is a single, logical unit of work that accesses and potentially modifies the contents of a database. It ensures that a series of operations is treated as a single, indivisible action.
+
+### Purpose
+To maintain **data integrity** and reliability. If any part of the transaction fails, the entire transaction is rolled back, preventing the database from entering an inconsistent state.
+
+### The ACID Properties
+Transactions are defined by four critical properties:
+
+*   **Atomicity:** The transaction must be treated as an "all or nothing" unit. Either all operations succeed, or none of them do.
+*   **Consistency:** The transaction must move the database from one valid state to another, ensuring all defined rules (constraints) are met.
+*   **Isolation:** Concurrent transactions must not interfere with each other. Each transaction operates as if it were the only one running.
+*   **Durability:** Once a transaction is committed, its changes are permanent and survive system failures (like power loss).     [Q10] TTFT=54.12ms Total=8.54s
+     [timings] prompt_n=21, prompt_ms=44.749, prompt_per_token_ms=2.130904761904762, prompt_per_second=469.2842298151914, predicted_n=632, predicted_ms=8487.939, predicted_per_token_ms=13.430283227848102, predicted_per_second=74.45859354078769, cache_n=7
+
+================ PROFILE SUMMARY ================
+[info] Model: gemma-4-E4B-it-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 69.91 ms
+[info] Average Prompt Time (server): 57.80 ms
+[info] Total Predicted Tokens (server): 5331
+[info] Total Predicted Time (server): 71547.03 ms
+[info] Average Decode Speed (server): 74.51 tokens/sec
+[info] Average ms/token (server): 13.42 ms
+[time] Average Total Wall Duration: 7.22 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/gemma4-e4b_think.json

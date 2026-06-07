@@ -1,0 +1,216 @@
+Auto-detected model: llama-3.2-1b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Here's a concise overview of software architecture:
+
+**What is Software Architecture?**
+
+Software architecture refers to the design and organization of a software system, including its components, interfaces, and relationships. It involves defining the overall structure, patterns, and principles that govern the system's behavior and performance.
+
+**Key Components:**
+
+1. **System Boundaries**: Define the system's boundaries, including its scope, interfaces, and dependencies.
+2. **Components**: Identify the individual components, such as modules, services, or systems, that make up the system.
+3. **Interfaces**: Define the interfaces between components, including APIs, data formats, and communication protocols.
+4. **Patterns**: Apply design patterns, such as microservices, monolithic, or event-driven architectures, to achieve specific goals.
+5. **Principles**: Establish software design principles, such as separation of concerns, scalability, and maintainability.
+
+**Software Architecture Styles:**
+
+1. **Layered Architecture**: Organizes components into layers, with a clear separation of concerns.
+2. **Microservices Architecture**: Breaks down the system into small, independent services.
+3. **Event-Driven Architecture**: Uses events to trigger actions and interactions between components.
+4. **Service-Oriented Architecture (SOA)**: Organizes components around services, with clear interfaces and APIs.
+
+**Benefits:**
+
+1. **Improved scalability**: Enables the system to handle increased load and traffic.
+2. **Easier maintenance**: Reduces complexity and makes it easier to update or replace components.
+3. **Better security**: Provides a more secure system by isolating components and reducing dependencies.
+4. **Faster development**: Allows for faster development and deployment of new features and services.     [Q01] TTFT=10.38ms Total=1.27s
+     [timings] prompt_n=24, prompt_ms=8.876, prompt_per_token_ms=0.3698333333333333, prompt_per_second=2703.9206849932402, predicted_n=348, predicted_ms=1255.234, predicted_per_token_ms=3.606994252873563, predicted_per_second=277.2391442551747, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of how neural networks learn:
+
+**Neural Networks Learn by:**
+
+1. **Training**: The network is fed a large dataset, and the goal is to minimize the error between predicted and actual outputs.
+2. **Activation Functions**: The network applies non-linear activation functions to transform the input data, allowing the network to learn complex relationships.
+3. **Weight Updates**: The network adjusts the weights of its connections (neurons) based on the error, allowing the network to learn from experience.
+4. **Backpropagation**: The network iteratively applies the error to the network, adjusting the weights and biases to minimize the error.
+
+**Key Principles:**
+
+* **Overfitting**: The network becomes too specialized to the training data, failing to generalize to new, unseen data.
+* **Underfitting**: The network fails to capture the underlying patterns in the data.
+* **Regularization**: Techniques like dropout and L1/L2 regularization help prevent overfitting.
+
+By iteratively adjusting the weights and biases, neural networks can learn complex patterns in data, making predictions and decisions.     [Q02] TTFT=12.98ms Total=0.82s
+     [timings] prompt_n=20, prompt_ms=5.128, prompt_per_token_ms=0.2564, prompt_per_second=3900.1560062402496, predicted_n=224, predicted_ms=803.844, predicted_per_token_ms=3.588589285714286, predicted_per_second=278.6610337329133, cache_n=5
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] Here is a concise answer:
+
+**TCP (Transmission Control Protocol)**:
+
+* Ensures reliable data transfer by guaranteeing delivery and order of packets
+* Uses error-checking and retransmission mechanisms
+* Prioritizes data transfer over speed
+
+**UDP (User Datagram Protocol)**:
+
+* Faster data transfer with less overhead
+* Does not guarantee delivery or order of packets
+* Prioritizes speed over reliability     [Q03] TTFT=11.24ms Total=0.31s
+     [timings] prompt_n=22, prompt_ms=5.222, prompt_per_token_ms=0.2373636363636364, prompt_per_second=4212.945231711988, predicted_n=83, predicted_ms=296.18, predicted_per_token_ms=3.568433734939759, predicted_per_second=280.234992234452, cache_n=5
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] **Garbage Collection in Python**
+================================
+
+Python's garbage collection is a mechanism that automatically frees up memory occupied by objects that are no longer needed. Here's a brief overview:
+
+**When to Collect**
+------------------
+
+Python's garbage collector runs periodically, but it's not triggered by a specific event. Instead, it's based on the following rules:
+
+* When an object is no longer referenced by the program.
+* When an object is no longer referenced by any other object in the program.
+
+**How it Works**
+----------------
+
+When an object is no longer referenced, Python's garbage collector checks if it's still referenced by any other object. If not, it's collected and its memory is freed.
+
+**Example**
+-----------
+
+```python
+import gc
+
+# Create a list
+my_list = [1, 2, 3]
+
+# Print the size of the list
+print(len(my_list))  # 3
+
+# Delete the list
+del my_list
+
+# Print the size of the list again
+print(len(my_list))  # 0
+```
+
+In this example, the list is no longer referenced by any other object, so it's collected and its memory is freed.
+
+**Best Practices**
+------------------
+
+* Use `del` to delete objects, but not `gc.collect()` unless you're sure they're no longer referenced.
+* Use `gc.collect()` periodically to free up memory, but be aware that it can slow down your program.
+* Avoid using `gc.collect()` in production code, as it can cause performance issues.     [Q04] TTFT=9.88ms Total=1.13s
+     [timings] prompt_n=21, prompt_ms=5.184, prompt_per_token_ms=0.24685714285714286, prompt_per_second=4050.925925925926, predicted_n=313, predicted_ms=1123.141, predicted_per_token_ms=3.588309904153355, predicted_per_second=278.6827299510925, cache_n=5
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Here is a concise and correct description of microservices:
+
+**Microservices**: A software architecture where a large application is broken down into smaller, independent services, each with its own functionality, that communicate with each other through APIs.     [Q05] TTFT=12.47ms Total=0.17s
+     [timings] prompt_n=17, prompt_ms=5.094, prompt_per_token_ms=0.29964705882352943, prompt_per_second=3337.259521005104, predicted_n=46, predicted_ms=162.146, predicted_per_token_ms=3.5249130434782607, predicted_per_second=283.69494159584576, cache_n=5
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] In programming, a closure is a function that has access to its own scope and the scope of its outer functions, even when the outer functions are no longer in scope.     [Q06] TTFT=9.23ms Total=0.13s
+     [timings] prompt_n=20, prompt_ms=5.131, prompt_per_token_ms=0.25655, prompt_per_second=3897.875657766517, predicted_n=35, predicted_ms=122.444, predicted_per_token_ms=3.4984, predicted_per_second=285.8449576949463, cache_n=5
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of the CAP theorem:
+
+**CAP Theorem:**
+
+1. **C**onsistency: All data is always up-to-date and consistent across all replicas.
+2. **A**vailability: All data is always accessible to at least one replica.
+3. **P**artiality: Some data is always missing or inconsistent across replicas.
+
+In essence, the CAP theorem states that there is no single solution that can satisfy all three requirements simultaneously.     [Q07] TTFT=9.32ms Total=0.35s
+     [timings] prompt_n=19, prompt_ms=5.098, prompt_per_token_ms=0.26831578947368423, prompt_per_second=3726.9517457826596, predicted_n=95, predicted_ms=338.006, predicted_per_token_ms=3.557957894736842, predicted_per_second=281.0600995248605, cache_n=5
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of DNS resolution:
+
+**DNS Resolution:**
+
+1. **Your device sends a query**: Your device (e.g., computer, phone) sends a request to a DNS (Domain Name System) server asking for the IP address of a website or online resource.
+2. **DNS server resolves the query**: The DNS server receives the query and looks up the IP address associated with the domain name (e.g., google.com).
+3. **DNS server returns the IP address**: The DNS server returns the IP address of the website or online resource to your device.
+
+**Example:**
+
+* Your device sends a query to a DNS server for "google.com".
+* The DNS server resolves the query and returns the IP address of the Google website, which is 216.58.194.174.
+
+DNS resolution is a critical process that enables your device to access online resources and communicate with websites.     [Q08] TTFT=9.75ms Total=0.67s
+     [timings] prompt_n=19, prompt_ms=5.066, prompt_per_token_ms=0.2666315789473684, prompt_per_second=3750.493485984998, predicted_n=184, predicted_ms=658.619, predicted_per_token_ms=3.5794510869565217, predicted_per_second=279.37244446333915, cache_n=5
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design, developed through experience and experimentation.     [Q09] TTFT=10.66ms Total=0.08s
+     [timings] prompt_n=18, prompt_ms=5.099, prompt_per_token_ms=0.2832777777777778, prompt_per_second=3530.1039419494014, predicted_n=19, predicted_ms=65.155, predicted_per_token_ms=3.4292105263157895, predicted_per_second=291.61230910904766, cache_n=5
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Here is a concise and correct description of database transactions:
+
+**What is a database transaction?**
+
+A database transaction is a sequence of operations that are executed as a single, all-or-nothing unit, ensuring data consistency and integrity.
+
+**Key characteristics:**
+
+1. **Atomicity**: The transaction is executed as a single, indivisible unit.
+2. **Consistency**: The transaction ensures that the database remains in a consistent state.
+3. **Isolation**: The transaction is executed independently of other transactions, ensuring that each transaction sees a consistent view of the data.
+4. **Durability**: The transaction is persisted to the database, ensuring that the changes are not lost.
+
+**Example:**
+
+Suppose you're updating a customer's address. A transaction might involve:
+
+1. Read the customer's current address.
+2. Update the address to a new value.
+3. Write the updated address to the database.
+
+The transaction ensures that either the entire operation is successful (atomicity), or none of the operations are executed (consistency and isolation).     [Q10] TTFT=8.49ms Total=0.77s
+     [timings] prompt_n=17, prompt_ms=5.064, prompt_per_token_ms=0.2978823529411765, prompt_per_second=3357.030015797788, predicted_n=212, predicted_ms=758.198, predicted_per_token_ms=3.5764056603773584, predicted_per_second=279.6103392517522, cache_n=5
+
+================ PROFILE SUMMARY ================
+[info] Model: llama-3.2-1b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 10.44 ms
+[info] Average Prompt Time (server): 5.50 ms
+[info] Total Predicted Tokens (server): 1559
+[info] Total Predicted Time (server): 5582.97 ms
+[info] Average Decode Speed (server): 279.24 tokens/sec
+[info] Average ms/token (server): 3.58 ms
+[time] Average Total Wall Duration: 0.57 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/llama3.2-1b_nothink.json

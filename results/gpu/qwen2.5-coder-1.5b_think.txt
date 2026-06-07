@@ -1,0 +1,75 @@
+Auto-detected model: qwen2.5-coder-1.5b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the design of a software system, including its components, their interactions, and the overall structure. It involves defining the system's components, their interfaces, and the way they communicate with each other. The goal of software architecture is to ensure that the system is scalable, maintainable, and efficient.     [Q01] TTFT=20.29ms Total=0.31s
+     [timings] prompt_n=43, prompt_ms=17.428, prompt_per_token_ms=0.4053023255813954, prompt_per_second=2467.29400963966, predicted_n=63, predicted_ms=292.26, predicted_per_token_ms=4.639047619047619, predicted_per_second=215.56148634777253, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting the weights of their connections based on the error between the network's predictions and the actual data. This process is called backpropagation. The network starts with random weights and iteratively adjusts them to minimize the error.     [Q02] TTFT=12.26ms Total=0.24s
+     [timings] prompt_n=20, prompt_ms=7.248, prompt_per_token_ms=0.3624, prompt_per_second=2759.381898454746, predicted_n=50, predicted_ms=227.92, predicted_per_token_ms=4.5584, predicted_per_second=219.3752193752194, cache_n=24
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP is a reliable, connection-oriented protocol that provides a stream of bytes between two endpoints. UDP is a connectionless, datagram-oriented protocol that provides a stream of bytes between two endpoints.     [Q03] TTFT=12.34ms Total=0.19s
+     [timings] prompt_n=22, prompt_ms=7.313, prompt_per_token_ms=0.3324090909090909, prompt_per_second=3008.341309995898, predicted_n=39, predicted_ms=177.081, predicted_per_token_ms=4.540538461538461, predicted_per_second=220.23819607976012, cache_n=24
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python uses a garbage collector to automatically manage memory. It periodically scans the memory for objects that are no longer in use and frees up the memory they occupy. This helps in preventing memory leaks and ensures efficient use of resources.     [Q04] TTFT=13.89ms Total=0.22s
+     [timings] prompt_n=21, prompt_ms=7.402, prompt_per_token_ms=0.3524761904761905, prompt_per_second=2837.071061875169, predicted_n=45, predicted_ms=205.58, predicted_per_token_ms=4.568444444444444, predicted_per_second=218.89288841326973, cache_n=24
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software architecture pattern that involves breaking down a large, complex application into smaller, independent services. Each service is responsible for a specific function or feature, and they communicate with each other through APIs. This architecture allows for greater flexibility, scalability, and maintainability of the application.     [Q05] TTFT=12.32ms Total=0.28s
+     [timings] prompt_n=17, prompt_ms=7.234, prompt_per_token_ms=0.4255294117647059, prompt_per_second=2350.0138236107273, predicted_n=59, predicted_ms=270.625, predicted_per_token_ms=4.586864406779661, predicted_per_second=218.01385681293303, cache_n=24
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that has access to the variables in its own scope, as well as the variables in the scope of the outer function.     [Q06] TTFT=14.28ms Total=0.15s
+     [timings] prompt_n=18, prompt_ms=7.216, prompt_per_token_ms=0.4008888888888889, prompt_per_second=2494.4567627494453, predicted_n=30, predicted_ms=135.413, predicted_per_token_ms=4.513766666666667, predicted_per_second=221.54446028077066, cache_n=26
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that in a distributed system, it is impossible to simultaneously provide all three of the following properties: consistency, availability, and partition tolerance.     [Q07] TTFT=13.04ms Total=0.16s
+     [timings] prompt_n=19, prompt_ms=7.225, prompt_per_token_ms=0.3802631578947368, prompt_per_second=2629.757785467128, predicted_n=32, predicted_ms=144.564, predicted_per_token_ms=4.517625, predicted_per_second=221.35524750283614, cache_n=24
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution translates domain names into IP addresses.     [Q08] TTFT=12.64ms Total=0.06s
+     [timings] prompt_n=19, prompt_ms=7.285, prompt_per_token_ms=0.38342105263157894, prompt_per_second=2608.0988332189427, predicted_n=10, predicted_ms=42.907, predicted_per_token_ms=4.290699999999999, predicted_per_second=233.0622043023283, cache_n=24
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common software design problems.     [Q09] TTFT=11.92ms Total=0.06s
+     [timings] prompt_n=18, prompt_ms=7.249, prompt_per_token_ms=0.4027222222222222, prompt_per_second=2483.101117395503, predicted_n=12, predicted_ms=52.127, predicted_per_token_ms=4.343916666666667, predicted_per_second=230.20699445584822, cache_n=24
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a series of database operations that are treated as a single unit of work. They ensure that all operations either succeed or fail together, maintaining data integrity and consistency. Transactions are typically managed by a database management system (DBMS) and can be either read-only or read-write.     [Q10] TTFT=11.83ms Total=0.28s
+     [timings] prompt_n=17, prompt_ms=7.299, prompt_per_token_ms=0.4293529411764706, prompt_per_second=2329.086176188519, predicted_n=59, predicted_ms=269.811, predicted_per_token_ms=4.573067796610169, predicted_per_second=218.67158863055994, cache_n=24
+
+================ PROFILE SUMMARY ================
+[info] Model: qwen2.5-coder-1.5b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 13.48 ms
+[info] Average Prompt Time (server): 8.29 ms
+[info] Total Predicted Tokens (server): 399
+[info] Total Predicted Time (server): 1818.29 ms
+[info] Average Decode Speed (server): 219.44 tokens/sec
+[info] Average ms/token (server): 4.56 ms
+[time] Average Total Wall Duration: 0.20 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/qwen2.5-coder-1.5b_think.json

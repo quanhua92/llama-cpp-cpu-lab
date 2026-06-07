@@ -1,0 +1,100 @@
+Auto-detected model: Qwen3.6-35B-A3B-UD-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the high-level structure of a software system, defining its components, their relationships, and the principles guiding its design and evolution. It serves as a blueprint to manage complexity, ensure scalability, maintainability, and reliability, and align technical decisions with business goals.     [Q01] TTFT=385.88ms Total=2.27s
+     [timings] prompt_n=26, prompt_ms=376.081, prompt_per_token_ms=14.464653846153848, prompt_per_second=69.13404293224066, predicted_n=55, predicted_ms=1882.082, predicted_per_token_ms=34.21967272727273, predicted_per_second=29.222956279269447, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting internal weights to minimize prediction errors. This process involves:
+
+1.  **Forward Pass**: Input data flows through the network to generate a prediction.
+2.  **Loss Calculation**: The difference between the prediction and the actual target is measured using a loss function.
+3.  **Backpropagation**: The error is propagated backward through the network to calculate the gradient of the loss with respect to each weight.
+4.  **Weight Update**: An optimization algorithm (like Gradient Descent) updates the weights in the direction that reduces the error.
+
+This cycle repeats over many iterations (epochs) until the network converges on an accurate model.     [Q02] TTFT=387.26ms Total=5.21s
+     [timings] prompt_n=27, prompt_ms=338.282, prompt_per_token_ms=12.528962962962963, prompt_per_second=79.81506553703716, predicted_n=139, predicted_ms=4819.832, predicted_per_token_ms=34.67505035971223, predicted_per_second=28.839179456877332, cache_n=0
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol)** is connection-oriented, reliable, and ensures data arrives in order (used for web browsing, email). **UDP (User Datagram Protocol)** is connectionless, unreliable, and faster with lower overhead (used for streaming, gaming, VoIP).     [Q03] TTFT=422.33ms Total=2.35s
+     [timings] prompt_n=29, prompt_ms=368.511, prompt_per_token_ms=12.707275862068967, prompt_per_second=78.6950728743511, predicted_n=56, predicted_ms=1930.655, predicted_per_token_ms=34.47598214285714, predicted_per_second=29.005700138036055, cache_n=0
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python primarily uses **reference counting** to manage memory. Each object maintains a count of references pointing to it; when the count drops to zero, the object is immediately deallocated.
+
+To handle **circular references** (where objects reference each other but are no longer reachable from the program), Python employs a **generational garbage collector**. This collector periodically identifies and collects groups of objects involved in cycles, moving surviving objects between generations to optimize performance.     [Q04] TTFT=367.38ms Total=3.52s
+     [timings] prompt_n=28, prompt_ms=319.009, prompt_per_token_ms=11.393178571428573, prompt_per_second=87.77181834995251, predicted_n=91, predicted_ms=3154.065, predicted_per_token_ms=34.660054945054945, predicted_per_second=28.851656513102935, cache_n=0
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are an architectural style that structures an application as a collection of loosely coupled, independently deployable services. Each service is organized around a specific business capability, runs in its own process, and communicates via lightweight mechanisms (typically HTTP/REST or messaging). This approach enables scalability, technology diversity, and faster development cycles compared to monolithic architectures.     [Q05] TTFT=366.11ms Total=2.80s
+     [timings] prompt_n=24, prompt_ms=318.511, prompt_per_token_ms=13.271291666666668, prompt_per_second=75.350615834304, predicted_n=70, predicted_ms=2437.032, predicted_per_token_ms=34.81474285714286, predicted_per_second=28.723463622964328, cache_n=0
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that retains access to its lexical scope, even when executed outside that scope.     [Q06] TTFT=398.79ms Total=1.11s
+     [timings] prompt_n=27, prompt_ms=351.001, prompt_per_token_ms=13.000037037037036, prompt_per_second=76.922857769636, predicted_n=21, predicted_ms=709.831, predicted_per_token_ms=33.801476190476194, predicted_per_second=29.58450673470164, cache_n=0
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that a distributed data store can provide at most two of the following three guarantees simultaneously:
+
+1.  **Consistency (C):** Every read receives the most recent write or an error.
+2.  **Availability (A):** Every request receives a (non-error) response, without guarantee that it contains the most recent write.
+3.  **Partition Tolerance (P):** The system continues to operate despite an arbitrary number of messages being dropped or delayed by the network between nodes.
+
+Since network partitions are inevitable in distributed systems, designers must choose between **CP** (Consistency and Partition Tolerance) or **AP** (Availability and Partition Tolerance).     [Q07] TTFT=424.76ms Total=5.24s
+     [timings] prompt_n=26, prompt_ms=377.045, prompt_per_token_ms=14.50173076923077, prompt_per_second=68.95728626556512, predicted_n=140, predicted_ms=4816.373, predicted_per_token_ms=34.40266428571428, predicted_per_second=29.067516157905548, cache_n=0
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution translates a human-readable domain name (e.g., `example.com`) into an IP address. The process typically involves:
+
+1.  **Query**: Your device asks a **Recursive Resolver** (usually provided by your ISP) for the IP address.
+2.  **Root & TLD Lookup**: The resolver contacts a **Root Server** to find the authoritative server for the top-level domain (e.g., `.com`), then contacts that **TLD Server**.
+3.  **Authoritative Answer**: The TLD server directs the resolver to the domain’s **Authoritative Name Server**, which holds the specific IP address.
+4.  **Response**: The IP address is returned to your device, which then connects to the web server.     [Q08] TTFT=373.93ms Total=5.75s
+     [timings] prompt_n=26, prompt_ms=325.11, prompt_per_token_ms=12.50423076923077, prompt_per_second=79.97293223831933, predicted_n=156, predicted_ms=5372.301, predicted_per_token_ms=34.437826923076926, predicted_per_second=29.03783685984832, cache_n=0
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable, proven solutions to common software design problems. They provide standardized templates for structuring code to improve maintainability, flexibility, and readability.     [Q09] TTFT=354.01ms Total=1.42s
+     [timings] prompt_n=25, prompt_ms=306.138, prompt_per_token_ms=12.245519999999999, prompt_per_second=81.66251821074157, predicted_n=32, predicted_ms=1068.065, predicted_per_token_ms=33.37703125, predicted_per_second=29.960723364214722, cache_n=0
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a single logical unit of work that accesses and possibly modifies the contents of a database. It must adhere to the **ACID** properties:
+
+*   **Atomicity**: All operations succeed or all fail; no partial updates.
+*   **Consistency**: The database transitions from one valid state to another.
+*   **Isolation**: Concurrent transactions do not interfere with each other.
+*   **Durability**: Once committed, changes are permanent, even after system failure.     [Q10] TTFT=345.05ms Total=3.89s
+     [timings] prompt_n=24, prompt_ms=297.605, prompt_per_token_ms=12.400208333333333, prompt_per_second=80.64380638766148, predicted_n=103, predicted_ms=3542.046, predicted_per_token_ms=34.38879611650485, predicted_per_second=29.079238383691234, cache_n=0
+
+================ PROFILE SUMMARY ================
+[info] Model: Qwen3.6-35B-A3B-UD-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 382.55 ms
+[info] Average Prompt Time (server): 337.73 ms
+[info] Total Predicted Tokens (server): 863
+[info] Total Predicted Time (server): 29732.28 ms
+[info] Average Decode Speed (server): 29.03 tokens/sec
+[info] Average ms/token (server): 34.45 ms
+[time] Average Total Wall Duration: 3.36 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/qwen3.6-35b-a3b_nothink.json
