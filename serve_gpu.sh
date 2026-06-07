@@ -49,6 +49,7 @@ usage() {
     echo ""
     echo "Flags:"
     echo "  --no-reasoning     Disable thinking (chain-of-thought) for speed"
+    echo "  --ngl N            Number of GPU layers to offload (default: 99 = all)"
     exit 0
 }
 
@@ -71,15 +72,20 @@ else
 fi
 
 EXTRA_ARGS=("$@")
+N_GL=99
 
-# Handle --no-reasoning → --reasoning off
+# Handle --ngl N and --no-reasoning → --reasoning off
 FILTERED_ARGS=()
+i=0
 for arg in "${EXTRA_ARGS[@]}"; do
     if [ "$arg" = "--no-reasoning" ]; then
         FILTERED_ARGS+=("--reasoning" "off")
+    elif [ "$arg" = "--ngl" ]; then
+        N_GL="${EXTRA_ARGS[$((i+1))]}"
     else
         FILTERED_ARGS+=("$arg")
     fi
+    ((i++)) || true
 done
 EXTRA_ARGS=("${FILTERED_ARGS[@]}")
 
@@ -128,7 +134,7 @@ nohup "$SERVER" \
     -c 8192 \
     --flash-attn auto \
     -t 8 \
-    -ngl 99 \
+    -ngl "$N_GL" \
     "${EXTRA_ARGS[@]}" \
     > "$LOG" 2>&1 &
 

@@ -42,6 +42,9 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 ./serve_cpu.sh qwen2.5-0.5b 8081
 ./serve_gpu.sh qwen2.5-0.5b 8081
 
+# Partial GPU offload for large models (>16GB on 16GB VRAM)
+./serve_gpu.sh qwen3.6-27b --ngl 40
+
 # Disable thinking for speed
 ./serve_cpu.sh gemma4-e2b --no-reasoning
 
@@ -97,7 +100,7 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | File | Purpose |
 |------|---------|
 | `serve_cpu.sh` | Start llama-server (CPU, `-ngl 0`) on any port with any curated model |
-| `serve_gpu.sh` | Start llama-server (GPU, `-ngl 99`) on any port with any curated model |
+| `serve_gpu.sh` | Start llama-server (GPU, `-ngl 99`, configurable via `--ngl N`) on any port with any curated model |
 | `stop.sh` | Kill server by port (default 8080) |
 | `scripts/ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
 | `scripts/reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
@@ -120,7 +123,7 @@ ls examples/cpu/*.md | wc -l  # count completed files
 
 ## Curated Models
 
-All Q4_K_M quant unless noted. Shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`). QAT models use Q4_0 quantization (quantization-aware training):
+All Q4_K_M quant unless noted. Shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`; use `--ngl N` for partial offload). QAT models use Q4_0 quantization (quantization-aware training):
 
 | Key | Model | Size |
 |-----|-------|------|
@@ -387,5 +390,6 @@ If `hf` is not installed: `uv add huggingface_hub`.
 - `scripts/ask.py` and `scripts/reflect.py` always show `[think]` reasoning tokens.
 - `scripts/profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
 - SmolLM3 3B has a ~3s cold-start penalty on first request
+- Large models (>VRAM) need partial GPU offload: `./serve_gpu.sh <model> --ngl N` where N is the number of layers to offload. Benchmarks and examples accept `--ngl N` too.
 - See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks across all 22 models
 - See [reports/gpu.md](reports/gpu.md) for full GPU benchmarks

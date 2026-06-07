@@ -9,10 +9,11 @@ NO_REASONING=false
 SKIP_EXISTING=false
 PROMPTS_FLAG=()
 QUESTION_FLAG=()
-while [[ "${1:-}" == --* ]]; do
+    while [[ "${1:-}" == --* ]]; do
     case "$1" in
         --no-reasoning) NO_REASONING=true; shift ;;
         --skip-existing) SKIP_EXISTING=true; shift ;;
+        --ngl) N_GL="$2"; shift 2 ;;
         --prompts) PROMPTS_FLAG=(--prompts "$2"); shift 2 ;;
         --question) QUESTION_FLAG=(--question "$2"); shift 2 ;;
         --name) NAME_FLAG=(--name "$2"); shift 2 ;;
@@ -23,6 +24,9 @@ done
 SERVE_EXTRA=()
 if [ "$NO_REASONING" = true ]; then
     SERVE_EXTRA+=("--no-reasoning")
+fi
+if [ "${N_GL:-}" != "" ]; then
+    SERVE_EXTRA+=("--ngl" "$N_GL")
 fi
 
 PY_EXTRA=()

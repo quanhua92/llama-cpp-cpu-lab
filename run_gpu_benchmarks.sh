@@ -11,6 +11,7 @@ NO_REASONING=false
 while [[ "${1:-}" == --* ]]; do
     case "$1" in
         --no-reasoning) NO_REASONING=true; shift ;;
+        --ngl) N_GL="$2"; shift 2 ;;
         *) echo "Unknown flag: $1"; exit 1 ;;
     esac
 done
@@ -22,6 +23,9 @@ if [ "$NO_REASONING" = true ]; then
     SUFFIX="_nothink"
     SERVE_EXTRA+=("--no-reasoning")
     CLIENT_EXTRA=()
+fi
+if [ "${N_GL:-}" != "" ]; then
+    SERVE_EXTRA+=("--ngl" "$N_GL")
 fi
 
 declare -a ALL_KEYS=(

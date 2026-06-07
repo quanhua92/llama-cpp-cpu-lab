@@ -18,12 +18,15 @@ Every model gets 3 steps: think benchmark, nothink benchmark, examples. Pick CPU
 ```bash
 # Step 1: Think benchmark
 nohup bash run_gpu_benchmarks.sh <key> > /tmp/bench_gpu_think.log 2>&1 &
+echo "Started: $!"
 
 # Step 2: Nothink benchmark (after step 1 finishes)
 nohup bash run_gpu_benchmarks.sh --no-reasoning <key> > /tmp/bench_gpu_nothink.log 2>&1 &
+echo "Started: $!"
 
 # Step 3: Examples (after step 2 finishes)
 nohup ./generate_examples_gpu.sh <key> > /tmp/examples_gpu.log 2>&1 &
+echo "Started: $!"
 ```
 
 ### CPU
@@ -31,20 +34,35 @@ nohup ./generate_examples_gpu.sh <key> > /tmp/examples_gpu.log 2>&1 &
 ```bash
 # Step 1: Think benchmark
 nohup bash run_cpu_benchmarks.sh <key> > /tmp/bench_cpu_think.log 2>&1 &
+echo "Started: $!"
 
 # Step 2: Nothink benchmark (after step 1 finishes)
 nohup bash run_cpu_benchmarks.sh --no-reasoning <key> > /tmp/bench_cpu_nothink.log 2>&1 &
+echo "Started: $!"
 
 # Step 3: Examples (after step 2 finishes)
 nohup ./generate_examples_cpu.sh <key> > /tmp/examples_cpu.log 2>&1 &
+echo "Started: $!"
+```
+
+### Partial GPU Offload
+
+For large models that don't fit in VRAM (>16 GB on 16 GB card):
+
+```bash
+nohup bash run_gpu_benchmarks.sh --ngl 40 <key> > /tmp/bench_gpu_think.log 2>&1 &
+echo "Started: $!"
+
+nohup ./generate_examples_gpu.sh --ngl 40 <key> > /tmp/examples_gpu.log 2>&1 &
+echo "Started: $!"
 ```
 
 ### Monitor Progress
 
 ```bash
-tail -f /tmp/bench_gpu_think.log
 ls results/gpu/<key>*.txt        # results
-ls examples/gpu/<key>*.md         # examples
+ls examples/gpu/<key>*.md        # examples
+tail -5 /tmp/bench_gpu_think.log # last 5 lines of log
 ```
 
 ### What You Get
@@ -67,15 +85,25 @@ Same 3 steps but omit the `<key>` to run every model in `ALL_KEYS`. Each step ca
 ```bash
 # GPU think
 nohup bash run_gpu_benchmarks.sh > /tmp/bench_gpu_think.log 2>&1 &
+echo "Started: $!"
 
 # GPU nothink (after think finishes)
 nohup bash run_gpu_benchmarks.sh --no-reasoning > /tmp/bench_gpu_nothink.log 2>&1 &
+echo "Started: $!"
 
 # GPU examples (after nothink finishes)
 nohup ./generate_examples_gpu.sh > /tmp/examples_gpu.log 2>&1 &
+echo "Started: $!"
 ```
 
 Monitor: `ls results/gpu/*.txt | wc -l`
+
+## Stopping
+
+```bash
+# Stop everything (run separately, don't chain)
+./stop.sh
+```
 
 ## Analyze Results
 
