@@ -130,3 +130,22 @@ done
 echo ""
 echo "All benchmarks done. Results in $RESULTS_DIR"
 echo "Mode: ${SUFFIX#_} (thinking=${NO_REASONING})"
+
+# Validate: check for failures
+echo ""
+echo "================ VALIDATION ================"
+ALL_OK=true
+for f in "$RESULTS_DIR"/*${SUFFIX}.txt; do
+    [ -f "$f" ] || continue
+    total=$(grep -c "\[Q" "$f" 2>/dev/null || echo 0)
+    fails=$(grep -c "Failed\." "$f" 2>/dev/null || echo 0)
+    if [ "$total" -gt 0 ] && [ "$fails" -gt 0 ]; then
+        echo "  FAIL: $(basename "$f") — $fails/$total questions failed"
+        ALL_OK=false
+    fi
+done
+if [ "$ALL_OK" = true ]; then
+    echo "  All results OK — no failures detected."
+else
+    echo "  WARNING: Some results have failures. Check logs above."
+fi
