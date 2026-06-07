@@ -46,25 +46,31 @@ MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B-it-qat
 
 Add the key to the `ALL_KEYS` array in **both** files.
 
-## 5. Profile
+## 5. Profile + Examples
+
+For each backend you want to test (CPU or GPU), run all three steps. **Prefer `nohup` to avoid shell timeout — especially for thinking models which can run for 5-10+ minutes per step.**
 
 ```bash
-bash run_cpu_benchmarks.sh <key>             # CPU thinking mode
-bash run_cpu_benchmarks.sh --no-reasoning <key>  # CPU no-think mode
-bash run_gpu_benchmarks.sh <key>             # GPU thinking mode
-bash run_gpu_benchmarks.sh --no-reasoning <key>  # GPU no-think mode
+# GPU example: <key>
+nohup bash run_gpu_benchmarks.sh <key> > /tmp/bench_gpu_think.log 2>&1 &
+nohup bash run_gpu_benchmarks.sh --no-reasoning <key> > /tmp/bench_gpu_nothink.log 2>&1 &
+nohup ./generate_examples_gpu.sh <key> > /tmp/examples_gpu.log 2>&1 &
+
+# CPU example: <key>
+nohup bash run_cpu_benchmarks.sh <key> > /tmp/bench_cpu_think.log 2>&1 &
+nohup bash run_cpu_benchmarks.sh --no-reasoning <key> > /tmp/bench_cpu_nothink.log 2>&1 &
+nohup ./generate_examples_cpu.sh <key> > /tmp/examples_cpu.log 2>&1 &
 ```
 
-Or manually per model:
-```bash
-./serve_cpu.sh <key>
-# wait for server ready
-uv run python scripts/profile_client.py --port 12345           # [out] only
-uv run python scripts/profile_client.py --port 12345 --reasoning  # show [think] too
-./stop.sh 12345
-```
+> **Important: Run only one step at a time.** Wait for the previous step to fully complete before starting the next. Monitor progress with:
+> ```bash
+> tail -f /tmp/bench_gpu_think.log
+> ls results/gpu/<key>*.txt    # check which results exist
+> ```
 
-Results saved to `results/cpu/<key>_think.txt` / `results/cpu/<key>_nothink.txt` (CPU) and `results/gpu/` (GPU).
+Results:
+- `results/<cpu|gpu>/<key>_think.txt` / `results/<cpu|gpu>/<key>_nothink.txt`
+- `examples/<cpu|gpu>/<key>_ask.md` / `examples/<cpu|gpu>/<key>_reflect.md`
 
 ## 6. Update reports/cpu.md and reports/gpu.md
 

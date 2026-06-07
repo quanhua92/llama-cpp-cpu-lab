@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-MODEL_DIR="$SCRIPT_DIR/models"
+MODEL_DIR="${LOCAL_LLM_MODELS:-$SCRIPT_DIR/models}"
 REPO_DIR="$SCRIPT_DIR/repo"
 SERVER="$REPO_DIR/build/bin/llama-server"
 

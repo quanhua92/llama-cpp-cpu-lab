@@ -2,7 +2,8 @@
 
 LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama.cpp). Supports both CPU and GPU backends.
 
-**Machine:** Intel i7-10700 (8C/16T, 2.9–4.8 GHz) · 64 GB RAM · x86_64
+**Machine (CPU):** Intel i7-10700 (8C/16T, 2.9–4.8 GHz) · 64 GB RAM · x86_64
+**Machine (GPU):** Intel i9-13900K (24C/32T, 0.8–5.8 GHz) · 64 GB RAM · NVIDIA RTX 4060 Ti 16 GB (Ada, SM 8.9) · x86_64
 **llama.cpp:** [`4da6370`](https://github.com/ggml-org/llama.cpp/commit/4da6370d43f55a3f5ad576c5a1528b6ba9c53258)
 
 ## Contents
@@ -17,6 +18,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 - [API](#api)
 - [Running as a Linux Service](#running-as-a-linux-service)
 - [Adding a New Model](#adding-a-new-model)
+- [Custom Models Directory](#custom-models-directory)
 - [Downloading Models](#downloading-models)
 - [Notes](#notes)
 
@@ -190,22 +192,57 @@ Run different models on different ports simultaneously:
 
 > **Important: Run only one benchmark at a time.** The machine has 8 cores / 16 threads. Running multiple benchmarks simultaneously (or a benchmark alongside an example generation) will distort results and may cause OOM/timeouts. Always wait for the current run to fully complete before starting the next.
 
+### Per-model flow (think + nothink + examples)
+
+For each backend (CPU or GPU), run all three steps to get complete data. **Prefer `nohup` to avoid shell timeout — thinking models can take 5-10+ minutes per step.**
+
+```bash
+# --- GPU example: qwen2.5-0.5b ---
+nohup bash run_gpu_benchmarks.sh qwen2.5-0.5b > /tmp/bench_gpu_think.log 2>&1 &
+nohup bash run_gpu_benchmarks.sh --no-reasoning qwen2.5-0.5b > /tmp/bench_gpu_nothink.log 2>&1 &
+nohup ./generate_examples_gpu.sh qwen2.5-0.5b > /tmp/examples_gpu.log 2>&1 &
+
+# --- CPU example: qwen2.5-0.5b ---
+nohup bash run_cpu_benchmarks.sh qwen2.5-0.5b > /tmp/bench_cpu_think.log 2>&1 &
+nohup bash run_cpu_benchmarks.sh --no-reasoning qwen2.5-0.5b > /tmp/bench_cpu_nothink.log 2>&1 &
+nohup ./generate_examples_cpu.sh qwen2.5-0.5b > /tmp/examples_cpu.log 2>&1 &
+
+# Monitor progress
+tail -f /tmp/bench_gpu_think.log
+ls results/gpu/qwen2.5-0.5b*.txt    # check which results exist
+ls examples/gpu/qwen2.5-0.5b*.md    # check which examples exist
+```
+
+### Full suite
+
+> **Important: Run only one step at a time.** Wait for the previous step to fully complete before starting the next. Running multiple benchmarks simultaneously will distort results and may cause OOM/timeouts.
+
 ```bash
 # CPU — all models (thinking ON, default) → results/cpu/*_think.txt
-bash run_cpu_benchmarks.sh
+nohup bash run_cpu_benchmarks.sh > /tmp/bench_cpu_think.log 2>&1 &
 
 # CPU — all models (thinking OFF, fast) → results/cpu/*_nothink.txt
-bash run_cpu_benchmarks.sh --no-reasoning
+nohup bash run_cpu_benchmarks.sh --no-reasoning > /tmp/bench_cpu_nothink.log 2>&1 &
 
 # GPU — all models (thinking ON, default) → results/gpu/*_think.txt
-bash run_gpu_benchmarks.sh
+nohup bash run_gpu_benchmarks.sh > /tmp/bench_gpu_think.log 2>&1 &
 
 # GPU — all models (thinking OFF, fast) → results/gpu/*_nothink.txt
-bash run_gpu_benchmarks.sh --no-reasoning
+nohup bash run_gpu_benchmarks.sh --no-reasoning > /tmp/bench_gpu_nothink.log 2>&1 &
+
+# Generate examples — all models
+nohup ./generate_examples_cpu.sh > /tmp/examples_cpu.log 2>&1 &
+nohup ./generate_examples_gpu.sh > /tmp/examples_gpu.log 2>&1 &
+
+# Monitor progress
+tail -f /tmp/bench_gpu_think.log
+ls results/gpu/*.txt | wc -l    # count completed results
+ls examples/gpu/*.md | wc -l    # count completed examples
 
 # Specific models only
-bash run_cpu_benchmarks.sh qwen2.5-0.5b llama3.2-1b
-bash run_gpu_benchmarks.sh --no-reasoning qwen2.5-0.5b
+nohup bash run_gpu_benchmarks.sh qwen2.5-0.5b llama3.2-1b > /tmp/bench_gpu_think.log 2>&1 &
+nohup bash run_gpu_benchmarks.sh --no-reasoning qwen2.5-0.5b > /tmp/bench_gpu_nothink.log 2>&1 &
+nohup ./generate_examples_gpu.sh qwen2.5-0.5b > /tmp/examples_gpu.log 2>&1 &
 
 # Analyze results
 uv run python scripts/analyze_results.py                          # all sections
@@ -287,6 +324,29 @@ systemctl --user restart llama-cpu.service
 See `add-model-flow.md` for the full workflow: download GGUF → add to `serve_cpu.sh` → profile → update `reports/cpu.md`.
 
 Note: When adding a model, update the `MODELS` dictionary in **both** `serve_cpu.sh` and `serve_gpu.sh`.
+
+## Custom Models Directory
+
+By default, models are stored in `./models/` inside the project. To use a custom path, set the `LOCAL_LLM_MODELS` environment variable:
+
+```bash
+# Use a shared models directory
+LOCAL_LLM_MODELS=/data/models ./serve_gpu.sh qwen2.5-0.5b
+LOCAL_LLM_MODELS=/data/models ./serve_cpu.sh gemma4-qat-26b-a4b 8888
+
+# Benchmarks with custom path
+LOCAL_LLM_MODELS=/data/models bash run_gpu_benchmarks.sh
+LOCAL_LLM_MODELS=/data/models bash run_gpu_benchmarks.sh --no-reasoning qwen2.5-0.5b
+
+# Also works for examples
+LOCAL_LLM_MODELS=/data/models ./generate_examples_gpu.sh
+
+# Set once in your shell for the session
+export LOCAL_LLM_MODELS=/data/models
+./serve_gpu.sh qwen2.5-0.5b    # will look in /data/models/
+```
+
+Models not found in the custom path will be auto-downloaded there.
 
 ## Downloading Models
 
