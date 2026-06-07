@@ -1,0 +1,99 @@
+Auto-detected model: qwen2.5-0.5b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the systematic design and organization of the software system's components, processes, and interactions. It involves planning, designing, and managing the system's components, processes, and interactions to ensure that they work together effectively and efficiently. The goal of software architecture is to create a system that is scalable, maintainable, and extensible, making it easier to modify and update as the system evolves.     [Q01] TTFT=17.88ms Total=0.21s
+     [timings] prompt_n=43, prompt_ms=14.52, prompt_per_token_ms=0.33767441860465114, prompt_per_second=2961.432506887052, predicted_n=81, predicted_ms=193.512, predicted_per_token_ms=2.389037037037037, predicted_per_second=418.57869279424534, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by training on a large dataset of labeled examples. During training, the network learns to recognize patterns in the data by adjusting its weights based on the similarity between the network's output and the correct output. The network iterates through the data, adjusting its weights to minimize the difference between its output and the correct output. This process continues until the network reaches a set of weights that best fits the data, allowing it to make accurate predictions.     [Q02] TTFT=9.30ms Total=0.22s
+     [timings] prompt_n=20, prompt_ms=4.715, prompt_per_token_ms=0.23575, prompt_per_second=4241.781548250266, predicted_n=92, predicted_ms=213.711, predicted_per_token_ms=2.3229456521739134, predicted_per_second=430.48790188619205, cache_n=24
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are two different protocols used for data transmission in computer networks. The main difference is in their data transmission methods:
+
+1. TCP: This protocol uses a connection-oriented mechanism, where data is sent over a network connection. It ensures reliable data transmission by maintaining a connection between the sender and receiver. TCP provides mechanisms like acknowledgments, timeouts, and flow control to ensure data integrity and avoid data loss.
+
+2. UDP: This protocol uses a connectionless mechanism, where data is sent over a network without establishing a connection. It provides faster data transmission but also introduces some security concerns, as data can be lost or corrupted during transmission.
+
+In summary, TCP is more reliable and secure, while UDP is faster and less reliable. TCP is suitable for applications that require high reliability and data integrity, while UDP is suitable for applications that require faster data transmission and less data loss.     [Q03] TTFT=10.58ms Total=0.44s
+     [timings] prompt_n=22, prompt_ms=4.743, prompt_per_token_ms=0.2155909090909091, prompt_per_second=4638.41450558718, predicted_n=186, predicted_ms=433.396, predicted_per_token_ms=2.3300860215053762, predicted_per_second=429.1687048334548, cache_n=24
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Garbage collection in Python is a built-in feature that helps manage memory by automatically freeing up memory that is no longer needed. When a Python object is no longer needed, it is automatically collected by the garbage collector. The garbage collector is responsible for managing memory and freeing up memory that is no longer needed. This helps prevent memory leaks and other memory-related issues.     [Q04] TTFT=11.41ms Total=0.18s
+     [timings] prompt_n=21, prompt_ms=4.737, prompt_per_token_ms=0.2255714285714286, prompt_per_second=4433.185560481317, predicted_n=73, predicted_ms=169.084, predicted_per_token_ms=2.316219178082192, predicted_per_second=431.7380710179556, cache_n=24
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are software development models where applications are composed of small, independent services that communicate with each other and with the underlying infrastructure. Each service is responsible for a specific functionality, and they are loosely coupled, meaning that changes in one service do not affect the others. This approach allows for greater flexibility, scalability, and maintainability of the application.     [Q05] TTFT=9.39ms Total=0.17s
+     [timings] prompt_n=17, prompt_ms=4.712, prompt_per_token_ms=0.2771764705882353, prompt_per_second=3607.809847198642, predicted_n=70, predicted_ms=162.188, predicted_per_token_ms=2.3169714285714282, predicted_per_second=431.5978987348016, cache_n=24
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure in programming is a function that retains its local variables and scope even after the function has been called. It allows a function to access and modify variables from its own scope, even when the function is no longer executing. This is useful for creating functions that can access and modify variables that are defined within the function, without having to pass them as arguments.     [Q06] TTFT=9.13ms Total=0.18s
+     [timings] prompt_n=20, prompt_ms=4.741, prompt_per_token_ms=0.23704999999999998, prompt_per_second=4218.519299725796, predicted_n=73, predicted_ms=168.985, predicted_per_token_ms=2.31486301369863, predicted_per_second=431.9910051187975, cache_n=24
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem, also known as the Concurrency Channel Theorem, is a fundamental concept in distributed computing and network programming. It states that in a distributed system, it is impossible to achieve both consistency and availability simultaneously. This means that in a distributed system, there is a trade-off between the two, and it is not possible to have both consistency and availability at the same time. The CAP theorem is important because it helps to ensure that distributed systems can handle multiple concurrent requests without losing data or performance.     [Q07] TTFT=8.99ms Total=0.25s
+     [timings] prompt_n=19, prompt_ms=4.683, prompt_per_token_ms=0.24647368421052632, prompt_per_second=4057.2282724749098, predicted_n=102, predicted_ms=237.086, predicted_per_token_ms=2.324372549019608, predicted_per_second=430.2236319310293, cache_n=24
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS (Domain Name System) resolution works by mapping a domain name to an IP address. When you type a domain name into your web browser, the DNS server on your computer translates the domain name into an IP address that can be used to access the website. This process involves several steps:
+
+1. **Domain Name to IP Address**: The DNS server maps the domain name to an IP address. This is typically done by querying a DNS server, which is usually a local computer or a remote server.
+
+2. **IP Address to Domain Name**: The IP address is then used to resolve the domain name to its corresponding IP address. This is typically done by querying a DNS server, which is usually a local computer or a remote server.
+
+3. **IP Address to Domain Name**: The IP address is used to resolve the domain name to its corresponding IP address. This is typically done by querying a DNS server, which is usually a local computer or a remote server.
+
+4. **IP Address to Domain Name**: The IP address is used to resolve the domain name to its corresponding IP address. This is typically done by querying a DNS server, which is usually a local computer or a remote server.
+
+5. **IP Address to Domain Name**: The IP address is used to resolve the domain name to its corresponding IP address. This is typically done by querying a DNS server, which is usually a local computer or a remote server.
+
+DNS resolution is a fundamental part of the internet's structure and is used to provide a way for users to access websites and other online resources.     [Q08] TTFT=9.20ms Total=0.75s
+     [timings] prompt_n=19, prompt_ms=4.781, prompt_per_token_ms=0.25163157894736843, prompt_per_second=3974.0640033465806, predicted_n=314, predicted_ms=738.156, predicted_per_token_ms=2.350815286624204, predicted_per_second=425.38433610239576, cache_n=24
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design. They provide a blueprint for solving similar problems in different contexts, making code more maintainable and scalable.     [Q09] TTFT=11.49ms Total=0.09s
+     [timings] prompt_n=18, prompt_ms=4.697, prompt_per_token_ms=0.2609444444444444, prompt_per_second=3832.2333404300616, predicted_n=33, predicted_ms=76.427, predicted_per_token_ms=2.315969696969697, predicted_per_second=431.78457874834805, cache_n=24
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a fundamental concept in database management systems (DBMS) that ensure the integrity and consistency of data operations. In a transaction, multiple operations are performed on a database, and the results of these operations are either all committed or all rolled back. This mechanism helps to prevent data inconsistencies and ensures that the database remains in a consistent state.
+
+Transactions are typically initiated by a single user or a group of users, and they are committed or rolled back by the system when the transaction is completed. This ensures that all changes made to the database are either all successfully applied or all rolled back, maintaining the integrity of the data.
+
+Transactions can be either atomic, meaning that they are executed in a single step, or batch, meaning that they are executed in multiple steps. Atomic transactions are the most common type, as they allow for the execution of multiple operations in a single step, which can improve performance and reduce the risk of data inconsistencies.
+
+In summary, database transactions are a crucial feature of DBMS that help to ensure the integrity and consistency of data operations, and they are essential for maintaining the stability and reliability of a database system.     [Q10] TTFT=10.34ms Total=0.55s
+     [timings] prompt_n=17, prompt_ms=4.695, prompt_per_token_ms=0.2761764705882353, prompt_per_second=3620.8732694355695, predicted_n=227, predicted_ms=534.531, predicted_per_token_ms=2.354762114537445, predicted_per_second=424.6713474054826, cache_n=24
+
+================ PROFILE SUMMARY ================
+[info] Model: qwen2.5-0.5b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 10.77 ms
+[info] Average Prompt Time (server): 5.70 ms
+[info] Total Predicted Tokens (server): 1251
+[info] Total Predicted Time (server): 2927.08 ms
+[info] Average Decode Speed (server): 427.39 tokens/sec
+[info] Average ms/token (server): 2.34 ms
+[time] Average Total Wall Duration: 0.30 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/qwen2.5-0.5b_nothink.json

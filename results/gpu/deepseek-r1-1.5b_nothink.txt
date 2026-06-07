@@ -1,0 +1,122 @@
+Auto-detected model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] 
+
+Software architecture is the study of how software systems are structured and designed, focusing on principles, patterns, and methods that guide the creation and management of software. It involves understanding the components, their interactions, and the overall design that ensures efficiency, scalability, and maintainability. Different types of software architecture, such as object-oriented, component-based, and component-orientation, offer various approaches to building software systems, each with distinct design principles and practices. The goal is to design systems that are efficient, scalable, and maintainable, essential for modern software development.     [Q01] TTFT=18.16ms Total=7.00s
+     [timings] prompt_n=19, prompt_ms=15.93, prompt_per_token_ms=0.838421052631579, prompt_per_second=1192.7181418706843, predicted_n=1477, predicted_ms=6986.535, predicted_per_token_ms=4.730220040622884, predicted_per_second=211.40665580291233, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] 
+
+Neural networks learn through a process that involves adjusting their weights based on the error between predictions and actual data. This process is guided by several key components:
+
+1. **Weight Adjustment via Backpropagation**: The error is calculated, and then propagated back through the network. The network updates its weights based on the gradient of the loss function, typically using methods like gradient descent.
+
+2. **Activation Functions**: These introduce non-linearity, allowing the network to model complex patterns. Common functions include ReLU, sigmoid, and tanh.
+
+3. **Bias**: Allows the network to shift activation functions, enhancing its ability to fit data.
+
+4. **Loss Function**: Determines the error measure. Common choices include mean squared error for regression and cross-entropy for classification.
+
+5. **Training Process**: Involves multiple epochs, where each epoch consists of forward propagation and backward propagation. The network adjusts weights to minimize loss, using validation loss to prevent overfitting.
+
+6. **Regularization Techniques**: Prevent overfitting by adding penalties to the loss function, such as dropout.
+
+7. **Computational Efficiency**: Optimizations like gradient clipping and weight decay enhance training efficiency.
+
+In summary, neural networks learn by adjusting weights through backpropagation, using activation functions, bias, and loss functions, while addressing challenges like overfitting and computational complexity.     [Q02] TTFT=31.47ms Total=5.83s
+     [timings] prompt_n=20, prompt_ms=11.474, prompt_per_token_ms=0.5737, prompt_per_second=1743.071291615827, predicted_n=1229, predicted_ms=5793.601, predicted_per_token_ms=4.714077298616761, predicted_per_second=212.1305902840047, cache_n=0
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] 
+
+TCP and UDP are both network protocols used for data transfer but serve different purposes and characteristics:
+
+- **TCP**:
+  - **Purpose**: Mainly for internet applications like web browsing and streaming, handling large files and internet connections.
+  - **Connection**: Bidirectional, allowing both sender and receiver to send/receive data.
+  - **Packet Size**: Handles larger packets for large files and smaller packets for efficiency.
+  - **Protocol**: Uses sliding window, supporting multiple connections.
+
+- **UDP**:
+  - **Purpose**: Ideal for small data transfers, file transfers, and frequent small packets.
+  - **Connection**: Connectionless, only sends data once.
+  - **Packet Size**: Smaller packets for efficiency, especially for streaming or small file transfers.
+  - **Protocol**: Uses connectionless, connection-based, and connection-less, handling small data.
+
+In essence, TCP is for large files and internet use, while UDP is for small data transfers and frequent, unidirectional data.     [Q03] TTFT=28.10ms Total=3.21s
+     [timings] prompt_n=22, prompt_ms=11.551, prompt_per_token_ms=0.5250454545454546, prompt_per_second=1904.5970045883473, predicted_n=680, predicted_ms=3182.81, predicted_per_token_ms=4.6806029411764705, predicted_per_second=213.64768867761506, cache_n=0
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] 
+
+The garbage collector in Python operates by running periodically, checking each object's reference count. When an object's reference count reaches zero, it's collected. This happens during the 1-second garbage collection interval, ensuring objects are released when no longer referenced. Python uses a reference count system, with each object starting at one, increasing on reference, and being collected when reaching two. This lazy strategy collects objects as they become referenced, and Python handles inheritance and dynamic typing automatically.     [Q04] TTFT=23.25ms Total=6.21s
+     [timings] prompt_n=21, prompt_ms=11.419, prompt_per_token_ms=0.5437619047619048, prompt_per_second=1839.0401961642874, predicted_n=1309, predicted_ms=6185.486, predicted_per_token_ms=4.72535217723453, predicted_per_second=211.62443824139282, cache_n=0
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] 
+
+Microservices are a scalable architecture that decomposes a system into smaller, independent services. These services are designed to communicate through specific protocols, allowing them to work together seamlessly. This approach enables scalability by enabling the addition or removal of services without affecting the entire system. Microservices offer flexibility, security, and ease of maintenance, making them suitable for various domains including enterprise software, IoT, and mobile apps. They differ from serverless computing by focusing on the architecture rather than underlying infrastructure.     [Q05] TTFT=25.87ms Total=3.70s
+     [timings] prompt_n=15, prompt_ms=7.692, prompt_per_token_ms=0.5128, prompt_per_second=1950.0780031201248, predicted_n=783, predicted_ms=3674.871, predicted_per_token_ms=4.69332183908046, predicted_per_second=213.06870363612762, cache_n=2
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] 
+
+A closure in programming is a function that captures variables from its surrounding scope, allowing it to access those variables even after the outer function has finished execution. This concept is widely used in languages like JavaScript and Python, enabling functions to maintain state between calls and facilitating features like callbacks.     [Q06] TTFT=23.90ms Total=4.08s
+     [timings] prompt_n=20, prompt_ms=11.119, prompt_per_token_ms=0.5559499999999999, prompt_per_second=1798.7229067362173, predicted_n=863, predicted_ms=4051.084, predicted_per_token_ms=4.694187717265353, predicted_per_second=213.029401513274, cache_n=0
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] 
+
+The CAP theorem states that Authentication, Authorization, and Encryption can be achieved simultaneously in a secure system, emphasizing their interdependence and the need for careful management of each aspect.     [Q07] TTFT=20.00ms Total=2.47s
+     [timings] prompt_n=17, prompt_ms=7.303, prompt_per_token_ms=0.42958823529411766, prompt_per_second=2327.8104888402027, predicted_n=524, predicted_ms=2445.226, predicted_per_token_ms=4.666461832061069, predicted_per_second=214.2951203692419, cache_n=2
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+     [Q08] TTFT=16.88ms Total=20.19s
+     [timings] prompt_n=17, prompt_ms=7.214, prompt_per_token_ms=0.4243529411764706, prompt_per_second=2356.5289714444134, predicted_n=4096, predicted_ms=20173.153, predicted_per_token_ms=4.925086181640625, predicted_per_second=203.04213228343633, cache_n=2
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] 
+
+Design patterns are reusable solutions that help in structuring software to avoid code duplication, promote scalability, and maintainability. They provide standardized approaches to common problems in software design, enabling the creation of complex systems from simple components.     [Q09] TTFT=50.26ms Total=2.58s
+     [timings] prompt_n=16, prompt_ms=7.463, prompt_per_token_ms=0.4664375, prompt_per_second=2143.909955781857, predicted_n=541, predicted_ms=2528.279, predicted_per_token_ms=4.673343807763401, predicted_per_second=213.97954893427507, cache_n=2
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] 
+
+A database transaction is a group of database operations executed together to ensure data consistency, redundancy, and integrity. Each operation in the transaction is atomic, meaning it cannot be interrupted, and the entire transaction completes without partial execution. This ensures the database remains in a consistent state throughout, preventing race conditions and data loss.     [Q10] TTFT=16.58ms Total=3.42s
+     [timings] prompt_n=15, prompt_ms=7.336, prompt_per_token_ms=0.4890666666666667, prompt_per_second=2044.7110141766627, predicted_n=725, predicted_ms=3399.024, predicted_per_token_ms=4.688308965517241, predicted_per_second=213.29652276653533, cache_n=2
+
+================ PROFILE SUMMARY ================
+[info] Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 25.45 ms
+[info] Average Prompt Time (server): 9.85 ms
+[info] Total Predicted Tokens (server): 12227
+[info] Total Predicted Time (server): 58420.07 ms
+[info] Average Decode Speed (server): 209.29 tokens/sec
+[info] Average ms/token (server): 4.78 ms
+[time] Average Total Wall Duration: 5.87 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/deepseek-r1-1.5b_nothink.json

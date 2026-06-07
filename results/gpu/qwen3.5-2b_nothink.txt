@@ -1,0 +1,133 @@
+Auto-detected model: Qwen3.5-2B-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] **Software architecture** is the high-level design of a system that defines its structural components, their relationships, and the rules governing their interactions. It serves as the blueprint for the entire software lifecycle, ensuring scalability, maintainability, and reliability.
+
+Key aspects include:
+*   **Components**: Modules or services that perform specific functions.
+*   **Interactions**: How components communicate (e.g., via APIs, databases, or message queues).
+*   **Constraints**: Technical and business limitations that shape the design.
+
+A well-architected system is modular, loosely coupled, and adaptable to changing requirements.     [Q01] TTFT=33.53ms Total=0.81s
+     [timings] prompt_n=26, prompt_ms=24.377, prompt_per_token_ms=0.9375769230769231, prompt_per_second=1066.5791524797967, predicted_n=125, predicted_ms=777.668, predicted_per_token_ms=6.221344, predicted_per_second=160.73697258984555, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through **training** using a process called **backpropagation**.
+
+1.  **Forward Pass**: Input data is fed into the network, and it processes it to produce a prediction.
+2.  **Loss Calculation**: The network compares its prediction to the actual correct answer. The difference (error) is calculated and quantified as a **loss function**.
+3.  **Backward Pass**: Using the chain rule, the error is propagated backward through the network to determine how much each individual neuron contributed to the mistake.
+4.  **Update**: The network adjusts the weights and biases of its connections using an optimization algorithm (like **gradient descent**) to minimize this loss.
+5.  **Iteration**: This cycle repeats thousands or millions of times on a large dataset, allowing the network to gradually improve its accuracy.     [Q02] TTFT=42.86ms Total=1.12s
+     [timings] prompt_n=27, prompt_ms=19.246, prompt_per_token_ms=0.7128148148148148, prompt_per_second=1402.8889119817106, predicted_n=173, predicted_ms=1073.291, predicted_per_token_ms=6.203994219653179, predicted_per_second=161.18648157862128, cache_n=0
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol)** is a connection-oriented, reliable, and ordered transport layer protocol. It ensures data integrity by using acknowledgments, retransmissions, and flow control, making it ideal for applications requiring guaranteed delivery (e.g., web browsing, email).
+
+**UDP (User Datagram Protocol)** is a connectionless, unreliable, and unordered transport layer protocol. It sends data packets without acknowledgments or ordering guarantees, prioritizing speed and low latency over reliability. It is commonly used for real-time applications like video streaming and online gaming.     [Q03] TTFT=43.49ms Total=0.73s
+     [timings] prompt_n=29, prompt_ms=19.395, prompt_per_token_ms=0.6687931034482758, prompt_per_second=1495.2307295694768, predicted_n=111, predicted_ms=687.134, predicted_per_token_ms=6.190396396396396, predicted_per_second=161.5405437658448, cache_n=0
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python's garbage collector (GC) automatically reclaims memory for objects that are no longer referenced by any live variable.
+
+**How it works:**
+1.  **Reference Counting**: Python tracks the number of references to each object. When an object's reference count drops to zero, it is eligible for collection.
+2.  **The Collector**: Python uses a **Generational Garbage Collector** (typically `gc` module) to manage this process. It distinguishes between young and old objects:
+    *   **Young Objects**: Objects created recently are collected quickly.
+    *   **Old Objects**: Objects surviving long enough to be marked as "old" are collected less frequently but more aggressively.
+3.  **Mark-and-Sweep**: The collector marks reachable objects and sweeps away unmarked ones.
+4.  **Finalization**: Objects that are unreachable but still in use (e.g., during a long-running loop) are marked as "finalizable." When the program exits, the finalizer function is called to clean up their resources.
+
+**Key Points:**
+*   It is **not** triggered by variable deletion; it runs automatically when the program stops or when memory pressure is high.
+*   It is **not** a memory leak fixer; it only prevents memory leaks caused by forgotten variables.
+*   It is **not** a performance fixer; it can actually slow down the program if the GC runs too frequently.     [Q04] TTFT=42.78ms Total=1.92s
+     [timings] prompt_n=28, prompt_ms=18.557, prompt_per_token_ms=0.66275, prompt_per_second=1508.8645794039987, predicted_n=301, predicted_ms=1873.975, predicted_per_token_ms=6.225830564784053, predicted_per_second=160.62113955629076, cache_n=0
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] **Microservices** are a software architecture pattern where an application is divided into small, independent services. Each service:
+
+*   **Communicates** via lightweight protocols (e.g., HTTP, gRPC).
+*   **Operates** independently with its own database and deployment.
+*   **Responds** to specific business requests.
+
+This approach allows teams to develop, deploy, and scale individual services independently, improving agility and resilience.     [Q05] TTFT=45.74ms Total=0.61s
+     [timings] prompt_n=24, prompt_ms=18.561, prompt_per_token_ms=0.773375, prompt_per_second=1293.0337805075158, predicted_n=91, predicted_ms=562.977, predicted_per_token_ms=6.18656043956044, predicted_per_second=161.6407064587008, cache_n=0
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** is a function that captures and retains access to variables from its enclosing (outer) scope, even after the outer function has finished executing. It allows the inner function to use those variables later.     [Q06] TTFT=43.82ms Total=0.31s
+     [timings] prompt_n=27, prompt_ms=18.631, prompt_per_token_ms=0.690037037037037, prompt_per_second=1449.1975739359134, predicted_n=43, predicted_ms=263.157, predicted_per_token_ms=6.119930232558139, predicted_per_second=163.40055556188892, cache_n=0
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The **CAP theorem** (Consistency, Availability, Partition tolerance) states that in a distributed system, it is impossible to simultaneously satisfy all three of the following properties:
+
+1.  **Consistency**: All nodes see the same data at the same time.
+2.  **Availability**: Every request receives a response, even if some nodes are unavailable.
+3.  **Partition Tolerance**: The system continues to operate despite network partitions (communication failures between nodes).
+
+**The Trade-off**:
+*   **CP (Consistency + Partition Tolerance)**: Ensures data consistency even during network issues.
+*   **AP (Availability + Partition Tolerance)**: Ensures high availability even during network issues.
+*   **CPA (Consistency + Availability + Partition Tolerance)**: All three are satisfied, but this is generally considered an impossible goal for distributed systems.     [Q07] TTFT=45.43ms Total=1.18s
+     [timings] prompt_n=26, prompt_ms=18.589, prompt_per_token_ms=0.7149615384615384, prompt_per_second=1398.6766367206415, predicted_n=182, predicted_ms=1129.851, predicted_per_token_ms=6.207972527472528, predicted_per_second=161.0831870751099, cache_n=0
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS (Domain Name System) translates human-readable domain names (like `www.example.com`) into machine-readable IP addresses (like `93.184.216.34`) using a hierarchical, distributed database.
+
+The process works as follows:
+1.  **Query**: A user requests the IP address for a domain.
+2.  **Lookup**: The client sends this request to their local **DNS resolver**.
+3.  **Resolution**: The resolver checks its own cache. If the IP is cached, it returns it immediately.
+4.  **Propagation**: If not cached, the resolver queries **Authoritative DNS servers** (usually managed by the domain's registrar or hosting provider).
+5.  **Response**: The authoritative server returns the IP address to the resolver.
+6.  **Delivery**: The resolver sends the final IP address to the client, completing the lookup.     [Q08] TTFT=41.84ms Total=1.21s
+     [timings] prompt_n=26, prompt_ms=18.496, prompt_per_token_ms=0.7113846153846153, prompt_per_second=1405.7093425605538, predicted_n=188, predicted_ms=1167.613, predicted_per_token_ms=6.210707446808511, predicted_per_second=161.01225320375843, cache_n=0
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] **Design patterns** are reusable, proven solutions to common software design problems. They provide a template or framework for creating classes and objects, helping developers write more maintainable, flexible, and scalable code by avoiding common pitfalls.     [Q09] TTFT=42.42ms Total=0.32s
+     [timings] prompt_n=25, prompt_ms=18.466, prompt_per_token_ms=0.7386400000000001, prompt_per_second=1353.839488790209, predicted_n=45, predicted_ms=275.785, predicted_per_token_ms=6.128555555555556, predicted_per_second=163.17058578240295, cache_n=0
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] **Database transactions** are atomic units of work that consist of a sequence of operations (such as reading, writing, or updating data) performed by a database application.
+
+Key characteristics include:
+*   **Atomicity**: All operations within a transaction must succeed or fail together; if any part fails, the entire transaction is rolled back to ensure data integrity.
+*   **Consistency**: The transaction must maintain the database's integrity constraints (e.g., ACID properties).
+*   **Isolation**: Concurrent transactions are treated as if they were executed sequentially, preventing interference between them.
+
+Common examples include **INSERT**, **UPDATE**, and **DELETE** operations.     [Q10] TTFT=41.77ms Total=0.88s
+     [timings] prompt_n=24, prompt_ms=18.473, prompt_per_token_ms=0.7697083333333333, prompt_per_second=1299.1934174200185, predicted_n=136, predicted_ms=842.67, predicted_per_token_ms=6.19610294117647, predicted_per_second=161.3917666464927, cache_n=0
+
+================ PROFILE SUMMARY ================
+[info] Model: Qwen3.5-2B-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 42.37 ms
+[info] Average Prompt Time (server): 19.28 ms
+[info] Total Predicted Tokens (server): 1395
+[info] Total Predicted Time (server): 8654.12 ms
+[info] Average Decode Speed (server): 161.19 tokens/sec
+[info] Average ms/token (server): 6.20 ms
+[time] Average Total Wall Duration: 0.91 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/qwen3.5-2b_nothink.json

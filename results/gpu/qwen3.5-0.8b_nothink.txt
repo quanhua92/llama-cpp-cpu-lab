@@ -1,0 +1,107 @@
+Auto-detected model: Qwen3.5-0.8B-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] **Software architecture** is the blueprint that defines how software components interact to achieve a desired system goal. It is the set of rules and decisions that guide the design of a software system.
+
+Key components include:
+*   **Modules**: Independent units of software that perform specific tasks.
+*   **Interfaces**: The communication protocols between modules (e.g., REST APIs, HTTP).
+*   **Data Flow**: How data moves from one module to another.
+*   **Architecture Styles**: Patterns like Microservices, Monolith, or Serverless.
+
+The primary goal is to ensure **modularity**, **scalability**, **maintainability**, and **security**.     [Q01] TTFT=30.54ms Total=0.50s
+     [timings] prompt_n=26, prompt_ms=21.341, prompt_per_token_ms=0.8208076923076923, prompt_per_second=1218.3121690642424, predicted_n=137, predicted_ms=469.901, predicted_per_token_ms=3.429934306569343, predicted_per_second=291.5507734607928, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by processing vast amounts of data through a process called **backpropagation**. This involves two key steps:
+
+1.  **Training**: The network is trained by adjusting its internal weights and biases to minimize the difference between its predictions and the actual target values.
+2.  **Backpropagation**: During training, the network calculates the error (loss) between its predictions and the true values. This error is then propagated backward through the network's layers, calculating the gradient of the loss with respect to each weight and bias. This gradient tells the network exactly how to adjust its parameters to reduce the error.
+
+By repeating this process, the network gradually improves its accuracy and generalizes better to unseen data.     [Q02] TTFT=42.96ms Total=0.54s
+     [timings] prompt_n=27, prompt_ms=14.861, prompt_per_token_ms=0.5504074074074075, prompt_per_second=1816.8360137272055, predicted_n=147, predicted_ms=496.438, predicted_per_token_ms=3.3771292517006803, predicted_per_second=296.10948396375784, cache_n=0
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP** is a connection-oriented protocol that requires a complete handshake (SYN, SYN-ACK, ACK) to establish a connection and guarantees data delivery with error correction. **UDP** is a connectionless protocol that does not require a handshake and does not guarantee delivery, making it faster and more suitable for real-time applications like video streaming.     [Q03] TTFT=40.56ms Total=0.28s
+     [timings] prompt_n=29, prompt_ms=14.298, prompt_per_token_ms=0.4930344827586207, prompt_per_second=2028.255700097916, predicted_n=70, predicted_ms=235.717, predicted_per_token_ms=3.3673857142857146, predicted_per_second=296.96627735801826, cache_n=0
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Garbage collection (GC) in Python is a memory management technique that automatically frees memory allocated to objects that are no longer referenced by any other object in the program. It uses a collection of objects called the **garbage collector** to identify and reclaim memory.
+
+The process typically involves:
+1.  **Marking**: Objects are marked as "dead" or "live" by the garbage collector.
+2.  **Collecting**: The collector scans the memory for objects that are no longer referenced.
+3.  **Reclaiming**: Once identified, the collector frees the memory and frees the objects.
+4.  **Releasing**: The objects are then released from the program's memory space.
+
+Python's garbage collector is implemented using the **GIL (Global Interpreter Lock)**, which is a thread-safety mechanism that prevents the garbage collector from running concurrently with the Python interpreter. This ensures that the GC can efficiently manage memory without blocking the Python interpreter.     [Q04] TTFT=37.56ms Total=0.71s
+     [timings] prompt_n=28, prompt_ms=14.03, prompt_per_token_ms=0.5010714285714285, prompt_per_second=1995.7234497505347, predicted_n=198, predicted_ms=671.131, predicted_per_token_ms=3.389550505050505, predicted_per_second=295.0243693109095, cache_n=0
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software architecture pattern where a large application is divided into smaller, independent services, each with its own team, technology stack, and deployment process. These services communicate via well-defined APIs, allowing teams to focus on specific features or technologies while maintaining high code quality and scalability.     [Q05] TTFT=38.13ms Total=0.23s
+     [timings] prompt_n=24, prompt_ms=13.501, prompt_per_token_ms=0.5625416666666666, prompt_per_second=1777.6461002888675, predicted_n=58, predicted_ms=196.557, predicted_per_token_ms=3.388913793103448, predicted_per_second=295.079798735227, cache_n=0
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that retains access to its outer scope's variables even after the function has finished executing.     [Q06] TTFT=36.97ms Total=0.11s
+     [timings] prompt_n=27, prompt_ms=13.468, prompt_per_token_ms=0.4988148148148148, prompt_per_second=2004.7520047520047, predicted_n=23, predicted_ms=76.423, predicted_per_token_ms=3.322739130434783, predicted_per_second=300.95651832563493, cache_n=0
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that in a distributed system, a distributed database must choose between three options for consistency, availability, and partition tolerance:
+
+1.  **C**onfirmation: You can guarantee consistency, but you cannot guarantee availability.
+2.  **A**vailability: You can guarantee availability, but you cannot guarantee consistency.
+3.  **P**artition Tolerance: You can guarantee partition tolerance, but you cannot guarantee consistency or availability.
+
+A system must choose exactly one of these three options.     [Q07] TTFT=39.61ms Total=0.41s
+     [timings] prompt_n=26, prompt_ms=13.532, prompt_per_token_ms=0.5204615384615384, prompt_per_second=1921.3715637008575, predicted_n=109, predicted_ms=369.335, predicted_per_token_ms=3.388394495412844, predicted_per_second=295.12502199899825, cache_n=0
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS (Domain Name System) translates human-readable domain names (like `google.com`) into machine-readable IP addresses (like `192.0.2.1`). This process occurs in two main stages:
+
+1.  **Lookup**: When a user requests a domain, the DNS server checks a database of records. If the domain exists, it returns the corresponding IP address.
+2.  **Resolution**: The computer's operating system uses this IP address to locate the specific web server and open the browser.
+
+**Key takeaway**: DNS acts as a translator that converts human-readable names into computer addresses, enabling the internet to function.     [Q08] TTFT=37.05ms Total=0.48s
+     [timings] prompt_n=26, prompt_ms=13.479, prompt_per_token_ms=0.5184230769230769, prompt_per_second=1928.9264782253877, predicted_n=131, predicted_ms=444.693, predicted_per_token_ms=3.3946030534351146, predicted_per_second=294.58525319714954, cache_n=0
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable architectural patterns that help developers solve common problems in software design. They provide a blueprint for how to structure and organize code, ensuring consistency and scalability across different projects.     [Q09] TTFT=38.01ms Total=0.16s
+     [timings] prompt_n=25, prompt_ms=13.505, prompt_per_token_ms=0.5402, prompt_per_second=1851.1662347278782, predicted_n=37, predicted_ms=124.483, predicted_per_token_ms=3.3644054054054053, predicted_per_second=297.22934055252523, cache_n=0
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a sequence of operations performed on a database that must be completed successfully or failfully. It is typically executed in a single atomic unit, meaning if any step fails, the entire transaction is rolled back. This ensures data consistency and integrity.     [Q10] TTFT=38.80ms Total=0.21s
+     [timings] prompt_n=24, prompt_ms=13.387, prompt_per_token_ms=0.5577916666666667, prompt_per_second=1792.7840442220063, predicted_n=52, predicted_ms=174.745, predicted_per_token_ms=3.360480769230769, predicted_per_second=297.5764685684855, cache_n=0
+
+================ PROFILE SUMMARY ================
+[info] Model: Qwen3.5-0.8B-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 38.02 ms
+[info] Average Prompt Time (server): 14.54 ms
+[info] Total Predicted Tokens (server): 962
+[info] Total Predicted Time (server): 3259.42 ms
+[info] Average Decode Speed (server): 295.14 tokens/sec
+[info] Average ms/token (server): 3.39 ms
+[time] Average Total Wall Duration: 0.36 seconds
+=================================================
+
+[info] Raw JSON saved to /home/ubuntu/workspaces/local-llm-lab/results/gpu/qwen3.5-0.8b_nothink.json
