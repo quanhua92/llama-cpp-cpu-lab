@@ -22,7 +22,7 @@ Or `serve_cpu.sh`/`serve_gpu.sh` will auto-download via `wget` on first run (can
 
 ## 3. Add to serve_cpu.sh and serve_gpu.sh
 
-Add a line to the `MODELS` dict in **both** files:
+Add a line to the `MODELS` dict in **both** files (ensure the `<key>` used is identical in both scripts):
 
 ```bash
 MODELS["<key>"]="<org>/<repo>|<local-filename>.gguf|<display description>"
@@ -42,9 +42,9 @@ MODELS["qwen3.5-2b"]="unsloth/Qwen3.5-2B-GGUF|Qwen3.5-2B-Q4_K_M.gguf|Qwen3.5 2B 
 MODELS["gemma4-qat-e2b"]="google/gemma-4-E2B-it-qat-q4_0-gguf|gemma-4-E2B-it-qat-q4_0.gguf|Gemma 4 E2B QAT (Q4_0) — Dense 2.3B, QAT quantized"
 ```
 
-## 4. Add to run_cpu_benchmarks.sh and run_gpu_benchmarks.sh
+## 4. Add to run_cpu_benchmarks.sh, run_gpu_benchmarks.sh, generate_examples_cpu.sh, and generate_examples_gpu.sh
 
-Add the key to the `ALL_KEYS` array in **both** files.
+Add the key to the `ALL_KEYS` array in all four files. **Always ensure the key is identical to the one added to `serve_cpu.sh`/`serve_gpu.sh` to keep all 6 configuration lists aligned.**
 
 ## 5. Profile + Examples
 

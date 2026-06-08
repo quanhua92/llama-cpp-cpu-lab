@@ -28,6 +28,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 - [GPU Report](reports/gpu.md)
 - [Gemma 4 QAT vs Q4_K_M Comparison](reports/gemma4-qat-comparison.md)
 - [Qwen 3.6 35B-A3B vs Gemma 4 26B-A4B Comparison](reports/qwen3.6-35b-a3b-vs-gemma4-26b-a4b.md)
+- [Vietnamese Fluency & Quality Report](reports/vietnamese-fluency.md)
 
 ## Quick Start
 
@@ -116,6 +117,7 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | `reports/cpu.md` | CPU benchmark results and analysis |
 | `reports/gpu.md` | GPU benchmark results and analysis |
 | `reports/gemma4-qat-comparison.md` | Gemma 4 QAT Q4_0 vs Q4_K_M benchmark comparison |
+| `reports/vietnamese-fluency.md` | Qualitative evaluation of Vietnamese fluency and failure modes |
 | `systemd/llama-cpu.service` | User systemd service (CPU, port 8888) |
 | `systemd/llama-gpu.service` | User systemd service (GPU, port 8889) |
 | `repo/` | llama.cpp source + `build/bin/llama-server` |
@@ -154,10 +156,12 @@ All Q4_K_M quant unless noted. Shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) 
 
 GPU pricing for LLM inference can be expensive:
 - **Cloud GPU**: $1-4/hr (A10G/H100) — adds up fast for long-running services
-- **Local GPU**: $300-4,000+ for consumer GPUs (RTX 3060 → RTX 4090)
+- **Local GPU**: $300-4,000+ for consumer GPUs (RTX 3060 → RTX 4090). For local hosting:
+  - **Budget Sweet Spot**: Low-cost GPUs with 12GB–16GB VRAM (e.g., RTX 3060 12GB or RTX 4060 Ti 16GB, costing $280–$450) can host models up to 14.4 GB (such as Gemma 4 26B-A4B MoE or Gemma 4 12B) entirely in VRAM, delivering near-instant TTFT and 15–30 tok/s decode throughput (with MoE models like **Gemma 4 26B-A4B** running at **80+ tok/s** on this workstation's RTX 4060 Ti 16GB).
+  - **High-End Value "Gold Standard"**: Used RTX 3090 24GB cards (typically $650–$800 used) remain the undisputed best local choice, providing 24GB VRAM and high memory bandwidth (936 GB/s) to fit large models (like Gemma 4 31B or Qwen 3.6 35B) entirely in VRAM, or run 72B models with partial offloading.
 - **Power/heat**: GPUs draw 200-350W+ and need cooling
 
-The numbers in this repo (2-32 tok/s) come from a **10th-gen Intel i7-10700** (8C/16T, 2020). Newer hardware can do significantly better:
+The numbers in this repo (1.7–58 tok/s) come from a **10th-gen Intel i7-10700** (8C/16T, 2020). Newer hardware can do significantly better:
 - **Apple Silicon** (M1/M2/M3/M4): Unified memory architecture gives the CPU direct access to GPU-speed bandwidth. A base M2 runs small LLMs at 10-20 tok/s without a discrete GPU.
 - **Newer x86** (Arrow Lake, Zen 5): Larger caches and faster memory improve memory-bound inference. Expect 1.5-2x throughput over 10th-gen at the same core count.
 - **Server CPUs** (EPYC, Xeon): More cores and memory channels offset the lack of a GPU for batch workloads.
@@ -174,7 +178,7 @@ Even at 5-10 tok/s, CPU-only inference is useful for non-interactive workloads w
 | **Privacy-sensitive tasks** | No data leaves the machine. No API costs, no rate limits, no vendor lock-in. |
 | **Edge / air-gapped environments** | Runs on any x86 server with 64 GB RAM. No GPU needed. |
 
-**Rule of thumb**: If a human is waiting for the response interactively, aim for 20+ tok/s (small models like Qwen 2.5-0.5B, Llama 3.2-1B). For batch/offline pipelines, even 2-5 tok/s (larger models like Gemma 4 QAT 12B/31B) is fine — just queue more work.
+**Rule of thumb**: If a human is waiting for the response interactively, aim for 20+ tok/s (small models like Qwen 2.5-0.5B, Llama 3.2-1B). However, Mixture-of-Experts (MoE) models like **Gemma 4 26B-A4B** achieve **~11 tok/s** on CPU by only activating ~3.8B parameters per token. This makes them highly useful for semi-interactive use cases where you need the reasoning quality of a 26B model at near-interactive speeds. For completely offline batch pipelines, even 2-5 tok/s (larger dense models like Gemma 4 QAT 12B/31B) is fine — just queue more work.
 
 ## Gemma 4 QAT vs Q4_K_M Comparison
 
