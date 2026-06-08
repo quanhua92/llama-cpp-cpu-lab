@@ -14,7 +14,7 @@
 | **Quantization** | Q4_0 (QAT) | UD-Q4_K_M (Unsloth Dynamic) |
 | **File size** | 14.4 GB | 22.1 GB |
 | **Context length** | 256K | 262K |
-| **Vision** | Yes (text-only in our GGUF/llama.cpp) | Yes (vision-language, text-only in our GGUF/llama.cpp) |
+| **Vision** | Yes (text-only in our deployment; enable with `--mmproj`) | Yes (vision-language, text-only in our deployment; enable with `--mmproj`) |
 | **Default thinking** | Yes | Yes |
 | **Arch tag** | gemma4 | qwen35moe |
 
@@ -261,7 +261,7 @@ Both models support massive native context windows: **256K tokens** for Gemma 4 
 | **Reflect (3-step) quality** | Works well, concise thinking | Works well, detailed thinking | **Tie** |
 | **Thinking efficiency** | Concise brainstorming | Over-thinks simple questions | **Gemma** |
 | **File size** | **14.4 GB** | 22.1 GB | **Gemma (-35%)** |
-| **Vision support** | Yes (GGUF: text-only) | Yes (GGUF: text-only) | **Tie** |
+| **Vision support** | Yes (text-only in our deployment; enable with `--mmproj`) | Yes (text-only in our deployment; enable with `--mmproj`) | **Tie** |
 
 **Gemma 4 26B-A4B wins on raw throughput** — 15% faster decode in no-think, 11% in think, lower TTFT, and 35% smaller model file. It's the faster engine.
 

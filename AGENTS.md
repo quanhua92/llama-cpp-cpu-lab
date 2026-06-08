@@ -170,7 +170,7 @@ When adding a new model to `serve_cpu.sh` and `serve_gpu.sh` under the `MODELS` 
 3. **Context Length:**
    - Verify the native context window supported by the model base (e.g., 256K for Gemma 4 26B-A4B, 262K for Qwen 3.6).
 4. **Multimodality:**
-   - Verify what modalities the model officially supports natively (e.g., text-only, vision-language, audio input), even if our deployed GGUF is currently run text-only in `llama.cpp`. Note unified/encoder-free designs (e.g., Gemma 4 12B).
+    - Verify what modalities the model officially supports natively (e.g., text-only, vision-language, audio input), even if our current deployment only uses text inference. Note that llama.cpp supports multimodal via mmproj files (vision, audio): pass `--mmproj <file>` or `--mmproj-url <url>` to `llama-server`, or use `-hf` to auto-download. Note unified/encoder-free designs (e.g., Gemma 4 12B).
 5. **Quantization Method:**
    - **PTQ (Post-Training Quantization):** Standard quants like `Q4_K_M`, `Q8_0`.
    - **QAT (Quantization-Aware Training):** Models trained with quantization target active (usually Google's `Q4_0` QAT files). QAT models offer higher quality at comparable file sizes.
