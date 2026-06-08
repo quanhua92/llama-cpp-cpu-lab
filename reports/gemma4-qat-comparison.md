@@ -90,6 +90,15 @@ Same consistent ~6% advantage for QAT Q4_0 across all questions.
 - **Wall time is unpredictable**: Results vary by question because QAT and Q4_K_M produce different-length answers for the same prompt. Wall time depends on output verbosity, not per-token speed.
 - **Recommendation**: Use QAT Q4_0 for consistent per-token speed gains (~6%). For wall time, differences are within noise — choose based on quality, not speed.
 
+## Qualitative Comparison: Vietnamese Fluency (Q4_K_M vs QAT Q4_0)
+
+To evaluate if Quantization-Aware Training (QAT) preserves linguistic capabilities better than standard Post-Training Quantization (Q4_K_M) in non-English languages, we analyzed the Vietnamese "letter to the future" generation examples:
+
+- **Linguistic Coherence**: Both formats produce grammatical and natural Vietnamese. At the 2.3B parameter scale, the base Gemma 4 model is sufficiently robust to avoid common low-bit quantization syntax failures.
+- **Vocabulary Diversity**: The QAT format (`gemma4-qat-e2b`) outputs slightly more vivid, idiomatic phrasing (e.g., using sensory imagery like *"mùi cà phê rang xay buổi sớm"*, *"cảm giác mát rượi của một cơn mưa rào bất chợt"*). The standard Q4_K_M model (`gemma4-e2b`) relies on slightly more rigid, generic terms (*"sự pha trộn kỳ lạ"*, *"nhịp sống hối hả"*).
+- **Tone Preservation**: QAT maintains a consistent reflective, emotional persona throughout the letter. Q4_K_M exhibits minor tonal shifts, alternating between structured, analytical prompts and personal prose.
+- **Takeaway**: QAT Q4_0 successfully retains the parent model's fine-grained linguistic style. While both are highly functional, QAT is recommended for tasks requiring high narrative fidelity and nuance in Vietnamese.
+
 ## 26B-A4B vs E4B: Same Active Params, Different Total Size
 
 Both models have ~3.8B active parameters per token, but 26B-A4B is MoE (25.2B total parameters) while E4B is dense (4.5B total parameters). This means 26B-A4B can route to a much larger pool of expert knowledge while keeping compute per token similar to E4B.
@@ -175,6 +184,12 @@ The 12B QAT is **3x slower than 26B-A4B** per-token (4.35 vs 11.90 tok/s nothink
 - **TTFT cost scales with total size**: The 12B's TTFT (1,494 ms nothink) is 2.4x the 26B-A4B's (616 ms), despite 26B being 2.25x larger on disk. This is because prompt processing (prefill) touches all parameters — 12B dense = 12B computations, while 26B-A4B still only computes ~3.8B active params during prefill but pays for loading 14.4 GB into memory.
 
 **When to use 12B QAT**: If you need a model that processes every token through the same dense computation (no expert routing), the 12B QAT provides consistent behavior. But for CPU throughput, the MoE 26B-A4B (with ~3.8B active params) and dense models with similar size are significantly faster. The 12B's strength is simplicity and consistency — it doesn't depend on routing quality.
+
+## Context Scaling & KV Cache Impact
+
+Gemma 4 models support large native context windows (**128K** for E2B/E4B/12B dense models, **256K** for the 26B-A4B MoE model).
+- **Memory Overhead**: Our CPU benchmarks are limited to `-c 8192`. Scaling the context window to native limits causes quadratic growth in KV cache allocation. For a 14.4 GB model like 26B-A4B, native-limit context windows risk exceeding the 64GB RAM budget, leading to out-of-memory crashes or OS paging.
+- **Prefill Latency**: Long prompt processing (prefill) scales linearly with prompt length. On CPU, memory bandwidth is the primary bottleneck. Large context prompts require massive matrix-vector multiplications that overwhelm the CPU memory bus, causing TTFT to degrade severely.
 
 ## Recommendation
 

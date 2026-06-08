@@ -238,6 +238,14 @@ Both models handle Vietnamese creative writing well. The reflect flow produces h
 
 ---
 
+## 4. Context Scaling & KV Cache Scaling
+
+Both models support massive native context windows: **256K tokens** for Gemma 4 26B-A4B and **262K tokens** for Qwen 3.6 35B-A3B.
+- **KV Cache Overhead**: Our benchmarks are run with `-c 8192` (8K context). Raising this to native limits triggers quadratic growth in KV cache allocation. At this scale, native context allocation for Gemma (14.4 GB) and Qwen (22.1 GB) can easily exceed the 64GB RAM budget, leading to out-of-memory crashes or severe disk thrashing.
+- **Prefill Bottlenecks**: Processing long prompts scales with prompt length. On CPU-only systems, memory bandwidth is the primary bottleneck. Prefilling massive contexts requires continuous memory matrix operations that quickly saturate the system memory bus, degrading TTFT from milliseconds to minutes. Partial or full GPU offloading is required to make large-context inference practical.
+
+---
+
 ## Overall Verdict
 
 | | Gemma 4 26B-A4B | Qwen 3.6 35B-A3B | Winner |

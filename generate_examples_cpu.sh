@@ -34,6 +34,7 @@ declare -a ALL_KEYS=(
     "qwen2.5-0.5b"
     "qwen3.5-0.8b"
     "llama3.2-1b"
+    "llama3.2-3b"
     "qwen2.5-1.5b"
     "qwen2.5-coder-1.5b"
     "deepseek-r1-1.5b"
@@ -49,10 +50,10 @@ declare -a ALL_KEYS=(
     "gemma4-qat-e4b"
     "gemma4-qat-12b"
     "gemma4-qat-26b-a4b"
-     "gemma4-qat-31b"
-     "qwen3.6-35b-a3b"
-     "qwen3.6-27b"
- )
+    "gemma4-qat-31b"
+    "qwen3.6-35b-a3b"
+    "qwen3.6-27b"
+)
 
 if [ $# -gt 0 ]; then
     MODEL_KEYS=("$@")
