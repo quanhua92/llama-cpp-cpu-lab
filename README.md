@@ -30,6 +30,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 - [Gemma 4 QAT vs Q4_K_M Comparison](reports/gemma4-qat-comparison.md)
 - [Qwen 3.6 35B-A3B vs Gemma 4 26B-A4B Comparison](reports/qwen3.6-35b-a3b-vs-gemma4-26b-a4b.md)
 - [Vietnamese Fluency & Quality Report](reports/vietnamese-fluency.md)
+- [GPU Context Scaling Report](reports/context-scaling-gpu.md)
 
 ## Quick Start
 
@@ -66,6 +67,10 @@ uv run python scripts/reflect.py --port 8081 "explain async programming"
 # Profile latency (benchmark suite)
 uv run python scripts/profile_client.py
 uv run python scripts/profile_client.py --reasoning
+
+# Profile context scaling (corpus-filled prompts at different ctx sizes)
+uv run python scripts/profile_context.py --port 8889
+uv run python scripts/profile_context.py --port 8889 --ctx-sizes 2048 8192 32768 65536
 
 # Run full benchmark suite (CPU)
 bash run_cpu_benchmarks.sh
@@ -107,6 +112,7 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | `scripts/ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
 | `scripts/reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
 | `scripts/profile_client.py` | Streaming benchmark: 10 fixed questions, TTFT, server decode/prompt speed |
+| `scripts/profile_context.py` | Context scaling benchmark: fills prompts with corpus text at different ctx sizes, measures TTFT + decode speed |
 | `scripts/analyze_results.py` | Parse benchmark results: overview, per-question, comparison, stability |
 | `scripts/generate_examples.py` | Generate example outputs per model with streaming capture |
 | `generate_examples_cpu.sh` | Run generate_examples across all models (CPU) → `examples/cpu/` |

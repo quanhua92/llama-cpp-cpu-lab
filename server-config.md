@@ -176,10 +176,47 @@ uv run python scripts/profile_client.py --port 8889
 # Benchmark with think tokens visible
 uv run python scripts/profile_client.py --port 8889 --reasoning
 
+# Context scaling benchmark (fills prompt with corpus text at different ctx sizes)
+uv run python scripts/profile_context.py --port 8889 --ctx-sizes 2048 8192 32768 65536
+
 # Check GPU usage
 nvidia-smi
 
 # Check service status
 systemctl --user status llama-gpu.service
 journalctl --user -u llama-gpu.service --no-pager -n 20
+```
+
+## Context Scaling Profiling
+
+`profile_context.py` measures how performance degrades as the context window fills up. It uses a corpus file (auto-downloaded from Project Gutenberg if missing) to build prompts at different context sizes, then sends them to the server.
+
+```bash
+# Default: tests 2048, 8192, 32768, 65536 with 80% context fill
+uv run python scripts/profile_context.py --port 8889
+
+# Custom context sizes
+uv run python scripts/profile_context.py --port 8889 --ctx-sizes 4096 16384
+
+# Custom corpus file
+uv run python scripts/profile_context.py --port 8889 --corpus my_corpus.txt
+
+# Change fill ratio (fraction of context filled with corpus)
+uv run python scripts/profile_context.py --port 8889 --ctx-fill 0.5
+
+# Save results as JSON
+uv run python scripts/profile_context.py --port 8889 --output results/gpu/context_profile
+
+# Show thinking tokens
+uv run python scripts/profile_context.py --port 8889 --reasoning
+```
+
+**How it works:** For each context size, it fills ~80% (configurable via `--ctx-fill`) of the window with corpus text, then appends a summarization question. This simulates real-world long-context usage (e.g., RAG, document analysis). The server must be started with `-c` set to at least the largest context size you test.
+
+**Important:** The server's `-c` flag must be >= your largest `--ctx-sizes` value. For example, to test 65536, start the server with `-c 65536`.
+
+```bash
+# Example: start server with 64K context, then profile
+./serve_gpu.sh gemma4-qat-26b-a4b 8889 -c 65536 -ctk q8_0 -ctv q8_0
+uv run python scripts/profile_context.py --port 8889
 ```
