@@ -74,7 +74,5 @@ Results:
 
 ## 6. Update reports/cpu.md and reports/gpu.md
 
-- Add row to the **Models Tested** table
-- Add rows to all 4 result tables (TTFT, TPOT, Throughput, Wall Duration)
-- Update the **Throughput Ranking** table
-- Update **Key Findings** and **Recommendations** sections
+- Add the model's stats (Decode speed and Prompt speed) to the **Nothink Mode** and **Think Mode** ranking tables in the appropriate positions based on its decode speed rank.
+- Update the **Key Observations** and **Notes** sections with any noteworthy performance, size, or offload insights.

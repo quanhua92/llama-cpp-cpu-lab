@@ -30,7 +30,7 @@
 | Model | Q4_K_M NoThink | QAT Q4_0 NoThink | Q4_K_M Think | QAT Q4_0 Think |
 |---|---|---|---|---|
 | E2B | **6.1** | 7.2 | 23.9 | **22.7** |
-| E4B | 13.2 | **11.6** | 58.8 | **54.3** |
+| E4B | 13.2 | **11.6** | **54.3** | 58.8 |
 
 ## All MoE Models at a Glance
 

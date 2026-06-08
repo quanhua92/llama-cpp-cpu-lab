@@ -71,3 +71,5 @@
 4. **qwen3.5 models loop in think mode** — wall time explodes (e.g., qwen3.5-2b: 6.3s nothink vs 174s think). Use `--no-reasoning` on CPU.
 5. **MoE models punch above their weight** — gemma4-qat-26b-a4b and qwen3.6-35b-a3b outperform smaller dense models.
 6. **gemma4-qat-31b and qwen3.6-27b** are batch/offline only at ~1.7-1.9 tok/s.
+7. **Context window scaling on CPU** is primarily bound by system memory (RAM) bandwidth. Although the models natively support 128K–262K context lengths, processing long contexts on CPU triggers a massive TTFT (Time to First Token) prefill latency penalty. For CPU deployment, it is recommended to keep active context (`-c`) under 8,192 tokens for interactive workloads, keeping larger context sizes strictly for offline batch processing.
+

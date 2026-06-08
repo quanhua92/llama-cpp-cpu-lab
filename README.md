@@ -178,7 +178,7 @@ Even at 5-10 tok/s, CPU-only inference is useful for non-interactive workloads w
 
 ## Gemma 4 QAT vs Q4_K_M Comparison
 
-See [reports/gemma4-qat-comparison.md](reports/gemma4-qat-comparison.md) for a detailed side-by-side comparison of Gemma 4 E2B/E4B with post-training Q4_K_M vs quantization-aware-trained Q4_0. Short summary: QAT Q4_0 wins per-token speed and TTFT across all metrics; wall time varies by model (QAT wins for E4B, Q4_K_M wins for E2B).
+See [reports/gemma4-qat-comparison.md](reports/gemma4-qat-comparison.md) for a detailed side-by-side comparison of Gemma 4 E2B/E4B with post-training Q4_K_M vs quantization-aware-trained Q4_0. Short summary: QAT Q4_0 wins per-token speed and TTFT across all metrics; wall time is highly variable depending on response verbosity.
 
 ## Multiple Servers
 

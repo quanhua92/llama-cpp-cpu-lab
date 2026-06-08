@@ -59,6 +59,13 @@
 | 21 | gemma4-qat-31b | 17 GB | 7.0 | 25.3 |
 | 22 | qwen3.6-27b | 16 GB | 6.9 | 22.3 |
 
+## Key Observations
+
+1. **qwen2.5-0.5b dominates** at 427.4 tok/s nothink / 426.9 tok/s think — which is over 60x faster than the slowest models.
+2. **GPU speeds are 3-9x higher than CPU** — for example, qwen2.5-0.5b: 427.4 tok/s GPU vs 49.9 tok/s CPU (8.6x); qwen3.6-35b-a3b: 29.0 tok/s GPU vs 10.4 tok/s CPU (2.8x).
+3. **MoE models offer excellent GPU throughput** — `gemma4-qat-26b-a4b` (14 GB) runs at 87.9 tok/s because it fits entirely in VRAM, which is faster than dense 4B/4.5B models (e.g., `qwen3.5-4b` at 79.9 tok/s and `gemma4-e4b` at 75.3 tok/s).
+4. **The VRAM Cliff drops speeds drastically** — models above 15 GB like `qwen3.6-35b-a3b` (29.0 tok/s) and `gemma4-qat-31b` (7.1 tok/s) must partially offload layers, dropping throughput significantly.
+
 ## Notes
 
 - **GPU offload:** Models up to ~16 GB use full GPU offload (`-ngl 99`). Larger models use partial offload:
@@ -68,3 +75,22 @@
 - **QAT vs non-QAT:** gemma4-qat variants use Q4_0 quantization (the quantization-aware trained format), while standard gemma4 variants use Q4_K_M.
 - **Metrics:** All timings from server-side `predicted_per_second` and `prompt_per_second`. 10 questions per model, 0 failures across all models.
 - **Think mode:** Enables reasoning/thinking tokens. Decode speeds are nearly identical to nothink for most models — thinking models (deepseek-r1) produce much longer output but at the same tok/s rate.
+
+## Key Insights on GPU Offload & MoE Trade-Offs
+
+### 1. The VRAM Cliff & Partial Offloading
+On a 16 GB VRAM consumer card (such as the RTX 4060 Ti in this workstation), there is a steep performance cliff once a model exceeds the VRAM limit:
+*   **Full Offload (`-ngl 99`):** Models like `gemma4-qat-26b-a4b` (14 GB) fit entirely in VRAM, achieving a high decode throughput of **`87.9 tok/s`**.
+*   **Partial Offload:** Once a model's size exceeds ~15 GB, llama.cpp must split layers between the GPU and host CPU/RAM, introducing PCIe bandwidth bottlenecks:
+    *   `qwen3.6-35b-a3b` (21 GB) runs with `--ngl 20` at **`29.0 tok/s`** (3x speed penalty).
+    *   `gemma4-qat-31b` (17 GB) runs with `--ngl 40` at **`7.1 tok/s`** (12x speed penalty!).
+
+### 2. MoE vs. Dense Performance Under VRAM Constraints
+Mixture of Experts (MoE) models offer substantial speed advantages over dense models of similar size when VRAM is constrained:
+*   **At 29 tok/s**, `qwen3.6-35b-a3b` (MoE with ~3B active params) is **4x faster** than `gemma4-qat-31b` (dense 31B model running at 7.1 tok/s) despite both requiring partial offloading. This is because MoE models process only a fraction of the compute (~3B vs 31B parameters) per token.
+*   **Fits-in-VRAM MoE (`gemma4-qat-26b-a4b`):** With ~3.8B active parameters, this model fits entirely in 16 GB VRAM and generates at **`87.9 tok/s`**, offering a near-perfect balance of high reasoning capability and interactive-grade speed.
+
+### 3. KV Cache & Context Window VRAM Overhead
+*   The native context windows (256K for Gemma 4, 262K for Qwen 3.6) require significant memory for the KV cache.
+*   For models that barely fit in VRAM (like `gemma4-qat-26b-a4b` at 14.4 GB), running long context sessions (e.g., above 16K–32K context) will consume the remaining VRAM overhead and trigger out-of-memory (OOM) errors. In such cases, developers must either restrict the context length (`-c`) or offload some layers to CPU to free VRAM for the KV cache.
+
