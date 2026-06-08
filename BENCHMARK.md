@@ -1,6 +1,6 @@
 # Benchmark Guide
 
-Quick reference for running benchmarks. Extracted from README.md and add-model-flow.md.
+Quick reference for running benchmarks. Extracted from README.md and ADD-MODEL-FLOW.md.
 
 ## Rules
 
@@ -165,4 +165,4 @@ All decode metrics come from llama.cpp server timings (not client chunk counting
 4. Run 3-step benchmark flow (above)
 5. Update `reports/cpu.md` and `reports/gpu.md`
 
-See `add-model-flow.md` for full details.
+See `ADD-MODEL-FLOW.md` for full details.

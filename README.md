@@ -120,7 +120,7 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | `examples/` | Per-model example outputs (`cpu/` and `gpu/`) |
 | `run_cpu_benchmarks.sh` | Run profile across all models (CPU) → `results/cpu/` |
 | `run_gpu_benchmarks.sh` | Run profile across all models (GPU) → `results/gpu/` |
-| `add-model-flow.md` | Guide for adding new GGUF models |
+| `ADD-MODEL-FLOW.md` | Guide for adding new GGUF models |
 | `reports/cpu.md` | CPU benchmark results and analysis |
 | `reports/gpu.md` | GPU benchmark results and analysis |
 | `reports/gemma4-qat-comparison.md` | Gemma 4 QAT Q4_0 vs Q4_K_M benchmark comparison |
@@ -129,7 +129,8 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | `systemd/llama-gpu.service` | User systemd service (GPU, port 8889) |
 | `repo/` | llama.cpp source + `build/bin/llama-server` |
 | `sweep_gpu_config.sh` | Grid sweep: test `-ngl` x `-c` x `-t` x `--spec-type` combos, measure TTFT + tok/s → `tuning/gpu/` |
-| `sweep-gpu.md` | Sweep tool documentation |
+| `SWEEP-GPU.md` | Sweep tool documentation |
+| `SERVER-CONFIG.md` | llama-server flags and configuration reference |
 | `run/` | Server PID and log files (gitignored) |
 
 ## Curated Models
@@ -358,17 +359,17 @@ systemctl --user restart llama-cpu.service
 
 ### Tuning flags (`-ngl`, `-c`, speculative decoding, etc.)
 
-For context size, GPU layers, KV cache quantization, speculative decoding, and other tuning, see [server-config.md](server-config.md).
+For context size, GPU layers, KV cache quantization, speculative decoding, and other tuning, see [SERVER-CONFIG.md](SERVER-CONFIG.md).
 
 ## Server Configuration
 
-See [server-config.md](server-config.md) for all `llama-server` flags and how to apply them via systemd or directly.
+See [SERVER-CONFIG.md](SERVER-CONFIG.md) for all `llama-server` flags and how to apply them via systemd or directly.
 
-To find optimal settings, run the [GPU config sweep](sweep-gpu.md): `nohup ./sweep_gpu_config.sh > /tmp/sweep.log 2>&1 &`
+To find optimal settings, run the [GPU config sweep](SWEEP-GPU.md): `nohup ./sweep_gpu_config.sh > /tmp/sweep.log 2>&1 &`
 
 ## Adding a New Model
 
-See `add-model-flow.md` for the full workflow: download GGUF → add to `serve_cpu.sh` → profile → update `reports/cpu.md`.
+See `ADD-MODEL-FLOW.md` for the full workflow: download GGUF → add to `serve_cpu.sh` → profile → update `reports/cpu.md`.
 
 Note: When adding a model, update the `MODELS` dictionary in **both** `serve_cpu.sh` and `serve_gpu.sh`.
 
