@@ -17,6 +17,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 - [Benchmarking](#benchmarking)
 - [API](#api)
 - [Running as a Linux Service](#running-as-a-linux-service)
+- [Server Configuration](server-configuration)
 - [Adding a New Model](#adding-a-new-model)
 - [Custom Models Directory](#custom-models-directory)
 - [Downloading Models](#downloading-models)
@@ -44,7 +45,7 @@ LLM serving and benchmarking using [llama.cpp](https://github.com/ggml-org/llama
 ./serve_gpu.sh qwen2.5-0.5b 8081
 
 # Partial GPU offload for large models (>16GB on 16GB VRAM)
-./serve_gpu.sh qwen3.6-27b --ngl 40
+./serve_gpu.sh qwen3.6-35b-a3b --ngl 40
 
 # Disable thinking for speed
 ./serve_cpu.sh gemma4-e2b --no-reasoning
@@ -101,7 +102,7 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | File | Purpose |
 |------|---------|
 | `serve_cpu.sh` | Start llama-server (CPU, `-ngl 0`) on any port with any curated model |
-| `serve_gpu.sh` | Start llama-server (GPU, `-ngl 99`, configurable via `--ngl N`) on any port with any curated model |
+| `serve_gpu.sh` | Start llama-server (GPU, `-ngl 99`, KV8 cache, configurable via `--ngl N`) on any port with any curated model |
 | `stop.sh` | Kill server by port (default 8080) |
 | `scripts/ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
 | `scripts/reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
@@ -121,11 +122,13 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | `systemd/llama-cpu.service` | User systemd service (CPU, port 8888) |
 | `systemd/llama-gpu.service` | User systemd service (GPU, port 8889) |
 | `repo/` | llama.cpp source + `build/bin/llama-server` |
+| `sweep_gpu_config.sh` | Grid sweep: test `-ngl` x `-c` x `-t` x `--spec-type` combos, measure TTFT + tok/s → `tuning/gpu/` |
+| `sweep-gpu.md` | Sweep tool documentation |
 | `run/` | Server PID and log files (gitignored) |
 
 ## Curated Models
 
-All Q4_K_M quant unless noted. Shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`; use `--ngl N` for partial offload). QAT models use Q4_0 quantization (quantization-aware training):
+All Q4_K_M quant unless noted. Shared between CPU (`-ngl 0`, `-t 8`, `-c 8192`) and GPU (`-ngl 99`, `-c 8192`, `-ctk q8_0 -ctv q8_0`; use `--ngl N` for partial offload). QAT models use Q4_0 quantization (quantization-aware training):
 
 | Key | Model | Size |
 |-----|-------|------|
@@ -215,7 +218,7 @@ nohup bash run_cpu_benchmarks.sh --no-reasoning qwen2.5-0.5b > /tmp/bench_cpu_no
 nohup ./generate_examples_cpu.sh qwen2.5-0.5b > /tmp/examples_cpu.log 2>&1 &
 
 # Monitor progress
-tail -f /tmp/bench_gpu_think.log
+cat /tmp/bench_gpu_think.log
 ls results/gpu/qwen2.5-0.5b*.txt    # check which results exist
 ls examples/gpu/qwen2.5-0.5b*.md    # check which examples exist
 ```
@@ -242,7 +245,7 @@ nohup ./generate_examples_cpu.sh > /tmp/examples_cpu.log 2>&1 &
 nohup ./generate_examples_gpu.sh > /tmp/examples_gpu.log 2>&1 &
 
 # Monitor progress
-tail -f /tmp/bench_gpu_think.log
+cat /tmp/bench_gpu_think.log
 ls results/gpu/*.txt | wc -l    # count completed results
 ls examples/gpu/*.md | wc -l    # count completed examples
 
@@ -278,10 +281,21 @@ The server runs as **user systemd services** (no root needed). CPU on port 8888,
 
 ### Setup
 
+Service files reference `%h/local-llm-lab`. Copy them and edit the paths to match your repo:
+
 ```bash
-# Symlink service files into systemd
-ln -s ~/llama-cpp/systemd/llama-cpu.service ~/.config/systemd/user/
-ln -s ~/llama-cpp/systemd/llama-gpu.service ~/.config/systemd/user/
+cp systemd/*.service ~/.config/systemd/user/
+```
+
+Then open each file and change `%h/local-llm-lab` to your repo path (e.g. `%h/workspaces/local-llm-lab`).
+
+```bash
+nano ~/.config/systemd/user/llama-gpu.service
+```
+
+Reload:
+
+```bash
 systemctl --user daemon-reload
 ```
 
@@ -315,16 +329,36 @@ Verify: `loginctl show-user $(whoami) | grep Linger` should show `Linger=yes`.
 
 ### Changing the model
 
-Edit the service file:
+Open the service file in an editor and change the `ExecStart` line. For example, to switch the CPU service from `gemma4-qat-26b-a4b` to `llama3.2-1b`:
 
 ```bash
-# Change gemma4-qat-26b-a4b to another model key (CPU)
-sed -i 's/gemma4-qat-26b-a4b/llama3.2-1b/' ~/.config/systemd/user/llama-cpu.service
+nano ~/.config/systemd/user/llama-cpu.service
+```
 
-# Reload and restart
+Change:
+```
+ExecStart=%h/local-llm-lab/serve_cpu.sh gemma4-qat-26b-a4b 8888
+```
+to:
+```
+ExecStart=%h/local-llm-lab/serve_cpu.sh llama3.2-1b 8888
+```
+
+Then:
+```bash
 systemctl --user daemon-reload
 systemctl --user restart llama-cpu.service
 ```
+
+### Tuning flags (`-ngl`, `-c`, speculative decoding, etc.)
+
+For context size, GPU layers, KV cache quantization, speculative decoding, and other tuning, see [server-config.md](server-config.md).
+
+## Server Configuration
+
+See [server-config.md](server-config.md) for all `llama-server` flags and how to apply them via systemd or directly.
+
+To find optimal settings, run the [GPU config sweep](sweep-gpu.md): `nohup ./sweep_gpu_config.sh > /tmp/sweep.log 2>&1 &`
 
 ## Adding a New Model
 

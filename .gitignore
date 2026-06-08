@@ -3,3 +3,4 @@ repo/
 models/
 run/*
 !run/.gitkeep
+tuning/

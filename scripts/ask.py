@@ -9,8 +9,14 @@ import httpx
 parser = argparse.ArgumentParser()
 parser.add_argument("--port", type=int, default=8080, help="Server port (default: 8080)")
 parser.add_argument("--max-tokens", type=int, default=8192, help="Max tokens (default: 8192)")
-parser.add_argument("prompt", help="Prompt to send")
+parser.add_argument("--prompt-file", type=str, default=None, help="Read prompt from file instead of CLI arg")
+parser.add_argument("prompt", nargs="?", default="", help="Prompt to send (omit if using --prompt-file)")
 args = parser.parse_args()
+
+prompt_text = args.prompt
+if args.prompt_file:
+    with open(args.prompt_file) as f:
+        prompt_text = f.read()
 
 API_BASE = f"http://localhost:{args.port}/v1"
 API_URL = f"{API_BASE}/chat/completions"
@@ -35,11 +41,11 @@ async def main():
         model_name = await fetch_model_name(client)
         print(f"Model: {model_name}")
         print(f"{'='*60}")
-        print(f"> {args.prompt}")
+        print(f"> {prompt_text[:200]}{'...' if len(prompt_text) > 200 else ''}")
         print(f"{'='*60}")
 
         payload = {
-            "messages": [{"role": "user", "content": args.prompt}],
+            "messages": [{"role": "user", "content": prompt_text}],
             "stream": True,
             "max_tokens": args.max_tokens,
             "temperature": 0.0,

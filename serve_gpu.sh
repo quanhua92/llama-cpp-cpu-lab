@@ -50,6 +50,8 @@ usage() {
     echo "Flags:"
     echo "  --no-reasoning     Disable thinking (chain-of-thought) for speed"
     echo "  --ngl N            Number of GPU layers to offload (default: 99 = all)"
+    echo "  -c N              Context size (default: 8192)"
+    echo "  -t N               CPU threads (default: 8)"
     exit 0
 }
 
@@ -73,8 +75,11 @@ fi
 
 EXTRA_ARGS=("$@")
 N_GL=99
+CTX=8192
+THREADS=8
+FLASH_ATTN=auto
+HOST=0.0.0.0
 
-# Handle --ngl N and --no-reasoning → --reasoning off
 FILTERED_ARGS=()
 i=0
 skip=false
@@ -85,6 +90,18 @@ for arg in "${EXTRA_ARGS[@]}"; do
         FILTERED_ARGS+=("--reasoning" "off")
     elif [ "$arg" = "--ngl" ]; then
         N_GL="${EXTRA_ARGS[$((i+1))]}"
+        skip=true
+    elif [ "$arg" = "-c" ]; then
+        CTX="${EXTRA_ARGS[$((i+1))]}"
+        skip=true
+    elif [ "$arg" = "-t" ]; then
+        THREADS="${EXTRA_ARGS[$((i+1))]}"
+        skip=true
+    elif [ "$arg" = "--flash-attn" ]; then
+        FLASH_ATTN="${EXTRA_ARGS[$((i+1))]}"
+        skip=true
+    elif [ "$arg" = "--host" ]; then
+        HOST="${EXTRA_ARGS[$((i+1))]}"
         skip=true
     else
         FILTERED_ARGS+=("$arg")
@@ -133,11 +150,11 @@ echo "Starting $DISPLAY on http://0.0.0.0:$PORT (PID -> $PIDFILE)"
 echo "Extra args: ${EXTRA_ARGS[*]:-(none)}"
 nohup "$SERVER" \
     -m "$MODEL_PATH" \
-    --host 0.0.0.0 \
+    --host "$HOST" \
     --port "$PORT" \
-    -c 8192 \
-    --flash-attn auto \
-    -t 8 \
+    -c "$CTX" \
+    --flash-attn "$FLASH_ATTN" \
+    -t "$THREADS" \
     -ngl "$N_GL" \
     "${EXTRA_ARGS[@]}" \
     > "$LOG" 2>&1 &

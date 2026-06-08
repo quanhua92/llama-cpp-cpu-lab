@@ -7,7 +7,7 @@ Type=forking
 Environment=LD_LIBRARY_PATH=%h/local-llm-lab/repo/build/bin
 WorkingDirectory=%h/local-llm-lab
 PIDFile=%h/local-llm-lab/run/server.8889.pid
-ExecStart=%h/local-llm-lab/serve_gpu.sh gemma4-qat-26b-a4b 8889
+ExecStart=%h/local-llm-lab/serve_gpu.sh gemma4-qat-26b-a4b 8889 -ctk q8_0 -ctv q8_0
 ExecStop=%h/local-llm-lab/stop.sh 8889
 Restart=on-failure
 RestartSec=5
