@@ -59,15 +59,12 @@ def parse_result_file(filepath: Path) -> dict:
 
     for m in TIMINGS_RE.finditer(text):
         qid = None
-        q_lines = text.split("\n")
-        for line in q_lines:
-            if "[timings]" in line:
-                pos = text.index(line)
-                for prev_line in reversed(text[:pos].split("\n")):
-                    qm = METRIC_RE.search(prev_line)
-                    if qm:
-                        qid = qm.group(1)
-                        break
+        timings_pos = m.start()
+        search_region = text[:timings_pos]
+        for prev_line in reversed(search_region.split("\n")):
+            qm = METRIC_RE.search(prev_line)
+            if qm:
+                qid = qm.group(1)
                 break
         if qid and qid in data["questions"]:
             data["questions"][qid].update({

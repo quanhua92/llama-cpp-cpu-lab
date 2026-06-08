@@ -13,8 +13,8 @@ It defines:
 
 **Purpose:** To ensure the system meets its quality attributes (e.g., scalability, security, maintainability) while satisfying functional requirements.
 
-**Key Deliverables:** Architectural diagrams, design patterns, and technology choices.     [Q01] TTFT=530.19ms Total=12.02s
-     [timings] prompt_n=23, prompt_ms=528.051, prompt_per_token_ms=22.958739130434786, prompt_per_second=43.556398908438766, predicted_n=118, predicted_ms=11485.953, predicted_per_token_ms=97.3385847457627, predicted_per_second=10.273418322362977, cache_n=0
+**Key Deliverables:** Architectural diagrams, design patterns, and technology choices.     [Q01] TTFT=497.87ms Total=12.01s
+     [timings] prompt_n=23, prompt_ms=495.773, prompt_per_token_ms=21.555347826086958, prompt_per_second=46.39219965589089, predicted_n=118, predicted_ms=11508.898, predicted_per_token_ms=97.53303389830508, predicted_per_second=10.252936467070958, cache_n=0
 
   -> Q02 [2/10]
      IN:  Explain how neural networks learn. Answer short, concise, and correct.
@@ -28,8 +28,8 @@ Here's the concise breakdown:
 3. **Backpropagation:** This error is then propagated backward through the network.
 4. **Weight Update (Optimization):** An **optimizer** (like Gradient Descent) uses the calculated error (the gradient) to slightly adjust the network's internal **weights** and **biases**. This adjustment minimizes the loss for the next iteration.
 
-By repeating this cycle over vast amounts of data, the network gradually tunes its weights until it can accurately map inputs to desired outputs.     [Q02] TTFT=482.62ms Total=17.97s
-     [timings] prompt_n=22, prompt_ms=456.561, prompt_per_token_ms=20.752772727272728, prompt_per_second=48.186332165909924, predicted_n=178, predicted_ms=17483.054, predicted_per_token_ms=98.21940449438202, predicted_per_second=10.181287548502683, cache_n=1
+By repeating this cycle over vast amounts of data, the network gradually tunes its weights until it can accurately map inputs to desired outputs.     [Q02] TTFT=454.89ms Total=17.79s
+     [timings] prompt_n=22, prompt_ms=429.124, prompt_per_token_ms=19.505636363636366, prompt_per_second=51.26723278120077, predicted_n=178, predicted_ms=17336.955, predicted_per_token_ms=97.39862359550563, predicted_per_second=10.267085540684624, cache_n=1
 
   -> Q03 [3/10]
      IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
@@ -38,8 +38,8 @@ By repeating this cycle over vast amounts of data, the network gradually tunes i
 
 **UDP (User Datagram Protocol)** is **connectionless**, unreliable, and sends data without guarantees of delivery or order. It is faster and has lower overhead.
 
-**In short:** TCP prioritizes **reliability**; UDP prioritizes **speed**.     [Q03] TTFT=516.84ms Total=8.94s
-     [timings] prompt_n=25, prompt_ms=483.978, prompt_per_token_ms=19.35912, prompt_per_second=51.655240527461984, predicted_n=87, predicted_ms=8421.786, predicted_per_token_ms=96.80213793103448, predicted_per_second=10.330350355613406, cache_n=1
+**In short:** TCP prioritizes **reliability**; UDP prioritizes **speed**.     [Q03] TTFT=545.84ms Total=8.96s
+     [timings] prompt_n=25, prompt_ms=522.892, prompt_per_token_ms=20.915680000000002, prompt_per_second=47.81102024892329, predicted_n=87, predicted_ms=8414.988, predicted_per_token_ms=96.72399999999999, predicted_per_second=10.338695670154255, cache_n=1
 
   -> Q04 [4/10]
      IN:  How does garbage collection work in Python? Answer short, concise, and correct.
@@ -47,8 +47,8 @@ By repeating this cycle over vast amounts of data, the network gradually tunes i
         [out] Python primarily uses **reference counting** for garbage collection.
 
 1. **Reference Counting:** Each object keeps a count of how many variables or containers point to it. When the count drops to zero, the object is immediately deallocated.
-2. **Generational Garbage Collector (GC):** A secondary collector handles **reference cycles** (where objects point to each other, keeping their counts above zero even if they are unreachable). It periodically scans and breaks these cycles.     [Q04] TTFT=526.64ms Total=9.73s
-     [timings] prompt_n=24, prompt_ms=515.091, prompt_per_token_ms=21.462125, prompt_per_second=46.59370868448488, predicted_n=95, predicted_ms=9207.293, predicted_per_token_ms=96.91887368421052, predicted_per_second=10.317907771589326, cache_n=1
+2. **Generational Garbage Collector (GC):** A secondary collector handles **reference cycles** (where objects point to each other, keeping their counts above zero even if they are unreachable). It periodically scans and breaks these cycles.     [Q04] TTFT=524.24ms Total=9.79s
+     [timings] prompt_n=24, prompt_ms=500.763, prompt_per_token_ms=20.865125, prompt_per_second=47.92686360613703, predicted_n=95, predicted_ms=9268.834, predicted_per_token_ms=97.56667368421053, predicted_per_second=10.24940138101513, cache_n=1
 
   -> Q05 [5/10]
      IN:  Describe microservices. Answer short, concise, and correct.
@@ -60,14 +60,14 @@ Each service:
 * **Focuses on a single business capability** (e.g., payments, users, inventory).
 * **Can be developed, deployed, and scaled independently** using different technologies.
 
-**Key benefits:** Improved agility, fault isolation, and technology diversity.     [Q05] TTFT=426.69ms Total=9.58s
-     [timings] prompt_n=20, prompt_ms=403.326, prompt_per_token_ms=20.1663, prompt_per_second=49.58767845365784, predicted_n=94, predicted_ms=9152.255, predicted_per_token_ms=97.36441489361701, predicted_per_second=10.270692851106094, cache_n=1
+**Key benefits:** Improved agility, fault isolation, and technology diversity.     [Q05] TTFT=438.75ms Total=9.53s
+     [timings] prompt_n=20, prompt_ms=415.209, prompt_per_token_ms=20.76045, prompt_per_second=48.16851272491685, predicted_n=94, predicted_ms=9088.19, predicted_per_token_ms=96.68287234042553, predicted_per_second=10.343093619301532, cache_n=1
 
   -> Q06 [6/10]
      IN:  What is a closure in programming? Answer short, concise, and correct.
 
-        [out] A **closure** is a function bundled together with references to its surrounding state (the **lexical environment**). It allows an inner function to access and remember variables from its outer function's scope even after the outer function has finished executing.     [Q06] TTFT=488.85ms Total=5.27s
-     [timings] prompt_n=23, prompt_ms=475.368, prompt_per_token_ms=20.66817391304348, prompt_per_second=48.38356809882028, predicted_n=50, predicted_ms=4780.994, predicted_per_token_ms=95.61988, predicted_per_second=10.458076291248222, cache_n=1
+        [out] A **closure** is a function bundled together with references to its surrounding state (the **lexical environment**). It allows an inner function to access and remember variables from its outer function's scope even after the outer function has finished executing.     [Q06] TTFT=496.25ms Total=5.34s
+     [timings] prompt_n=23, prompt_ms=473.264, prompt_per_token_ms=20.576695652173914, prompt_per_second=48.5986679739004, predicted_n=50, predicted_ms=4841.897, predicted_per_token_ms=96.83794, predicted_per_second=10.326531109604357, cache_n=1
 
   -> Q07 [7/10]
      IN:  Explain the CAP theorem. Answer short, concise, and correct.
@@ -78,8 +78,8 @@ Each service:
 2. **Availability (A):** Every request receives a (non-error) response, without the guarantee that it contains the most recent write.
 3. **Partition Tolerance (P):** The system continues to operate despite an arbitrary number of messages being dropped or delayed by the network (a network partition).
 
-**In short: You must choose between Consistency and Availability when a network partition occurs.**     [Q07] TTFT=468.34ms Total=12.58s
-     [timings] prompt_n=21, prompt_ms=448.062, prompt_per_token_ms=21.336285714285715, prompt_per_second=46.86851373247452, predicted_n=125, predicted_ms=12111.544, predicted_per_token_ms=96.892352, predicted_per_second=10.320732022275607, cache_n=1
+**In short: You must choose between Consistency and Availability when a network partition occurs.**     [Q07] TTFT=448.78ms Total=12.59s
+     [timings] prompt_n=21, prompt_ms=430.03, prompt_per_token_ms=20.477619047619047, prompt_per_second=48.83380229286329, predicted_n=125, predicted_ms=12145.723, predicted_per_token_ms=97.165784, predicted_per_second=10.291688687449895, cache_n=1
 
   -> Q08 [8/10]
      IN:  How does DNS resolution work? Answer short, concise, and correct.
@@ -93,14 +93,14 @@ Here is the concise process:
 3. **TLD Server:** The Root Server directs the Resolver to the appropriate **Top-Level Domain (TLD) Server** (e.g., `.com`).
 4. **Authoritative Server:** The TLD Server directs the Resolver to the **Authoritative Name Server** for that specific domain.
 5. **Response:** The Authoritative Server provides the correct IP address back to the Resolver.
-6. **Caching & Delivery:** The Resolver caches this IP and sends it back to the client, which can then connect to the website.     [Q08] TTFT=448.14ms Total=21.35s
-     [timings] prompt_n=22, prompt_ms=440.034, prompt_per_token_ms=20.001545454545454, prompt_per_second=49.99613666216702, predicted_n=214, predicted_ms=20897.506, predicted_per_token_ms=97.65189719626169, predicted_per_second=10.240456444898257, cache_n=1
+6. **Caching & Delivery:** The Resolver caches this IP and sends it back to the client, which can then connect to the website.     [Q08] TTFT=469.16ms Total=21.53s
+     [timings] prompt_n=22, prompt_ms=443.401, prompt_per_token_ms=20.15459090909091, prompt_per_second=49.61648710760688, predicted_n=214, predicted_ms=21055.925, predicted_per_token_ms=98.39217289719626, predicted_per_second=10.163410061538498, cache_n=1
 
   -> Q09 [9/10]
      IN:  What are design patterns? Answer short, concise, and correct.
 
-        [out] Design patterns are **reusable, proven solutions to common problems** encountered during software design. They are not code snippets, but rather **templates or blueprints** for how to structure and solve recurring design challenges in a robust and flexible way.     [Q09] TTFT=455.43ms Total=5.09s
-     [timings] prompt_n=21, prompt_ms=418.186, prompt_per_token_ms=19.913619047619047, prompt_per_second=50.216889135456476, predicted_n=48, predicted_ms=4638.506, predicted_per_token_ms=96.63554166666667, predicted_per_second=10.348159515154231, cache_n=1
+        [out] Design patterns are **reusable, proven solutions to common problems** encountered during software design. They are not code snippets, but rather **templates or blueprints** for how to structure and solve recurring design challenges in a robust and flexible way.     [Q09] TTFT=444.41ms Total=5.09s
+     [timings] prompt_n=21, prompt_ms=412.377, prompt_per_token_ms=19.637, prompt_per_second=50.924275602179556, predicted_n=48, predicted_ms=4649.513, predicted_per_token_ms=96.86485416666666, predicted_per_second=10.323661854478093, cache_n=1
 
   -> Q10 [10/10]
      IN:  Describe database transactions. Answer short, concise, and correct.
@@ -109,4 +109,24 @@ Here is the concise process:
 
 It is treated as an **atomic operation**, meaning it must either complete entirely (commit) or have no effect at all (rollback).
 
-Transactions ensure **data integrity** by adhering to the **ACID
+Transactions ensure **data integrity** by adhering to the **ACID properties**:
+
+* **Atomicity:** All or nothing.
+* **Consistency:** Moves the database from one valid state to another.
+* **Isolation:** Concurrent transactions do not interfere with each other.
+* **Durability:** Once committed, changes are permanent, even in the event of system failure.     [Q10] TTFT=482.64ms Total=13.15s
+     [timings] prompt_n=20, prompt_ms=462.405, prompt_per_token_ms=23.12025, prompt_per_second=43.25212746401964, predicted_n=129, predicted_ms=12671.356, predicted_per_token_ms=98.22756589147286, predicted_per_second=10.180441619665645, cache_n=1
+
+================ PROFILE SUMMARY ================
+[info] Model: gemma-4-E4B-it-qat-q4_0.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 480.28 ms
+[info] Average Prompt Time (server): 458.52 ms
+[info] Total Predicted Tokens (server): 1138
+[info] Total Predicted Time (server): 110982.28 ms
+[info] Average Decode Speed (server): 10.25 tokens/sec
+[info] Average ms/token (server): 97.52 ms
+[time] Average Total Wall Duration: 11.58 seconds
+=================================================
+
+[info] Raw JSON saved to /home/quan/local-llm-lab/results/cpu/gemma4-qat-e4b_nothink.json

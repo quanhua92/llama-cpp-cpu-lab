@@ -104,7 +104,7 @@ ls examples/cpu/*.md | wc -l  # count completed files
 | `stop.sh` | Kill server by port (default 8080) |
 | `scripts/ask.py` | Single streaming LLM call: shows `[think]` + `[out]` + timing |
 | `scripts/reflect.py` | Reflection agent: generate → critique → revise (3-step loop) |
-| `scripts/profile_client.py` | Streaming benchmark: 10 fixed questions, TTFT, TPOT, tok/s |
+| `scripts/profile_client.py` | Streaming benchmark: 10 fixed questions, TTFT, server decode/prompt speed |
 | `scripts/analyze_results.py` | Parse benchmark results: overview, per-question, comparison, stability |
 | `scripts/generate_examples.py` | Generate example outputs per model with streaming capture |
 | `generate_examples_cpu.sh` | Run generate_examples across all models (CPU) → `examples/cpu/` |
@@ -253,8 +253,8 @@ uv run python scripts/analyze_results.py --section overview       # model rankin
 uv run python scripts/analyze_results.py --section per-question  # per-Q breakdown
 uv run python scripts/analyze_results.py --section comparison     # think vs nothink
 uv run python scripts/analyze_results.py --section stability      # question variance
-uv run python scripts/analyze_results.py --sort avg_tpot         # sort by TPOT
-uv run python scripts/analyze_results.py --sort avg_tps          # sort by throughput
+uv run python scripts/analyze_results.py --sort avg_decode_speed  # sort by decode speed
+uv run python scripts/analyze_results.py --sort avg_ttft          # sort by TTFT
 uv run python scripts/analyze_results.py --dir results/gpu       # analyze GPU results
 ```
 
@@ -391,5 +391,5 @@ If `hf` is not installed: `uv add huggingface_hub`.
 - `scripts/profile_client.py --reasoning` shows `[think]` tokens; default hides them (`[out]` only).
 - SmolLM3 3B has a ~3s cold-start penalty on first request
 - Large models (>VRAM) need partial GPU offload: `./serve_gpu.sh <model> --ngl N` where N is the number of layers to offload. Benchmarks and examples accept `--ngl N` too.
-- See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks across all 22 models
+- See [reports/cpu.md](reports/cpu.md) for full CPU benchmarks
 - See [reports/gpu.md](reports/gpu.md) for full GPU benchmarks

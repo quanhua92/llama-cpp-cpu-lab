@@ -16,8 +16,8 @@ Auto-detected model: gemma-4-E4B-it-Q4_K_M.gguf
 * **Manage complexity:** Break down large systems into manageable parts.
 * **Ensure quality attributes:** Guarantee non-functional requirements like performance, scalability, security, and maintainability.
 
-**In short, it's the blueprint that dictates *how* the system is built, not *what* it does.**     [Q01] TTFT=505.95ms Total=15.19s
-     [timings] prompt_n=23, prompt_ms=503.794, prompt_per_token_ms=21.904086956521738, prompt_per_second=45.653580630178205, predicted_n=142, predicted_ms=14685.838, predicted_per_token_ms=103.42139436619718, predicted_per_second=9.669179246019192, cache_n=0
+**In short, it's the blueprint that dictates *how* the system is built, not *what* it does.**     [Q01] TTFT=531.84ms Total=15.31s
+     [timings] prompt_n=23, prompt_ms=529.63, prompt_per_token_ms=23.027391304347827, prompt_per_second=43.426543058361496, predicted_n=142, predicted_ms=14772.792, predicted_per_token_ms=104.03374647887324, predicted_per_second=9.61226557579637, cache_n=0
 
   -> Q02 [2/10]
      IN:  Explain how neural networks learn. Answer short, concise, and correct.
@@ -29,8 +29,8 @@ Auto-detected model: gemma-4-E4B-it-Q4_K_M.gguf
 3. **Backpropagation:** This error is sent backward through the network.
 4. **Optimization (Gradient Descent):** The network uses calculus (gradients) to determine how much each internal weight and bias contributed to the error. It then slightly adjusts these weights and biases in the direction that minimizes the loss.
 
-This iterative process (forward pass $\rightarrow$ calculate loss $\rightarrow$ backward pass $\rightarrow$ adjust weights) is repeated thousands of times until the network's predictions are accurate enough.     [Q02] TTFT=438.42ms Total=17.14s
-     [timings] prompt_n=22, prompt_ms=418.913, prompt_per_token_ms=19.0415, prompt_per_second=52.51687104482314, predicted_n=161, predicted_ms=16696.823, predicted_per_token_ms=103.70697515527951, predicted_per_second=9.642552957529704, cache_n=1
+This iterative process (forward pass $\rightarrow$ calculate loss $\rightarrow$ backward pass $\rightarrow$ adjust weights) is repeated thousands of times until the network's predictions are accurate enough.     [Q02] TTFT=518.64ms Total=17.06s
+     [timings] prompt_n=22, prompt_ms=490.086, prompt_per_token_ms=22.276636363636364, prompt_per_second=44.89008051648078, predicted_n=161, predicted_ms=16539.71, predicted_per_token_ms=102.73111801242236, predicted_per_second=9.734148905875617, cache_n=1
 
   -> Q03 [3/10]
      IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
@@ -47,8 +47,8 @@ This iterative process (forward pass $\rightarrow$ calculate loss $\rightarrow$ 
 * **Faster:** Minimal overhead.
 * **Used for:** Video streaming, DNS lookups, online gaming.
 
-**In short:** **TCP is reliable but slower; UDP is fast but unreliable.**     [Q03] TTFT=507.32ms Total=17.56s
-     [timings] prompt_n=25, prompt_ms=476.854, prompt_per_token_ms=19.07416, prompt_per_second=52.42694829025236, predicted_n=167, predicted_ms=17053.531, predicted_per_token_ms=102.11695209580837, predicted_per_second=9.79269337241654, cache_n=1
+**In short:** **TCP is reliable but slower; UDP is fast but unreliable.**     [Q03] TTFT=543.77ms Total=17.69s
+     [timings] prompt_n=25, prompt_ms=533.434, prompt_per_token_ms=21.33736, prompt_per_second=46.86615401342997, predicted_n=167, predicted_ms=17145.979, predicted_per_token_ms=102.67053293413173, predicted_per_second=9.739892950994516, cache_n=1
 
   -> Q04 [4/10]
      IN:  How does garbage collection work in Python? Answer short, concise, and correct.
@@ -57,8 +57,8 @@ This iterative process (forward pass $\rightarrow$ calculate loss $\rightarrow$ 
 
 1. **Reference Counting:** Each object keeps a count of how many references point to it. When the count drops to zero, the object's memory is immediately deallocated.
 
-2. **Generational Garbage Collector:** This handles **reference cycles** (where objects reference each other, preventing the reference count from ever reaching zero). It periodically scans for and cleans up these unreachable cyclic groups.     [Q04] TTFT=503.99ms Total=11.12s
-     [timings] prompt_n=24, prompt_ms=471.865, prompt_per_token_ms=19.661041666666666, prompt_per_second=50.862005022622995, predicted_n=104, predicted_ms=10619.203, predicted_per_token_ms=102.10772115384614, predicted_per_second=9.79357867064035, cache_n=1
+2. **Generational Garbage Collector:** This handles **reference cycles** (where objects reference each other, preventing the reference count from ever reaching zero). It periodically scans for and cleans up these unreachable cyclic groups.     [Q04] TTFT=495.08ms Total=11.17s
+     [timings] prompt_n=24, prompt_ms=462.652, prompt_per_token_ms=19.277166666666666, prompt_per_second=51.87484329474421, predicted_n=104, predicted_ms=10669.572, predicted_per_token_ms=102.59203846153846, predicted_per_second=9.747345066887407, cache_n=1
 
   -> Q05 [5/10]
      IN:  Describe microservices. Answer short, concise, and correct.
@@ -70,16 +70,16 @@ This iterative process (forward pass $\rightarrow$ calculate loss $\rightarrow$ 
 * **Small & Focused:** Each service handles a single business capability (e.g., "User Authentication," "Order Processing").
 * **Independent Deployment:** Services can be developed, deployed, and scaled independently of others.
 * **Decentralized:** Teams own and operate their specific services end-to-end.
-* **Technology Diversity:** Different services can use different programming languages or databases best suited for their function.     [Q05] TTFT=402.49ms Total=12.65s
-     [timings] prompt_n=20, prompt_ms=378.488, prompt_per_token_ms=18.9244, prompt_per_second=52.841833823001, predicted_n=119, predicted_ms=12251.05, predicted_per_token_ms=102.94999999999999, predicted_per_second=9.713453132588636, cache_n=1
+* **Technology Diversity:** Different services can use different programming languages or databases best suited for their function.     [Q05] TTFT=392.06ms Total=12.68s
+     [timings] prompt_n=20, prompt_ms=378.685, prompt_per_token_ms=18.93425, prompt_per_second=52.81434437593251, predicted_n=119, predicted_ms=12285.674, predicted_per_token_ms=103.24095798319328, predicted_per_second=9.686078272954337, cache_n=1
 
   -> Q06 [6/10]
      IN:  What is a closure in programming? Answer short, concise, and correct.
 
         [out] A **closure** is a function bundled together with references to its surrounding state (its lexical environment).
 
-In simpler terms, it allows an inner function to access and manipulate variables from its outer (enclosing) function, even after the outer function has finished executing.     [Q06] TTFT=473.83ms Total=5.98s
-     [timings] prompt_n=23, prompt_ms=448.147, prompt_per_token_ms=19.484652173913044, prompt_per_second=51.32244553684394, predicted_n=54, predicted_ms=5505.443, predicted_per_token_ms=101.95264814814816, predicted_per_second=9.80847499465529, cache_n=1
+In simpler terms, it allows an inner function to access and manipulate variables from its outer (enclosing) function, even after the outer function has finished executing.     [Q06] TTFT=482.91ms Total=6.00s
+     [timings] prompt_n=23, prompt_ms=455.263, prompt_per_token_ms=19.794043478260868, prompt_per_second=50.520248735346385, predicted_n=54, predicted_ms=5514.568, predicted_per_token_ms=102.12162962962964, predicted_per_second=9.792244832233457, cache_n=1
 
   -> Q07 [7/10]
      IN:  Explain the CAP theorem. Answer short, concise, and correct.
@@ -90,8 +90,8 @@ In simpler terms, it allows an inner function to access and manipulate variables
 2. **Availability (A):** Every request receives a (non-error) response, without guaranteeing it's the most recent data.
 3. **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of part of the system (network partitions).
 
-**In short: In the presence of a network partition (P), a system must choose between being Consistent (C) or Available (A).**     [Q07] TTFT=447.48ms Total=14.28s
-     [timings] prompt_n=21, prompt_ms=427.733, prompt_per_token_ms=20.368238095238095, prompt_per_second=49.09604823569843, predicted_n=134, predicted_ms=13836.017, predicted_per_token_ms=103.25385820895522, predicted_per_second=9.684868123535843, cache_n=1
+**In short: In the presence of a network partition (P), a system must choose between being Consistent (C) or Available (A).**     [Q07] TTFT=449.22ms Total=14.20s
+     [timings] prompt_n=21, prompt_ms=429.279, prompt_per_token_ms=20.441857142857142, prompt_per_second=48.919234344097895, predicted_n=134, predicted_ms=13753.281, predicted_per_token_ms=102.63642537313433, predicted_per_second=9.743129657570437, cache_n=1
 
   -> Q08 [8/10]
      IN:  How does DNS resolution work? Answer short, concise, and correct.
@@ -102,4 +102,40 @@ It works through a hierarchical query process involving several servers:
 
 1. **Resolver (Stub Resolver):** Your device sends a query to a local DNS resolver (usually provided by your ISP).
 2. **Root Server:** The resolver asks a Root Server for the address of the Top-Level Domain (TLD) server (e.g., `.com`).
-3. **TLD Server:** The resolver asks the TLD server for the authoritative name server responsible for the specific domain (e.g., `google.
+3. **TLD Server:** The resolver asks the TLD server for the authoritative name server responsible for the specific domain (e.g., `google.com`).
+4. **Authoritative Name Server:** The resolver queries the domain's authoritative server, which holds the actual record. This server returns the corresponding IP address.
+5. **Caching:** The resolver caches this IP address for future requests, speeding up subsequent lookups.     [Q08] TTFT=441.31ms Total=21.52s
+     [timings] prompt_n=22, prompt_ms=421.745, prompt_per_token_ms=19.170227272727274, prompt_per_second=52.16422245669777, predicted_n=204, predicted_ms=21077.16, predicted_per_token_ms=103.31941176470588, predicted_per_second=9.678723319460497, cache_n=1
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are **reusable solutions to commonly occurring problems** within a given context in software design. They are not finished code, but rather templates or blueprints for how to solve a specific design challenge.     [Q09] TTFT=408.46ms Total=4.55s
+     [timings] prompt_n=21, prompt_ms=400.965, prompt_per_token_ms=19.093571428571426, prompt_per_second=52.373648572818084, predicted_n=41, predicted_ms=4137.005, predicted_per_token_ms=100.90256097560976, predicted_per_second=9.910551232111153, cache_n=1
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a **single, logical unit of work** that accesses and possibly modifies the contents of a database.
+
+It must adhere to the **ACID properties**:
+
+* **Atomicity:** The transaction must execute entirely or not at all (all or nothing).
+* **Consistency:** The transaction must bring the database from one valid state to another.
+* **Isolation:** Concurrent transactions must not interfere with each other.
+* **Durability:** Once a transaction is committed, its changes are permanent, even in case of system failure.     [Q10] TTFT=421.17ms Total=11.99s
+     [timings] prompt_n=20, prompt_ms=407.795, prompt_per_token_ms=20.38975, prompt_per_second=49.04425017472014, predicted_n=112, predicted_ms=11567.4, predicted_per_token_ms=103.28035714285714, predicted_per_second=9.682383249476977, cache_n=1
+
+================ PROFILE SUMMARY ================
+[info] Model: gemma-4-E4B-it-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 468.45 ms
+[info] Average Prompt Time (server): 450.95 ms
+[info] Total Predicted Tokens (server): 1238
+[info] Total Predicted Time (server): 127463.14 ms
+[info] Average Decode Speed (server): 9.71 tokens/sec
+[info] Average ms/token (server): 102.96 ms
+[time] Average Total Wall Duration: 13.22 seconds
+=================================================
+
+[info] Raw JSON saved to /home/quan/local-llm-lab/results/cpu/gemma4-e4b_nothink.json
