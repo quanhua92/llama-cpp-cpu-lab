@@ -1,0 +1,227 @@
+Auto-detected model: llama-3.2-1b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Here's a concise overview of software architecture:
+
+**What is Software Architecture?**
+
+Software architecture is the design and planning of a software system's structure, components, and relationships. It involves defining the system's overall organization, including the relationships between components, data models, and interfaces.
+
+**Key Components:**
+
+1. **System Boundaries**: Define the system's boundaries, including the user interface, data storage, and external dependencies.
+2. **Components**: Identify the individual components, such as services, modules, or microservices, that make up the system.
+3. **Interfaces**: Define the interfaces between components, including APIs, data formats, and communication protocols.
+4. **Data Models**: Define the data models and structures used to represent the system's data.
+5. **System Components**: Identify the system's core components, such as the business logic, data storage, and processing.
+
+**Software Architecture Patterns:**
+
+1. **Layered Architecture**: A hierarchical structure with layers for presentation, business logic, and data storage.
+2. **Microservices Architecture**: A modular structure with independent services that communicate with each other.
+3. **Service-Oriented Architecture (SOA)**: A structure that emphasizes services as the primary units of organization.
+
+**Software Architecture Principles:**
+
+1. **Separation of Concerns**: Keep each component focused on a specific task.
+2. **Modularity**: Break down the system into smaller, independent components.
+3. **Reusability**: Design components to be reused across the system.
+4. **Flexibility**: Design the system to be adaptable to changing requirements.
+
+This is just a brief overview, but I hope it gives you a good starting point for understanding software architecture!     [Q01] TTFT=115.91ms Total=9.32s
+     [timings] prompt_n=24, prompt_ms=113.495, prompt_per_token_ms=4.728958333333334, prompt_per_second=211.46306004669808, predicted_n=345, predicted_ms=9207.265, predicted_per_token_ms=26.687724637681157, predicted_per_second=37.4704105942427, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of how neural networks learn:
+
+**Neural Networks Learn by:**
+
+1. **Training**: The network is fed a large dataset, and the goal is to minimize the error between predicted and actual outputs.
+2. **Activation Functions**: The network applies non-linear activation functions to transform inputs into meaningful features.
+3. **Weight Updates**: The network adjusts the weights of its connections to optimize the output.
+4. **Backpropagation**: The network iteratively applies the error to the network, adjusting weights and biases to minimize the error.
+
+**Key Principles:**
+
+* **Overfitting**: The network becomes too specialized to the training data, failing to generalize to new, unseen data.
+* **Underfitting**: The network fails to capture the underlying patterns in the data.
+* **Regularization**: Techniques like dropout and L1/L2 regularization help prevent overfitting.
+
+**The Learning Process:**
+
+1. **Initialization**: The network is initialized with random weights and biases.
+2. **Training**: The network is trained on the dataset, adjusting weights and biases to minimize the error.
+3. **Evaluation**: The network is evaluated on a test dataset to assess its performance.
+4. **Optimization**: The network is optimized to minimize the error, using techniques like backpropagation and regularization.
+
+This is a simplified explanation, but it should give you a good starting point for understanding how neural networks learn!     [Q02] TTFT=107.16ms Total=7.80s
+     [timings] prompt_n=20, prompt_ms=92.836, prompt_per_token_ms=4.6418, prompt_per_second=215.43366797363092, predicted_n=289, predicted_ms=7692.233, predicted_per_token_ms=26.616723183391002, predicted_per_second=37.57036480824229, cache_n=5
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] Here is a concise answer:
+
+**TCP (Transmission Control Protocol)**:
+
+* Ensures reliable data transfer by guaranteeing delivery and order of packets
+* Uses error-checking and retransmission mechanisms
+* Prioritizes data transfer over speed
+
+**UDP (User Datagram Protocol)**:
+
+* Transfers data quickly, but may not guarantee delivery or order
+* Does not use error-checking or retransmission mechanisms
+* Prioritizes speed over reliability     [Q03] TTFT=131.34ms Total=2.51s
+     [timings] prompt_n=22, prompt_ms=96.405, prompt_per_token_ms=4.382045454545454, prompt_per_second=228.2039313313625, predicted_n=92, predicted_ms=2381.864, predicted_per_token_ms=25.88982608695652, predicted_per_second=38.625211179143726, cache_n=5
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] **Garbage Collection in Python**
+================================
+
+Python's garbage collection is a mechanism that automatically frees up memory occupied by objects that are no longer needed. Here's a brief overview:
+
+**When to Collect**
+------------------
+
+Python's garbage collector runs periodically, but it's not triggered by a specific event. Instead, it's based on the following rules:
+
+* When an object is no longer referenced by the program.
+* When an object is no longer referenced by the program and is still referenced by another object.
+* When an object is no longer referenced by the program and is no longer referenced by any other object.
+
+**How it Works**
+----------------
+
+When an object is created, Python stores it in a list called the "heap". The heap is a dynamic array that grows as objects are created and deleted. When an object is no longer referenced, Python's garbage collector checks the heap to see if it's still referenced by any other objects.
+
+If an object is still referenced by another object, the garbage collector will collect the object and free up its memory. If an object is no longer referenced by any other object, it's considered "dead" and can be collected.
+
+**Example**
+-----------
+
+```python
+import gc
+
+# Create a list of objects
+my_list = [1, 2, 3, 4, 5]
+
+# Print the size of the list
+print(len(my_list))
+
+# Delete an object from the list
+del my_list[0]
+
+# Print the size of the list again
+print(len(my_list))
+```
+
+In this example, the object at index 0 is deleted, and the size of the list is printed. Since the object is no longer referenced, the garbage collector will collect it and free up its memory.
+
+**Best Practices**
+------------------
+
+* Use `del` to delete objects from the heap.
+* Use `gc.collect()` to force the garbage collector to run and collect objects.
+* Avoid using `gc.get_objects()` to get a list of all objects in the heap, as it can be slow and unnecessary. Instead, use `gc.get_referents()` to get a list of all objects that reference the current object.     [Q04] TTFT=135.90ms Total=11.97s
+     [timings] prompt_n=21, prompt_ms=119.405, prompt_per_token_ms=5.685952380952381, prompt_per_second=175.87203215945732, predicted_n=439, predicted_ms=11830.569, predicted_per_token_ms=26.948904328018223, predicted_per_second=37.1072600142901, cache_n=5
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Here is a concise and correct description of microservices:
+
+**Microservices**: A software architecture where a large application is broken down into smaller, independent services, each with its own functionality, that communicate with each other through APIs.     [Q05] TTFT=118.01ms Total=1.28s
+     [timings] prompt_n=17, prompt_ms=88.983, prompt_per_token_ms=5.234294117647059, prompt_per_second=191.04772821774947, predicted_n=46, predicted_ms=1166.006, predicted_per_token_ms=25.347956521739132, predicted_per_second=39.45091191640523, cache_n=5
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] In programming, a closure is a function that has access to its own scope and the scope of its outer functions, even when the outer functions are no longer in scope.     [Q06] TTFT=136.89ms Total=1.03s
+     [timings] prompt_n=20, prompt_ms=121.821, prompt_per_token_ms=6.09105, prompt_per_second=164.17530639216554, predicted_n=35, predicted_ms=894.623, predicted_per_token_ms=25.560657142857146, predicted_per_second=39.122624837501384, cache_n=5
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] Here is a concise explanation of the CAP theorem:
+
+**CAP Theorem:**
+
+* **C**onsistency: All data is always up-to-date and consistent across all replicas.
+* **A**vailability: All data is always accessible to at least one replica.
+* **P**artition Tolerance: The system can survive a certain number of node failures without losing data.
+
+In essence, the CAP theorem states that a distributed system can only guarantee two out of three properties: consistency, availability, and partition tolerance. If a system can guarantee all three, it is said to be **CAP-able**.     [Q07] TTFT=103.61ms Total=3.36s
+     [timings] prompt_n=19, prompt_ms=86.529, prompt_per_token_ms=4.554157894736842, prompt_per_second=219.5795629211016, predicted_n=124, predicted_ms=3257.335, predicted_per_token_ms=26.26883064516129, predicted_per_second=38.067929764669586, cache_n=5
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] Here's a concise explanation of DNS resolution:
+
+**DNS Resolution:**
+
+1. **Your device sends a query**: Your device (e.g., computer, phone) sends a request to a DNS (Domain Name System) server asking for the IP address of a website or online resource.
+2. **DNS server resolves the query**: The DNS server receives the query and looks up the IP address associated with the domain name (e.g., google.com).
+3. **DNS server returns the IP address**: The DNS server returns the IP address of the website or online resource to your device.
+
+**Example:**
+
+* Your device sends a query to a DNS server for "google.com".
+* The DNS server resolves the query and returns the IP address of the Google website (e.g., 216.58.194.174).
+
+DNS resolution is a critical component of the internet, allowing devices to access online resources and communicate with each other.     [Q08] TTFT=100.99ms Total=5.03s
+     [timings] prompt_n=19, prompt_ms=81.072, prompt_per_token_ms=4.266947368421053, prompt_per_second=234.35958160647323, predicted_n=188, predicted_ms=4927.385, predicted_per_token_ms=26.209494680851066, predicted_per_second=38.154112171060305, cache_n=5
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design, developed through experience and experimentation.     [Q09] TTFT=126.08ms Total=0.59s
+     [timings] prompt_n=18, prompt_ms=107.593, prompt_per_token_ms=5.977388888888889, prompt_per_second=167.29712899538075, predicted_n=19, predicted_ms=465.357, predicted_per_token_ms=24.492473684210527, predicted_per_second=40.8288690188393, cache_n=5
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Here is a concise and correct description of database transactions:
+
+**What is a database transaction?**
+
+A database transaction is a sequence of operations that are executed as a single, all-or-nothing unit, ensuring data consistency and integrity.
+
+**Key characteristics:**
+
+1. **Atomicity**: All operations within a transaction are executed as a single, indivisible unit.
+2. **Consistency**: The transaction ensures that the database remains in a consistent state, even if errors occur.
+3. **Isolation**: The transaction is executed independently, without interference from other transactions.
+4. **Durability**: The transaction's effects are permanent, even if the database is interrupted or crashed.
+
+**Example:**
+
+Suppose you're updating a customer's address. A transaction might involve:
+
+1. Read the customer's address.
+2. Update the address.
+3. Write the updated address to the database.
+
+If any of these operations fail, the transaction is rolled back, and the database remains in its previous state.     [Q10] TTFT=92.92ms Total=5.41s
+     [timings] prompt_n=17, prompt_ms=76.965, prompt_per_token_ms=4.527352941176471, prompt_per_second=220.87962060676932, predicted_n=201, predicted_ms=5316.116, predicted_per_token_ms=26.44833830845771, predicted_per_second=37.80955870789877, cache_n=5
+
+================ PROFILE SUMMARY ================
+[info] Model: llama-3.2-1b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 116.88 ms
+[info] Average Prompt Time (server): 98.51 ms
+[info] Total Predicted Tokens (server): 1778
+[info] Total Predicted Time (server): 47138.75 ms
+[info] Average Decode Speed (server): 37.72 tokens/sec
+[info] Average ms/token (server): 26.51 ms
+[time] Average Total Wall Duration: 4.83 seconds
+=================================================
+
+[info] Raw JSON saved to /home/quan/local-llm-lab/results/cpu/llama3.2-1b_think.json

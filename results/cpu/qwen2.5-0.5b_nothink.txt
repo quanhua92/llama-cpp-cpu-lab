@@ -1,0 +1,357 @@
+Auto-detected model: qwen2.5-0.5b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the overall design and structure of a software system, including its components, interfaces, and relationships between them. It defines the system's purpose, the system's components, the system's communication patterns, and the system's dependencies. The goal of software architecture is to ensure that the system is scalable, maintainable, and reliable. It helps to ensure that the system is easy to understand, maintain, and extend.     [Q01] TTFT=118.09ms Total=1.51s
+     [timings] prompt_n=43, prompt_ms=113.46, prompt_per_token_ms=2.6386046511627907, prompt_per_second=378.98818967036846, predicted_n=86, predicted_ms=1393.243, predicted_per_token_ms=16.200499999999998, predicted_per_second=61.726489923150524, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting the weights of their connections based on the input data. This process involves two main steps: training and inference. During training, the network is given a set of input data and a corresponding output, which it uses to adjust the weights of its connections. This adjustment is based on the error between the network's output and the actual output, which is calculated as the difference between the output and the desired output. The weights are then updated to minimize this error. During inference, the network receives new input data and uses the weights to predict the output. This process continues until the network's output matches the desired output.     [Q02] TTFT=113.03ms Total=2.22s
+     [timings] prompt_n=20, prompt_ms=84.757, prompt_per_token_ms=4.23785, prompt_per_second=235.9687105489812, predicted_n=129, predicted_ms=2108.871, predicted_per_token_ms=16.347837209302327, predicted_per_second=61.170171148448624, cache_n=24
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are two different protocols used for data transmission in computer networks. The main difference is in their data transmission methods:
+
+1. TCP: This protocol uses a connection-oriented mechanism, where data is sent over a network connection and is guaranteed to be delivered to the destination. It provides reliable data transmission, error detection, and flow control. TCP is commonly used for applications that require high reliability, such as web browsing and file transfer.
+
+2. UDP: This protocol uses a connectionless mechanism, where data is sent over a network connection without any guarantee of delivery. It provides simple data transmission, but it does not guarantee reliability. UDP is commonly used for applications that do not require high reliability, such as real-time applications and file transfer.
+
+In summary, TCP is used for applications that require high reliability and reliable data transmission, while UDP is used for applications that do not require high reliability and simple data transmission.     [Q03] TTFT=97.67ms Total=3.27s
+     [timings] prompt_n=22, prompt_ms=80.045, prompt_per_token_ms=3.638409090909091, prompt_per_second=274.84539946280216, predicted_n=193, predicted_ms=3175.83, predicted_per_token_ms=16.455077720207253, predicted_per_second=60.77151484808695, cache_n=24
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Garbage collection in Python is managed by the Python runtime system, which automatically frees up memory when objects are no longer needed. This process is called garbage collection. When an object is no longer needed, Python automatically frees up memory for it, which is a form of garbage collection. This ensures that the memory used by objects is not wasted, and the program runs efficiently.     [Q04] TTFT=76.15ms Total=1.30s
+     [timings] prompt_n=21, prompt_ms=69.462, prompt_per_token_ms=3.307714285714286, prompt_per_second=302.3235726008465, predicted_n=75, predicted_ms=1222.789, predicted_per_token_ms=16.303853333333333, predicted_per_second=61.335193561603845, cache_n=24
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are software development models where applications are composed of small, independent services that communicate with each other and with the underlying infrastructure. Each service is responsible for a specific functionality, and they are designed to be independent, modular, and scalable. This approach allows for easier maintenance, easier scaling, and easier deployment of applications. Microservices enable organizations to build complex, scalable, and maintainable applications by breaking them down into smaller, manageable components.     [Q05] TTFT=82.40ms Total=1.53s
+     [timings] prompt_n=17, prompt_ms=55.353, prompt_per_token_ms=3.2560588235294117, prompt_per_second=307.1197586400014, predicted_n=89, predicted_ms=1450.633, predicted_per_token_ms=16.299247191011236, predicted_per_second=61.352526793475676, cache_n=24
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure in programming is a function that retains its local variables and scope even after the function has been called. It allows a function to access variables from its own scope, even if those variables are not defined in the function's local scope. This is useful for creating functions that can access variables from their own scope, such as a function that can access a global variable from its own scope.     [Q06] TTFT=67.68ms Total=1.36s
+     [timings] prompt_n=20, prompt_ms=57.424, prompt_per_token_ms=2.8712, prompt_per_second=348.2864307606576, predicted_n=79, predicted_ms=1288.656, predicted_per_token_ms=16.312101265822783, predicted_per_second=61.30418047950733, cache_n=24
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem, also known as the Concurrency Protection Theorem, is a fundamental concept in distributed computing and distributed systems. It states that in a distributed system, it is impossible to achieve both consistency and availability simultaneously. This means that in a distributed system, there is a trade-off between the two, and it is not possible to have both consistency and availability at the same time. The CAP theorem is crucial for designing and implementing distributed systems that can handle concurrent and distributed tasks.     [Q07] TTFT=88.24ms Total=1.67s
+     [timings] prompt_n=19, prompt_ms=61.327, prompt_per_token_ms=3.227736842105263, prompt_per_second=309.8146004206957, predicted_n=97, predicted_ms=1585.303, predicted_per_token_ms=16.343329896907218, predicted_per_second=61.1870412154648, cache_n=24
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS (Domain Name System) resolution works by converting domain names into IP addresses. When you type a domain name into your web browser, the DNS server on your computer maps the domain name to an IP address. This process involves several steps:
+
+1. **Query**: The DNS server sends a query to the root DNS server, which is typically located at 8.8.8.8 and 8.8.4.4 (the A and AAAA records for the root domain).
+
+2. **Answer**: The root DNS server sends an answer back to the client, which contains the IP address associated with the domain name.
+
+3. **Reply**: The client then sends a reply to the root DNS server, which contains the IP address associated with the domain name.
+
+4. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+5. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+6. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+7. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+8. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+9. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+10. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+11. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+12. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+13. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+14. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+15. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+16. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+17. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+18. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+19. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+20. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+21. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+22. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+23. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+24. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+25. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+26. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+27. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+28. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+29. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+30. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+31. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+32. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+33. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+34. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+35. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+36. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+37. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+38. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+39. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+40. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+41. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+42. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+43. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+44. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+45. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+46. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+47. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+48. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+49. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+50. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+51. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+52. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+53. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+54. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+55. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+56. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+57. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+58. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+59. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+60. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+61. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+62. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+63. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+64. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+65. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+66. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+67. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+68. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+69. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+70. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+71. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+72. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+73. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+74. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+75. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+76. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+77. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+78. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+79. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+80. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+81. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+82. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+83. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+84. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+85. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+86. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+87. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+88. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+89. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+90. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+91. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+92. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+93. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+94. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+95. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+96. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+97. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+98. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+99. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+100. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+101. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+102. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+103. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+104. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+105. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+106. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+107. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+108. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+109. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+110. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+111. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+112. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+113. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+114. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+115. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+116. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+117. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+118. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+119. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+120. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+121. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+122. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+123. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+124. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+125. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+126. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+127. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+128. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+129. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+130. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+131. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+132. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+133. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+134. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+135. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+136. **Reply**: The root DNS server sends a reply back to the client, which contains the IP address associated with the domain name.
+
+137. **Reply**: The client sends a reply back to the root DNS server, which contains the IP address associated with the domain name.
+
+138. **Reply**: The root DNS server sends a reply back to the client, which contains the IP     [Q08] TTFT=87.76ms Total=85.44s
+     [timings] prompt_n=19, prompt_ms=60.733, prompt_per_token_ms=3.196473684210526, prompt_per_second=312.8447466780828, predicted_n=4096, predicted_ms=85351.209, predicted_per_token_ms=20.837697509765626, predicted_per_second=47.98994704339806, cache_n=24
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design. They provide a blueprint for solving similar problems in different contexts, making code more maintainable and scalable.     [Q09] TTFT=84.87ms Total=0.62s
+     [timings] prompt_n=18, prompt_ms=51.217, prompt_per_token_ms=2.845388888888889, prompt_per_second=351.44580900872757, predicted_n=33, predicted_ms=533.642, predicted_per_token_ms=16.1709696969697, predicted_per_second=61.839210556890194, cache_n=24
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a fundamental concept in database management systems (DBMS) that ensure the integrity and consistency of data operations. They involve breaking down a single transaction into smaller, manageable units called transactions. These units are executed in a sequence, and the results of each transaction are committed or rolled back if any issues arise. This process ensures that all changes made to the database are consistent and can be rolled back if necessary, maintaining data integrity. Transactions are crucial for managing complex data operations and ensuring data consistency across multiple users or applications.     [Q10] TTFT=102.23ms Total=1.88s
+     [timings] prompt_n=17, prompt_ms=74.442, prompt_per_token_ms=4.378941176470588, prompt_per_second=228.36570753069506, predicted_n=106, predicted_ms=1774.717, predicted_per_token_ms=16.74261320754717, predicted_per_second=59.7278326628978, cache_n=24
+
+================ PROFILE SUMMARY ================
+[info] Model: qwen2.5-0.5b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 91.81 ms
+[info] Average Prompt Time (server): 70.82 ms
+[info] Total Predicted Tokens (server): 4983
+[info] Total Predicted Time (server): 99884.89 ms
+[info] Average Decode Speed (server): 49.89 tokens/sec
+[info] Average ms/token (server): 20.05 ms
+[time] Average Total Wall Duration: 10.08 seconds
+=================================================
+
+[info] Raw JSON saved to /home/quan/local-llm-lab/results/cpu/qwen2.5-0.5b_nothink.json

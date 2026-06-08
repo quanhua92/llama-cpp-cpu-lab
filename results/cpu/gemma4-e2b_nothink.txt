@@ -1,0 +1,117 @@
+Auto-detected model: gemma-4-E2B-it-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] **Software architecture** is the high-level structure of a software system, defining its components, their relationships, and the principles governing their design and evolution.
+
+**Key aspects:**
+
+* **Structure:** Defines the major components (modules, services, databases) and how they interact.
+* **Design Decisions:** Makes crucial, high-impact decisions (e.g., architectural style like Microservices, Monolith, Event-Driven).
+* **Quality Attributes (Non-Functional Requirements):** Focuses on ensuring the system meets requirements like performance, scalability, security, and maintainability.
+
+**In short:** It's the blueprint that guides the entire development process, ensuring the system is robust, maintainable, and capable of meeting business needs.     [Q01] TTFT=252.65ms Total=8.73s
+     [timings] prompt_n=23, prompt_ms=250.471, prompt_per_token_ms=10.89004347826087, prompt_per_second=91.82699793588878, predicted_n=153, predicted_ms=8472.024, predicted_per_token_ms=55.37270588235294, predicted_per_second=18.059438925102196, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through an iterative process involving:
+
+1. **Forward Propagation:** Input data passes through the network, generating an output prediction.
+2. **Loss Calculation:** A function measures the difference (error) between the predicted output and the actual target.
+3. **Backpropagation:** The error is propagated backward through the network to calculate the gradient (the direction and magnitude of change needed for each weight).
+4. **Weight Update:** An optimization algorithm (like Gradient Descent) uses the calculated gradients to adjust the network's weights and biases, minimizing the loss for the next iteration.
+
+This cycle repeats until the network's predictions are sufficiently accurate.     [Q02] TTFT=271.99ms Total=7.71s
+     [timings] prompt_n=22, prompt_ms=258.322, prompt_per_token_ms=11.741909090909092, prompt_per_second=85.16502659471513, predicted_n=135, predicted_ms=7434.81, predicted_per_token_ms=55.07266666666667, predicted_per_second=18.157827839581643, cache_n=1
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol):** Connection-oriented, reliable, ensures data delivery and order. (Slower, more overhead)
+
+**UDP (User Datagram Protocol):** Connectionless, unreliable, faster, minimal overhead. (Best for speed where occasional loss is acceptable)     [Q03] TTFT=242.84ms Total=3.39s
+     [timings] prompt_n=25, prompt_ms=230.537, prompt_per_token_ms=9.22148, prompt_per_second=108.44246259819465, predicted_n=58, predicted_ms=3149.482, predicted_per_token_ms=54.30141379310345, predicted_per_second=18.41572677665724, cache_n=1
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python uses **automatic memory management** primarily through **reference counting** and a **generational garbage collector** to handle cyclic references.
+
+1. **Reference Counting:** Every object keeps a count of how many references point to it. When the count drops to zero, the object is immediately deallocated.
+2. **Generational GC:** This mechanism periodically scans for and cleans up **reference cycles** (objects referencing each other but no external references exist). It divides objects into generations based on how long they have survived, optimizing the collection process.     [Q04] TTFT=248.63ms Total=6.32s
+     [timings] prompt_n=24, prompt_ms=235.461, prompt_per_token_ms=9.810875000000001, prompt_per_second=101.9277077732618, predicted_n=109, predicted_ms=6070.198, predicted_per_token_ms=55.68988990825688, predicted_per_second=17.95658065848923, cache_n=1
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] **Microservices** are an architectural style where a large application is broken down into a collection of small, independent, and loosely coupled services. Each service runs its own process, communicates via lightweight mechanisms (like APIs), and can be developed, deployed, and scaled independently.     [Q05] TTFT=264.22ms Total=3.26s
+     [timings] prompt_n=20, prompt_ms=247.647, prompt_per_token_ms=12.382349999999999, prompt_per_second=80.76011419480147, predicted_n=55, predicted_ms=2990.294, predicted_per_token_ms=54.368981818181815, predicted_per_second=18.392840302659206, cache_n=1
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** in programming is a function bundled together with references to its surrounding state (the lexical environment). This allows an inner function to access variables from its outer function even after the outer function has finished executing.     [Q06] TTFT=229.94ms Total=2.68s
+     [timings] prompt_n=23, prompt_ms=217.975, prompt_per_token_ms=9.477173913043478, prompt_per_second=105.51668769354285, predicted_n=44, predicted_ms=2453.908, predicted_per_token_ms=55.77063636363636, predicted_per_second=17.930582564627525, cache_n=1
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that a distributed data store can only provide **two** of the following three guarantees at any given time:
+
+1. **Consistency (C):** Every read receives the most recent write or an error.
+2. **Availability (A):** Every request receives a (non-error) response, without the guarantee that it contains the most recent write.
+3. **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of some nodes (network partitions).
+
+In a distributed system, **Partition Tolerance (P) is generally considered mandatory.** Therefore, a system must choose between **Consistency (C)** and **Availability (A)** when a network partition occurs.     [Q07] TTFT=233.29ms Total=8.23s
+     [timings] prompt_n=21, prompt_ms=219.417, prompt_per_token_ms=10.448428571428572, prompt_per_second=95.70817211063864, predicted_n=146, predicted_ms=7998.356, predicted_per_token_ms=54.7832602739726, predicted_per_second=18.253751145860477, cache_n=1
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution is the process of translating a human-readable **domain name** (e.g., `www.example.com`) into an **IP address** (e.g., `192.0.2.1`) that computers use to locate a server on the internet.
+
+Here are the key steps:
+
+1. **Query:** A client (your device) asks a **DNS Resolver** (usually provided by your ISP) for the IP address of the desired domain.
+2. **Recursive Lookup:** If the resolver doesn't have the answer cached, it queries a **Root Name Server**, which directs it to the appropriate **TLD (Top-Level Domain) server** (e.g., `.com`).
+3. **Authoritative Lookup:** The TLD server directs the resolver to the **Authoritative Name Server** for the specific domain, which finally provides the correct IP address.
+4. **Response:** The IP address is sent back to the client, allowing the client to connect to the correct server.     [Q08] TTFT=227.68ms Total=12.09s
+     [timings] prompt_n=22, prompt_ms=220.859, prompt_per_token_ms=10.039045454545455, prompt_per_second=99.61106407255308, predicted_n=215, predicted_ms=11860.706, predicted_per_token_ms=55.16607441860465, predicted_per_second=18.127082822894355, cache_n=1
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are **reusable solutions to commonly occurring problems** in software design.
+
+They are not finished code, but rather **templates or blueprints** for how to structure code and solve recurring design challenges effectively.     [Q09] TTFT=212.45ms Total=2.55s
+     [timings] prompt_n=21, prompt_ms=199.845, prompt_per_token_ms=9.516428571428571, prompt_per_second=105.08143811453876, predicted_n=43, predicted_ms=2334.532, predicted_per_token_ms=54.29144186046512, predicted_per_second=18.419109269009805, cache_n=1
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] A database transaction is a **single, logical unit of work** that accesses and possibly modifies the contents of a database.
+
+It must adhere to the **ACID properties**:
+
+* **Atomicity:** All operations in the transaction succeed, or none of them do (all or nothing).
+* **Consistency:** The transaction brings the database from one valid state to another.
+* **Isolation:** Concurrent transactions do not interfere with each other.
+* **Durability:** Once a transaction is committed, its changes are permanent and survive system failures.     [Q10] TTFT=229.65ms Total=6.32s
+     [timings] prompt_n=20, prompt_ms=215.727, prompt_per_token_ms=10.78635, prompt_per_second=92.70976743754838, predicted_n=111, predicted_ms=6094.548, predicted_per_token_ms=54.905837837837836, predicted_per_second=18.212999553043147, cache_n=1
+
+================ PROFILE SUMMARY ================
+[info] Model: gemma-4-E2B-it-Q4_K_M.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 241.33 ms
+[info] Average Prompt Time (server): 229.63 ms
+[info] Total Predicted Tokens (server): 1069
+[info] Total Predicted Time (server): 58858.86 ms
+[info] Average Decode Speed (server): 18.16 tokens/sec
+[info] Average ms/token (server): 55.06 ms
+[time] Average Total Wall Duration: 6.13 seconds
+=================================================
+
+[info] Raw JSON saved to /home/quan/local-llm-lab/results/cpu/gemma4-e2b_nothink.json

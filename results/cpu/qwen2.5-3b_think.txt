@@ -1,0 +1,75 @@
+Auto-detected model: qwen2.5-3b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the fundamental structure of a software system, defining its components, their relationships, and their interfaces. It guides the design, implementation, and evolution of the system.     [Q01] TTFT=495.98ms Total=2.72s
+     [timings] prompt_n=43, prompt_ms=491.695, prompt_per_token_ms=11.434767441860465, prompt_per_second=87.45258747800975, predicted_n=36, predicted_ms=2226.516, predicted_per_token_ms=61.84766666666667, predicted_per_second=16.168758724392728, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through a process called training, where they adjust the weights of connections between neurons to minimize the difference between predicted and actual outputs. This is typically done using algorithms like backpropagation, which iteratively adjusts weights based on the error in predictions. During training, the network receives input data, processes it through layers of interconnected neurons, and outputs predictions. The error is calculated, and the weights are updated to reduce this error in subsequent iterations.     [Q02] TTFT=266.96ms Total=6.05s
+     [timings] prompt_n=20, prompt_ms=236.209, prompt_per_token_ms=11.81045, prompt_per_second=84.6707788441592, predicted_n=92, predicted_ms=5778.47, predicted_per_token_ms=62.809456521739136, predicted_per_second=15.921169444506935, cache_n=24
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP is a connection-oriented protocol that ensures data delivery, providing reliable communication. UDP is a connectionless protocol that does not guarantee delivery but is faster and has lower overhead.     [Q03] TTFT=314.40ms Total=2.48s
+     [timings] prompt_n=22, prompt_ms=280.829, prompt_per_token_ms=12.764954545454545, prompt_per_second=78.33948773096796, predicted_n=35, predicted_ms=2164.675, predicted_per_token_ms=61.84785714285715, predicted_per_second=16.16870892859205, cache_n=24
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Garbage collection in Python works by periodically running a garbage collector that identifies and removes objects that are no longer referenced. Python uses a reference counting mechanism combined with a cyclic garbage collector to manage memory. When an object's reference count drops to zero, it is automatically deleted, and the memory is reclaimed. Cycles of objects that reference each other are also detected and cleaned up.     [Q04] TTFT=301.24ms Total=5.06s
+     [timings] prompt_n=21, prompt_ms=270.898, prompt_per_token_ms=12.899904761904763, prompt_per_second=77.51995215911523, predicted_n=76, predicted_ms=4755.467, predicted_per_token_ms=62.57193421052631, predicted_per_second=15.98160601261664, cache_n=24
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software design where an application is composed of small, independent services that communicate with each other over well-defined APIs. Each service is a small, manageable piece of the application, and can be deployed and scaled independently.     [Q05] TTFT=250.17ms Total=3.17s
+     [timings] prompt_n=17, prompt_ms=233.509, prompt_per_token_ms=13.735823529411764, prompt_per_second=72.80233310065137, predicted_n=47, predicted_ms=2923.393, predicted_per_token_ms=62.19985106382979, predicted_per_second=16.077208914436067, cache_n=24
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that has access to the variables in its own scope, even after the function that defines it has finished executing.     [Q06] TTFT=249.15ms Total=1.95s
+     [timings] prompt_n=18, prompt_ms=217.42, prompt_per_token_ms=12.078888888888889, prompt_per_second=82.78907184251679, predicted_n=28, predicted_ms=1704.247, predicted_per_token_ms=60.86596428571429, predicted_per_second=16.429543370180497, cache_n=26
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that in a distributed system, it is impossible to simultaneously ensure consistency, availability, and partition tolerance.     [Q07] TTFT=298.77ms Total=1.82s
+     [timings] prompt_n=19, prompt_ms=273.187, prompt_per_token_ms=14.378263157894738, prompt_per_second=69.54942951165319, predicted_n=25, predicted_ms=1516.752, predicted_per_token_ms=60.67008, predicted_per_second=16.48258911146977, cache_n=24
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution involves translating human-readable domain names into IP addresses that computers use to communicate. When a domain name is entered, a DNS resolver contacts a DNS server to fetch the IP address, which is then used to connect to the server hosting the website.     [Q08] TTFT=258.65ms Total=3.43s
+     [timings] prompt_n=19, prompt_ms=229.788, prompt_per_token_ms=12.094105263157894, prompt_per_second=82.68490956881995, predicted_n=51, predicted_ms=3166.486, predicted_per_token_ms=62.08796078431372, predicted_per_second=16.10618205796583, cache_n=24
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are proven solutions to common problems in software design, expressed as reusable templates.     [Q09] TTFT=252.92ms Total=1.34s
+     [timings] prompt_n=17, prompt_ms=220.86, prompt_per_token_ms=12.991764705882353, prompt_per_second=76.9718373630354, predicted_n=18, predicted_ms=1085.162, predicted_per_token_ms=60.28677777777778, predicted_per_second=16.587385109320085, cache_n=25
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a set of operations that are treated as a single unit of work. They ensure data consistency and integrity by either fully completing or canceling all changes made within the transaction. Transactions are typically defined by ACID properties: Atomicity, Consistency, Isolation, and Durability.     [Q10] TTFT=274.11ms Total=4.06s
+     [timings] prompt_n=17, prompt_ms=247.491, prompt_per_token_ms=14.55829411764706, prompt_per_second=68.68936648201348, predicted_n=60, predicted_ms=3787.452, predicted_per_token_ms=63.1242, predicted_per_second=15.841784925591135, cache_n=24
+
+================ PROFILE SUMMARY ================
+[info] Model: qwen2.5-3b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 296.23 ms
+[info] Average Prompt Time (server): 270.19 ms
+[info] Total Predicted Tokens (server): 468
+[info] Total Predicted Time (server): 29108.62 ms
+[info] Average Decode Speed (server): 16.08 tokens/sec
+[info] Average ms/token (server): 62.20 ms
+[time] Average Total Wall Duration: 3.21 seconds
+=================================================
+
+[info] Raw JSON saved to /home/quan/local-llm-lab/results/cpu/qwen2.5-3b_think.json

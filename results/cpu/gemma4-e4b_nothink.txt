@@ -1,0 +1,105 @@
+Auto-detected model: gemma-4-E4B-it-Q4_K_M.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] **Software architecture** is the set of fundamental structures, organization, and design decisions of a software system.
+
+**It defines:**
+
+* **The components:** The major building blocks of the system.
+* **The relationships:** How these components interact and communicate.
+* **The principles:** The high-level rules and constraints guiding the design.
+
+**Its purpose is to:**
+
+* **Manage complexity:** Break down large systems into manageable parts.
+* **Ensure quality attributes:** Guarantee non-functional requirements like performance, scalability, security, and maintainability.
+
+**In short, it's the blueprint that dictates *how* the system is built, not *what* it does.**     [Q01] TTFT=505.95ms Total=15.19s
+     [timings] prompt_n=23, prompt_ms=503.794, prompt_per_token_ms=21.904086956521738, prompt_per_second=45.653580630178205, predicted_n=142, predicted_ms=14685.838, predicted_per_token_ms=103.42139436619718, predicted_per_second=9.669179246019192, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn through **training** on data.
+
+1. **Forward Propagation:** Input data passes through the network, layer by layer, producing an output prediction.
+2. **Loss Calculation:** A **loss function** measures the difference (error) between the prediction and the true target.
+3. **Backpropagation:** This error is sent backward through the network.
+4. **Optimization (Gradient Descent):** The network uses calculus (gradients) to determine how much each internal weight and bias contributed to the error. It then slightly adjusts these weights and biases in the direction that minimizes the loss.
+
+This iterative process (forward pass $\rightarrow$ calculate loss $\rightarrow$ backward pass $\rightarrow$ adjust weights) is repeated thousands of times until the network's predictions are accurate enough.     [Q02] TTFT=438.42ms Total=17.14s
+     [timings] prompt_n=22, prompt_ms=418.913, prompt_per_token_ms=19.0415, prompt_per_second=52.51687104482314, predicted_n=161, predicted_ms=16696.823, predicted_per_token_ms=103.70697515527951, predicted_per_second=9.642552957529704, cache_n=1
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] **TCP (Transmission Control Protocol):**
+* **Connection-oriented:** Establishes a connection before sending data (reliable).
+* **Guaranteed delivery:** Ensures all packets arrive and are in order (uses acknowledgments and retransmissions).
+* **Slower:** Due to overhead of reliability checks.
+* **Used for:** Web browsing (HTTP), email (SMTP).
+
+**UDP (User Datagram Protocol):**
+* **Connectionless:** Sends data without establishing a formal connection (fast).
+* **Best-effort delivery:** No guarantee of delivery or order; packets can be lost.
+* **Faster:** Minimal overhead.
+* **Used for:** Video streaming, DNS lookups, online gaming.
+
+**In short:** **TCP is reliable but slower; UDP is fast but unreliable.**     [Q03] TTFT=507.32ms Total=17.56s
+     [timings] prompt_n=25, prompt_ms=476.854, prompt_per_token_ms=19.07416, prompt_per_second=52.42694829025236, predicted_n=167, predicted_ms=17053.531, predicted_per_token_ms=102.11695209580837, predicted_per_second=9.79269337241654, cache_n=1
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] Python primarily uses **automatic memory management** through a combination of **reference counting** and a **generational garbage collector**.
+
+1. **Reference Counting:** Each object keeps a count of how many references point to it. When the count drops to zero, the object's memory is immediately deallocated.
+
+2. **Generational Garbage Collector:** This handles **reference cycles** (where objects reference each other, preventing the reference count from ever reaching zero). It periodically scans for and cleans up these unreachable cyclic groups.     [Q04] TTFT=503.99ms Total=11.12s
+     [timings] prompt_n=24, prompt_ms=471.865, prompt_per_token_ms=19.661041666666666, prompt_per_second=50.862005022622995, predicted_n=104, predicted_ms=10619.203, predicted_per_token_ms=102.10772115384614, predicted_per_second=9.79357867064035, cache_n=1
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices is an architectural style where a large application is broken down into a collection of small, independent, and loosely coupled services.
+
+**Key characteristics:**
+
+* **Small & Focused:** Each service handles a single business capability (e.g., "User Authentication," "Order Processing").
+* **Independent Deployment:** Services can be developed, deployed, and scaled independently of others.
+* **Decentralized:** Teams own and operate their specific services end-to-end.
+* **Technology Diversity:** Different services can use different programming languages or databases best suited for their function.     [Q05] TTFT=402.49ms Total=12.65s
+     [timings] prompt_n=20, prompt_ms=378.488, prompt_per_token_ms=18.9244, prompt_per_second=52.841833823001, predicted_n=119, predicted_ms=12251.05, predicted_per_token_ms=102.94999999999999, predicted_per_second=9.713453132588636, cache_n=1
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A **closure** is a function bundled together with references to its surrounding state (its lexical environment).
+
+In simpler terms, it allows an inner function to access and manipulate variables from its outer (enclosing) function, even after the outer function has finished executing.     [Q06] TTFT=473.83ms Total=5.98s
+     [timings] prompt_n=23, prompt_ms=448.147, prompt_per_token_ms=19.484652173913044, prompt_per_second=51.32244553684394, predicted_n=54, predicted_ms=5505.443, predicted_per_token_ms=101.95264814814816, predicted_per_second=9.80847499465529, cache_n=1
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem states that a distributed data store can only simultaneously guarantee **two** of the following three properties:
+
+1. **Consistency (C):** Every read receives the most recent write or an error.
+2. **Availability (A):** Every request receives a (non-error) response, without guaranteeing it's the most recent data.
+3. **Partition Tolerance (P):** The system continues to operate despite arbitrary message loss or failure of part of the system (network partitions).
+
+**In short: In the presence of a network partition (P), a system must choose between being Consistent (C) or Available (A).**     [Q07] TTFT=447.48ms Total=14.28s
+     [timings] prompt_n=21, prompt_ms=427.733, prompt_per_token_ms=20.368238095238095, prompt_per_second=49.09604823569843, predicted_n=134, predicted_ms=13836.017, predicted_per_token_ms=103.25385820895522, predicted_per_second=9.684868123535843, cache_n=1
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution translates human-readable domain names (like `google.com`) into machine-readable IP addresses (like `142.250.191.46`).
+
+It works through a hierarchical query process involving several servers:
+
+1. **Resolver (Stub Resolver):** Your device sends a query to a local DNS resolver (usually provided by your ISP).
+2. **Root Server:** The resolver asks a Root Server for the address of the Top-Level Domain (TLD) server (e.g., `.com`).
+3. **TLD Server:** The resolver asks the TLD server for the authoritative name server responsible for the specific domain (e.g., `google.

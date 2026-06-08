@@ -1,0 +1,87 @@
+Auto-detected model: qwen2.5-1.5b-instruct-q4_k_m.gguf
+
+  -> Q01 [1/10]
+     IN:  Tell me about software architecture. Answer short, concise, and correct.
+
+        [out] Software architecture is the high-level design of a system, including the components, their interactions, and the structure of the system. It defines how different parts of the system are connected and how they work together to achieve the system's goals. The architecture guides the design and development process, ensuring that the system meets the requirements and is scalable, maintainable, and efficient.     [Q01] TTFT=238.24ms Total=2.72s
+     [timings] prompt_n=43, prompt_ms=233.56, prompt_per_token_ms=5.431627906976744, prompt_per_second=184.10686761431754, predicted_n=74, predicted_ms=2476.509, predicted_per_token_ms=33.46633783783784, predicted_per_second=29.88077168304254, cache_n=0
+
+  -> Q02 [2/10]
+     IN:  Explain how neural networks learn. Answer short, concise, and correct.
+
+        [out] Neural networks learn by adjusting the weights of connections between neurons based on the error between the network's predictions and the actual data. This process is called backpropagation. The network iteratively updates the weights to minimize the error, using techniques like gradient descent. This allows the network to improve its predictions over time as it processes more data.     [Q02] TTFT=172.47ms Total=2.48s
+     [timings] prompt_n=20, prompt_ms=141.678, prompt_per_token_ms=7.0839, prompt_per_second=141.16517737404538, predicted_n=69, predicted_ms=2311.205, predicted_per_token_ms=33.49572463768116, predicted_per_second=29.85455638941591, cache_n=24
+
+  -> Q03 [3/10]
+     IN:  What is the difference between TCP and UDP? Answer short, concise, and correct.
+
+        [out] TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are both protocols used for transmitting data over networks. The main difference is in their approach to reliability and efficiency:
+
+- **Reliability**: TCP is designed to ensure reliable delivery of data by retransmitting lost packets and correcting errors. It provides a connection-oriented service, meaning it maintains a connection between the sender and receiver. UDP, on the other hand, is designed for efficiency and speed, providing a connectionless service. It does not retransmit lost packets or correct errors, making it faster but less reliable.
+
+- **Efficiency**: TCP is slower because it ensures reliability, which involves additional overhead. UDP is faster because it does not require retransmission or error correction, but it may result in some data loss or corruption if the network is congested.
+
+In summary, TCP is more reliable but slower, while UDP is faster but less reliable.     [Q03] TTFT=165.76ms Total=6.51s
+     [timings] prompt_n=22, prompt_ms=133.983, prompt_per_token_ms=6.090136363636364, prompt_per_second=164.19993581275236, predicted_n=186, predicted_ms=6345.491, predicted_per_token_ms=34.11554301075269, predicted_per_second=29.312152519009164, cache_n=24
+
+  -> Q04 [4/10]
+     IN:  How does garbage collection work in Python? Answer short, concise, and correct.
+
+        [out] In Python, garbage collection is handled by the Python interpreter. When an object is no longer referenced by any part of the program, Python automatically frees the memory used by that object. This is done through the use of a garbage collector, which is a special type of thread that runs in the background to detect and reclaim memory. The garbage collector is not explicitly called by the programmer; it runs automatically when it is needed.     [Q04] TTFT=175.57ms Total=2.98s
+     [timings] prompt_n=21, prompt_ms=138.145, prompt_per_token_ms=6.578333333333334, prompt_per_second=152.01418799087915, predicted_n=85, predicted_ms=2799.974, predicted_per_token_ms=32.9408705882353, predicted_per_second=30.35742474751551, cache_n=24
+
+  -> Q05 [5/10]
+     IN:  Describe microservices. Answer short, concise, and correct.
+
+        [out] Microservices are a software architecture style where an application is broken down into small, independent services. Each service is a small, independent component that can be developed, deployed, and scaled independently. This approach allows for faster development cycles, easier maintenance, and greater flexibility in scaling applications.     [Q05] TTFT=155.96ms Total=2.02s
+     [timings] prompt_n=17, prompt_ms=124.842, prompt_per_token_ms=7.343647058823529, prompt_per_second=136.1721215616539, predicted_n=57, predicted_ms=1859.76, predicted_per_token_ms=32.62736842105263, predicted_per_second=30.649116014969675, cache_n=24
+
+  -> Q06 [6/10]
+     IN:  What is a closure in programming? Answer short, concise, and correct.
+
+        [out] A closure is a function that has access to the variables in its lexical scope, even if that scope has finished executing.     [Q06] TTFT=168.25ms Total=0.97s
+     [timings] prompt_n=20, prompt_ms=138.752, prompt_per_token_ms=6.937600000000001, prompt_per_second=144.1420664206642, predicted_n=25, predicted_ms=798.026, predicted_per_token_ms=31.921039999999998, predicted_per_second=31.3273001130289, cache_n=24
+
+  -> Q07 [7/10]
+     IN:  Explain the CAP theorem. Answer short, concise, and correct.
+
+        [out] The CAP theorem, proposed by Eric Brewer, states that a distributed system can only achieve three out of the following four properties: 
+
+- Consistency: All reads and writes return the same value.
+- Availability: The system is available and responsive to requests.
+- Partition tolerance: The system continues to function even if the network partitions.
+
+The theorem shows that these three properties are mutually exclusive, meaning a system cannot simultaneously achieve all three.     [Q07] TTFT=159.69ms Total=3.03s
+     [timings] prompt_n=19, prompt_ms=134.216, prompt_per_token_ms=7.064, prompt_per_second=141.56285390713478, predicted_n=87, predicted_ms=2866.771, predicted_per_token_ms=32.9513908045977, predicted_per_second=30.347732692984543, cache_n=24
+
+  -> Q08 [8/10]
+     IN:  How does DNS resolution work? Answer short, concise, and correct.
+
+        [out] DNS resolution works by translating domain names into IP addresses. When a user types a domain name into a web browser, the browser sends a request to the domain name server (DNS) to find the IP address associated with that domain. The DNS server then returns the IP address, which the browser uses to connect to the website.     [Q08] TTFT=139.40ms Total=2.30s
+     [timings] prompt_n=19, prompt_ms=109.773, prompt_per_token_ms=5.777526315789474, prompt_per_second=173.08445610487095, predicted_n=66, predicted_ms=2159.644, predicted_per_token_ms=32.72187878787879, predicted_per_second=30.560592393931596, cache_n=24
+
+  -> Q09 [9/10]
+     IN:  What are design patterns? Answer short, concise, and correct.
+
+        [out] Design patterns are reusable solutions to common problems in software design.     [Q09] TTFT=113.35ms Total=0.51s
+     [timings] prompt_n=17, prompt_ms=97.863, prompt_per_token_ms=5.756647058823529, prompt_per_second=173.7122303628542, predicted_n=13, predicted_ms=399.001, predicted_per_token_ms=30.692384615384615, predicted_per_second=32.581371976511335, cache_n=25
+
+  -> Q10 [10/10]
+     IN:  Describe database transactions. Answer short, concise, and correct.
+
+        [out] Database transactions are a set of operations that are treated as a single unit of work. They are designed to ensure data consistency and integrity. When a transaction is committed, all changes are saved to the database. If an error occurs during the transaction, it is rolled back, undoing all changes made within the transaction. This ensures that the database remains in a consistent state. Transactions are used to manage data integrity and provide a level of data consistency across multiple database operations.     [Q10] TTFT=131.16ms Total=3.22s
+     [timings] prompt_n=17, prompt_ms=116.96, prompt_per_token_ms=6.88, prompt_per_second=145.34883720930236, predicted_n=94, predicted_ms=3088.334, predicted_per_token_ms=32.854617021276596, predicted_per_second=30.437122409687557, cache_n=24
+
+================ PROFILE SUMMARY ================
+[info] Model: qwen2.5-1.5b-instruct-q4_k_m.gguf
+[info] Questions: 10
+[info] Average TTFT (client): 161.98 ms
+[info] Average Prompt Time (server): 136.98 ms
+[info] Total Predicted Tokens (server): 756
+[info] Total Predicted Time (server): 25104.72 ms
+[info] Average Decode Speed (server): 30.11 tokens/sec
+[info] Average ms/token (server): 33.21 ms
+[time] Average Total Wall Duration: 2.67 seconds
+=================================================
+
+[info] Raw JSON saved to /home/quan/local-llm-lab/results/cpu/qwen2.5-1.5b_nothink.json
